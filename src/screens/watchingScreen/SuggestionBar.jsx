@@ -1,9 +1,4 @@
 import style from '../../assets/scss/Components/Watching/_suggestionBar.module.scss'
-import {useDispatch, useSelector} from "react-redux";
-import {getVideos, selectVideoList} from "../../features/video/videoSlice";
-import {useEffect} from "react";
-import {Col, Row} from "react-bootstrap";
-import Video from "../../components/home/Video/Video";
 import {SuggestionVideo} from "../../components/home/Video/SuggestionVideo";
 
 export default function SuggestionBar() {

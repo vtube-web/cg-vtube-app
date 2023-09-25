@@ -3,21 +3,42 @@
 .suggestVideo {
   display: flex;
   flex-direction: row;
+  margin-bottom: 0.5rem;
+  height: 13vh;
 
   .video__main {
-    width: 4rem;
-    height: 2rem;
+    display: flex;
+    align-self: center;
+    width: 9rem;
+    height: 13vh;
+    border-radius: 13px;
+    margin-right: 0.5rem;
   }
 
-  .suggestVideo__title {
+  .video__info {
+    display: flex;
+    flex-direction: column;
 
-  }
 
-  .suggestVideo__channel {
+    .suggestVideo__title {
+      display: flex;
+      align-self: baseline;
+      font-weight: bold;
+      font-size: 15px;
+    }
 
-  }
+    .suggestVideo__channel {
+      display: flex;
+      align-content: center;
+      font-size: 13px;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
 
-  .suggestVideo__details {
-
+    .suggestVideo__details {
+      display: flex;
+      align-content: flex-end;
+      font-size: 13px;
+    }
   }
 }

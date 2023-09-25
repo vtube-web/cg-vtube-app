@@ -16,14 +16,8 @@ import sample from '../../assets/video/sample.mp4'
 export default function VideoSection() {
     return (
         <>
-            <div className={`${style.watching__video} border border-danger`}>
+            <div className={`${style.watching__video}`}>
                 <div>
-                    {/*<iframe width="560" height="315" src="https://www.youtube.com/embed/a3ICNMQW7Ok?si=nfF1DbWqtUU9tyrY"*/}
-                    {/*        title="YouTube video player" frameBorder="0"*/}
-                    {/*        className={style.video__main}*/}
-                    {/*        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"*/}
-                    {/*        allowFullScreen>*/}
-                    {/*</iframe>*/}
                     <video
                         src={sample}
                         className={style.video__main}
@@ -33,7 +27,7 @@ export default function VideoSection() {
                 <div className={style.video__title}>
                     Cloning Youtube
                 </div>
-                <div className={`${style.video__info__function} border border-info`}>
+                <div className={`${style.video__info__function}`}>
                     <div className={style.info__channel}>
                         <img className={style.channel__avatar}
                              src={"https://cdn.discordapp.com/attachments/1151490874195316856/1152992123059175694/b2c44a9549a5cf8c9eebb8eb8fc51213.jpg"}
