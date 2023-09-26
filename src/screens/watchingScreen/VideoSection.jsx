@@ -20,7 +20,7 @@ export default function VideoSection() {
                 <div>
                     <video
                         src={sample}
-                        className={style.video__main}
+                        className={`${style.video__main}` }
                         controls
                     />
                 </div>
@@ -57,13 +57,13 @@ export default function VideoSection() {
                     </div>
                 </div>
                 <hr/>
-                <div className={style.video__details}>
-                    <div className={style.details__info}>
-                        <span>{"10m views"}</span>
-                        <span>{" 1 year ago"}</span>
-                        <span>{" #trunghuynh #coding #livecoding"}</span>
-                    </div>
-                    <div className={style.details__description}>
+                <div className={`${style.video__details}`}>
+                    <div className={`${style.details__description}`}>
+                        <div className={`${style.details__info}`}>
+                            <span>{"10m views "}</span>
+                            <span>{"1 year ago "}</span>
+                            <span>{"#trunghuynh #coding #livecoding "}</span>
+                        </div>
                         <ShowMore
                             lines={3}
                             more={"SHOW MORE"}
@@ -73,7 +73,6 @@ export default function VideoSection() {
                             keepNewLines={true}
                         >
                             {
-                                "\n" +
                                 "Lyrics\n" +
                                 "\n" +
                                 "you can open up to me\n" +
@@ -141,7 +140,6 @@ export default function VideoSection() {
                     </div>
                 </div>
             </div>
-
         </>
     )
 

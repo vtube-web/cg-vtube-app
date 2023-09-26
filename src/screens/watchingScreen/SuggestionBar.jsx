@@ -1,5 +1,6 @@
 import style from '../../assets/scss/Components/Watching/_suggestionBar.module.scss'
 import {SuggestionVideo} from "../../components/home/Video/SuggestionVideo";
+import CategoriesBar from "../../components/home/CategoriesBar/CategoriesBar";
 
 export default function SuggestionBar() {
     return (
@@ -13,14 +14,15 @@ export default function SuggestionBar() {
                         alt="Suggestion video"
                     />
                 </div>
-                <div className={`${style.video__info} border border-info`}>
-                    <video_title>Sample title</video_title>
-                    <p>This is user name</p>
-                    <p>Display like and views</p>
+                <div className={`${style.video__info}`}>
+                    <span>Sample title</span>
+                    <span>This is user name</span>
+                    <span>Display like and views</span>
                 </div>
             </div>
             <hr/>
-            <div>
+            <div className={style.suggestion__main}>
+                <CategoriesBar/>
                 <SuggestionVideo/>
             </div>
         </div>

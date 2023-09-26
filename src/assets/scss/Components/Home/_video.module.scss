@@ -3,6 +3,7 @@
 a {
   color: $text-color;
   text-decoration: none;
+
   .video {
     margin-bottom: 1rem;
     padding: 0.7rem;
@@ -11,6 +12,11 @@ a {
     font-weight: 500;
 
     cursor: pointer;
+
+    &:hover{
+      background-color: #4c4c4c;
+      border-radius: 17px;
+    }
 
     &__top {
       margin-bottom: 0.5rem;

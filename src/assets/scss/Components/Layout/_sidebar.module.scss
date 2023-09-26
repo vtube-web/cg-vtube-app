@@ -16,14 +16,6 @@
 
   transition: transform 0.3s ease-in;
 
-  .active{
-    color: #dddddd;
-    background-color: #606060;
-    border-color: $border-color;
-    border-radius: 40px;
-  }
-
-
 
   a {
     color: $text-color;

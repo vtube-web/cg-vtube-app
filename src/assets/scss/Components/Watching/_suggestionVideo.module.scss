@@ -5,11 +5,11 @@
   flex-direction: row;
   margin-bottom: 0.5rem;
   height: 13vh;
-
+  width: 100%;
   .video__main {
-    display: flex;
+    display: block;
     align-self: center;
-    width: 9rem;
+    width: 11rem;
     height: 13vh;
     border-radius: 13px;
     margin-right: 0.5rem;
@@ -21,8 +21,8 @@
 
 
     .suggestVideo__title {
-      display: flex;
-      align-self: baseline;
+
+      align-self: flex-start;
       font-weight: bold;
       font-size: 15px;
     }
