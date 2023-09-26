@@ -20,7 +20,7 @@ export default function VideoSection() {
                 <div>
                     <video
                         src={sample}
-                        className={`${style.video__main}` }
+                        className={`${style.video__main}`}
                         controls
                     />
                 </div>
@@ -40,8 +40,10 @@ export default function VideoSection() {
                                 40m Subscribers
                             </span>
                         </div>
+                        <div className={`${style.function__subscribe}`}>
+                            Subscribe
+                        </div>
                     </div>
-                    <vr/>
                     <div className={style.function__channel}>
                         <span className={`${style.function__like}`}>
                             <BiLike size={20}/>

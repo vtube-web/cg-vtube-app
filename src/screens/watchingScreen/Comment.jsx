@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import {BiLike, BiDislike} from "react-icons/bi";
+import style from '../../assets/scss/Components/Watching/_comment.module.scss'
+import {Link} from "react-router-dom";
 
 const Comment = ({author, avatar, content, timeAgo, replies}) => {
     const [showInput, setShowInput] = useState(false);
@@ -15,72 +17,68 @@ const Comment = ({author, avatar, content, timeAgo, replies}) => {
     };
 
     return (
-        <div id="comment">
-            {Comment.length <= 0 ? (
-                <h2>There is no comment yet ...</h2>
-            ) : (
-                <div id="body" className="row">
-                    <div id="avatar_user" className="col-1">
-                        <img src={avatar} alt={"user avatar"}></img>
-                    </div>
-                    <div id="main" className="col-11">
-                        <div id="header" className="row">
-                            <div className="col-1">
-                                <a href="" className="author">
+        <div className={style.comment__container}>
+            {Comment.length <= 0
+                ? (<h2>There is no comment yet ...</h2>)
+                : (
+                    <div className={style.comment__body}>
+                        <div className={`${style.user__avatar} col-1`}>
+                            <img
+                                src={avatar}
+                                alt={"user avatar"}
+                            />
+                        </div>
+                        <div className="col-11">
+                            <div className={style.user__info}>
+                                <Link to={"/"} className={style.user__name}>
                                     {author}
-                                </a>
+                                </Link>
+                                <span className={style.comment__date}>
+                                    {timeAgo}
+                                </span>
                             </div>
-                            <div className="col-11">
-                                <span>{timeAgo}</span>
+                            <div className={style.comment__content}>
+                                {content}
                             </div>
-                        </div>
-                        <div id="comment-content">
-                            <p>{content}</p>
-                        </div>
-                        <div id="action-button">
-                            <button>
-                                <BiLike/>
-                            </button>
-                            &nbsp;
-                            <button>
-                                <BiDislike/>
-                            </button>
-                            &nbsp;
-                            <button onClick={showInputReply}>Phản hồi</button>
-                        </div>
-                        <div>
-                            {showInput && (
-                                <div className="row">
-                                    <div className="col-1">
-                                        <img src={avatar}></img>
+                            <div className={style.comment__function}>
+                                <button><BiLike size={23}/></button>
+                                <button><BiDislike size={23}/></button>
+                                <button
+                                    onClick={showInputReply}
+                                    className={style.reply}
+                                >
+                                    Phản hồi
+                                </button>
+                            </div>
+                            <div>
+                                {showInput && (
+                                    <div className={`${style.reply__container} row`}>
+                                        <div className="col-1">
+                                            <img
+                                                src={avatar}
+                                                alt={"user avatar"}
+                                            />
+                                        </div>
+                                        <div className={`${style.reply__function} col-11`}>
+                                            <input
+                                                type="text"
+                                                placeholder="Viết bình luận ..."
+                                                className={style.comment__reply}
+                                                onClick={handleInputChange}
+                                            />
+                                        </div>
                                     </div>
-                                    <div className="col-11">
-                                        <input
-                                            type="text"
-                                            placeholder="Viết bình luận ..."
-                                            onClick={handleInputChange}
-                                        ></input>
-                                    </div>
-                                </div>
-                                // {showButton && (
-                                //   <div className="div_button">
-                                //     <button>Hủy</button>
-                                //     &nbsp;
-                                //     <button>Bình luận </button>
-                                //   </div>
-                                // )}
-                            )}
-                        </div>
-                        <div>
-                            {/* {replies.length > 0 && <p>Totals of comment: {replies.length}</p>} */}
-                            {replies &&
-                                replies.map((reply, index) => (
-                                    <Comment key={index} {...reply} />
-                                ))}
+                                )}
+                            </div>
+                            <div>
+                                {replies &&
+                                    replies.map((reply, index) => (
+                                        <Comment key={index} {...reply} />
+                                    ))}
+                            </div>
                         </div>
                     </div>
-                </div>
-            )}
+                )}
         </div>
     );
 };

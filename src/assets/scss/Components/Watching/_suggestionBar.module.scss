@@ -1,6 +1,7 @@
 @import '../../base.module';
 
 .suggestion__container {
+  padding: 10px;
   display: flex;
   justify-content: flex-start;
   background-color: #1a1d20;
@@ -37,6 +38,7 @@
 
   .suggestion__main {
     width: 100%;
+    padding: 10px;
     overflow-x: auto;
   }
 }

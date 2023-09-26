@@ -31,6 +31,7 @@ export default function CommentSection() {
                                 "https://banner2.cleanpng.com/20190311/rcg/kisspng-ho-chi-minh-city-ho-chi-minh-communist-youth-union-gii-thiu-chung-v-on-thanh-nin-tr-5c860a1b9fdf17.6338236315522882836548.jpg",
                             content: "Reply to Adam",
                             timeAgo: "1 giờ trước",
+                            replies:[]
                         },
                     ],
                 },
@@ -40,6 +41,7 @@ export default function CommentSection() {
                         "https://banner2.cleanpng.com/20190311/rcg/kisspng-ho-chi-minh-city-ho-chi-minh-communist-youth-union-gii-thiu-chung-v-on-thanh-nin-tr-5c860a1b9fdf17.6338236315522882836548.jpg",
                     content: "Reply to Alice",
                     timeAgo: "1 giờ trước",
+                    replies:[]
                 },
             ],
         },
@@ -56,6 +58,7 @@ export default function CommentSection() {
                         "https://media.vov.vn/sites/default/files/styles/large/public/2021-11/2021-mercedes-star-in-ring-100th-anniversary-10.jpg",
                     content: "Reply to Henry",
                     timeAgo: "2 giờ trước",
+                    replies:[]
                 },
                 {
                     author: "Kevin",
@@ -63,6 +66,7 @@ export default function CommentSection() {
                         "https://i.graphicmama.com/blog/wp-content/uploads/2020/10/30131032/P-amazing-3D-logo-design-concept-in-20211.jpg",
                     content: "Reply to Henry",
                     timeAgo: "1 giờ trước",
+                    replies:[]
                 },
             ],
         },
@@ -76,10 +80,10 @@ export default function CommentSection() {
                 </div>
 
                 <div className={style.comments__content}>
-                    <div className={`${style.content__userAvatar} col-1`}>
+                    <div className={`${style.user__avatar} col-1`}>
                         <img
                             src="https://play-lh.googleusercontent.com/Fro4e_osoDhhrjgiZ_Y2C5FNXBMWvrb4rGpmkM1PDAcUPXeiAlPCq7NeaT4Q6NRUxRqo"
-                            alt={"user avatar"}></img>
+                            alt={"user avatar"}/>
                     </div>
                     <div className={`${style.content__input} col-11`}>
                         <input
