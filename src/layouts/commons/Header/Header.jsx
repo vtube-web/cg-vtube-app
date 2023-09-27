@@ -4,7 +4,10 @@ import {FaBars} from "react-icons/fa";
 import {AiOutlineSearch} from "react-icons/ai";
 import {MdNotifications, MdApps} from "react-icons/md";
 import {Link, Route, Routes} from "react-router-dom";
-import LoginScreen from "../../../screens/loginScreen/LoginScreen";
+import SignInScreen from "../../../screens/signInScreen/SignInScreen";
+import {FiMoreVertical} from "react-icons/fi";
+import {PiUserCircleThin} from "react-icons/pi";
+import {hover} from "@testing-library/user-event/dist/hover";
 
 export default function Header({handleSetSidebar}) {
     const logoImg = "https://cdn.discordapp.com/attachments/1139963455038832680/1153326437185626143/AS1.png"
@@ -17,7 +20,9 @@ export default function Header({handleSetSidebar}) {
                     size={26}
                     onClick={() => handleSetSidebar()}
                 />
-                <img src={logoImg} alt={"logo"} className={style.header__logo}/>
+                <Link to={"/"}>
+                    <img src={logoImg} alt={"logo"} className={style.header__logo}/>
+                </Link>
             </div>
 
             <form>
@@ -28,11 +33,13 @@ export default function Header({handleSetSidebar}) {
             </form>
 
             <div className={style.header__icons}>
-                <MdNotifications size={28}/>
-                <MdApps size={28}/>
-                {/*<Link to={"/login"}>*/}
-                <img src={userLogo} alt={"avatar"}/>
-                {/*</Link>*/}
+                <FiMoreVertical size={23}/>
+                <span>
+                    <Link to={"/signIn"} className={style.signIn}>
+                    <PiUserCircleThin size={25}/>
+                        Sign in
+                    </Link>
+                </span>
             </div>
         </div>
     )
