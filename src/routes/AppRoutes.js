@@ -1,7 +1,6 @@
 import {Route, Routes} from "react-router-dom";
 import {publicRoutes} from "../data/RoutesData";
-
-import NotFoundScreen from "../screens/notFoundScreen/NotFoundScreen";
+import LoginScreen from "../screens/loginScreen/LoginScreen";
 
 
 export function AppRoutes() {
@@ -17,7 +16,7 @@ export function AppRoutes() {
             element={
               Layout === null ? (
                 <Screen />
-              ) : (    
+              ) : (
                 <Layout path={publicRoute.path}>
                   <Screen />
                 </Layout>
@@ -26,8 +25,8 @@ export function AppRoutes() {
           />
         );
       })}
-      
-      <Route path={"*"} element={<NotFoundScreen/>} />
+
+      <Route path={"/login"} element={<LoginScreen/>} />
     </Routes>
   );
 }
