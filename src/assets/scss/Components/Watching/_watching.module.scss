@@ -1,0 +1,19 @@
+@import '../../base.module';
+
+.watching__container {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+
+
+  .watching__main {
+    margin-left: 3rem;
+    width: 72%;
+
+  }
+
+  .watching__suggestion {
+    padding-right: -3rem;
+    width: 22rem;
+  }
+}
