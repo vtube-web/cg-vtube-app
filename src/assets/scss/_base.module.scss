@@ -20,7 +20,10 @@ body{
   color: $text-color;
   font-family: "Roboto", sans-serif;
   letter-spacing: 0.1px;
+  
 }
+
+
 
 @mixin line-clamp($number){
   overflow: hidden;
