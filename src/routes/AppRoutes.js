@@ -2,6 +2,7 @@ import {Route, Routes} from "react-router-dom";
 import {publicRoutes} from "../data/RoutesData";
 import SignInScreen from "../screens/signInScreen/SignInScreen";
 
+
 export function AppRoutes() {
     return (
         <Routes>
@@ -20,9 +21,6 @@ export function AppRoutes() {
                         }/>
                 })
             }
-            <Route path={"/signIn"} element={
-                <SignInScreen/>
-            }/>
         </Routes>
     )
 }

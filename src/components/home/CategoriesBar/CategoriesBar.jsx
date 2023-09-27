@@ -26,7 +26,7 @@ function CategoriesBar(){
     const handleClick = value => {
         setActive(value);
     }
-
+    
     return (
         <div className={style.categoriesBar}>
             {
