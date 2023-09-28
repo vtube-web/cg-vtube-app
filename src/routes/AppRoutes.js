@@ -14,13 +14,9 @@ export function AppRoutes() {
             key={index}
             path={publicRoute.path}
             element={
-              Layout === null ? (
-                <Screen />
-              ) : (
-                <Layout path={publicRoute.path}>
-                  <Screen />
-                </Layout>
-              )
+              Layout === null 
+              ? <Screen />
+              : <Layout path={publicRoute.path}> <Screen /></Layout> 
             }
           />
         );
