@@ -1,0 +1,8 @@
+@import '../scss/base.module';
+
+.active{
+  color: #dddddd;
+  background-color: $border-color;
+  border-color: $border-color;
+  border-radius: 40px;
+}

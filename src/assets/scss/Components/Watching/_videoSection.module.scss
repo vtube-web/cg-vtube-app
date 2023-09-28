@@ -1,6 +1,9 @@
 @import "../../base.module";
 
 $channel-text: #606060;
+body {
+  background-color: #0F0F0F;
+}
 
 .watching__video {
   width: 100%;
@@ -11,10 +14,11 @@ $channel-text: #606060;
   .video__main {
     width: 100%;
     max-height: 40rem;
-    border-radius: 15px;
+    border-radius: 20px;
+    background-color: #0F0F0F;
   }
 
-  .suggestVideo__title {
+  .video__title {
     font-weight: 500;
     font-size: 35px;
   }
@@ -23,6 +27,7 @@ $channel-text: #606060;
     width: 100%;
     display: flex;
     flex-direction: row;
+    background-color: transparent;
 
     .info__channel {
       display: flex;
@@ -49,7 +54,27 @@ $channel-text: #606060;
           color: $channel-text;
         }
       }
+
+      .function__subscribe {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 40px;
+        background-color: white;
+        border-radius: 20px;
+        height: 70%;
+        font-weight: bold;
+        color: #0F0F0F;
+        padding: 10px;
+        font-size: 13px;
+
+        &:hover {
+          background-color: $text-color;
+          cursor: pointer;
+        }
+      }
     }
+
 
     .function__channel {
       display: flex;
@@ -69,6 +94,7 @@ $channel-text: #606060;
 
         &:hover {
           background-color: $channel-text;
+          cursor: pointer;
         }
       }
 
@@ -83,6 +109,7 @@ $channel-text: #606060;
 
         &:hover {
           background-color: $channel-text;
+          cursor: pointer;
         }
       }
 
@@ -98,33 +125,55 @@ $channel-text: #606060;
 
         &:hover {
           background-color: $channel-text;
+          cursor: pointer;
         }
       }
     }
-
-
   }
 
-  .suggestVideo__details {
+  .video__details {
+    border-radius: 15px;
 
     .details__info {
-      font-size: 20px;
-      font-weight: bold;
+      display: flex;
+      justify-items: flex-start;
+      font-size: 17px;
+
     }
 
     .details__description {
       display: block;
       white-space: pre-line;
-      font-size: 16px;
+      font-size: 14px;
       border-bottom: 0.2px solid $border-color;
+      border-radius: 20px;
+      background-color: #272727;
+      padding-left: 15px;
+      padding-top: 10px;
+
+      &:hover {
+        background-color: #2b2b2b;
+        width: inherit;
+        cursor: pointer;
+      }
 
       .showMore {
-        display: block;
-        white-space: pre-line;
+        display: flex;
         font-weight: 500;
+        font-size: 0.8rem;
+        line-height: 2rem;
         margin: 1rem 0;
-        color: white;
+        color: $text-color;
         text-decoration: none;
+        font-family: "Roboto", sans-serif;
+        justify-content: center;
+        align-self: center;
+        border-radius: 15px;
+
+        &:hover {
+          background-color: #2b2b2b;
+          cursor: pointer;
+        }
       }
     }
   }
