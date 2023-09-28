@@ -15,76 +15,14 @@ import {
   selectVideoWatchedList,
 } from "../../features/video/videoWatchedSlice";
 import { useEffect, useState } from "react";
+import formatNumberView from "../../format/FormatNumberView";
+import formatDateWatched from "../../format/FormatDateWatched";
 
-function formatNumber(value) {
-  const units = ["", "N", "Tr", "Tr", "Tr", "Tỉ"];
-  let i = 0;
-  while (value >= 1000 && i < units.length) {
-    value /= 1000;
-    i++;
-  }
-  const formattedValue = value % 1 === 0 ? value : value.toFixed(1);
-  return `${formattedValue} ${units[i]}`;
-}
-
-const formatDate = (dateString) => {
-  const date = new Date(dateString);
-
-  if (isToday(date)) {
-    return "Hôm nay";
-  } else if (isYesterday(date)) {
-    return "Hôm qua";
-  }
-
-  const months = [
-    "thg 1",
-    "thg 2",
-    "thg 3",
-    "thg 4",
-    "thg 5",
-    "thg 6",
-    "thg 7",
-    "thg 8",
-    "thg 9",
-    "thg 10",
-    "thg 11",
-    "thg 12",
-  ];
-
-  const day = date.getDate();
-  const month = months[date.getMonth()];
-
-  return `${day} ${month}`;
-};
-
-const isToday = (someDate) => {
-  const today = new Date();
-  return (
-    someDate.getDate() === today.getDate() &&
-    someDate.getMonth() === today.getMonth() &&
-    someDate.getFullYear() === today.getFullYear()
-  );
-};
-
-const isYesterday = (someDate) => {
-  const today = new Date();
-  return (
-    someDate.getDate() === today.getDate() - 1 &&
-    someDate.getMonth() === today.getMonth() &&
-    someDate.getFullYear() === today.getFullYear()
-  );
-};
 
 export default function WatchedScreen() {
   const dispatch = useDispatch();
   const videoList = useSelector(selectVideoWatchedList);
   const [videosGroupedByDay, setVideosGroupedByDay] = useState({});
-
-  const header = (
-    <div className={style.header__video__render}>
-      <p>Hôm nay</p>
-    </div>
-  );
 
   useEffect(() => {
     if (videoList.length === 0) {
@@ -98,7 +36,6 @@ export default function WatchedScreen() {
           acc[key] = groupedVideos[key];
           return acc;
         }, {});
-
       setVideosGroupedByDay(sortedGroupedVideos);
     }
   }, [dispatch, videoList]);
@@ -123,19 +60,14 @@ export default function WatchedScreen() {
             <p>Nhật ký xem</p>
           </div>
           <div className={style.list__contents__render}>
-            {/* Header và video theo từng ngày */}
             {Object.keys(videosGroupedByDay).map((date) => (
               <div key={date}>
-                <p style={{ marginTop: 30 }}>{formatDate(date)}</p>
+                <p style={{ marginTop: 30 }}>{formatDateWatched(date)}</p>
                 {videosGroupedByDay[date].map((videoData) => (
                   <div className={`${style.item__section__render} row`}>
                     <div className={style.video__render}>
                       <a href="">
-                        <img
-                          src={videoData.imgVideo}
-                          alt="image"
-                          style={{ borderRadius: "10px", height: "100%" }}
-                        />
+                        <img src={videoData.imgVideo} alt="image" />
                         <div className={style.time__video}>30:56</div>
                       </a>
                       <div className={style.icon__hover}>
@@ -165,7 +97,7 @@ export default function WatchedScreen() {
                                 {videoData.nameChannel}
                               </div>
                               <div className="col-6">
-                                {formatNumber(videoData.view)} lượt xem
+                                {formatNumberView(videoData.view)} lượt xem
                               </div>
                             </div>
                           </div>
@@ -200,7 +132,7 @@ export default function WatchedScreen() {
               textAlign: "center",
             }}
           >
-            <button style={{ height: 40, width: 40 }}>
+            <button>
               <AiOutlineSearch size={22} />
             </button>
           </div>

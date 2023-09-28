@@ -1,7 +1,6 @@
 @import "../../base.module";
 
 .watched__container {
-  //   background-color: gray;
   height: 900px;
   width: 1280px;
   position: relative;
@@ -27,7 +26,6 @@
           .video__render {
             width: 246px;
             height: 138px;
-            // display: flex;
             justify-content: center;
             padding: 0;
             margin-right: 16px;
@@ -35,8 +33,8 @@
             background-color: black;
             border-radius: 10px;
             img {
-              width: 100%; /* Đảm bảo ảnh chiếm toàn bộ phần tử cha */
-              height: auto; /* Đảm bảo tỷ lệ khung hình không bị thay đổi */
+              width: 100%;
+              height: 100%;
               border-radius: 10px;
             }
             .time__video {
@@ -98,7 +96,6 @@
                   position: absolute;
                   top: 0;
                   right: 24px;
-
                   font-weight: 550;
                   width: 170px;
                   height: 24px;
@@ -111,34 +108,26 @@
 
               button:hover .label {
                 display: inline-block;
-                // transform: translateX(-50%);
               }
             }
           }
-
           .text__wrapper {
             width: 366px;
             height: 138px;
-
-            //   background-color: pink;
-
             .text__box {
-              width: 270px; /* Độ rộng của ô chứa văn bản */
+              width: 270px;
               max-height: 50px;
-              overflow: hidden; /* Ẩn phần văn bản vượt quá độ rộng */
-              text-overflow: ellipsis; /* Hiển thị dấu ba chấm khi văn bản bị ẩn */
-              // white-space: nowrap; /* Ngăn ngừa xuống dòng */
+              overflow: hidden;
+              text-overflow: ellipsis;
               font-size: 18px;
               display: -webkit-box;
-              -webkit-line-clamp: 2; /* Số lượng dòng tối đa hiển thị */
+              -webkit-line-clamp: 2;
               -webkit-box-orient: vertical;
             }
-
             .data__video {
               font-size: 12px;
               padding-top: 5px;
             }
-
             .icon__button {
               width: 30px;
               height: 30px;
@@ -147,32 +136,27 @@
               display: flex;
               justify-content: center;
               align-items: center;
-              //   cursor: pointer;
               display: none;
               svg {
                 display: inline-block;
               }
             }
-
             .icon__button:focus {
               outline: none;
             }
-
             .icon__button:hover {
               background-color: #646464;
               border-radius: 50%;
             }
-
             .description__text {
               max-width: 366px;
               max-height: 42px;
               padding: 8px 0 8px 0;
               font-size: 12px;
-              overflow: hidden; /* Ẩn phần văn bản vượt quá độ rộng */
-              text-overflow: ellipsis; /* Hiển thị dấu ba chấm khi văn bản bị ẩn */
-              // white-space: nowrap; /* Ngăn ngừa xuống dòng */
+              overflow: hidden;
+              text-overflow: ellipsis;
               display: -webkit-box;
-              -webkit-line-clamp: 2; /* Số lượng dòng tối đa hiển thị */
+              -webkit-line-clamp: 2;
               -webkit-box-orient: vertical;
             }
           }
@@ -191,19 +175,16 @@
   }
   .secondary {
     font-size: 15px;
-    // background-color: red;
     position: fixed;
     width: 385px;
     height: 348;
     padding: 0px 28px;
     right: 10px;
     top: 80px;
-
     svg {
       display: inline;
       margin-right: 10px;
     }
-
     .input__wrapper {
       align-items: center;
       input[type="text"] {
@@ -215,16 +196,18 @@
         border-bottom: 1px solid #bcbcbc;
         background-color: #16181b;
       }
-
       svg {
         margin: auto;
+      }
+      button {
+        height: 40px;
+        width: 40px;
       }
       button:hover {
         background-color: #646464;
         border-radius: 50%;
       }
     }
-
     .button__render {
       margin-top: 15px;
       button {
