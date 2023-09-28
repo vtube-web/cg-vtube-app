@@ -1,5 +1,4 @@
 import style from '../../../assets/scss/Components/Layout/_sidebar.module.scss'
-import misc from '../../../assets/scss/Components/Layout/misc.scss'
 
 import {
     IoGameController, IoGameControllerOutline
@@ -37,7 +36,6 @@ import {
 } from "react-icons/md";
 import {Link, NavLink, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
-// import '../../../assets/scss/Components/Layout/misc.scss'
 
 
 const SideBar = ({sidebar = true}) => {

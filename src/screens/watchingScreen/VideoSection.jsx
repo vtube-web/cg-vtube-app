@@ -12,6 +12,7 @@ import {
 import ShowMore from 'react-show-more-text'
 import "react-show-more-text/lib/ShowMoreText.css"
 import sample from '../../assets/video/sample.mp4'
+import {Link} from "react-router-dom";
 
 export default function VideoSection() {
     return (
@@ -33,9 +34,11 @@ export default function VideoSection() {
                              src={"https://cdn.discordapp.com/attachments/1151490874195316856/1152992123059175694/b2c44a9549a5cf8c9eebb8eb8fc51213.jpg"}
                              alt={"user avatar"}/>
                         <div className={style.channel__info}>
-                            <span className={style.channel__name}>
-                                Trung Huynh
-                            </span>
+                            <Link to={"/"}>
+                                <span className={style.channel__name}>
+                                    Trung Huynh
+                                </span>
+                            </Link>
                             <span className={style.channel__subscribers}>
                                 40m Subscribers
                             </span>

@@ -20,9 +20,6 @@ export function AppRoutes() {
                         }/>
                 })
             }
-            <Route path={"/login"} element={
-                <LoginScreen/>
-            }/>
         </Routes>
     )
 }

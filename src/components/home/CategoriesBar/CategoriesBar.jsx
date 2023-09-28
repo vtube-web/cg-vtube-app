@@ -20,13 +20,10 @@ const keywords = [
     'Anh beo reviewfood'
 ]
 function CategoriesBar(){
-
     const [active, setActive] = useState(keywords)
-
     const handleClick = value => {
         setActive(value);
     }
-
     return (
         <div className={style.categoriesBar}>
             {

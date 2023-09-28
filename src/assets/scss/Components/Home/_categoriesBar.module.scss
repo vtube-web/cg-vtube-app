@@ -7,11 +7,13 @@
   overflow-x: auto;
 
   &::-webkit-scrollbar{
-    width: 5px;
+    width: 100%;
+    height: 50px;
   }
 
-  scrollbar-width: thin;
-  scrollbar-color: $text-color;
+  scrollbar-width: auto ;
+  scrollbar-color: white green ;
+
 
   span{
     margin-right: 1rem;
