@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setIsModalSearch,
   getIsModalSearch,
-} from "../../../../features/studio/studioSlice";
+} from "../../../../features/studio/modalSlice";
 import Videos from "./Videos";
 
 function Search() {

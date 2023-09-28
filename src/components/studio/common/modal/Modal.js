@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   getIsModalSearch,
   setIsModalSearch,
-} from "../../../../features/studio/studioSlice";
+} from "../../../../features/studio/modalSlice";
 
 function Modal() {
   const statusThemeSreach = useSelector(getIsModalSearch);

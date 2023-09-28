@@ -4,6 +4,9 @@ import { AiOutlineMenu } from "react-icons/ai";
 function MenuAndLogo() {
   const [mouseMenu, setMouseMenu] = useState(false);
   const [mouseLogo, setMouseLogo] = useState(false);
+  const handleMenu = ()=>{
+    
+  };
 
   return (
     <div className="col-4 flex justify-start items-center space-x-6">
@@ -11,6 +14,7 @@ function MenuAndLogo() {
         className="relative col-1 flex-none"
         onMouseOver={() => setMouseMenu(true)}
         onMouseOut={() => setMouseMenu(false)}
+        onClick={handleMenu}
       >
         <AiOutlineMenu className="text-xl hover:cursor-pointer pointer-events-none" />
         {mouseMenu == false ? (
