@@ -9,17 +9,21 @@ import watchLaterScreen from "../screens/watchLaterScreen/WatchLaterScreen"
 import yourVideoScreen from "../screens/yourVideoScreen/YourVideoScreen"
 import watchingScreen from "../screens/watchingScreen/WatchingScreen"
 import {notFoundScreen} from "../screens/notFoundScreen/NotFoundScreen";
-
+import StudioLayout from "../layouts/studioLayout/StudioLayout";
+import OverviewScreen from "../screens/studioScreen/OverviewScreen";
+import ContentScreen from "../screens/studioScreen/ContentScreen";
 
 export const publicRoutes = [
-    {path:'/', component:homeScreen, layout: MainLayout},
-    {path:'/library', component:libraryScreen, layout: MainLayout},
-    {path:'/likedVideos', component:likedVideoScreen, layout: MainLayout},
-    {path:'/login', component:loginScreen, layout: MainLayout},
-    {path:'/subscribed', component:subscribedScreen, layout: MainLayout},
-    {path:'/watchedVideos', component:watchedScreen, layout: MainLayout},
-    {path:'/watchLater', component:watchLaterScreen, layout: MainLayout},
-    {path:'/yourVideos', component:yourVideoScreen, layout: MainLayout},
-    {path:'/watching', component:watchingScreen, layout: MainLayout},
-    {path: '/*', component: notFoundScreen, layout: MainLayout}
-]
+  { path: "/", component: homeScreen, layout: MainLayout },
+  { path: "/library", component: libraryScreen, layout: MainLayout },
+  { path: "/likedVideos", component: likedVideoScreen, layout: MainLayout },
+  { path: "/login", component: loginScreen, layout: MainLayout },
+  { path: "/subscribed", component: subscribedScreen, layout: MainLayout },
+  { path: "/watchedVideos", component: watchedScreen, layout: MainLayout },
+  { path: "/watchLater", component: watchLaterScreen, layout: MainLayout },
+  { path: "/yourVideos", component: yourVideoScreen, layout: MainLayout },
+  { path: "/watching", component: watchingScreen, layout: MainLayout },
+  { path: `/channel`, component: OverviewScreen, layout: StudioLayout },
+  { path: "/content", component: ContentScreen, layout: StudioLayout },
+  { path: "/*", component: notFoundScreen, layout: MainLayout },
+];
