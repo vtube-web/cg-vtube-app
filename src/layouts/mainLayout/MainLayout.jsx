@@ -6,7 +6,7 @@ import {useState} from "react";
 import {Container} from "react-bootstrap";
 
 function MainLayout({children}) {
-    const [sidebar, setSidebar] = useState(false);
+    const [sidebar, setSidebar] = useState(true);
     const handleSetSidebar = () => setSidebar(value => !value)
     return (
         <>

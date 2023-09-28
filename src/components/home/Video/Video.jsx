@@ -18,13 +18,13 @@ function Video({video,isSidebarOpen }) {
                 <div className={style.video__title}>
                     {video.title}
                 </div>
-                <div className={style.video__details}>
-                    <span><AiFillEye/>{video.views} views • </span>
-                    <span>{video.createdAt}</span>
+                <div className={style.video__detail}>
+                    <span>{video.views} views • </span>
+                    <span>{/*{video.createdAt}*/} 1 year ago</span>
                 </div>
                 <div className={style.video__channel}>
                     <img src={video.avatar} alt={'channel_name'}/>
-                    <p>{video.title}</p>
+                    <p>{video.channelName}</p>
                 </div>
             </div>
         </NavLink>
