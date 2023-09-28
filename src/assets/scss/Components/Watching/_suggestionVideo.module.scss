@@ -1,0 +1,23 @@
+@import "../../base.module";
+
+.suggestVideo {
+  display: flex;
+  flex-direction: row;
+
+  .video__main {
+    width: 4rem;
+    height: 2rem;
+  }
+
+  .suggestVideo__title {
+
+  }
+
+  .suggestVideo__channel {
+
+  }
+
+  .suggestVideo__details {
+
+  }
+}
