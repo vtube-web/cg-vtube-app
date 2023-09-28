@@ -36,7 +36,8 @@ function CategoriesBar(){
                         >
                             {keyword}
                         </span>
-                    ))
+                    )
+                )
             }
         </div>
     )
