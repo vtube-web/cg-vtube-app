@@ -21,24 +21,34 @@ export function SuggestionVideo() {
             {videoList.map(
                 (suggestionVideo) => (
                     <NavLink to={"/testingSuggestionVideo"}>
-                        <div className={style.suggestVideo}>
-                            <div className={style.video__main}>
-                                <img src={suggestionVideo.thumbnails} alt={"video"}/>
-                                <span>{suggestionVideo.duration}s</span>
+                        <div className={style.suggestVideo}
 
-                                <div className={style.suggestVideo__title}>
+                        >
+                            <img src={suggestionVideo.thumbnails}
+                                 alt={"video"}
+                                 className={style.video__main}
+                                 style={{
+                                     minWidth: "170px",
+                                     maxWidth: "170px",
+                                     minHeight: "110px",
+                                     maxHeight: "110px"
+                                 }}
+                            />
+                            <div className={style.video__info}
+                                style={{
+                                    maxHeight: "110px",
+                                    minHeight: "110px"
+                                }}
+                            >
+                                <span className={style.suggestVideo__title}>
                                     {suggestionVideo.title}
-                                </div>
-
-                                <div className={style.suggestVideo__details}>
-                                    <span><AiFillEye/>{suggestionVideo.views} views • </span>
-                                    <span>{suggestionVideo.createdAt}</span>
-                                </div>
-
-                                <div className={style.suggestVideo__channel}>
-                                    <img src={suggestionVideo.avatar} alt={'channel_name'}/>
-                                    <p>{suggestionVideo.title}</p>
-                                </div>
+                                </span>
+                                <span className={style.suggestVideo__channel}>
+                                    {suggestionVideo.channelName}
+                                </span>
+                                <span className={style.suggestVideo__details}>
+                                    {suggestionVideo.views} views • 1000 years ago
+                                </span>
                             </div>
                         </div>
                     </NavLink>
