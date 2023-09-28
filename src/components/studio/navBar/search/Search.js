@@ -69,7 +69,11 @@ function Search() {
         {statusTheme ? (
           <div className="pb-3">
             <div className="border-b-[1px] py-2">
-              <span className="pl-7">Video recent</span>
+              {remove ? (
+                <span className="pl-7">Video (2)</span>
+              ) : (
+                <span className="pl-7">Video recent</span>
+              )}
             </div>
 
             {/* data */}

@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
-import { NavLink } from "react-router-dom";
-import {BsBoxArrowUpRight} from 'react-icons/bs';
+import { NavLink, useParams } from "react-router-dom";
+import { BsBoxArrowUpRight, BsPlayBtn } from "react-icons/bs";
 import {HiSquares2X2} from 'react-icons/hi2';
+import {AiOutlinePlaySquare} from "react-icons/ai";
+import {
+  MdOutlineInsertComment,
+  MdOutlineDataThresholding,
+} from "react-icons/md";
+import {PiMagicWandDuotone} from "react-icons/pi";
+import MenuItem from '../common/menuItem/MenuItem';
 import "../../../assets/css/studio/studioLayout.css";
 
 function SiderBar() {
   const [mouseAvatar,setMouseAvatar] = useState(false);
+  const {channelId} = useParams();
   return (
     <div className="bg-[#FFFFFF] col-2 py-4 justify-center border-r-2">
       <div
@@ -31,34 +39,35 @@ function SiderBar() {
           </>
         )}
       </div>
-      <div className="text-center my-3 ">
+      <div className="text-center mt-3 mb-4 ">
         <div className="text-gray-600 font-semibold text-sm">Channel your</div>
         <div className="text-xs mt-1">Bố nè</div>
       </div>
-      <NavLink
-        to={`/channel`}
-        className={({ isActive }) =>
-          isActive
-            ? "border-red-500 text-red-500 py-2 flex space-x-6 items-center border-l-4 bg-gray-100"
-            : "py-2 flex space-x-6 items-center pl-1 hover:bg-gray-100"
-        }
-      >
-        <HiSquares2X2 className="col-2 w-8 h-8 " />
-        <div className="col-auto font-semibold">Overview page</div>
-      </NavLink>
-      <NavLink
-        to={`/content`}
-        className={({ isActive }) =>
-          isActive
-            ? "border-red-500 text-red-500 py-2 flex space-x-6 items-center border-l-4 bg-gray-100"
-            : "py-2 flex space-x-6 items-center pl-1 hover:bg-gray-100"
-        }
-      >
-        <HiSquares2X2 className="col-2 w-8 h-8 " />
-        <div className="col-auto font-semibold">Content</div>
-      </NavLink>
-      <div>aaa</div>
-      <div>aaa</div>
+      <MenuItem
+        to={`/channel/${channelId}`}
+        label="Overview page"
+        icon={<HiSquares2X2 className="col-2 w-7 h-7 " />}
+      />
+      <MenuItem
+        to={`/channel/${channelId}/content`}
+        label="Content"
+        icon={<AiOutlinePlaySquare className="col-2 w-7 h-7 " />}
+      />
+      <MenuItem
+        to={`/channel/${channelId}/analytical`}
+        label="Analytical data"
+        icon={<MdOutlineDataThresholding className="col-2 w-7 h-7 " />}
+      />
+      <MenuItem
+        to={`/channel/${channelId}/comment`}
+        label="Comment"
+        icon={<MdOutlineInsertComment className="col-2 w-7 h-7 " />}
+      />
+      <MenuItem
+        to={`/channel/${channelId}/customize`}
+        label="Customize channels"
+        icon={<PiMagicWandDuotone className="col-2 w-7 h-7 " />}
+      />
     </div>
   );
 }

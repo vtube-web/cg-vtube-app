@@ -2,7 +2,7 @@
 
 $text-color : #b1bdb4;
 
-$black-primary: #16181b;
+$black-primary: #0F0F0F;
 $black-secondary: #121417;
 $border-color: #4c4c4c;
 
@@ -20,7 +20,10 @@ body{
   color: $text-color;
   font-family: "Roboto", sans-serif;
   letter-spacing: 0.1px;
+  
 }
+
+
 
 @mixin line-clamp($number){
   overflow: hidden;

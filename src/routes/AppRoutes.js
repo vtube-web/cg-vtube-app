@@ -1,6 +1,7 @@
 import {Route, Routes} from "react-router-dom";
 import {publicRoutes} from "../data/RoutesData";
-import LoginScreen from "../screens/loginScreen/LoginScreen";
+import SignInScreen from "../screens/signInScreen/SignInScreen";
+
 
 
 export function AppRoutes() {
@@ -21,9 +22,6 @@ export function AppRoutes() {
                         }/>
                 })
             }
-            <Route path={"/login"} element={
-                <LoginScreen/>
-            }/>
         </Routes>
     )
 }

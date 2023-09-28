@@ -8,7 +8,7 @@ function MenuAndLogo() {
   return (
     <div className="col-4 flex justify-start items-center space-x-6">
       <div
-        className="relative h-6 w-6 flex-none"
+        className="relative col-1 flex-none"
         onMouseOver={() => setMouseMenu(true)}
         onMouseOut={() => setMouseMenu(false)}
       >

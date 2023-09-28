@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-function A() {
+function ContentScreen() {
   return (
-    <div>A</div>
+    <div>ContentScreen</div>
   )
 }
 
-export default A
+export default ContentScreen;

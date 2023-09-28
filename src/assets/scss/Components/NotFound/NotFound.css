@@ -1,0 +1,46 @@
+
+#error-page {
+    text-align: center;
+    width: 100%;
+    height: 100vh;
+    white-space: nowrap;
+    word-break: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+#error-page-content {
+    vertical-align: middle;
+    display: inline-block;
+    font: 12px "YouTube Noto", Roboto, arial, sans-serif;
+    font-size: 17px;
+    flex-direction: column;
+}
+
+.text-error {
+    margin: 0;
+    padding: 0;
+}
+
+.error-image {
+    vertical-align: middle;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.error-logo{
+        padding-left: 20px;
+        width: 180px;
+        height: 30px;
+        object-fit: contain;
+        display: block;
+        cursor: pointer;
+}
+
+
+
+
+
+
+

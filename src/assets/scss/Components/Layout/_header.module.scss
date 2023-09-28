@@ -35,7 +35,6 @@
   form {
     flex: 0.4;
     display: flex;
-    padding: 0.1rem;
     margin: 0.1rem;
     border-radius: 20px;
     border: 1.2px solid;
@@ -76,12 +75,25 @@
     align-items: center;
     margin-left: 5px;
     background-color: transparent;
+    padding-right: 63px;
 
-    img {
-      border-radius: 100%;
-      width: 40px;
-      object-fit: contain;
-      background-color: transparent;
+    .signIn {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border: solid 1px #4c4c4c;
+      width: 100px;
+      height: 36px;
+      border-radius: 18px;
+      line-height: 36px;
+      padding-right: 10px;
+      padding-left: 10px;
+      font-size: 15px;
+      cursor: pointer;
+      color: #3ea6ff;
+      &:hover{
+        background-color: #374a59;
+      }
     }
   }
 }

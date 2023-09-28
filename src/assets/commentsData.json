@@ -1,0 +1,74 @@
+{
+  "comments": [
+    {
+      "id": 1,
+      "content": "Hello world",
+      "user": {
+        "id": 1,
+        "username": "Trung",
+        "avatar": "https://cdn.discordapp.com/attachments/1151490874195316856/1152992123059175694/b2c44a9549a5cf8c9eebb8eb8fc51213.jpg?ex=65144c97&is=6512fb17&hm=7cca2b7ecd47ea4a8350668162dc73dcf9afe9952c7776d480ad07f9dbb55ae0&"
+      },
+      "video_id": 1,
+      "timestamp": "2023-09-27T10:00:00Z",
+      "likes": 100,
+      "dislike": 30,
+      "parentCommentId": null
+    },
+    {
+      "id": 2,
+      "content": "Đây là bình luận mẫu 2.",
+      "user": {
+        "id": 2,
+        "username": "Hải",
+        "avatar": "https://cdn.discordapp.com/attachments/1151490874195316856/1152992123059175694/b2c44a9549a5cf8c9eebb8eb8fc51213.jpg?ex=65144c97&is=6512fb17&hm=7cca2b7ecd47ea4a8350668162dc73dcf9afe9952c7776d480ad07f9dbb55ae0&"
+      },
+      "video_id": 1,
+      "timestamp": "2023-09-27T10:30:00Z",
+      "likes": 102,
+      "dislike": 29,
+      "parentCommentId": 1
+    },
+    {
+      "id": 3,
+      "content": "Trả lời bình luận mẫu 1.",
+      "user": {
+        "id": 3,
+        "username": "Phong",
+        "avatar": "https://cdn.discordapp.com/attachments/1151490874195316856/1152992123059175694/b2c44a9549a5cf8c9eebb8eb8fc51213.jpg?ex=65144c97&is=6512fb17&hm=7cca2b7ecd47ea4a8350668162dc73dcf9afe9952c7776d480ad07f9dbb55ae0&"
+      },
+      "video_id": 1,
+      "timestamp": "2023-09-27T11:00:00Z",
+      "likes": 77,
+      "dislike": 1,
+      "parentCommentId": 1
+    },
+    {
+      "id": 4,
+      "content": "Tại sao nó không chạy",
+      "user": {
+        "id": 4,
+        "username": "Tâm",
+        "avatar": "https://cdn.discordapp.com/attachments/1151490874195316856/1152992123059175694/b2c44a9549a5cf8c9eebb8eb8fc51213.jpg?ex=65144c97&is=6512fb17&hm=7cca2b7ecd47ea4a8350668162dc73dcf9afe9952c7776d480ad07f9dbb55ae0&"
+      },
+      "video_id": 1,
+      "timestamp": "2023-09-27T11:30:00Z",
+      "likes": 22,
+      "dislike": 340,
+      "parentCommentId": null
+    },
+    {
+      "id": 5,
+      "content": "Video đỉnh quá, đắp chuối cho em đi",
+      "user": {
+        "id": 5,
+        "username": "Thái",
+        "avatar": "https://cdn.discordapp.com/attachments/1151490874195316856/1152992123059175694/b2c44a9549a5cf8c9eebb8eb8fc51213.jpg?ex=65144c97&is=6512fb17&hm=7cca2b7ecd47ea4a8350668162dc73dcf9afe9952c7776d480ad07f9dbb55ae0&"
+      },
+      "video_id": 1,
+      "timestamp": "2023-09-27T11:30:00Z",
+      "likes": 100,
+      "dislike": 300,
+      "parentCommentId": null
+    }
+  ]
+}
