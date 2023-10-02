@@ -11,11 +11,14 @@ import isVisibilityReducer from "../features/studio/visibilitySlice";
 import videoUploadReducer from "../features/studio/videoUploadSlice";
 import videoLikedReducer from "../features/video/videoLikedSlice";
 import { logger } from "redux-logger/src";
+import userReducer from "../features/auth/userSlice";
+
 
 
 const middleware = [...getDefaultMiddleware(), logger];
 export const store = configureStore({
-  reducer: {
+  reducer: {  
+    user: userReducer, 
     video: videoReducer,
     videoHistory: videoHistoryReducer,
     isModal: isModalReducer,

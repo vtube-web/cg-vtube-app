@@ -36,7 +36,7 @@ function StudioLayout({ children }) {
   }, []);
 
   return (
-    <div className="flex flex-col flex-nowrap relative h-screen">
+    <div className="flex flex-col flex-nowrap relative h-screen bg-[#FAFAFA]">
       <Modal
         isModal={isModalSearch}
         onClose={() => dispatch(setIsModalSearch(false))}
@@ -63,7 +63,7 @@ function StudioLayout({ children }) {
       >
         <SiderBar contentHeight={contentHeight} />
 
-        <div className="bg-[#FFFFF] grow">
+        <div className="bg-[#FAFAFA] grow">
           <div
             className="flex flex-col overflow-y-scroll mr-1 flex-none overflow-x-scroll"
             style={{ height: contentHeight, width: window.innerWidth - 330 }}

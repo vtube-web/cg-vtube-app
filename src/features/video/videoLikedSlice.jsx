@@ -10,7 +10,7 @@ const initialState = {
   success: false,
 };
 
-export const getVideoLiked = createAsyncThunk("", async () => {
+export const getVideoLiked = createAsyncThunk("getVideoLiked", async () => {
   console.log("Waiting for response...");
   const response = await videoLikedList();
   return response.data;
