@@ -1,7 +1,7 @@
 import style from '../../assets/scss/Components/Watching/_commentSection.module.scss'
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Comment from './Comment'
-import data from '../../assets/commentsData.json'
+import data from '../../data/sample/commentsData.json'
 
 export default function CommentSection() {
     const comments = data.comments.filter(comment => comment.parentCommentId === null);
