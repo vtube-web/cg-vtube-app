@@ -22,6 +22,7 @@ import formatDateWatched from "../../format/FormatDateWatched";
 export default function WatchedScreen() {
   const dispatch = useDispatch();
   const videoList = useSelector(selectVideoWatchedList);
+  
   const [videosGroupedByDay, setVideosGroupedByDay] = useState({});
 
   useEffect(() => {
@@ -39,6 +40,7 @@ export default function WatchedScreen() {
       setVideosGroupedByDay(sortedGroupedVideos);
     }
   }, [dispatch, videoList]);
+  
 
   const groupVideosByDay = (videos) => {
     const groupedVideos = {};
