@@ -18,7 +18,7 @@ function HomeScreen() {
 
     return (
         <Container>
-            <div>
+            <div style={{paddingBottom: "15px"}}>
                 <CategoriesBar/>
             </div>
             <Row>

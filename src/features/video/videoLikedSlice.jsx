@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { videoWatchedList } from "../../api/videoWatchedAPI";
+import { videoLikedList } from "../../api/videoLikedAPI";
 
 const initialState = {
   videos: [],
@@ -10,14 +10,14 @@ const initialState = {
   success: false,
 };
 
-export const getVideoWatched = createAsyncThunk("getVideoWatched", async () => {
+export const getVideoLiked = createAsyncThunk("getVideoLiked", async () => {
   console.log("Waiting for response...");
-  const response = await videoWatchedList();
+  const response = await videoLikedList();
   return response.data;
 });
 
-export const videoWatchedSlice = createSlice({
-  name: "videoHistory",
+export const videoLikedSlice = createSlice({
+  name: "videoLiked",
   initialState,
   reducers: {
     setLoading: (state, action) => {
@@ -32,20 +32,20 @@ export const videoWatchedSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      //getVideoWatchedList
-      .addCase(getVideoWatched.pending, (state) => {
+      //getVideoLikedList
+      .addCase(getVideoLiked.pending, (state) => {
         console.log("Extra reducer: Pending...");
         state.success = false;
         state.loading = true;
         state.error = false;
       })
-      .addCase(getVideoWatched.rejected, (state, action) => {
+      .addCase(getVideoLiked.rejected, (state, action) => {
         console.log("Extra reducer: Rejected...");
         state.success = false;
         state.loading = false;
         state.error = action.error;
       })
-      .addCase(getVideoWatched.fulfilled, (state, action) => {
+      .addCase(getVideoLiked.fulfilled, (state, action) => {
         console.log("Extra reducer: Success...");
         state.success = true;
         state.loading = false;
@@ -55,12 +55,12 @@ export const videoWatchedSlice = createSlice({
   },
 });
 
-export const { setLoading, setError, setSuccess } = videoWatchedSlice.actions;
+export const { setLoading, setError, setSuccess } = videoLikedSlice.actions;
 
-export const selectLoading = (state) => state.videoHistory.loading;
-export const selectError = (state) => state.videoHistory.error;
-export const selectSuccess = (state) => state.videoHistory.success;
-export const selectVideoWatchedList = (state) => state.videoHistory.videos;
+export const selectLoading = (state) => state.videoLiked.loading;
+export const selectError = (state) => state.videoLiked.error;
+export const selectSuccess = (state) => state.videoLiked.success;
+export const selectVideoLikedList = (state) => state.videoLiked.videos;
 // export const selectVideoDetail = (state) => state.videoHistory.value;
 
-export default videoWatchedSlice.reducer;
+export default videoLikedSlice.reducer;
