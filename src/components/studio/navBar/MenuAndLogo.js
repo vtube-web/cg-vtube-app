@@ -1,16 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineMenu } from "react-icons/ai";
-
+import {
+  setIsVisibilityMenu,
+  getIsVisibilityMenu,
+} from "../../../features/studio/visibilitySlice";
+import {
+  setIsModalMenu,
+  getIsModalMenu,
+} from "../../../features/studio/modalSlice";
 function MenuAndLogo() {
   const [mouseMenu, setMouseMenu] = useState(false);
   const [mouseLogo, setMouseLogo] = useState(false);
+  const isVisibilityMenu = useSelector(getIsVisibilityMenu);
+  const isModalMenu = useSelector(getIsModalMenu);
+  const dispatch = useDispatch();
+  const [width, setWidth] = useState();
+  const handleMenu = () => {
+    if (width >= 1536) {
+      dispatch(setIsVisibilityMenu(!isVisibilityMenu));
+      dispatch(setIsModalMenu(false));
+    } else {
+      dispatch(setIsVisibilityMenu(!isVisibilityMenu));
+      dispatch(setIsModalMenu(!isModalMenu));
+    }
+  };
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
 
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [width]);
   return (
     <div className="col-4 flex justify-start items-center space-x-6">
       <div
         className="relative col-1 flex-none"
         onMouseOver={() => setMouseMenu(true)}
         onMouseOut={() => setMouseMenu(false)}
+        onClick={handleMenu}
       >
         <AiOutlineMenu className="text-xl hover:cursor-pointer pointer-events-none" />
         {mouseMenu == false ? (

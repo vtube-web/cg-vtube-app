@@ -11,6 +11,7 @@ export const isModalSreachSlice = createSlice({
     },
   },
 });
+
 export const { setIsModalSearch } = isModalSreachSlice.actions;
 export const getIsModalSearch = (state) => state.isModalSreach.search;
 export default isModalSreachSlice.reducer;
