@@ -16,7 +16,7 @@ $breakpoint-small: 520px;
 }
 
 body{
-  background: rgb(244, 243, 243) fixed;
+  background: $black-primary fixed;
   color: $text-color;
   font-family: "Roboto", sans-serif;
   letter-spacing: 0.1px;

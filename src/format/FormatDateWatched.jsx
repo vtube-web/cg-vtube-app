@@ -8,18 +8,18 @@ export default function formatDateWatched(dateString) {
   }
 
   const months = [
-    "thg 1",
-    "thg 2",
-    "thg 3",
-    "thg 4",
-    "thg 5",
-    "thg 6",
-    "thg 7",
-    "thg 8",
-    "thg 9",
-    "thg 10",
-    "thg 11",
-    "thg 12",
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "July",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
 
   const day = date.getDate();
