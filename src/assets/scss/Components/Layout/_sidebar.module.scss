@@ -1,13 +1,13 @@
 @import '../../base.module';
 
 .sidebar {
-  background: $black-secondary;
+  background: $black-primary;
 
   display: flex;
   flex-direction: column;
   width: 250px;
   height: 100vh;
-  transform: translateX(-105%);
+  transform: translateX(-100%);
   position: fixed;
   z-index: 9;
 
@@ -55,7 +55,7 @@
     flex-grow: 1;
     display: flex;
     position: fixed;
-    transform: translateX(-3%);
+    transform: translateX(-4%);
     transition: transform 0.3s ease-in;
     min-width: 250px;
   }

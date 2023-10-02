@@ -28,17 +28,17 @@ function Search() {
 
   return (
     <div
-      className={`w-10/12 relative text-xs top-0 ${
-        statusTheme ? "z-[20]" : ""
+      className={`w-10/12 relative text-xs top-0  ${
+        statusTheme ? "z-[20] " : ""
       }`}
     >
       <div
         className={`absolute w-10/12  ${
-          statusTheme ? "bg-white rounded-md" : ""
+          statusTheme ? "bg-white rounded-md " : ""
         }`}
       >
         <div
-          className={` flex bg-white items-center space-x-4 border-1 focus:text-dark px-3 h-9 ${
+          className={` flex bg-white items-center lg:space-x-4 border-1 focus:text-dark px-3 h-9  ${
             statusTheme
               ? "text-gray-700 rounded-t-md"
               : "text-gray-300 border-gray-400 rounded-md"
@@ -58,12 +58,11 @@ function Search() {
           {remove == false ? (
             <></>
           ) : (
-            <CiCircleRemove
-              className="col-1 w-6 h-6"
+           
+            <div className="col-1 text-lg text-gray-300 hover:text-gray-500 hover:cursor-pointer"
               onClick={() => {
                 setSearch("");
-              }}
-            />
+              }}>✖ </div>
           )}
         </div>
         {statusTheme ? (

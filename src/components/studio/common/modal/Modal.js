@@ -5,20 +5,14 @@ import {
   setIsModalSearch,
 } from "../../../../features/studio/modalSlice";
 
-function Modal() {
-  const statusThemeSreach = useSelector(getIsModalSearch);
-  const dispatch = useDispatch();
-  const handleTheme = () => {
-    dispatch(setIsModalSearch(false));
-  };
+function Modal({ isModal, onClose }) {
+  if (!isModal) return null;
   return (
     <div
       className={`${
-        statusThemeSreach
-          ? "bg-black opacity-30 h-full absolute w-full z-[10] "
-          : ""
+        isModal ? "bg-black opacity-30 h-full absolute w-full z-[10] " : "a"
       }`}
-      onClick={handleTheme}
+      onClick={onClose}
     ></div>
   );
 }

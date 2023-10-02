@@ -1,0 +1,6 @@
+.select-all::selection {
+  @apply bg-blue-100;
+}
+.select-none::selection {
+  @apply bg-blue-100;
+}
