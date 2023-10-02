@@ -2,9 +2,9 @@ export default function formatDateWatched(dateString) {
   const date = new Date(dateString);
 
   if (isToday(date)) {
-    return "Hôm nay";
+    return "Today";
   } else if (isYesterday(date)) {
-    return "Hôm qua";
+    return "Yesterday";
   }
 
   const months = [

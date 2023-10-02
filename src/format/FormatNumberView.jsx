@@ -1,5 +1,5 @@
 export default function formatNumberView(value) {
-  const units = ["", "N", "Tr", "Tr", "Tr", "Tỉ"];
+  const units = ["", "K", "M", "M", "M", "B"];
   let i = 0;
   while (value >= 1000 && i < units.length) {
     value /= 1000;
