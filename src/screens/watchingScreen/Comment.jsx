@@ -2,20 +2,49 @@ import React, {useState} from "react";
 import {BiLike, BiDislike} from "react-icons/bi";
 import style from '../../assets/scss/Components/Watching/_comment.module.scss'
 import {Link} from "react-router-dom";
+import data from './../../data/sample/commentsData.json'
+const imgUrl ='https://cdn.discordapp.com/attachments/1151490874195316856/1152992123059175694/b2c44a9549a5cf8c9eebb8eb8fc51213.jpg?ex=65144c97&is=6512fb17&hm=7cca2b7ecd47ea4a8350668162dc73dcf9afe9952c7776d480ad07f9dbb55ae0&';
+
+const loggedUser = [
+    {
+        id:1,
+        username: 'Trung',
+        avatar: imgUrl,
+    }
+];
 
 const Comment = (comment) => {
     const [showInput, setShowInput] = useState(false);
-    const [showButton, setShowButton] = useState(false);
+    const [comments, setComments] = useState(data.comments)
+    const [reply, setReply] = useState("");
 
     const showInputReply = () => {
         setShowInput(!showInput);
     };
-    const handleInputChange = () => {
-        setShowButton(!showButton);
+    const handleInputChange = (event) => {
+        setReply(event.target.value);
     };
-    function handleSubmit() {
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        if (reply.trim() === "") {
+            return;
+        }
+        const newReply = {
+            id: 8,
+            user: loggedUser[0],
+            video_id: 1,
+            timestamp: new Date().toISOString(),
+            likes: 0,
+            dislike: 0,
+            content: reply,
+            parentCommentId: comment.id
+        };
+        const updatedComments = [...comments];
+        updatedComments.push(newReply);
+        setReply("");
+        setComments(updatedComments);
+    };
 
-    }
 
     return (
         <div className={style.comment__container}>
@@ -43,23 +72,16 @@ const Comment = (comment) => {
                             </div>
                             <div className={style.comment__function}>
                                 <span className={style.function__button}>
-                                    <BiLike
-                                        size={23}
-                                        className={style.button}
-                                    />{comment.likes}
+                                    <BiLike size={23} className={style.button}/>
+                                    {comment.likes}
                                 </span>
                                 <span className={style.function__button}>
-                                    <BiDislike
-                                        size={23}
-                                        className={style.button}
-                                    />{comment.dislike}
+                                    <BiDislike size={23} className={style.button}/>
+                                    {comment.dislike}
                                 </span>
 
-                                <span
-                                    onClick={showInputReply}
-                                    className={style.reply}
-                                >
-                                    Phản hồi
+                                <span onClick={showInputReply} className={style.reply}>
+                                    Reply
                                 </span>
                             </div>
                             <div>
@@ -75,10 +97,20 @@ const Comment = (comment) => {
                                             <form onSubmit={handleSubmit}>
                                                 <input
                                                     type="text"
-                                                    placeholder="Viết bình luận ..."
-                                                    className={style.comment__reply}
-                                                    onClick={handleInputChange}
+                                                    placeholder="Write a reply..."
+                                                    name="content"
+                                                    value={reply}
+                                                    className={style.reply__content}
+                                                    onChange={handleInputChange}
                                                 />
+                                                <div className={style.reply__button}>
+                                                    <button onClick={showInputReply} className={style.cancel}>
+                                                        Cancel
+                                                    </button>
+                                                    <button type="submit" className={style.submit}>
+                                                        Reply
+                                                    </button>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>

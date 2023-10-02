@@ -1,5 +1,5 @@
 import style from '../../../assets/scss/Components/Layout/_sidebar.module.scss'
-
+import './../../../assets/css/misc.scss'
 import {
     IoGameController, IoGameControllerOutline
 } from "react-icons/io5"
