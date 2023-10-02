@@ -1,0 +1,46 @@
+@import '../../base.module';
+
+.suggestion__container {
+  padding: 10px;
+  display: flex;
+  justify-content: flex-start;
+  background-color: #1a1d20;
+  border-radius: 15px;
+  border-color: #f9f9f9;
+  height: 100%;
+  flex-direction: column;
+  margin-left: 0.8rem;
+  width: 30%;
+
+  .video__renderer {
+    display: flex;
+    flex-direction: row;
+
+    .video__display {
+      width: 9rem;
+      height: 13vh;
+
+      .video__main {
+        width: 100%;
+        height: 100%;
+        border-radius: 15px;
+      }
+    }
+
+    .video__info__function {
+
+      .video_title {
+        font-weight: bold;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .suggestion__main {
+    width: 100%;
+    padding: 10px;
+    overflow-x: auto;
+  }
+}
+
+
