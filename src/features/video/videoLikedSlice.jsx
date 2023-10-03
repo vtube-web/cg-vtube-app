@@ -11,9 +11,9 @@ const initialState = {
 };
 
 export const getVideoLiked = createAsyncThunk("getVideoLiked", async () => {
-    console.log("Waiting for response...");
-    const response = await videoLikedList();
-    return response.data;
+  console.log("Waiting for response...");
+  const response = await videoLikedList();
+  return response.data;
 });
 
 export const videoLikedSlice = createSlice({

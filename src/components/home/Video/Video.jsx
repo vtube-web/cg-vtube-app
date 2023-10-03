@@ -13,7 +13,6 @@ function Video({video,isSidebarOpen }) {
             <div className={style.video}>
                 <div className={style.video__top}>
                     <img src={video.videoUrl} alt={"video"}/>
-                    <span>{video.duration}s</span>
                 </div>
                 <div className={style.video__title}>
                     {video.title}

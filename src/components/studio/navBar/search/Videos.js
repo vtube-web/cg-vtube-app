@@ -66,8 +66,8 @@ function Videos() {
           )}
         </div>
         <div className="pt-2 text-gray-600 flex-auto text-center min-w-0 lg:hidden xl:block truncate">
-            <div className="">27-09-2023</div>
-            <div className="mt-1 text-gray-400">Date upload</div>
+          <div className="">27-09-2023</div>
+          <div className="mt-1 text-gray-400">Date upload</div>
         </div>
       </div>
     </div>

@@ -15,12 +15,16 @@ import ContentScreen from "../screens/studioScreen/ContentScreen";
 import AnalyticalDataScreen from "../screens/studioScreen/AnalyticalDataScreen";
 import CommentScreen from "../screens/studioScreen/CommentScreen";
 import CustomizeChannelsScreen from "../screens/studioScreen/CustomizeChannelsScreen";
+import LoginScreen from "../screens/login Screen/LoginScreen";
+import RegisterScreen from "../screens/registerScreen/RegisterScreen";
 
 export const publicRoutes = [
   { path: "/", component: homeScreen, layout: MainLayout },
   { path: "/library", component: libraryScreen, layout: MainLayout },
   { path: "/likedVideos", component: likedVideoScreen, layout: MainLayout },
   { path: "/signIn", component: SignInScreen, layout: MainLayout },
+  { path: "/login", component: LoginScreen, layout: null},
+  { path: "/register", component: RegisterScreen, layout: null},
   { path: "/subscribed", component: subscribedScreen, layout: MainLayout },
   { path: "/watchedVideos", component: watchedScreen, layout: MainLayout },
   { path: "/watchLater", component: watchLaterScreen, layout: MainLayout },

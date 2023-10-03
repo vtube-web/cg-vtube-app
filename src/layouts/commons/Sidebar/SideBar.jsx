@@ -48,7 +48,7 @@ const SideBar = ({sidebar = true}) => {
 
     return (
         <nav className={sidebar ? `${style.sidebar} ${style.open}` : style.sidebar}>
-            <NavLink to={"/"} activeClassName={"active"}>
+            <NavLink to={"/"} activeClassName={"active-home"}>
                 <li>
                     {path === "" ? <AiFillHome size={23}/> : <AiOutlineHome size={23}/>}
                     <span>Home</span>

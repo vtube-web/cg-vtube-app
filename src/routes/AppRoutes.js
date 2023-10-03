@@ -12,6 +12,7 @@ export function AppRoutes() {
                     const Screen = publicRoute.component;
                     const Layout = publicRoute.layout;
 
+
                     return <Route
                         key={index}
                         path={publicRoute.path}
