@@ -9,6 +9,7 @@ import watchLaterScreen from "../screens/watchLaterScreen/WatchLaterScreen"
 import yourVideoScreen from "../screens/yourVideoScreen/YourVideoScreen"
 import watchingScreen from "../screens/watchingScreen/WatchingScreen"
 import notFoundScreen from "../screens/notFoundScreen/NotFoundScreen";
+import shortsScreen from "../screens/shortsScreen/ShortsScreen";
 
 
 
@@ -22,5 +23,6 @@ export const publicRoutes = [
     {path:'/watchLater', component:watchLaterScreen, layout: MainLayout},
     {path:'/yourVideos', component:yourVideoScreen, layout: MainLayout},
     {path:'/watching', component:watchingScreen, layout: MainLayout},
+    {path:'/Shorts', component:shortsScreen, layout: MainLayout},
     {path: '/*', component: notFoundScreen, layout: null},
 ]

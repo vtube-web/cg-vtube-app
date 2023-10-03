@@ -47,9 +47,9 @@
     background-color: $border-color;
   }
 
-  &.sidebar ~ .app__main {
-    transition: all ease-in 0.3s;
-  }
+  //&.sidebar ~ .app__main {
+  //  transition: all ease-in 0.3s;
+  //}
 
   &.open {
     flex-grow: 1;
@@ -60,10 +60,10 @@
     min-width: 250px;
   }
 
-  &.open ~ .app__main {
-    padding-left: 250px;
-    transition: all ease-in 0.3s;
-  }
+  //&.open ~ .app__main {
+  //  padding-left: 250px;
+  //  transition: all ease-in 0.3s;
+  //}
 }
 
 @media (max-width: $breakpoint-medium) {

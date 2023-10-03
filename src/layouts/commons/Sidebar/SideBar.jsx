@@ -32,7 +32,8 @@ import {
     MdVideoLibrary, MdOutlineVideoLibrary,
     MdWatchLater, MdOutlineWatchLater,
     MdExitToApp, MdOutlineExitToApp,
-    MdReport, MdOutlineReportGmailerrorred
+    MdReport, MdOutlineReportGmailerrorred,
+    MdSlowMotionVideo, MdOutlineSlowMotionVideo
 } from "react-icons/md";
 import {Link, NavLink, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
@@ -52,6 +53,12 @@ const SideBar = ({sidebar = true}) => {
                 <li>
                     {path === "" ? <AiFillHome size={23}/> : <AiOutlineHome size={23}/>}
                     <span>Home</span>
+                </li>
+            </NavLink>
+            <NavLink to={"/Shorts"} activeClassName={"active"}>
+                <li>
+                    {path === "" ? <MdSlowMotionVideo size={23}/> : <MdOutlineSlowMotionVideo size={23}/>}
+                    <span>Shorts</span>
                 </li>
             </NavLink>
             <NavLink to={"/subscribed"} activeClassName={"active"}>
