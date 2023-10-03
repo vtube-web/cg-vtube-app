@@ -1,13 +1,13 @@
 @import '../../base.module';
 
 .sidebar {
-  background: $black-secondary;
+  background: $black-primary;
 
   display: flex;
   flex-direction: column;
   width: 250px;
   height: 100vh;
-  transform: translateX(-105%);
+  transform: translateX(-100%);
   position: fixed;
   z-index: 9;
 
@@ -47,23 +47,23 @@
     background-color: $border-color;
   }
 
-  //&.sidebar ~ .app__main {
-  //  transition: all ease-in 0.3s;
-  //}
+  &.sidebar ~ .app__main {
+    transition: all ease-in 0.3s;
+  }
 
   &.open {
     flex-grow: 1;
     display: flex;
     position: fixed;
-    transform: translateX(-3%);
+    transform: translateX(-4%);
     transition: transform 0.3s ease-in;
     min-width: 250px;
   }
 
-  //&.open ~ .app__main {
-  //  padding-left: 250px;
-  //  transition: all ease-in 0.3s;
-  //}
+  &.open ~ .app__main {
+    padding-left: 250px;
+    transition: all ease-in 0.3s;
+  }
 }
 
 @media (max-width: $breakpoint-medium) {

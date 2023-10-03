@@ -1,5 +1,5 @@
 import style from '../../../assets/scss/Components/Layout/_sidebar.module.scss'
-
+import './../../../assets/css/misc.scss'
 import {
     IoGameController, IoGameControllerOutline
 } from "react-icons/io5"
@@ -68,7 +68,7 @@ const SideBar = ({sidebar = true}) => {
                 </li>
             </NavLink>
             <hr/>
-            <NavLink to={"/library"} activeClassName={"active"}>
+            <NavLink to={"/library"} activeClassName={"active-home"}>
                 <li>
                     {path === "library" ? <MdVideoLibrary size={23}/> : <MdOutlineVideoLibrary size={23}/>}
                     <span>Library</span>

@@ -10,7 +10,7 @@ const initialState = {
   success: false,
 };
 
-export const getVideoWatched = createAsyncThunk("", async () => {
+export const getVideoWatched = createAsyncThunk("getVideoWatched", async () => {
   console.log("Waiting for response...");
   const response = await videoWatchedList();
   return response.data;

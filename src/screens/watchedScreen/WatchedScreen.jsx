@@ -18,10 +18,10 @@ import { useEffect, useState } from "react";
 import formatNumberView from "../../format/FormatNumberView";
 import formatDateWatched from "../../format/FormatDateWatched";
 
-
 export default function WatchedScreen() {
   const dispatch = useDispatch();
   const videoList = useSelector(selectVideoWatchedList);
+  
   const [videosGroupedByDay, setVideosGroupedByDay] = useState({});
 
   useEffect(() => {
@@ -39,15 +39,21 @@ export default function WatchedScreen() {
       setVideosGroupedByDay(sortedGroupedVideos);
     }
   }, [dispatch, videoList]);
+  
 
   const groupVideosByDay = (videos) => {
     const groupedVideos = {};
     videos.forEach((video) => {
-      const date = video.date_watched.split("T")[0];
-      if (!groupedVideos[date]) {
-        groupedVideos[date] = [];
+      if (video && video.date_watched) {
+        const dateParts = video.date_watched.split("T");
+        if (dateParts.length > 0) {
+          const date = dateParts[0];
+          if (!groupedVideos[date]) {
+            groupedVideos[date] = [];
+          }
+          groupedVideos[date].push(video);
+        }
       }
-      groupedVideos[date].push(video);
     });
     return groupedVideos;
   };

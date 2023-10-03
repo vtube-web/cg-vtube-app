@@ -3,6 +3,7 @@ import {publicRoutes} from "../data/RoutesData";
 import SignInScreen from "../screens/signInScreen/SignInScreen";
 
 
+
 export function AppRoutes() {
     return (
         <Routes>
@@ -10,6 +11,7 @@ export function AppRoutes() {
                 publicRoutes.map((publicRoute, index) => {
                     const Screen = publicRoute.component;
                     const Layout = publicRoute.layout;
+
 
                     return <Route
                         key={index}
