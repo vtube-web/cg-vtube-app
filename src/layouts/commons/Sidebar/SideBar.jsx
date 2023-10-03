@@ -32,7 +32,8 @@ import {
     MdVideoLibrary, MdOutlineVideoLibrary,
     MdWatchLater, MdOutlineWatchLater,
     MdExitToApp, MdOutlineExitToApp,
-    MdReport, MdOutlineReportGmailerrorred
+    MdReport, MdOutlineReportGmailerrorred,
+    MdSlowMotionVideo, MdOutlineSlowMotionVideo
 } from "react-icons/md";
 import {Link, NavLink, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
@@ -48,13 +49,19 @@ const SideBar = ({sidebar = true}) => {
 
     return (
         <nav className={sidebar ? `${style.sidebar} ${style.open}` : style.sidebar}>
-            <NavLink to={"/"} activeClassName={"active-home"}>
+            <NavLink to={"/"} activeClassName={"active"}>
                 <li>
                     {path === "" ? <AiFillHome size={23}/> : <AiOutlineHome size={23}/>}
                     <span>Home</span>
                 </li>
             </NavLink>
-            <NavLink to={"/subscribed"} activeClassName={"active-home"}>
+            <NavLink to={"/Shorts"} activeClassName={"active"}>
+                <li>
+                    {path === "" ? <MdSlowMotionVideo size={23}/> : <MdOutlineSlowMotionVideo size={23}/>}
+                    <span>Shorts</span>
+                </li>
+            </NavLink>
+            <NavLink to={"/subscribed"} activeClassName={"active"}>
                 <li>
                     {path === "subscribed" ? <BsFillCollectionPlayFill size={23}/> : <BsCollectionPlay size={23}/>}
                     <span>Subscribed</span>
@@ -67,25 +74,25 @@ const SideBar = ({sidebar = true}) => {
                     <span>Library</span>
                 </li>
             </NavLink>
-            <NavLink to={"/watchedVideos"} activeClassName={"active-home"}>
+            <NavLink to={"/watchedVideos"} activeClassName={"active"}>
                 <li>
                     {path === "watchedVideos" ? <GrHistory size={23}/> : <GoHistory size={23}/>}
                     <span>Watched Videos</span>
                 </li>
             </NavLink>
-            <NavLink to={"/yourVideos"} activeClassName={"active-home"}>
+            <NavLink to={"/yourVideos"} activeClassName={"active"}>
                 <li>
                     {path === "yourVideos" ? <AiFillPlaySquare size={23}/> : <AiOutlinePlaySquare size={23}/>}
                     <span>Your Videos</span>
                 </li>
             </NavLink>
-            <NavLink to={"/watchLater"} activeClassName={"active-home"}>
+            <NavLink to={"/watchLater"} activeClassName={"active"}>
                 <li>
                     {path === "watchLater" ? <MdWatchLater size={23}/> : <MdOutlineWatchLater size={23}/>}
                     <span>Watch Later</span>
                 </li>
             </NavLink>
-            <NavLink to={"/likedVideos"} activeClassName={"active-home"}>
+            <NavLink to={"/likedVideos"} activeClassName={"active"}>
                 <li>
                     {path === "likedVideos" ? <BiSolidLike size={23}/> : <BiLike size={23}/>}
                     <span>Liked Videos</span>
@@ -116,31 +123,31 @@ const SideBar = ({sidebar = true}) => {
             <ul>
                 <span>Explore</span>
             </ul>
-            <NavLink to={"/test1"} activeClassName={"active-home"}>
+            <NavLink to={"/test1"} activeClassName={"active"}>
                 <li>
                     <BsFire size={23}/>
                     <span>Trending</span>
                 </li>
             </NavLink>
-            <NavLink to={"/test2"} activeClassName={"active-home"}>
+            <NavLink to={"/test2"} activeClassName={"active"}>
                 <li>
                     <BiMusic size={23}/>
                     <span>Music</span>
                 </li>
             </NavLink>
-            <NavLink to={"/test3"} activeClassName={"active-home"}>
+            <NavLink to={"/test3"} activeClassName={"active"}>
                 <li>
                     <IoGameControllerOutline size={23}/>
                     <span>Gaming</span>
                 </li>
             </NavLink>
-            <NavLink to={"/test4"} activeClassName={"active-home"}>
+            <NavLink to={"/test4"} activeClassName={"active"}>
                 <li>
                     <HiOutlineNewspaper size={23}/>
                     <span>News</span>
                 </li>
             </NavLink>
-            <NavLink to={"/test5"} activeClassName={"active-home"}>
+            <NavLink to={"/test5"} activeClassName={"active"}>
                 <li>
                     <BiTrophy size={23}/>
                     <span>Sport</span>
