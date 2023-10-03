@@ -66,8 +66,25 @@
     color: #fff;
 }
 
+.icon-controller {
+    background-color: inherit;
+    color: white;
+    border: none;
+    border-bottom: 1px solid white;
+    border-radius: 0;
+}
+
+.error-control {
+    background-color: transparent;
+    color: red;
+    margin-top: 5%;
+    text-align: center;
+
+}
+
 input[type=password]::-ms-reveal,
 input[type=password]::-ms-clear {
     display: none;
 }
+
 

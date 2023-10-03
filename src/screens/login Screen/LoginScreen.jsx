@@ -50,7 +50,7 @@ function LoginScreen() {
       navigate("/");
     }
   }, [success]);
-
+  
   return (
     <>
       <div className="container d-flex justify-content-center align-items-center">
@@ -61,7 +61,7 @@ function LoginScreen() {
           </div>
           <form>
             <div className="mb-4 mt-4">
-              <label htmlFor="email" className="form-label mt-2">
+              <label htmlFor="email" className="form-label mt-2 mb-0">
                 Email
               </label>
               <input
@@ -72,20 +72,21 @@ function LoginScreen() {
                 required
               />
             </div>
-            <label className="form-label ">Password</label>
-            <div className="mt-0 mb-2 input-group ">
+            <span>Password</span>
+            <div className="mt-0 mb-2 input-group flex-nowrap ">
+              <label className="form-label"></label>
               <input
                 type={showPassword ? "text" : "password"}
                 className="form-control"
                 id="password"
                 required
               />
-              <i onClick={togglePassword}>
-                {showPassword ? <PiEye size={23} /> : <PiEyeSlash size={23} />}
+              <i onClick={togglePassword} className="input-group-text icon-controller ">
+                {showPassword ? <PiEye  size={23} /> : <PiEyeSlash  size={23} />}
               </i>
             </div>
             {error && (
-              <div className="alert alert-danger" role="alert">
+              <div className="error-control" role="alert">
                 {error}
               </div>
             )}
@@ -97,7 +98,7 @@ function LoginScreen() {
               {loading ? "Loading..." : "Login"}
             </button>
           </form>
-          <div className="d-flex justify-content-between mt-3 ">
+          <div className="d-flex justify-content-between mt-3">
             <p className="mt-4">
               Forgot password? <Link to="/forgot">Forgot</Link>
             </p>
