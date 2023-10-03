@@ -10,7 +10,7 @@ const initialState = {
   success: false,
 };
 
-export const getVideoWatched = createAsyncThunk("", async () => {
+export const getVideoWatched = createAsyncThunk("getVideoWatched", async () => {
   console.log("Waiting for response...");
   const response = await videoWatchedList();
   return response.data;
@@ -61,6 +61,5 @@ export const selectLoading = (state) => state.videoHistory.loading;
 export const selectError = (state) => state.videoHistory.error;
 export const selectSuccess = (state) => state.videoHistory.success;
 export const selectVideoWatchedList = (state) => state.videoHistory.videos;
-// export const selectVideoDetail = (state) => state.videoHistory.value;
 
 export default videoWatchedSlice.reducer;

@@ -12,7 +12,7 @@ function Video({video,isSidebarOpen }) {
         <NavLink to={"/watching"}>
             <div className={style.video}>
                 <div className={style.video__top}>
-                    <img src={video.thumbnails} alt={"video"}/>
+                    <img src={video.videoUrl} alt={"video"}/>
                     <span>{video.duration}s</span>
                 </div>
                 <div className={style.video__title}>
@@ -20,11 +20,11 @@ function Video({video,isSidebarOpen }) {
                 </div>
                 <div className={style.video__detail}>
                     <span>{video.views} views • </span>
-                    <span>{/*{video.createdAt}*/} 1 year ago</span>
+                    <span>{video.createdAt}</span>
                 </div>
                 <div className={style.video__channel}>
-                    <img src={video.avatar} alt={'channel_name'}/>
-                    <p>{video.channelName}</p>
+                    <img src={video.userDto.avatar} alt={'channel_name'}/>
+                    <span>{video.userDto.userName}</span>
                 </div>
             </div>
         </NavLink>

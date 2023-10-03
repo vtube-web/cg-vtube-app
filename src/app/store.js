@@ -13,8 +13,7 @@ export const store = configureStore(
   reducer: {
     video: videoReducer,
     videoHistory: videoHistoryReducer,
-
-    isModalSreach: isModalSearchReducer,
+    isModalSearch: isModalSearchReducer,
     videoLiked: videoLikedReducer,
 
   },middleware,

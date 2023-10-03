@@ -13,13 +13,13 @@ const initialState = {
     success: false,
 };
 
-export const getVideos = createAsyncThunk("/home/list", async () => {
+export const getVideos = createAsyncThunk("getVideos", async () => {
     console.log("Waiting for response...");
     const response = await findVideoList();
     return response.data;
 });
 
-export const getVideo = createAsyncThunk("/home/details", async (id) => {
+export const getVideo = createAsyncThunk("getVideo", async (id) => {
     const response = await findVideo(id);
     return response.data;
 });

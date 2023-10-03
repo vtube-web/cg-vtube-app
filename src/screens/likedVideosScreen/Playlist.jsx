@@ -23,7 +23,7 @@ const Playlist = (props) => {
                 <img
                   src={firstVideo ? firstVideo.imgVideo : ""}
                   alt="video"
-                ></img>
+                />
               </div>
             </div>
           </div>
