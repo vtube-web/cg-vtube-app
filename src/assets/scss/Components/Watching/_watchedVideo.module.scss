@@ -6,6 +6,7 @@
   position: relative;
   .primary {
     margin: 30px 0 0 30px;
+    padding-bottom: 30px;
     width: 628px;
     .section__list__render {
       .header__container {
@@ -63,10 +64,11 @@
                 .label {
                   display: none;
                   position: absolute;
+                  // text-align: right;
                   top: 0;
                   right: 24px;
                   font-weight: 550;
-                  width: 70px;
+                  width: max-content;
                   height: 24px;
                   background-color: rgba(0, 0, 0, 1);
                   padding: 4px 8px;
@@ -97,7 +99,7 @@
                   top: 0;
                   right: 24px;
                   font-weight: 550;
-                  width: 170px;
+                  width: max-content;
                   height: 24px;
                   background-color: rgba(0, 0, 0, 1);
                   padding: 4px 8px;
@@ -127,6 +129,24 @@
             .data__video {
               font-size: 12px;
               padding-top: 5px;
+              .hover__link {
+                position: relative;
+                &:hover + .hover__content {
+                  display: block;
+                }
+              }
+              .hover__content {
+                position: absolute;
+                display: none;
+                background:  #646464;
+                color: white;
+                padding: 5px 10px;
+                border-radius: 5px;
+                left: 44%;
+                top: 10%;
+                transform: translateY(-50%);
+                white-space: nowrap;
+              }
             }
             .icon__button {
               width: 30px;
@@ -194,7 +214,7 @@
         box-sizing: border-box;
         border: none;
         border-bottom: 1px solid #bcbcbc;
-        background-color: #16181b;
+        background-color: rgba(0, 0, 0, 0);
       }
       svg {
         margin: auto;

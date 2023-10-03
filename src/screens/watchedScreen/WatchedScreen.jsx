@@ -63,65 +63,69 @@ export default function WatchedScreen() {
       <div className={style.primary}>
         <div className={style.section__list__render}>
           <div className={style.header__container}>
-            <p>Nhật ký xem</p>
+            <p>Watch history</p>
           </div>
           <div className={style.list__contents__render}>
             {Object.keys(videosGroupedByDay).map((date) => (
               <div key={date}>
                 <p style={{ marginTop: 30 }}>{formatDateWatched(date)}</p>
                 {videosGroupedByDay[date].map((videoData) => (
-                  <div className={`${style.item__section__render} row`}>
-                    <div className={style.video__render}>
-                      <a href="">
+                  <a href="">
+                    <div className={`${style.item__section__render} row`}>
+                      <div className={style.video__render}>
                         <img src={videoData.imgVideo} alt="image" />
                         <div className={style.time__video}>30:56</div>
-                      </a>
-                      <div className={style.icon__hover}>
-                        <button>
-                          <AiOutlineClockCircle size={24} />
-                          <span className={style.label}>Xem sau</span>
-                        </button>
+
+                        <div className={style.icon__hover}>
+                          <button>
+                            <AiOutlineClockCircle size={24} />
+                            <span className={style.label}>Watch Later</span>
+                          </button>
+                        </div>
+                        <div className={style.icon__hover2}>
+                          <button>
+                            <MdPlaylistAdd size={24} />
+                            <span className={style.label}>Add to queue</span>
+                          </button>
+                        </div>
                       </div>
-                      <div className={style.icon__hover2}>
-                        <button>
-                          <MdPlaylistAdd size={24} />
-                          <span className={style.label}>
-                            Thêm vào danh sách chờ
-                          </span>
-                        </button>
-                      </div>
-                    </div>
-                    <div className={style.text__wrapper}>
-                      <div className="row">
-                        <div className="col-9">
-                          <div>
-                            <div className={style.text__box}>
-                              <a href="">{videoData.tittle}</a>
-                            </div>
-                            <div className={`${style.data__video} row`}>
-                              <div className="col-6">
-                                {videoData.nameChannel}
+                      <div className={style.text__wrapper}>
+                        <div className="row">
+                          <div className="col-9">
+                            <div>
+                              <div className={style.text__box}>
+                                <a href="">{videoData.tittle}</a>
                               </div>
-                              <div className="col-6">
-                                {formatNumberView(videoData.view)} lượt xem
+                              <div className={`${style.data__video} row`}>
+                                <div className="col-6">
+                                  <a href="#" className={style.hover__link}>
+                                    {videoData.nameChannel}
+                                  </a>
+                                  <span className={style.hover__content}>
+                                    {videoData.nameChannel}
+                                  </span>
+                                </div>
+                                <div className="col-6">
+                                  {formatNumberView(videoData.view)} views
+                                </div>
                               </div>
                             </div>
                           </div>
+                          <div className="col-3" style={{ display: "flex" }}>
+                            <button className={style.icon__button}>
+                              <AiOutlineClose size={20} />
+                            </button>
+                            <button className={style.icon__button}>
+                              <AiOutlineMore size={20} />
+                            </button>
+                          </div>
                         </div>
-                        <div className="col-3" style={{ display: "flex" }}>
-                          <button className={style.icon__button}>
-                            <AiOutlineClose size={20} />
-                          </button>
-                          <button className={style.icon__button}>
-                            <AiOutlineMore size={20} />
-                          </button>
+                        <div className={style.description__text}>
+                          {videoData.description}
                         </div>
-                      </div>
-                      <div className={style.description__text}>
-                        {videoData.description}
                       </div>
                     </div>
-                  </div>
+                  </a>
                 ))}
               </div>
             ))}
@@ -143,28 +147,25 @@ export default function WatchedScreen() {
             </button>
           </div>
           <div className="col-10">
-            <input
-              type="text"
-              placeholder="Tìm kiếm trong danh sách video ..."
-            ></input>
+            <input type="text" placeholder="Search watch history"></input>
           </div>
         </div>
         <div className={style.button__render}>
           <button>
             <RiDeleteBin6Line size={22} />
-            <span>Xóa nhật ký xem</span>
+            <span>Clear all watch history</span>
           </button>
         </div>
         <div className={style.button__render}>
           <button>
             <AiOutlinePause size={22} />
-            <span>Tạm dừng lưu nhật ký xem</span>
+            <span>Pause watch history</span>
           </button>
         </div>
         <div className={style.button__render}>
           <button>
             <AiOutlineSetting size={22} />
-            <span>Quản lý toàn bộ lịch sử hoạt động</span>
+            <span>Manage all history</span>
           </button>
         </div>
       </div>
