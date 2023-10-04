@@ -7,7 +7,7 @@ import {
 
 const initialState = {
     videos:[],
-    value: null,
+    videoDetails: {},
     loading: false,
     error: null,
     success: false,
@@ -19,8 +19,8 @@ export const getVideos = createAsyncThunk("getVideos", async () => {
     return response.data;
 });
 
-export const getVideo = createAsyncThunk("getVideo", async (id) => {
-    const response = await findVideo(id);
+export const getVideo = createAsyncThunk("getVideo", async (videoId) => {
+    const response = await findVideo(videoId);
     return response.data;
 });
 
@@ -63,20 +63,23 @@ export const videoSlice = createSlice({
 
             //getVideo
             .addCase(getVideo.pending, (state) => {
+                console.log("Extra reducer: getVideo Pending...");
                 state.success = false;
                 state.loading = true;
                 state.error = false;
             })
             .addCase(getVideo.rejected, (state, action) => {
+                console.log("Extra reducer: getVideo rejected...");
                 state.success = false;
                 state.loading = false;
                 state.error = action.error;
             })
             .addCase(getVideo.fulfilled, (state, action) => {
+                console.log("Extra reducer: getVideo fulfilled...");
                 state.success = true;
                 state.loading = false;
                 state.error = false;
-                state.value = action.payload;
+                state.videoDetails = action.payload;
             })
     }
 });
@@ -91,6 +94,6 @@ export const selectLoading = (state) => state.video.loading;
 export const selectError = (state) => state.video.error;
 export const selectSuccess = (state) => state.video.success;
 export const selectVideoList = (state) => state.video.videos;
-export const selectVideoDetail = (state) => state.video.value;
+export const selectVideoDetail = (state) => state.video.videoDetails;
 
 export default videoSlice.reducer;

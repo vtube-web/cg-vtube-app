@@ -45,7 +45,7 @@ export default function WatchedScreen() {
     const groupedVideos = {};
     videos.forEach((video) => {
       if (video && video.date_watched) {
-        const dateParts = video.date_watched.split("T");
+        const dateParts = video.date_watched?.split("T");
         if (dateParts.length > 0) {
           const date = dateParts[0];
           if (!groupedVideos[date]) {

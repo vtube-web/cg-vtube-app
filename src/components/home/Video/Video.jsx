@@ -9,13 +9,13 @@ function Video({video,isSidebarOpen }) {
         ? style.video
         : `${style.video} ${style.videoLarge}`;
     return (
-        <NavLink to={"/watching"}>
+        <NavLink to={`/watching/${video.id}`}>
             <div className={style.video}>
                 <div className={style.video__top}>
-                    <img src={video.videoUrl} alt={"video"}/>
+                    <img src={video?.videoUrl} alt={"video"}/>
                 </div>
                 <div className={style.video__title}>
-                    {video.title}
+                    {video?.title}
                 </div>
                 <div className={style.video__detail}>
                     <span>{video.views} views • </span>

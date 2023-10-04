@@ -12,7 +12,7 @@ function HomeScreen() {
     useEffect(() => {
         if (videoList.length === 0) {
             dispatch(getVideos());
-            console.log("Getting videos...")
+            console.log("Getting videos...");
         }
     }, [])
 
