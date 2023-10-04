@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import Comment from './Comment'
 import data from '../../data/sample/commentsData.json'
 
-export default function CommentSection() {
+export default function CommentSection({commentList} = {}) {
     const comments = data.comments.filter(comment => comment.parentCommentId === null);
     comments.forEach(comment => {
         comment.replies = data.comments.filter(reply => reply.parentCommentId === comment.id);

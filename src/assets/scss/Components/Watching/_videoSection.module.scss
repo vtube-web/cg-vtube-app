@@ -13,9 +13,12 @@ body {
 
   .video__main {
     width: 100%;
+    height:auto;
     max-height: 40rem;
     border-radius: 20px;
     background-color: #0F0F0F;
+    display: block;
+    object-fit: fill;
   }
 
   .video__title {

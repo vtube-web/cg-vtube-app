@@ -28,7 +28,7 @@ export default function WatchingScreen() {
             <div className={style.watching__container}>
                 <div className={`${style.watching__main} col-10`}>
                     <VideoSection video={videoDetails}/>
-                    <CommentSection comments={videoDetails}/>
+                    <CommentSection comments={videoDetails.commentDtoList}/>
                 </div>
                 <div className={`${style.watching__suggestion} col-2`}>
                     <SuggestionBar/>

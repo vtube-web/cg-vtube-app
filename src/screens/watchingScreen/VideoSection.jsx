@@ -27,12 +27,12 @@ export default function VideoSection({video = {}}) {
         <>
             <div className={`${style.watching__video}`}>
                 <div>
-                    <video
-                        src={sample}
-                        className={`${style.video__main}`}
-                        controls
-                    />
-                    {/*<img src={video.videoUrl} alt={"Video"}/>*/}
+                    {/*<video*/}
+                    {/*    src={sample}*/}
+                    {/*    className={`${style.video__main}`}*/}
+                    {/*    controls*/}
+                    {/*/>*/}
+                    <img src={video.videoUrl} alt={"Video"} className={`${style.video__main}`}/>
                 </div>
                 <div className={style.video__title}>
                     {video.title}
@@ -79,7 +79,7 @@ export default function VideoSection({video = {}}) {
                             {/*<span>{tagList.map(*/}
                             {/*    (tag, index) => (*/}
                             {/*            {index > 0 && " "}*/}
-                            {/*            # ${tag}*/}
+                            {/*            #${tag}*/}
                             {/*    )*/}
                             {/*)}</span>*/}
                         </div>
@@ -91,9 +91,7 @@ export default function VideoSection({video = {}}) {
                             expanded={false}
                             keepNewLines={true}
                         >
-                            {
-                                video.description
-                            }
+                            {video.description}
                         </ShowMore>
                     </div>
                 </div>

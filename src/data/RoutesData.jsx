@@ -9,6 +9,7 @@ import watchLaterScreen from "../screens/watchLaterScreen/WatchLaterScreen";
 import yourVideoScreen from "../screens/yourVideoScreen/YourVideoScreen";
 import watchingScreen from "../screens/watchingScreen/WatchingScreen";
 import notFoundScreen from "../screens/notFoundScreen/NotFoundScreen";
+import shortsScreen from "../screens/shortsScreen/ShortsScreen";
 import StudioLayout from "../layouts/studioLayout/StudioLayout";
 import OverviewScreen from "../screens/studioScreen/OverviewScreen";
 import ContentScreen from "../screens/studioScreen/ContentScreen";
@@ -28,6 +29,7 @@ export const publicRoutes = [
   { path: "/subscribed", component: subscribedScreen, layout: MainLayout },
   { path: "/watchedVideos", component: watchedScreen, layout: MainLayout },
   { path: "/watchLater", component: watchLaterScreen, layout: MainLayout },
+  { path: "/shorts", component: shortsScreen, layout: MainLayout },
   { path: "/yourVideos", component: yourVideoScreen, layout: MainLayout },
   { path: `/watching/:videoId`, component: watchingScreen, layout: MainLayout },
   { path: `/channel/:channelId`, component: OverviewScreen, layout: StudioLayout },
@@ -37,3 +39,4 @@ export const publicRoutes = [
   { path: `/channel/:channelId/customize`,component: CustomizeChannelsScreen,layout: StudioLayout},
   { path: "/*", component: notFoundScreen, layout: null },
 ];
+
