@@ -25,7 +25,7 @@ export const store = configureStore({
     videoUpload: videoUploadReducer,
     videoLiked: videoLikedReducer,
   },
-  middleware,
-  devTools: process.env.NODE_ENV !== "production",
+  // middleware,
+  // devTools: process.env.NODE_ENV !== "production",
 })
 

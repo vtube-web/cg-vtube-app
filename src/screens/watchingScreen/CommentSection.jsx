@@ -1,13 +1,9 @@
 import style from '../../assets/scss/Components/Watching/_commentSection.module.scss'
 import {useEffect, useState} from "react";
 import Comment from './Comment'
-import data from '../../data/sample/commentsData.json'
 
 export default function CommentSection({commentList} = {}) {
-    const comments = data.comments.filter(comment => comment.parentCommentId === null);
-    comments.forEach(comment => {
-        comment.replies = data.comments.filter(reply => reply.parentCommentId === comment.id);
-    });
+    console.log(commentList);
 
     const [showButton, setShowButton] = useState(false);
 
@@ -18,7 +14,7 @@ export default function CommentSection({commentList} = {}) {
         <>
             <div className={style.comments__container}>
                 <div className={style.comments__counter}>
-                    {comments.length > 0 && <p>{comments.length} bình luận</p>}
+                    {commentList?.length > 0 && <p>{commentList?.length} bình luận</p>}
                 </div>
                 <div className={style.comments__content}>
                     <div className={`${style.user__avatar} col-1`}>
@@ -45,7 +41,7 @@ export default function CommentSection({commentList} = {}) {
                 )}
 
                 <div>
-                    {comments.map((comment, index) => (
+                    {commentList?.map((comment, index) => (
                         <div key={index}>
                             <Comment {...comment} />
                         </div>

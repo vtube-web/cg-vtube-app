@@ -16,22 +16,22 @@ export default function WatchingScreen() {
 
 
     useEffect(() => {
-        console.log('params')
-        console.log(params)
         if (params) {
             dispatch(getVideo(params.videoId));
         }
-    },[])
-
+    }, [params, dispatch]);
+    if (!videoDetails) {
+        return <div>Loading...</div>;
+    }
     return (
         <>
             <div className={style.watching__container}>
                 <div className={`${style.watching__main} col-10`}>
                     <VideoSection video={videoDetails}/>
-                    <CommentSection comments={videoDetails.commentDtoList}/>
+                    <CommentSection commentList={videoDetails.commentDtoList}/>
                 </div>
                 <div className={`${style.watching__suggestion} col-2`}>
-                    <SuggestionBar/>
+                    {/*SuggestionVideo not ready*/}
                 </div>
             </div>
         </>

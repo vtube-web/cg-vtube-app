@@ -1,7 +1,7 @@
 @import "../../base.module";
 
 a {
-  color: $text-color;
+  color: $text-color-for-black;
   text-decoration: none;
   padding-bottom: 10px;
   .video {
@@ -14,7 +14,7 @@ a {
     font-size: 0.9rem;
     font-weight: 500;
     &:hover{
-      background-color: #4c4c4c;
+      background-color: $white-mode-background-component;
       border-radius: 17px;
     }
 

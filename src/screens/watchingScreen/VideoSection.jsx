@@ -2,9 +2,6 @@ import style from '../../assets/scss/Components/Watching/_videoSection.module.sc
 import {
     BiSolidLike, BiLike,
     BiSolidDislike, BiDislike,
-    BiSolidHelpCircle, BiHelpCircle,
-    BiSolidMusic, BiMusic,
-    BiSolidTrophy, BiTrophy
 } from "react-icons/bi"
 import {
     PiShareFatLight,
@@ -26,7 +23,7 @@ export default function VideoSection({video = {}}) {
     return (
         <>
             <div className={`${style.watching__video}`}>
-                <div>
+                <div className={style.video__container}>
                     {/*<video*/}
                     {/*    src={sample}*/}
                     {/*    className={`${style.video__main}`}*/}
