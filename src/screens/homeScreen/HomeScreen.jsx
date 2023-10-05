@@ -2,18 +2,19 @@ import {Col, Container, Row} from "react-bootstrap";
 import CategoriesBar from "../../components/home/CategoriesBar/CategoriesBar";
 import Video from "../../components/home/Video/Video";
 import {useDispatch, useSelector} from "react-redux";
-import {getVideos, selectVideoList} from "../../features/video/videoSlice";
+import {getVideos, selectVideoListSuccess, selectVideoList} from "../../features/video/videoSlice";
 import {useEffect, useState} from "react";
 
 function HomeScreen() {
     const dispatch = useDispatch();
     const videoList = useSelector(selectVideoList);
-
+    const success = useSelector(selectVideoListSuccess);
+    console.log("Re-render HomeScreen")
     useEffect(() => {
-        if (videoList.length === 0) {
-            dispatch(getVideos());
-            console.log("Getting videos...");
-        }
+            if (!success) {
+                dispatch(getVideos());
+                console.log("Getting videos...");
+            }
     }, [])
 
     return (

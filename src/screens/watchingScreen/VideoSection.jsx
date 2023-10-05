@@ -1,24 +1,33 @@
 import style from '../../assets/scss/Components/Watching/_videoSection.module.scss'
-import {
-    BiSolidLike, BiLike,
-    BiSolidDislike, BiDislike,
-} from "react-icons/bi"
-import {
-    PiShareFatLight,
-} from "react-icons/pi";
+import {BiDislike, BiLike,} from "react-icons/bi"
+import {PiShareFatLight,} from "react-icons/pi";
 import ShowMore from 'react-show-more-text'
 import "react-show-more-text/lib/ShowMoreText.css"
-import sample from '../../assets/video/sample.mp4'
 import {Link} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {memo, useEffect, useState} from "react";
+import {useSelector} from "react-redux";
+import {selectVideoDetail} from "../../features/video/videoSlice";
+import formatNumberView from "../../format/FormatNumberView";
+import formatDate from "../../format/FormatDate";
 
-export default function VideoSection({video = {}}) {
-    const tagList = video?.tagDtoList;
-    const [userDto, setUserDto] = useState({})
+function VideoSection() {
+    // const tagList = video?.tagDtoList;
+    const video = useSelector(selectVideoDetail);
+    const [userDto, setUserDto] = useState({});
+    const [description, setDescription] = useState("");
+    console.log("re-render VideoSection");
 
-    useEffect(()=>{
-        setUserDto(video.userDto)
-    },[video])
+    useEffect(() => {
+        if (video){
+            if (video.userDto){
+                setUserDto(video.userDto);
+            }
+            const des = video.description;
+            if ("string" === typeof des) {
+                setDescription(video.description);
+            }
+        }
+    }, [video])
 
     return (
         <>
@@ -29,10 +38,10 @@ export default function VideoSection({video = {}}) {
                     {/*    className={`${style.video__main}`}*/}
                     {/*    controls*/}
                     {/*/>*/}
-                    <img src={video.videoUrl} alt={"Video"} className={`${style.video__main}`}/>
+                    <img src={video?.videoUrl} alt={"Video"} className={`${style.video__main}`}/>
                 </div>
                 <div className={style.video__title}>
-                    {video.title}
+                    {video?.title}
                 </div>
                 <div className={`${style.video__info__function}`}>
                     <div className={style.info__channel}>
@@ -71,24 +80,18 @@ export default function VideoSection({video = {}}) {
                 <div className={`${style.video__details}`}>
                     <div className={`${style.details__description}`}>
                         <div className={`${style.details__info}`}>
-                            <span>{video.views}</span>
+                            <span>{video.views} views ***</span>
                             <span>{video.createAt}</span>
-                            {/*<span>{tagList.map(*/}
-                            {/*    (tag, index) => (*/}
-                            {/*            {index > 0 && " "}*/}
-                            {/*            #${tag}*/}
-                            {/*    )*/}
-                            {/*)}</span>*/}
                         </div>
                         <ShowMore
-                            lines={3}
+                            lines={4}
                             more={"SHOW MORE"}
                             less={"SHOW LESS"}
                             anchorClass={style.showMore}
                             expanded={false}
                             keepNewLines={true}
                         >
-                            {video.description}
+                            {description}
                         </ShowMore>
                     </div>
                 </div>
@@ -97,3 +100,4 @@ export default function VideoSection({video = {}}) {
     )
 
 }
+export default memo(VideoSection)

@@ -1,15 +1,28 @@
 import style from '../../assets/scss/Components/Watching/_commentSection.module.scss'
 import {useEffect, useState} from "react";
 import Comment from './Comment'
+import {useSelector} from "react-redux";
+import {selectVideoDetail} from "../../features/video/videoSlice";
 
-export default function CommentSection({commentList} = {}) {
-    console.log(commentList);
-
+export default function CommentSection() {
+    const video = useSelector(selectVideoDetail);
+    const commentList = video.commentDtoList;
     const [showButton, setShowButton] = useState(false);
+    const [commentContent, setCommentContent] = useState("");
 
-    const handleInputChange = () => {
+    console.log("re-render CommentsSection")
+    const showButtonComment = () => {
         setShowButton(!showButton);
     };
+
+    function handleInputChange(event) {
+        setCommentContent(event.target.value)
+    }
+
+    function handleComment(){
+
+    }
+
     return (
         <>
             <div className={style.comments__container}>
@@ -26,8 +39,10 @@ export default function CommentSection({commentList} = {}) {
                         <form>
                             <input
                                 type="text"
+                                name={"content"}
                                 placeholder="Viết bình luận ..."
-                                onClick={handleInputChange}
+                                onClick={showButtonComment}
+                                onInput={handleInputChange}
                             />
                         </form>
                     </div>
@@ -36,7 +51,7 @@ export default function CommentSection({commentList} = {}) {
                 {showButton && (
                     <div className={style.comment__function}>
                         <button>Hủy</button>
-                        <button>Bình luận</button>
+                        <button onClick={handleComment}>Bình luận</button>
                     </div>
                 )}
 

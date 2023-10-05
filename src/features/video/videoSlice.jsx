@@ -10,7 +10,8 @@ const initialState = {
     videoDetails: {},
     loading: false,
     error: null,
-    success: false,
+    getVideoListSuccess: false,
+    getVideoSuccess: false
 };
 
 export const getVideos = createAsyncThunk("getVideos", async () => {
@@ -55,7 +56,7 @@ export const videoSlice = createSlice({
             })
             .addCase(getVideos.fulfilled, (state, action) => {
                 console.log("Extra reducer: Success...")
-                state.success = true;
+                state.getVideoListSuccess = true;
                 state.loading = false;
                 state.error = false;
                 state.videos = action.payload;
@@ -76,7 +77,7 @@ export const videoSlice = createSlice({
             })
             .addCase(getVideo.fulfilled, (state, action) => {
                 console.log("Extra reducer: getVideo fulfilled...");
-                state.success = true;
+                state.getVideoSuccess = true;
                 state.loading = false;
                 state.error = false;
                 state.videoDetails = action.payload;
@@ -92,7 +93,8 @@ export const {
 
 export const selectLoading = (state) => state.video.loading;
 export const selectError = (state) => state.video.error;
-export const selectSuccess = (state) => state.video.success;
+export const selectVideoListSuccess = (state) => state.video.getVideoListSuccess;
+export const selectVideoSuccess = (state) => state.video.getVideoSuccess;
 export const selectVideoList = (state) => state.video.videos;
 export const selectVideoDetail = (state) => state.video.videoDetails;
 
