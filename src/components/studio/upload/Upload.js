@@ -2,25 +2,33 @@ import React, { useState } from "react";
 import { MdFileUpload } from "react-icons/md";
 import { v4 as uuidv4 } from "uuid";
 import { firebaseStorage } from "../../../firebase";
-import {getDownloadURL, ref,uploadBytes} from "firebase/storage";
-function Upload({ onClose }) {
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { setVideo,addVideo, getVideo } from "../../../features/studio/videoUploadSlice";
+import { useDispatch } from "react-redux";
+
+function Upload({ onClose, stepUpload }) {
   const [uploadStatus, setUploadStatus] = useState(false);
+  const dispatch = useDispatch();
+
   const handleFile = (e) => {
     const file = e.target.files[0];
+
     if (file) {
       setUploadStatus(true);
-
-      const videoRef = ref(firebaseStorage, `videos/${file.name + uuidv4()}`);
-      uploadBytes(videoRef,file).then((snaphsot)=>{
-        getDownloadURL(snaphsot.ref).then((url)=>{
-          console.log(url);
-
-           setUploadStatus(false);
-        })
-      })
-    
+      const fileName = file.name;
+      const videoRef = ref(firebaseStorage, `videos/${fileName + uuidv4()}`);
+      
+      uploadBytes(videoRef, file).then((snapshort) => {
+        getDownloadURL(snapshort.ref).then((url) => {
+          const video = {title:file.name,video_url:url};
+          dispatch(addVideo(video));
+          setUploadStatus(false);
+          stepUpload();
+        });
+      });
     }
   };
+
   return (
     <div className="h-full">
       <div className="px-6 h-[13%] py-3 border-b-[1px] border-gray-200 flex flex-none justify-between items-center">

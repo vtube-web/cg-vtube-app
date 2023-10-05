@@ -23,7 +23,7 @@ export const store = configureStore({
     videoHistory: videoHistoryReducer,
     isModal: isModalReducer,
     isVisibility: isVisibilityReducer,
-    videoUpload: videoUploadReducer,
+    videos: videoUploadReducer,
     videoLiked: videoLikedReducer,
   },
   middleware,

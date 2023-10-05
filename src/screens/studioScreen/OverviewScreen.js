@@ -1,15 +1,40 @@
 import React, { useEffect, useState } from "react";
-import { setIsModalUpload,getIsModalUpload } from "../../features/studio/modalSlice";
+import {
+  setIsModalUpload,
+  getIsModalUpload,
+} from "../../features/studio/modalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Upload from "../../components/studio/upload/Upload";
 import InformationFill from "../../components/studio/upload/InformationFill";
 import "../../assets/css/studio/overviewScreen.css";
+ import { ToastContainer} from "react-toastify";
+import { setVideo } from "../../features/studio/videoUploadSlice";
+
 
 function OverviewScreen() {
   const isModalUpload = useSelector(getIsModalUpload);
+  const [stepUpload, setStepUpload] = useState(false);
+  const [refresh, setRefresh] = useState(false);
+   const handleRefresh = () => {
+     setRefresh(!refresh);
+     setStepUpload(false);
+    dispatch(setIsModalUpload(false));
+    dispatch(setVideo({}));
+   };
   const dispatch = useDispatch();
   return (
     <div className="text-black">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="pl-2 pt-4 text-2xl font-bold flex">
         Overview channel page
       </div>
@@ -75,11 +100,22 @@ function OverviewScreen() {
 
       {isModalUpload ? (
         <div className="z-20 bg-white w-3/6 translate-x-[15%] h-5/6 absolute top-[5%] rounded-md flex-nowrap min-h-[580px]">
-          <Upload
-            onClose={() => {
-              dispatch(setIsModalUpload(false));
-            }}
-          />
+          {stepUpload ? (
+            <InformationFill
+              onClose={() => {
+                dispatch(setIsModalUpload(false));
+              }}
+              handleRefresh={handleRefresh}
+            />
+          ) : (
+            <Upload
+              onClose={() => {
+                dispatch(setIsModalUpload(false));
+              }}
+              stepUpload={() => setStepUpload(true)}
+            
+            />
+          )}
         </div>
       ) : (
         <></>
