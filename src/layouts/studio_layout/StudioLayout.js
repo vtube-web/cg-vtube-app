@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Modal from "../../components/studio/common/modal/Modal";
-import NavBar from "../../components/studio/navBar/NavBar";
+import NavBar from "../../components/studio/nav_bar/NavBar";
 import SiderBar from "../../components/studio/siderBar/SiderBar";
 import {
   setIsModalSearch,
