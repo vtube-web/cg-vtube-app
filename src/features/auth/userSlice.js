@@ -4,15 +4,17 @@ import { login } from "../../api/authApi";
 
 const initialState = {
     loading: false,
-    user: null,
+    user: {},
     error: null,
     success: false
 };
 
 
-export const loginUser = createAsyncThunk("/user/loginUser",async (userCredential) => {
-    console.log("Waiting for response...");
-    const response = await login(userCredential);
+export const loginUser = createAsyncThunk("loginUser",async (data) => {
+    // console.log("Waiting for response...");
+    const response = await login(data);
+    console.log("response")
+    console.log(response)
     localStorage.setItem("user", JSON.stringify(response.data));
     // Cookies.set("token", response.data.accessToken);
     return response.data;
@@ -35,7 +37,7 @@ export const userSlice = createSlice({
       state.user = action.payload;
     }
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
       .addCase(loginUser.pending, (state) => {
         state.success = false;
@@ -46,7 +48,6 @@ export const userSlice = createSlice({
         state.success = false;
         state.loading = false;
         state.error = action.error;
-        state.user = null;
         console.log(action.error.message);
         if (action.error) {
           state.error = "Access Denied ! Wrong Email or Password";
@@ -71,6 +72,7 @@ export const selectLoading = (state) => state.user.loading;
 export const selectError = (state) => state.user.error;
 export const selectSuccess = (state) => state.user.success;
 export const selectUser = (state) => state.user.user;
+export const selectUserData = (state) => state.user.user;
 
 
 

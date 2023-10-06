@@ -1,12 +1,13 @@
 import axios from "axios";
+import {VTUBE_API} from "../app/constants";
 
-export const LOGIN_API = "http://localhost:8080/api/auth/login";
-
-
-export const login = async (userCredential) => {
-  let user = null;
+export const login = async (data) => {
+  let user = {};
+  console.log("at api")
+  console.log(data)
   try {
-    user = await axios.post(`${LOGIN_API}`, userCredential);
+    user = await axios.post(`${VTUBE_API}/auth/login`, data)
+    return user
   } catch (e) {
     console.log("loginUser API error: " + e);
   }

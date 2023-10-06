@@ -7,7 +7,7 @@
   overflow-x: auto;
 
   &::-webkit-scrollbar{
-    height: 7px;
+    height: 5px;
   }
 
   scrollbar-width: auto ;
@@ -23,6 +23,7 @@
 
     &:hover{
       background-color: #374a59;
+      color: $text-color-for-black;
     }
 
     &.active{
