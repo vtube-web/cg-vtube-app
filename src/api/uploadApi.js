@@ -1,16 +1,16 @@
 import axios from "axios";
 
 const VIDEO_UPLOAD_API = "http://localhost:8080/api/videos";
- const token =
-   "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwaG9uZzEyM0BnbWFpbC5jb20iLCJpYXQiOjE2OTY0OTMxMjAsImV4cCI6MTY5NjUwMzkyMH0.8BC3qkxeAbAs2gbpZyTVu2praj426ku_aMiIwQdfQJjeyA1V6jMHNGqMF0X1AoFN_0hE8q2WC6Ait7mdlitwVQ";
-         
+ const token = JSON.parse(window.localStorage.getItem("user"))?.accessToken || "";
+
+  console.log(token)
 
 export const createVideo = async (video) => {
   let result = null;
   try {
     result = axios.post(
       `${VIDEO_UPLOAD_API}/add`,
-      { title: video.title, video_url: video.video_url },
+      { title: video.title, videoUrl: video.videoUrl },
       { headers: { Authorization: `Bearer ${token}` } }
     );
   } catch (e) {

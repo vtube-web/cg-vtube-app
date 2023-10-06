@@ -1,4 +1,4 @@
-import style from "../../assets/scss/Components/Login/_signIn.module.scss";
+import style from "../../assets/scss/Components/SignIn/_signIn.module.scss";
 import {PiUserCircleThin} from "react-icons/pi";
 import {SiGnuprivacyguard} from "react-icons/si"
 import {FcGoogle} from "react-icons/fc"

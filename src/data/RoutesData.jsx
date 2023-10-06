@@ -9,12 +9,13 @@ import watchLaterScreen from "../screens/watchLaterScreen/WatchLaterScreen";
 import yourVideoScreen from "../screens/yourVideoScreen/YourVideoScreen";
 import watchingScreen from "../screens/watchingScreen/WatchingScreen";
 import notFoundScreen from "../screens/notFoundScreen/NotFoundScreen";
-import StudioLayout from "../layouts/studioLayout/StudioLayout";
-import OverviewScreen from "../screens/studioScreen/OverviewScreen";
-import ContentScreen from "../screens/studioScreen/ContentScreen";
-import AnalyticalDataScreen from "../screens/studioScreen/AnalyticalDataScreen";
-import CommentScreen from "../screens/studioScreen/CommentScreen";
-import CustomizeChannelsScreen from "../screens/studioScreen/CustomizeChannelsScreen";
+import shortsScreen from "../screens/shortsScreen/ShortsScreen";
+import StudioLayout from "../layouts/studio_layout/StudioLayout";
+import OverviewScreen from "../screens/studio_screen/OverviewScreen";
+import ContentScreen from "../screens/studio_screen/ContentScreen";
+import AnalyticalDataScreen from "../screens/studio_screen/AnalyticalDataScreen";
+import CommentScreen from "../screens/studio_screen/CommentScreen";
+import CustomizeChannelsScreen from "../screens/studio_screen/CustomizeChannelsScreen";
 import LoginScreen from "../screens/login Screen/LoginScreen";
 import RegisterScreen from "../screens/registerScreen/RegisterScreen";
 
@@ -57,3 +58,4 @@ export const publicRoutes = [
   },
   { path: "/*", component: notFoundScreen, layout: null },
 ];
+

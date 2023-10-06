@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { getVideo } from "../../../../features/studio/videoUploadSlice";
+import React from "react";
 
 function TitleSection({
   isValidateTitle,

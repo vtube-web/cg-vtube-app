@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { LuImagePlus } from "react-icons/lu";
 import {FcCancel} from "react-icons/fc";
 

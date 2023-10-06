@@ -4,8 +4,8 @@ import {
   getIsModalUpload,
 } from "../../features/studio/modalSlice";
 import { useDispatch, useSelector } from "react-redux";
-import Upload from "../../components/studio/upload/Upload";
-import InformationFill from "../../components/studio/upload/InformationFill";
+import Upload from "../../components/studio/overview/Upload";
+import InformationFill from "../../components/studio/overview/InformationFill";
 import "../../assets/css/studio/overviewScreen.css";
  import { ToastContainer} from "react-toastify";
 import { setVideo } from "../../features/studio/videoUploadSlice";

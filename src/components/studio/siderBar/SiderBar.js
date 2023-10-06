@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
-import { BsBoxArrowUpRight, BsPlayBtn } from "react-icons/bs";
+import {  useParams } from "react-router-dom";
+import { BsBoxArrowUpRight } from "react-icons/bs";
 import { HiSquares2X2 } from "react-icons/hi2";
 import { AiOutlinePlaySquare } from "react-icons/ai";
 import {
@@ -8,7 +8,7 @@ import {
   MdOutlineDataThresholding,
 } from "react-icons/md";
 import { PiMagicWandDuotone } from "react-icons/pi";
-import MenuItem from "../common/menuItem/MenuItem";
+import MenuItem from "../common/menu_item/MenuItem";
 import "../../../assets/css/studio/studioLayout.css";
 import {
   getIsVisibilityMenu,
@@ -21,14 +21,15 @@ function SiderBar() {
   const { channelId } = useParams();
   const pathAcountDefault = `/channel/${channelId}`;
   const isVisibilityMenu = useSelector(getIsVisibilityMenu);
-  const [width, setWidth] = useState();
+  const [width, setWidth] = useState(window.innerWidth);
   const isModalMenu = useSelector(getIsModalMenu);
   const dispatch = useDispatch();
+
   useEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);
     };
-    if (width < 1536) {
+    if (width < 1500) {
       dispatch(setIsVisibilityMenu(true));
     } else {
       dispatch(setIsVisibilityMenu(false));
@@ -38,6 +39,7 @@ function SiderBar() {
       window.removeEventListener("resize", handleResize);
     };
   }, [width]);
+  
   const menus = [
     {
       to: pathAcountDefault,
@@ -75,14 +77,14 @@ function SiderBar() {
       className={`bg-[#FFFFFF] py-4 justify-center border-r-2 border-gray-200 duration-500 transition-all flex-none flex flex-nowrap${
         isModalMenu ? " z-20" : ""
       } ${
-        isVisibilityMenu && isModalMenu == false
+        (isVisibilityMenu && isModalMenu == false) || isVisibilityMenu
           ? "w-[80px] ease-out"
           : `grow  ease-in ${width < 1200 ? "col-3 " : "col-2"}`
       }`}
     >
       <div
         className={`absolute left-0 top-1/5 duration-500 transition-all  ${
-          isVisibilityMenu && isModalMenu == false
+          (isVisibilityMenu && isModalMenu == false) || isVisibilityMenu
             ? "w-[80px] ease-out"
             : `grow  ease-in ${width < 1200 ? "col-3" : "col-2"}`
         }`}

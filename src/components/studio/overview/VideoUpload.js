@@ -7,7 +7,7 @@ function VideoUpload({data}) {
       <div className="bg-gray-100 rounded-lg ">
         <video
           className="rounded-t-lg"
-          src={data.video_url}
+          src={data.videoUrl}
           controls
         />
         <div className="p-3">
@@ -17,7 +17,7 @@ function VideoUpload({data}) {
           </Link>
           <div className="text-xs mt-2 text-gray-500">File name</div>
           <div className="text-md font-medium block truncate">
-            Document File
+           {data.title}
           </div>
         </div>
       </div>
