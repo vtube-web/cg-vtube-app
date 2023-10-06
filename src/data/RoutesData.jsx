@@ -18,6 +18,7 @@ import CommentScreen from "../screens/studio_screen/CommentScreen";
 import CustomizeChannelsScreen from "../screens/studio_screen/CustomizeChannelsScreen";
 import LoginScreen from "../screens/login Screen/LoginScreen";
 import RegisterScreen from "../screens/registerScreen/RegisterScreen";
+import mainLayout from "../layouts/mainLayout/MainLayout";
 
 export const publicRoutes = [
   { path: "/", component: homeScreen, layout: MainLayout },
@@ -26,6 +27,7 @@ export const publicRoutes = [
   { path: "/signIn", component: SignInScreen, layout: MainLayout },
   { path: "/login", component: LoginScreen, layout: null },
   { path: "/register", component: RegisterScreen, layout: null },
+  { path: "/shorts", component: shortsScreen, layout: mainLayout },
   { path: "/subscribed", component: subscribedScreen, layout: MainLayout },
   { path: "/watchedVideos", component: watchedScreen, layout: MainLayout },
   { path: "/watchLater", component: watchLaterScreen, layout: MainLayout },
