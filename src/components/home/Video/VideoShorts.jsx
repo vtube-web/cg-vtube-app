@@ -7,12 +7,14 @@ import {FaCommentDots} from "react-icons/fa";
 import {PiShareFatFill} from "react-icons/pi";
 import {CgDetailsMore} from "react-icons/cg";
 import {AiOutlineClose} from "react-icons/ai";
+import {useDispatch, useSelector} from "react-redux";
 
 
 function VideoShorts({videoShort}) {
 
     const [playToggle, setPlayToggle] = useState(false);
     const [volumeToggle, setVolumeToggle] = useState(false);
+    const [commentsToggle, setCommentsToggle] = useState(false);
 
     const handlePlayClick = () => {
         setPlayToggle(!playToggle);
@@ -21,6 +23,11 @@ function VideoShorts({videoShort}) {
     const handleVolumeClick = () => {
         setVolumeToggle(!volumeToggle);
     }
+
+    const handleCommentsClick = () => {
+        setCommentsToggle(!commentsToggle);
+    }
+
 
     return (
         <>
@@ -70,41 +77,64 @@ function VideoShorts({videoShort}) {
                         </div>
                     </div>
 
+                    <div className={`${style.btn__container} ${commentsToggle && style.active}`}>
+
+                        <div className={style.shorts__btn}>
+
+                            <div className={style.background__btn}>
+                                <BiSolidLike/>
+                            </div>
+
+                        </div>
+                        <span>13 N</span>
+
+                        <div className={style.shorts__btn}>
+
+                            <div className={style.background__btn}>
+                                <BiSolidDislike/>
+                            </div>
+
+                        </div>
+                        <span>Không ...</span>
+
+
+                        <div className={style.shorts__btn}>
+
+                            <div className={style.background__btn}
+                                 onClick={handleCommentsClick}>
+                                <FaCommentDots/>
+                            </div>
+
+                        </div>
+                        <span>103</span>
+
+                        <div className={style.shorts__btn}>
+
+                            <div className={style.background__btn}>
+                                <PiShareFatFill/>
+                            </div>
+
+                        </div>
+                        <span>Chia sẻ</span>
+
+                        <div className={style.shorts__btn}>
+
+                            <div className={style.background__btn}>
+                                <IoIosMore/>
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
 
-                <div className={style.btn__container}>
-                    <div className={style.shorts__btn}>
-                        <BiSolidLike/>
-                    </div>
-                    <span>13 N</span>
-
-                    <div className={style.shorts__btn}>
-                        <BiSolidDislike/>
-                    </div>
-                    <span>Không ...</span>
-
-                    <div className={style.shorts__btn}>
-                        <FaCommentDots/>
-                    </div>
-                    <span>103</span>
-
-                    <div className={style.shorts__btn}>
-                        <PiShareFatFill/>
-                    </div>
-                    <span>Chia sẻ</span>
-
-                    <div className={style.shorts__btn}>
-                        <IoIosMore/>
-                    </div>
-                </div>
-
-
-                <div className={style.comments__container}>
+                <div className={`${style.comments__container} ${commentsToggle && style.active}`}>
 
                     <div className={style.comments__header}>
 
                         <div className={style.comments__views}>
-                            <span>Bình luận 1,2N</span>
+                            <span>Bình luận</span>
+                            <i>12 N</i>
                         </div>
 
                         <div className={style.comments__btn__details}>
@@ -113,6 +143,14 @@ function VideoShorts({videoShort}) {
 
                         <div className={style.comments__btn__cancel}>
                             <AiOutlineClose/>
+                        </div>
+
+                        <div className={style.comments__bottom}>
+
+                            <div className={style.function__comments}>
+
+                            </div>
+
                         </div>
 
                     </div>
