@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
-import { CiCircleRemove } from "react-icons/ci";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setIsModalSearch,

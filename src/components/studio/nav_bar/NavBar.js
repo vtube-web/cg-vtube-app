@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Search from "./search/Search";
 import MenuAndLogo from "./MenuAndLogo";
-import NavEnd from "./navEnd/NavEnd";
+import NavEnd from "./nav_end/NavEnd";
 
 function NavBar({isModalMenu}) {
   return (
