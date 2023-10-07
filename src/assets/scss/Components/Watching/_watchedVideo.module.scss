@@ -1,13 +1,15 @@
 @import "../../base.module";
 
 .watched__container {
-  height: 900px;
-  width: 1280px;
+  height: 100%;
+  width: 100%;
   position: relative;
+  display: flex;
+  flex-wrap: wrap;
   .primary {
     margin: 30px 0 0 30px;
     padding-bottom: 30px;
-    width: 628px;
+    flex: 1 0 70%;
     .section__list__render {
       .header__container {
         font-size: 16px;
@@ -36,7 +38,9 @@
             img {
               width: 100%;
               height: 100%;
+              object-fit: cover;
               border-radius: 10px;
+              cursor: pointer;
             }
             .time__video {
               position: absolute;
@@ -64,7 +68,6 @@
                 .label {
                   display: none;
                   position: absolute;
-                  // text-align: right;
                   top: 0;
                   right: 24px;
                   font-weight: 550;
@@ -114,7 +117,7 @@
             }
           }
           .text__wrapper {
-            width: 366px;
+            max-width: 366px;
             height: 138px;
             .text__box {
               width: 270px;
@@ -138,7 +141,7 @@
               .hover__content {
                 position: absolute;
                 display: none;
-                background:  #646464;
+                background: #646464;
                 color: white;
                 padding: 5px 10px;
                 border-radius: 5px;
@@ -196,11 +199,10 @@
   .secondary {
     font-size: 15px;
     position: fixed;
-    width: 385px;
-    height: 348;
     padding: 0px 28px;
     right: 10px;
     top: 80px;
+    flex: 1 0 30%;
     svg {
       display: inline;
       margin-right: 10px;
@@ -208,7 +210,7 @@
     .input__wrapper {
       align-items: center;
       input[type="text"] {
-        width: 100%;
+        width: 200px;
         padding: 12px 20px;
         margin: 8px 0;
         box-sizing: border-box;
@@ -233,11 +235,31 @@
       button {
         height: 36px;
         border: none;
+        padding: 0 15px 0 15px;
       }
       button:hover {
         background-color: #646464;
         border-radius: 20px;
       }
+    }
+  }
+
+  .noWatchHistoryMessage {
+    width: 74%;
+    text-align: center;
+    position: absolute;
+    padding-top: 15%;
+    svg {
+      margin: auto;
+      margin-bottom: 10px;
+    }
+  }
+  @media (max-width: 1100px) {
+    .primary,
+    .secondary {
+      display: block;
+      position: initial;
+      flex: 1 0 100%;
     }
   }
 }

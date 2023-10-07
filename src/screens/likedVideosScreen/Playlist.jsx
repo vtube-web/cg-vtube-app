@@ -10,8 +10,8 @@ import formatDate from "../../format/FormatDate";
 
 const Playlist = (props) => {
   const { videos } = props;
-  const totalVideos = videos.length;
-  const firstVideo = videos.length > 0 ? videos[0] : null;
+  const totalVideos = videos;
+  const firstVideo = 0 ? videos[0] : null;
 
   return (
     <div className={`${style.playlist__liked} `}>
@@ -21,8 +21,8 @@ const Playlist = (props) => {
             <div className={`${style.content__thumbnail} `}>
               <div className={`${style.content__thumbnail__img} `}>
                 <img
-                  src={firstVideo ? firstVideo.imgVideo : ""}
-                  alt="video"
+                  src={firstVideo ? firstVideo.thumbnail : ""}
+                  alt="thumbnail"
                 ></img>
               </div>
             </div>
@@ -41,8 +41,8 @@ const Playlist = (props) => {
               <p>{totalVideos} videos</p>
               <p>
                 Last updated on{" "}
-                {firstVideo && firstVideo.dateLiked
-                  ? formatDate(firstVideo.dateLiked.split("T")[0])
+                {firstVideo && firstVideo.likedAt
+                  ? formatDate(firstVideo.likedAt.split("T")[0])
                   : "Unknown"}
               </p>
             </div>

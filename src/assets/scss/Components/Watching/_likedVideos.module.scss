@@ -216,6 +216,16 @@
         display: inline-block;
       }
     }
+    .noLikedMessage {
+      width: 31%;
+      text-align: center;
+      position: absolute;
+      padding-top: 15%;
+      svg {
+        margin: auto;
+        margin-bottom: 10px;
+      }
+    }
   }
 }
 

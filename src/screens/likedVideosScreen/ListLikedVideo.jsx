@@ -11,18 +11,18 @@ const ListLikedVideo = ({ index, ...video }) => {
       </div>
       <div className={`${style.content__videos} `}>
         <div className={`${style.img__videos} `}>
-          <img src={video.imgVideo} alt="Video Thumbnail"></img>
+          <img src={video.thumbnail} alt="Video Thumbnail"></img>
           <div className={style.time__video}>30:56</div>
         </div>
         <div className={`${style.info__videos} `}>
           <a href="">{video.tittle}</a>
           <div className={`${style.detail__videos} `}>
-            <div className={style.detail__item}>{video.nameChannel}</div>
+            <div className={style.detail__item}>{video.userName}</div>
             <div className={style.detail__item}>
-              {formatNumberView(video.view)} views
+              {formatNumberView(video.views)} views
             </div>
             <div className={style.detail__item}>
-              {formatDateAgo(video.dateLiked)}
+              {formatDateAgo(video.createAt)}
             </div>
           </div>
         </div>
