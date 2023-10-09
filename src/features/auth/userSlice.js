@@ -1,6 +1,6 @@
 import { createAsyncThunk,createSlice } from "@reduxjs/toolkit";
 import { checkEmailApi, login,registerApi } from "../../api/authApi";
-// import Cookies from "js-cookie";
+
 
 const initialState = {
   userCredential:null,
@@ -27,9 +27,7 @@ export const registerAccount = createAsyncThunk("register", async (data) => {
 
 export const checkEmail = createAsyncThunk("check-email", async (data) => {
   return await checkEmailApi(data);
-  // return await checkEmailApi(JSON.stringify(data));
 });
-
 
 export const userAccountSlice = createSlice({
   name: "userAccount",
