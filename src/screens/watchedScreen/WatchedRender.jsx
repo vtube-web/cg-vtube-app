@@ -1,5 +1,5 @@
 import style from "../../assets/scss/Components/Watching/_watchedVideo.module.scss";
-import React, { useState } from "react";
+import React from "react";
 import {
   AiOutlineClose,
   AiOutlineMore,
@@ -10,6 +10,7 @@ import formatNumberView from "../../format/FormatNumberView";
 import { useDispatch } from "react-redux";
 import { removeVideoWatched } from "../../features/video/videoWatchedSlice";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const WatchedRender = ({ handleRemoveItem, index, ...videoData }) => {
   const dispatch = useDispatch();
@@ -32,28 +33,32 @@ const WatchedRender = ({ handleRemoveItem, index, ...videoData }) => {
       key={videoData.videoId}
     >
       <div className={style.video__render}>
-        <img src={videoData.thumbnail} alt="Video Thumbnail" />
-        <div className={style.time__video}>30:56</div>
+        <Link to={`/watching/${videoData.videoId}`}>
+          <img src={videoData.thumbnail} alt="Video Thumbnail" />
+          <div className={style.time__video}>30:56</div>
 
-        <div className={style.icon__hover}>
-          <button>
-            <AiOutlineClockCircle size={24} />
-            <span className={style.label}>Watch Later</span>
-          </button>
-        </div>
-        <div className={style.icon__hover2}>
-          <button>
-            <MdPlaylistAdd size={24} />
-            <span className={style.label}>Add to queue</span>
-          </button>
-        </div>
+          <div className={style.icon__hover}>
+            <button>
+              <AiOutlineClockCircle size={24} />
+              <span className={style.label}>Watch Later</span>
+            </button>
+          </div>
+          <div className={style.icon__hover2}>
+            <button>
+              <MdPlaylistAdd size={24} />
+              <span className={style.label}>Add to queue</span>
+            </button>
+          </div>
+        </Link>
       </div>
       <div className={style.text__wrapper}>
         <div className="row">
           <div className="col-9">
             <div>
               <div className={style.text__box}>
-                <a href="">{videoData.title}</a>
+                <Link to={`/watching/${videoData.videoId}`}>
+                  {videoData.title}
+                </Link>
               </div>
               <div className={`${style.data__video} row`}>
                 <div className="col-6">

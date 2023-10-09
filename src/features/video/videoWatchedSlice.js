@@ -80,7 +80,7 @@ export const videoWatchedSlice = createSlice({
         state.success = true;
         state.loading = false;
         state.error = false;
-        state.videos = action.payload;
+        state.videos = action.payload.data;
       })
 
       .addCase(removeVideoWatched.pending, (state) => {
@@ -96,7 +96,7 @@ export const videoWatchedSlice = createSlice({
       .addCase(removeVideoWatched.fulfilled, (state, action) => {
         state.success = true;
         state.loading = false;
-        state.value = action.payload;
+        state.value = action.payload.data;
         state.error = false;
       })
 
@@ -113,7 +113,7 @@ export const videoWatchedSlice = createSlice({
       .addCase(removeAllVideoWatched.fulfilled, (state, action) => {
         state.success = true;
         state.loading = false;
-        state.value = action.payload;
+        state.value = action.payload.data;
         state.error = false;
       });
   },

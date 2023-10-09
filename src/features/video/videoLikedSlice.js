@@ -49,7 +49,7 @@ export const videoLikedSlice = createSlice({
         state.success = true;
         state.loading = false;
         state.error = false;
-        state.videos = action.payload;
+        state.videos = action.payload.data;
       });
   },
 });

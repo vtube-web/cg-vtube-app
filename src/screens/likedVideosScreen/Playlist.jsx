@@ -9,10 +9,8 @@ import { IoShuffleSharp } from "react-icons/io5";
 import formatDate from "../../format/FormatDate";
 
 const Playlist = (props) => {
-  const { videos } = props;
-  const totalVideos = videos;
-  const firstVideo = 0 ? videos[0] : null;
-
+  const totalVideos = props.passedProp.length;
+  const firstVideo = props.passedProp[0];
   return (
     <div className={`${style.playlist__liked} `}>
       <div className={`${style.content} `}>

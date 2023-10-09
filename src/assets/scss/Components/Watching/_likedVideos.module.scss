@@ -6,7 +6,6 @@
   padding: 10px;
   width: 100%;
   .playlist__liked {
-    // flex-grow: 1;
     background: linear-gradient(
       to bottom,
       rgba(62, 78, 89, 0.8) 0%,
@@ -16,10 +15,8 @@
     border-radius: 20px;
     position: fixed;
     display: flex;
-    // flex-direction: column;
     width: 360px;
     height: 90%;
-    // margin-left: 24px;
     padding: 0;
     .content {
       position: relative;
@@ -106,7 +103,6 @@
   }
   .playlist__content {
     display: block;
-    // width: 58%;
     height: 100%;
     margin-left: 360px;
     .list__button__search {
@@ -142,11 +138,9 @@
           }
         }
         .content__videos {
-          // width: 764px;
           height: 100%;
           display: flex;
           width: 100%;
-          // flex-grow: 19;
           .img__videos {
             display: flex;
             width: 160px;
@@ -188,6 +182,7 @@
             .detail__item {
               margin-right: 20px;
               font-size: 12px;
+              font-weight: 500;
             }
             .detail__item:last-child {
               margin-right: 0;
@@ -199,7 +194,6 @@
           display: flex;
           width: 40px;
           height: 100%;
-          // right: 0;
           button {
             margin: auto;
             width: 24px;
@@ -214,6 +208,8 @@
       }
       .video__render:hover .menu__videos button {
         display: inline-block;
+        background-color: #282828;
+
       }
     }
     .noLikedMessage {
@@ -246,26 +242,3 @@
   justify-content: center;
 }
 
-// @media (max-width: 768px) {
-//   .playlist__liked {
-//     width: 100%;
-//     margin-left: 0;
-//     display: none;
-//   }
-
-//   .playlist__content {
-//     width: 100%;
-//     margin-left: 0;
-//   }
-
-//   .list__videos .video__render {
-//     width: 100%;
-//   }
-// }
-
-// @media (min-width: 768px) and (max-width: 1200px) {
-//   .playlist__content {
-//     width: 70%;
-//     margin-left: 30%;
-//   }
-// }

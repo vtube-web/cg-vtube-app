@@ -24,7 +24,9 @@ function LikedVideosScreen() {
     if (videoList.length === 0) {
       dispatch(getVideoLiked());
       console.log("Getting videos...");
+
     }
+    console.log(videoList);
     setLikedVideoList(videoList.content);
     setShowNoLikedMessage(Object.keys(videoList).length !== 0);
   }, [videoList.length, activeButton]);
@@ -48,7 +50,7 @@ function LikedVideosScreen() {
 
   return (
     <div className={`${style.main} main-container`}>
-      {showNoLikedMessage ? <Playlist videos={likedVideoList} /> : null}
+      {showNoLikedMessage ? <Playlist passedProp={videoList.content} /> : null}
       <div className={`${style.playlist__content} `}>
         <div className={`${style.list__button__search} `}>
           {showNoLikedMessage ? (
