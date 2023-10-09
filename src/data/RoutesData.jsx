@@ -40,4 +40,3 @@ export const publicRoutes = [
     {path: `/channel/:channelId/customize`, component: CustomizeChannelsScreen, layout: StudioLayout},
     {path: "/*", component: notFoundScreen, layout: null},
 ]
-

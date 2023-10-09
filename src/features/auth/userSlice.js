@@ -67,10 +67,7 @@ export const userAccountSlice = createSlice({
         state.loginSuccess = false;
         state.loading = false;
         state.error = action.error;
-<<<<<<< HEAD
-=======
         state.userCredential = null;
->>>>>>> 0387f01c6173e444f2e4210793e31e3bc7e66b80
         console.log(action.error.message);
         if (action.error) {
           state.error = "Access Denied ! Wrong Email or Password";
@@ -120,19 +117,8 @@ export const userAccountSlice = createSlice({
 
 
 export const {setLoading, setError, setLoginSuccess, setUserCredential, resetUserAccountState} = userAccountSlice.actions;
-
-
-<<<<<<< HEAD
-export const selectLoading = (state) => state.user.loading;
-export const selectError = (state) => state.user.error;
-export const selectSuccess = (state) => state.user.success;
-export const selectUser = (state) => state.user.user;
-export const selectUserData = (state) => state.user.user;
-=======
 export const selectUserAccountSliceIsLoading = (state) => state.userAccount.loading;
 export const selectUserAccountSliceIsError = (state) => state.userAccount.error;
->>>>>>> 0387f01c6173e444f2e4210793e31e3bc7e66b80
-
 // get state of userCredentials.
 export const selectUserData = (state) => state.userAccount.userCredential;
 
