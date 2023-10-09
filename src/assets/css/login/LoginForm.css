@@ -1,3 +1,12 @@
+.form-login-container {
+    background-image: url("https://static.vecteezy.com/system/resources/previews/004/230/534/original/minimal-scratch-yellow-grunge-frame-in-gray-background-vector.jpg");
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+}
+
 .form-login {
     width: 100%;
     padding: 2em;
@@ -7,6 +16,7 @@
     margin:auto;
     border-radius: 15px;
 }
+
 
 .form-login-header {
     display: flex;
@@ -24,18 +34,20 @@
 .form-login-content {
     font-weight: bold;
     text-align: center;
-    font-size: 2.5em; 
+    font-size: 2.5em;
+    color: gold;
 }
 
-.form-control {
+.input-login {
     background-color: inherit;
     border: none;
     border-bottom: 1px solid white;
     border-radius: 0;
     color: white;
+
 }
 
- .form-control:focus {
+ .input-login:focus {
     background-color: transparent;
     border: none;
     border-bottom: 1px solid white;
@@ -54,7 +66,6 @@
 .form-login p {
     color: gray;
     text-align: center;
-
 }
 
 .form-login p a {
@@ -66,7 +77,7 @@
     color: #fff;
 }
 
-.icon-controller {
+.icon-password-login-controller {
     background-color: inherit;
     color: white;
     border: none;
@@ -74,12 +85,11 @@
     border-radius: 0;
 }
 
-.error-control {
+.error-login-control {
     background-color: transparent;
-    color: red;
+    color: palevioletred;
     margin-top: 5%;
     text-align: center;
-
 }
 
 input[type=password]::-ms-reveal,

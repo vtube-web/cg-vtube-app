@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { CiYoutube, CiLogin } from "react-icons/ci";
 import { PiUserSquareLight } from "react-icons/pi";
-import { setUser,setSuccess } from "../../../../features/auth/userSlice";
+import { resetUserAccountState } from "../../../../features/auth/userSlice";
 import { useDispatch } from "react-redux";
 
 function MenuAcount() {
@@ -10,8 +10,8 @@ function MenuAcount() {
 
   function handleLogout () {
     localStorage.removeItem("user");
-    dispatch(setUser(null));
-    dispatch(setSuccess(false));
+    dispatch(resetUserAccountState());
+    window.location.reload();
   }
 
   return (

@@ -1,8 +1,15 @@
+import { useParams } from "react-router-dom";
+
+
 
 function HomeProfileScreen() {
+ const { userName } = useParams();
   return (
-    <div>HomeProfileScreen</div>
-  )
+
+    <div>
+      {`hello + ${userName}`}
+    </div>
+  );
 }
 
 export default HomeProfileScreen

@@ -18,6 +18,7 @@ import CommentScreen from "../screens/studioScreen/CommentScreen";
 import CustomizeChannelsScreen from "../screens/studioScreen/CustomizeChannelsScreen";
 import LoginScreen from "../screens/login Screen/LoginScreen";
 import RegisterScreen from "../screens/registerScreen/RegisterScreen";
+import HomeProfileScreen from "../screens/homeProfileScreen/HomeProfileScreen";
 
 export const publicRoutes = [
     {path: "/", component: homeScreen, layout: MainLayout},
@@ -37,5 +38,7 @@ export const publicRoutes = [
     {path: `/channel/:channelId/analytical`, component: AnalyticalDataScreen, layout: StudioLayout},
     {path: `/channel/:channelId/comment`, component: CommentScreen, layout: StudioLayout},
     {path: `/channel/:channelId/customize`, component: CustomizeChannelsScreen, layout: StudioLayout},
+    {path: `/homeProfile/:userName`, component: HomeProfileScreen, layout: MainLayout},
     {path: "/*", component: notFoundScreen, layout: null},
+    
 ];
