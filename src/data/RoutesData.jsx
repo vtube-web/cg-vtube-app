@@ -40,7 +40,7 @@ export const publicRoutes = [
     layout: StudioLayout,
   },
   {
-    path: `/channel/:channelId/content`,
+    path: `/channel/:channelId/content/:subParam`,
     component: ContentScreen,
     layout: StudioLayout,
   },

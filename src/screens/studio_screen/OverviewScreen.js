@@ -26,7 +26,7 @@ function OverviewScreen() {
     <div className="text-black">
       <ToastContainer
         position="top-right"
-        autoClose={5000}
+        autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -95,7 +95,6 @@ function OverviewScreen() {
             </span>
           </div>
         </div>
-        {/* <div className="col-3 h-96 bg-white ">b</div> */}
       </div>
 
       {isModalUpload ? (
