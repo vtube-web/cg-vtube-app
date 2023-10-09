@@ -1,16 +1,19 @@
 import axios from "axios";
+import { getStoredUserData } from "../service/accountService";
 
-export const VIDEO_WATCHED_API =
-  "https://651395f58e505cebc2e9f807.mockapi.io/api/v1/liked";
+export const VIDEO_LIKED_API = "http://localhost:8080/api/liked-videos";
 
 export const videoLikedList = async () => {
-  let videoList = null;
+  let result = null;
+    let user = getStoredUserData();
   try {
-    videoList = await axios.get(
-      `${VIDEO_WATCHED_API}`
-    );
+    result = await axios.get(`${VIDEO_LIKED_API}/` + user.id, {
+      headers: {
+        Authorization: "Bearer " + user.accessToken,
+      },
+    });
   } catch (e) {
-    console.log("get list video liked API error:" + e);
+    console.log("Error when calling API to get list of liked videos:" + e);
   }
-  return videoList;
+  return result;
 };
