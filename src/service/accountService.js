@@ -13,5 +13,5 @@ export const getStoredUserData = () => {
   if (user) {
     return user;
   }
-  return {};
+  return null;
 };

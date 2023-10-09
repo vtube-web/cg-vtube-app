@@ -11,8 +11,11 @@ export default function SignInScreen() {
     function handleAndNavigateToSignInPage() {
       navigate("/login");
     }
-
     
+    function handleAndNavigateToRegisterPage() {
+      navigate("/register");
+    }
+
 
     const logoImg = "https://cdn.discordapp.com/attachments/1139963455038832680/1153326437185626143/AS1.png"
     return (
@@ -28,10 +31,12 @@ export default function SignInScreen() {
               Sign in
             </span>
           </button>
-          <span className={style.function__btn}>
-            <SiGnuprivacyguard size={25} />
-            Sign up
-          </span>
+          <button onClick={handleAndNavigateToRegisterPage}>
+            <span className={style.function__btn}>
+              <SiGnuprivacyguard size={25} />
+              Sign up
+            </span>
+          </button>
         </div>
         <div className={style.signIn__function}>
           <span className={style.function__signIn__google}>

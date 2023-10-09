@@ -1,3 +1,3 @@
-const hostnameLocal = 'localhost:8080'
+const hostnameLocal = "localhost:8080";
 
-export const VTUBE_API = `http://${hostnameLocal}/api`
+export const VTUBE_API = `http://${hostnameLocal}/api`;
