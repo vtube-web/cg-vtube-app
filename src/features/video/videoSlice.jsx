@@ -15,7 +15,6 @@ const initialState = {
 };
 
 export const getVideos = createAsyncThunk("getVideos", async () => {
-    console.log("Waiting for response...");
     const response = await findVideoList();
     return response.data;
 });
@@ -38,24 +37,24 @@ export const videoSlice = createSlice({
         setSuccess: (state, action) => {
             state.success = action.payload;
         },
+        resetVideoDetail: state => {
+            state.videoDetails = {}
+        }
     },
     extraReducers: (builder) => {
         builder
             //getVideoList
             .addCase(getVideos.pending, (state) => {
-                console.log("Extra reducer: Pending...");
                 state.success = false;
                 state.loading = true;
                 state.error = false;
             })
             .addCase(getVideos.rejected, (state, action) => {
-                console.log("Extra reducer: Rejected...");
                 state.success = false;
                 state.loading = false;
                 state.error = action.error;
             })
             .addCase(getVideos.fulfilled, (state, action) => {
-                console.log("Extra reducer: Success...")
                 state.getVideoListSuccess = true;
                 state.loading = false;
                 state.error = false;
@@ -64,19 +63,16 @@ export const videoSlice = createSlice({
 
             //getVideo
             .addCase(getVideo.pending, (state) => {
-                console.log("Extra reducer: getVideo Pending...");
                 state.success = false;
                 state.loading = true;
                 state.error = false;
             })
             .addCase(getVideo.rejected, (state, action) => {
-                console.log("Extra reducer: getVideo rejected...");
                 state.success = false;
                 state.loading = false;
                 state.error = action.error;
             })
             .addCase(getVideo.fulfilled, (state, action) => {
-                console.log("Extra reducer: getVideo fulfilled...");
                 state.getVideoSuccess = true;
                 state.loading = false;
                 state.error = false;
@@ -86,9 +82,7 @@ export const videoSlice = createSlice({
 });
 
 export const {
-    setLoading,
-    setError,
-    setSuccess
+    resetVideoDetail
 } = videoSlice.actions;
 
 export const selectLoading = (state) => state.video.loading;

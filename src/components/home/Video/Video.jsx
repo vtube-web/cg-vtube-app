@@ -14,10 +14,15 @@ function Video({video,isSidebarOpen }) {
         <NavLink to={`/watching/${video.id}`}>
             <div className={style.video}>
                 <div className={style.video__top}>
-                    <img src={video?.videoUrl} alt={"video"}/>
+                    <div className={style.video__background}
+                        style={{ backgroundImage: `url(${video.thumbnail})` }}
+                    />
+                    <img src={video.thumbnail}
+                         alt="thumbnail"
+                         className={style.video__thumbnail} />
                 </div>
                 <div className={style.video__title}>
-                    {video?.title}
+                    {video.title}
                 </div>
                 <div className={style.video__detail}>
                     <span>{formatNumberView(video.views)} views • </span>
