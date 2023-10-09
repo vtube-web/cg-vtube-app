@@ -1,24 +1,33 @@
 import style from '../../assets/scss/Components/Watching/_commentSection.module.scss'
 import {useEffect, useState} from "react";
 import Comment from './Comment'
-import data from '../../data/sample/commentsData.json'
+import {useSelector} from "react-redux";
+import {selectVideoDetail} from "../../features/video/videoSlice";
 
 export default function CommentSection() {
-    const comments = data.comments.filter(comment => comment.parentCommentId === null);
-    comments.forEach(comment => {
-        comment.replies = data.comments.filter(reply => reply.parentCommentId === comment.id);
-    });
-
+    const video = useSelector(selectVideoDetail);
+    const commentList = video.commentDtoList;
     const [showButton, setShowButton] = useState(false);
+    const [commentContent, setCommentContent] = useState("");
 
-    const handleInputChange = () => {
+    console.log("re-render CommentsSection")
+    const showButtonComment = () => {
         setShowButton(!showButton);
     };
+
+    function handleInputChange(event) {
+        setCommentContent(event.target.value)
+    }
+
+    function handleComment(){
+
+    }
+
     return (
         <>
             <div className={style.comments__container}>
                 <div className={style.comments__counter}>
-                    {comments.length > 0 && <p>{comments.length} bình luận</p>}
+                    {commentList?.length > 0 && <p>{commentList?.length} bình luận</p>}
                 </div>
                 <div className={style.comments__content}>
                     <div className={`${style.user__avatar} col-1`}>
@@ -30,8 +39,10 @@ export default function CommentSection() {
                         <form>
                             <input
                                 type="text"
+                                name={"content"}
                                 placeholder="Viết bình luận ..."
-                                onClick={handleInputChange}
+                                onClick={showButtonComment}
+                                onInput={handleInputChange}
                             />
                         </form>
                     </div>
@@ -40,12 +51,12 @@ export default function CommentSection() {
                 {showButton && (
                     <div className={style.comment__function}>
                         <button>Hủy</button>
-                        <button>Bình luận</button>
+                        <button onClick={handleComment}>Bình luận</button>
                     </div>
                 )}
 
                 <div>
-                    {comments.map((comment, index) => (
+                    {commentList?.map((comment, index) => (
                         <div key={index}>
                             <Comment {...comment} />
                         </div>

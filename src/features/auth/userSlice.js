@@ -3,6 +3,7 @@ import { checkEmailApi, login,registerApi } from "../../api/authApi";
 
 
 const initialState = {
+
   userCredential:null,
   loading: false,
   error: null,
@@ -54,7 +55,7 @@ export const userAccountSlice = createSlice({
       state.checkEmailSuccess = false;
     }
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
       // LOGIN
       .addCase(loginUser.pending, (state) => {
@@ -116,11 +117,8 @@ export const userAccountSlice = createSlice({
 
 
 export const {setLoading, setError, setLoginSuccess, setUserCredential, resetUserAccountState} = userAccountSlice.actions;
-
-
 export const selectUserAccountSliceIsLoading = (state) => state.userAccount.loading;
 export const selectUserAccountSliceIsError = (state) => state.userAccount.error;
-
 // get state of userCredentials.
 export const selectUserData = (state) => state.userAccount.userCredential;
 

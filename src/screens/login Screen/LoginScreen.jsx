@@ -34,6 +34,7 @@ function LoginScreen() {
   const success = useSelector(selectLoginIsSuccess);
   const user = useSelector(selectUserData);
 
+
   useEffect(() => {
     if (success && user) {
       localStorage.setItem("user", JSON.stringify(user));
@@ -90,6 +91,7 @@ function LoginScreen() {
             <div className="mt-0 mb-2 input-group flex-nowrap ">
               <label htmlFor="password" className="form-label"></label>
               <input
+
                 type={showPassword ? "text" : "password"}
                 className="form-control input-login p-0"
                 name="password"
@@ -132,6 +134,3 @@ function LoginScreen() {
 }
 
 export default LoginScreen;
-
-
-

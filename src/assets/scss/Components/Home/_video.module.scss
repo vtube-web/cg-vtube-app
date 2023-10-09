@@ -1,37 +1,55 @@
 @import "../../base.module";
 
 a {
-  color: $text-color;
+  color: $text-color-for-black;
   text-decoration: none;
+  padding-bottom: 10px;
 
   .video {
+    width: 20rem;
+    height: 23rem;
     margin-bottom: 1rem;
     padding: 0.7rem;
-
+    cursor: pointer;
+    align-items: stretch;
     font-size: 0.9rem;
     font-weight: 500;
 
-    cursor: pointer;
-
-    &:hover{
-      background-color: #4c4c4c;
+    &:hover {
+      background-color: $white-mode-background-component;
       border-radius: 17px;
     }
 
     &__top {
       margin-bottom: 0.5rem;
+      border-radius: 20px;
 
-      img {
-        width: 100%;
+      .video__background {
+        filter: blur(18px);
+        width: 18rem;
+        height: 12.5rem;
+        -webkit-filter: blur(8px);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: absolute;
+        z-index: 1;
+      }
+
+      .video__thumbnail {
+        height: 200px;
         border-radius: 20px;
+        margin: 0 auto;
+        display: block;
+        object-fit: fill;
+        position: relative;
+        z-index: 2;
       }
 
       span {
         margin-bottom: 0.5rem;
-
         bottom: 0.3rem;
         right: 0.3rem;
-
         padding: 0.2rem;
         background: #080808ec;
         border-radius: 3px;
@@ -40,7 +58,7 @@ a {
 
     &__title {
       margin-bottom: 0.1rem;
-      color: #fff;
+      color: $white-text;
 
       @include line-clamp(1);
     }
@@ -48,6 +66,7 @@ a {
     &__detail {
       display: flex;
       align-items: center;
+      color: $white-text
     }
 
     &__channel {
@@ -70,3 +89,10 @@ a {
     }
   }
 }
+
+//@media(max-width: $breakpoint-small) {
+//
+//}
+//@media(max-width: $breakpoint-medium) {
+//
+//}

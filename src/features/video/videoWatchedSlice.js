@@ -21,30 +21,30 @@ export const getVideoWatched = createAsyncThunk("history/list", async () => {
 });
 
 export const removeVideoWatched = createAsyncThunk(
-  "history/remove",
-  async (videoId) => {
-    try {
-      const response = await deleteVideoWatched(videoId);
-      return {
-        ...response.data,
-        videoId: videoId,
-      };
-    } catch (error) {
-      throw new Error("Error removing video: " + error.message);
+    "history/remove",
+    async (videoId) => {
+      try {
+        const response = await deleteVideoWatched(videoId);
+        return {
+          ...response.data,
+          videoId: videoId,
+        };
+      } catch (error) {
+        throw new Error("Error removing video: " + error.message);
+      }
     }
-  }
 );
 
 export const removeAllVideoWatched = createAsyncThunk(
-  "history/remove/all",
-  async () => {
-    try {
-      const response = await deleteAllVideoWatched();
-      return response.data;
-    } catch (error) {
-      throw new Error("Error removing all video: " + error.message);
+    "history/remove/all",
+    async () => {
+      try {
+        const response = await deleteAllVideoWatched();
+        return response.data;
+      } catch (error) {
+        throw new Error("Error removing all video: " + error.message);
+      }
     }
-  }
 );
 
 export const videoWatchedSlice = createSlice({
@@ -63,59 +63,59 @@ export const videoWatchedSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getVideoWatched.pending, (state) => {
-        console.log("Extra reducer: Pending...");
-        state.success = false;
-        state.loading = true;
-        state.error = false;
-      })
-      .addCase(getVideoWatched.rejected, (state, action) => {
-        console.log("Extra reducer: Rejected...");
-        state.success = false;
-        state.loading = false;
-        state.error = action.error;
-      })
-      .addCase(getVideoWatched.fulfilled, (state, action) => {
-        console.log("Extra reducer: Success...");
-        state.success = true;
-        state.loading = false;
-        state.error = false;
-        state.videos = action.payload.data;
-      })
+        .addCase(getVideoWatched.pending, (state) => {
+          console.log("Extra reducer: Pending...");
+          state.success = false;
+          state.loading = true;
+          state.error = false;
+        })
+        .addCase(getVideoWatched.rejected, (state, action) => {
+          console.log("Extra reducer: Rejected...");
+          state.success = false;
+          state.loading = false;
+          state.error = action.error;
+        })
+        .addCase(getVideoWatched.fulfilled, (state, action) => {
+          console.log("Extra reducer: Success...");
+          state.success = true;
+          state.loading = false;
+          state.error = false;
+          state.videos = action.payload.data;
+        })
 
-      .addCase(removeVideoWatched.pending, (state) => {
-        state.success = false;
-        state.loading = true;
-        state.error = false;
-      })
-      .addCase(removeVideoWatched.rejected, (state, action) => {
-        state.success = false;
-        state.loading = false;
-        state.error = action.error;
-      })
-      .addCase(removeVideoWatched.fulfilled, (state, action) => {
-        state.success = true;
-        state.loading = false;
-        state.value = action.payload.data;
-        state.error = false;
-      })
+        .addCase(removeVideoWatched.pending, (state) => {
+          state.success = false;
+          state.loading = true;
+          state.error = false;
+        })
+        .addCase(removeVideoWatched.rejected, (state, action) => {
+          state.success = false;
+          state.loading = false;
+          state.error = action.error;
+        })
+        .addCase(removeVideoWatched.fulfilled, (state, action) => {
+          state.success = true;
+          state.loading = false;
+          state.value = action.payload.data;
+          state.error = false;
+        })
 
-      .addCase(removeAllVideoWatched.pending, (state) => {
-        state.success = false;
-        state.loading = true;
-        state.error = false;
-      })
-      .addCase(removeAllVideoWatched.rejected, (state, action) => {
-        state.success = false;
-        state.loading = false;
-        state.error = action.error;
-      })
-      .addCase(removeAllVideoWatched.fulfilled, (state, action) => {
-        state.success = true;
-        state.loading = false;
-        state.value = action.payload.data;
-        state.error = false;
-      });
+        .addCase(removeAllVideoWatched.pending, (state) => {
+          state.success = false;
+          state.loading = true;
+          state.error = false;
+        })
+        .addCase(removeAllVideoWatched.rejected, (state, action) => {
+          state.success = false;
+          state.loading = false;
+          state.error = action.error;
+        })
+        .addCase(removeAllVideoWatched.fulfilled, (state, action) => {
+          state.success = true;
+          state.loading = false;
+          state.value = action.payload.data;
+          state.error = false;
+        });
   },
 });
 
