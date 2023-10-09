@@ -1,0 +1,121 @@
+.form-register-container {
+    background-image: url("https://static.vecteezy.com/system/resources/previews/004/230/534/original/minimal-scratch-yellow-grunge-frame-in-gray-background-vector.jpg");
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+}
+
+.form-register {
+    width: 100%;
+    padding: 2em;
+    color: #fff;
+    max-width: 55vh;
+    margin-inline: auto;
+    margin: auto;
+    border-radius: 15px;
+}
+
+
+.form-register-header {
+    display: flex;
+    justify-content: center;
+}
+
+.form-register-logo {
+    width: 180px;
+    height: 47px;
+    object-fit: contain;
+    padding: 0;
+    margin: 0;
+}
+
+.form-register-content {
+    font-weight: bold;
+    text-align: center;
+    font-size: 2.5em;
+    color: gold;
+}
+
+.input-register {
+    background-color: inherit;
+    border: none;
+    border-bottom: 1px solid white;
+    border-radius: 0;
+    color: white;
+
+}
+
+.input-register:focus {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    border-radius: 0;
+    color: white;
+    box-shadow: none;
+    border-color: #fff;
+}
+
+.register-button {
+    border-radius: 0;
+    width: 100%;
+    font-weight: bold;
+}
+
+.form-register p {
+    color: gray;
+    text-align: center;
+
+}
+
+.form-register p a {
+    color: #e1e1e1;
+    text-decoration: none;
+}
+
+.form-register p a:hover {
+    color: #fff;
+}
+
+.form-register-checkbox-controll {
+    color: #e1e1e1;
+    text-decoration: none;
+    text-align: center;
+    
+
+}
+
+.icon-password-register-controller {
+    background-color: inherit;
+    color: white;
+    border: none;
+    border-bottom: 1px solid white;
+    border-radius: 0;
+}
+
+.error-control {
+    background-color: transparent;
+    color: palevioletred;
+    margin-top: 5%;
+    text-align: center;
+}
+
+.custom-tooltip .tooltip-inner {
+    background-color: gold;
+    color: black;
+    font-size: 16px;
+
+}
+.custom-tooltip .tooltip-arrow {
+    --bs-tooltip-bg: gold;
+}
+
+
+
+
+
+input[type=password]::-ms-reveal,
+input[type=password]::-ms-clear {
+    display: none;
+}

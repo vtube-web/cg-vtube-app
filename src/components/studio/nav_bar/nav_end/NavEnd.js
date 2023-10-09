@@ -56,7 +56,7 @@ function NavEnd() {
           </div>
         )}
       </div>
-      {clickAvatar ? <MenuAcount /> : <></>}
+      {clickAvatar ? <MenuAcount/> : <></>}
     </div>
   );
 }
