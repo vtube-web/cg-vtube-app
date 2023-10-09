@@ -13,8 +13,6 @@ import {hover} from "@testing-library/user-event/dist/hover";
 import { getStoredUserData } from '../../../service/accountService';
 import NavEnd from "../../../components/studio/nav_bar/nav_end/NavEnd";
 import { useEffect, useState } from 'react';
-import { selectUser } from '../../../features/auth/userSlice';
-import { useSelector } from 'react-redux';
 
 
 export default function Header({handleSetSidebar}) {
@@ -24,7 +22,11 @@ export default function Header({handleSetSidebar}) {
   const userLogo =
     "https://cdn.discordapp.com/attachments/1151490874195316856/1152776018638151710/icons8-user-64.png";
 
-    const user = getStoredUserData();
+    
+    const [user, setUser] = useState("");
+    useEffect(() => {
+      setUser(getStoredUserData());
+    }, [user]);
 
   return (
     <div className={style.header}>
