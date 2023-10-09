@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const VIDEO_API = "http://localhost:8081/api/videos";
+export const VIDEO_API = "http://localhost:8080/api/videos";
 
 export const findVideoList = async () => {
     let videoList = null;
