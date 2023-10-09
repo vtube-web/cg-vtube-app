@@ -8,8 +8,14 @@ import SignInScreen from "../../../screens/signInScreen/SignInScreen";
 import {FiMoreVertical} from "react-icons/fi";
 import {PiUserCircleThin} from "react-icons/pi";
 import {hover} from "@testing-library/user-event/dist/hover";
-import NavEnd from "../../../components/studio/navBar/navEnd/NavEnd";
+
+
 import { getStoredUserData } from '../../../service/accountService';
+import NavEnd from "../../../components/studio/nav_bar/nav_end/NavEnd";
+import { useEffect, useState } from 'react';
+import { selectUser } from '../../../features/auth/userSlice';
+import { useSelector } from 'react-redux';
+
 
 export default function Header({handleSetSidebar}) {
   const logoImg =
