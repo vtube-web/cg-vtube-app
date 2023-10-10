@@ -2,9 +2,7 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import {findVideoShorts} from "../../api/videoShortsAPI";
 
 const initialState = {
-    videos: [
-
-    ],
+    videos: [],
     value: null,
     loading: false,
     error: null,

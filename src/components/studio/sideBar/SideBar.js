@@ -16,7 +16,7 @@ import {
 } from "../../../features/studio/visibilitySlice";
 import { useDispatch, useSelector } from "react-redux";
 import { getIsModalMenu } from "../../../features/studio/modalSlice";
-function SiderBar() {
+function SideBar() {
   const [mouseAvatar, setMouseAvatar] = useState(false);
   const { channelId } = useParams();
   const pathAcountDefault = `/channel/${channelId}`;
@@ -152,4 +152,4 @@ function SiderBar() {
   );
 }
 
-export default SiderBar;
+export default SideBar;

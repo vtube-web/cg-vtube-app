@@ -1,10 +1,12 @@
-import style from '../../assets/scss/Components/Watching/_videoSection.module.scss'
+import style from "../../assets/scss/Components/Watching/_videoSection.module.scss";
 import {BiDislike, BiLike,} from "react-icons/bi"
 import {PiShareFatLight,} from "react-icons/pi";
 import ShowMore from 'react-show-more-text'
 import "react-show-more-text/lib/ShowMoreText.css"
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
+import formatDate from "../../format/FormatDate";
+import formatNumberView from "../../format/FormatNumberView";
 
 function VideoSection({video}) {
     const [userDto, setUserDto] = useState({});
@@ -29,12 +31,22 @@ function VideoSection({video}) {
             {video
                 ? <div className={`${style.watching__video}`}>
                     <div className={style.video__container}>
-                        {video.videoUrl && <video className={`${style.video__main}`}
-                                                  controls
-                                                  autoPlay
-                                                  onError={(e) => console.error("Video error:", e)}>
-                            <source src={video.videoUrl} type={'video/mp4'}/>
-                        </video>}
+                        {video.videoUrl &&
+                            (
+                                <div className={style.custom__video__container}>
+                                    <video
+                                        className={`${style.video__main}`}
+                                        controls
+                                        autoPlay
+                                        onError={(e) => console.error("Video error:", e)}
+                                    >
+                                        <source src={video.videoUrl} type={'video/mp4'} />
+                                    </video>
+                                    {/*<VideoPlayer/>*/}
+                                </div>
+                            )
+
+                        }
                     </div>
                     <div className={style.video__title}>
                         {video.title}
@@ -59,7 +71,7 @@ function VideoSection({video}) {
                         <div className={style.function__channel}>
                             <span className={`${style.function__like}`}>
                                 <BiLike size={20}/>
-                                <span>{video.like}</span>
+                                <span>{video.likes}</span>
                             </span>
                             <span className={`${style.function__dislike}`}>
                                 <BiDislike size={20}/>
@@ -74,8 +86,8 @@ function VideoSection({video}) {
                     <div className={`${style.video__details}`}>
                         <div className={`${style.details__description}`}>
                             <div className={`${style.details__info}`}>
-                                <span>{video.views} views ***</span>
-                                <span>{video.createAt}</span>
+                                <span>{formatNumberView(video.views)} views • </span>
+                                <span>{formatDate(video.createAt)}</span>
                             </div>
                             <ShowMore
                                 lines={4}
