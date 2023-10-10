@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import {BiLike, BiDislike} from "react-icons/bi";
 import style from '../../assets/scss/Components/Watching/_comment.module.scss'
 import {Link} from "react-router-dom";
-import data from './../../data/sample/commentsData.json'
 const imgUrl ='https://cdn.discordapp.com/attachments/1151490874195316856/1152992123059175694/b2c44a9549a5cf8c9eebb8eb8fc51213.jpg?ex=65144c97&is=6512fb17&hm=7cca2b7ecd47ea4a8350668162dc73dcf9afe9952c7776d480ad07f9dbb55ae0&';
 
 const loggedUser = [
@@ -15,7 +14,7 @@ const loggedUser = [
 
 const Comment = (comment) => {
     const [showInput, setShowInput] = useState(false);
-    const [comments, setComments] = useState(data.comments)
+    const [comments, setComments] = useState({})
     const [reply, setReply] = useState("");
 
     const showInputReply = () => {
@@ -54,17 +53,17 @@ const Comment = (comment) => {
                     <div className={style.comment__body}>
                         <div className={`${style.user__avatar} col-1`}>
                             <img
-                                src={comment.user.avatar}
+                                src={comment.userResponseDto.avatar}
                                 alt={"user avatar"}
                             />
                         </div>
                         <div className="col-11">
                             <div className={style.user__info}>
                                 <Link to={"/"} className={style.user__name}>
-                                    {comment.user.username}
+                                    {comment.userResponseDto.userName}
                                 </Link>
                                 <span className={style.comment__date}>
-                                    {comment.timestamp}
+                                    {comment.createAt}
                                 </span>
                             </div>
                             <div className={style.comment__content}>
@@ -73,13 +72,12 @@ const Comment = (comment) => {
                             <div className={style.comment__function}>
                                 <span className={style.function__button}>
                                     <BiLike size={23} className={style.button}/>
-                                    {comment.likes}
+                                    {comment.like}
                                 </span>
                                 <span className={style.function__button}>
                                     <BiDislike size={23} className={style.button}/>
                                     {comment.dislike}
                                 </span>
-
                                 <span onClick={showInputReply} className={style.reply}>
                                     Reply
                                 </span>
@@ -89,9 +87,10 @@ const Comment = (comment) => {
                                     <div className={`${style.reply__container} row`}>
                                         <div className="col-1">
                                             <img
-                                                src={comment.user.avatar}
+                                                src={loggedUser.avatar}
                                                 alt={"user avatar"}
                                             />
+                                            <span>{loggedUser.username}</span>
                                         </div>
                                         <div className={`${style.reply__function} col-11`}>
                                             <form onSubmit={handleSubmit}>
@@ -117,8 +116,7 @@ const Comment = (comment) => {
                                 )}
                             </div>
                             <div>
-                                {comment.replies &&
-                                    comment.replies.map((reply, index) => (
+                                {comment.replyDtoList && comment.replyDtoList.map((reply, index) => (
                                         <Comment key={index} {...reply} />
                                     ))}
                             </div>

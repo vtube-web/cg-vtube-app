@@ -1,7 +1,7 @@
 @import '../../base.module';
 
 .sidebar {
-  background: $black-primary;
+  background: $white-background;
 
   display: flex;
   flex-direction: column;
@@ -15,12 +15,11 @@
 
   transition: transform 0.3s ease-in;
 
-
   a {
-    color: $text-color;
+    color: $white-text;
     text-decoration: none;
     width: 100%;
-    height: 100%;
+    height: auto;
   }
 
   li {
@@ -38,7 +37,7 @@
     }
 
     &:hover {
-      background-color: $border-color;
+      background-color:$white-mode-background-component;
       border-radius: 40px;
     }
   }

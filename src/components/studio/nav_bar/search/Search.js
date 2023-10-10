@@ -61,7 +61,7 @@ function Search() {
             <div className="col-1 text-lg text-gray-300 hover:text-gray-500 hover:cursor-pointer"
               onClick={() => {
                 setSearch("");
-              }}>✖ </div>
+              }}>✖</div>
           )}
         </div>
         {statusTheme ? (

@@ -6,7 +6,7 @@
   align-items: center;
   z-index: 10;
   position: fixed;
-  background-color: $black-primary;
+  background-color: $white-background;
 
   padding-left: 1rem;
 
@@ -38,7 +38,7 @@
     margin: 0.1rem;
     border-radius: 20px;
     border: 1.2px solid;
-    background-color: $black-secondary;
+    background-color: transparent;
 
     input {
       width: 120%;
@@ -47,7 +47,7 @@
       font-weight: 500;
       background: transparent;
       padding: 0.3rem;
-      color: $text-color;
+      color: $white-text;
 
       &:focus {
         outline: none;
@@ -57,7 +57,7 @@
 
     button {
       padding: 0.3rem 1.5rem;
-      color: $text-color;
+      color: $text-color-for-black;
       background: transparent;
       border: none;
       border-radius: 0 15px 15px 0;

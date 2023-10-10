@@ -7,20 +7,20 @@ import {
 
 const initialState = {
     videos:[],
-    value: null,
+    videoDetails: {},
     loading: false,
     error: null,
-    success: false,
+    getVideoListSuccess: false,
+    getVideoSuccess: false
 };
 
-export const getVideos = createAsyncThunk("/home/list", async () => {
-    console.log("Waiting for response...");
+export const getVideos = createAsyncThunk("getVideos", async () => {
     const response = await findVideoList();
     return response.data;
 });
 
-export const getVideo = createAsyncThunk("/home/details", async (id) => {
-    const response = await findVideo(id);
+export const getVideo = createAsyncThunk("getVideo", async (videoId) => {
+    const response = await findVideo(videoId);
     return response.data;
 });
 
@@ -37,25 +37,25 @@ export const videoSlice = createSlice({
         setSuccess: (state, action) => {
             state.success = action.payload;
         },
+        resetVideoDetail: state => {
+            state.videoDetails = {}
+        }
     },
     extraReducers: (builder) => {
         builder
             //getVideoList
             .addCase(getVideos.pending, (state) => {
-                console.log("Extra reducer: Pending...");
                 state.success = false;
                 state.loading = true;
                 state.error = false;
             })
             .addCase(getVideos.rejected, (state, action) => {
-                console.log("Extra reducer: Rejected...");
                 state.success = false;
                 state.loading = false;
                 state.error = action.error;
             })
             .addCase(getVideos.fulfilled, (state, action) => {
-                console.log("Extra reducer: Success...")
-                state.success = true;
+                state.getVideoListSuccess = true;
                 state.loading = false;
                 state.error = false;
                 state.videos = action.payload;
@@ -73,24 +73,23 @@ export const videoSlice = createSlice({
                 state.error = action.error;
             })
             .addCase(getVideo.fulfilled, (state, action) => {
-                state.success = true;
+                state.getVideoSuccess = true;
                 state.loading = false;
                 state.error = false;
-                state.value = action.payload;
+                state.videoDetails = action.payload;
             })
     }
 });
 
 export const {
-    setLoading,
-    setError,
-    setSuccess
+    resetVideoDetail
 } = videoSlice.actions;
 
 export const selectLoading = (state) => state.video.loading;
 export const selectError = (state) => state.video.error;
-export const selectSuccess = (state) => state.video.success;
+export const selectVideoListSuccess = (state) => state.video.getVideoListSuccess;
+export const selectVideoSuccess = (state) => state.video.getVideoSuccess;
 export const selectVideoList = (state) => state.video.videos;
-export const selectVideoDetail = (state) => state.video.value;
+export const selectVideoDetail = (state) => state.video.videoDetails;
 
 export default videoSlice.reducer;
