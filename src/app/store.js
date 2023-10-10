@@ -16,7 +16,7 @@ import userReducer from "../features/auth/userSlice";
 const middleware = [...getDefaultMiddleware(), logger];
 export const store = configureStore({
   reducer: {  
-    user: userReducer, 
+    userAccount: userReducer,
     video: videoReducer,
     videoHistory: videoHistoryReducer,
     shorts: videoShortsSlice.reducer,
@@ -25,7 +25,7 @@ export const store = configureStore({
     videos: videoUploadReducer,
     videoLiked: videoLikedReducer,
   },
-  middleware,
-  devTools: process.env.NODE_ENV !== "production",
+  // middleware,
+  // devTools: process.env.NODE_ENV !== "production",
 })
 

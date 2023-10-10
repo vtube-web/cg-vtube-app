@@ -18,11 +18,12 @@
     .user__info {
       display: flex;
       flex-direction: row;
+      align-items: center;
 
       .user__name {
         font-size: 16px;
         font-weight: bold;
-        margin-bottom: 5px;
+        padding-bottom: 0;
       }
 
       .comment__date {
@@ -41,13 +42,13 @@
     display: flex;
     justify-content: space-evenly;
     width: 15%;
+    padding-left: 30px;
 
     .function__button {
       display: flex;
       flex-direction: row;
       justify-content: space-around;
       padding-left: 10px;
-
       &:hover {
         cursor: pointer;
       }
@@ -75,7 +76,7 @@
       padding: 20px 0 20px 0;
 
       .reply__content {
-        text-decoration-color: $text-color;
+        text-decoration-color: $text-color-for-black;
         border: none;
         background-color: transparent;
         border-bottom: 1px solid grey;

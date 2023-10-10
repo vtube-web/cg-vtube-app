@@ -1,7 +1,9 @@
 import React from 'react'
 import style from '../../../assets/scss/Components/Home/_video.module.scss'
-
+import formatNumberView from "../../../format/FormatNumberView";
 import {AiFillEye} from 'react-icons/ai'
+
+
 import {NavLink} from "react-router-dom";
 
 function Video({video,isSidebarOpen }) {
@@ -9,22 +11,26 @@ function Video({video,isSidebarOpen }) {
         ? style.video
         : `${style.video} ${style.videoLarge}`;
     return (
-        <NavLink to={"/watching"}>
+        <NavLink to={`/watching/${video.id}`}>
             <div className={style.video}>
                 <div className={style.video__top}>
-                    <img src={video.thumbnails} alt={"video"}/>
-                    <span>{video.duration}s</span>
+                    <div className={style.video__background}
+                        style={{ backgroundImage: `url(${video.thumbnail})` }}
+                    />
+                    <img src={video.thumbnail}
+                         alt="thumbnail"
+                         className={style.video__thumbnail} />
                 </div>
                 <div className={style.video__title}>
                     {video.title}
                 </div>
                 <div className={style.video__detail}>
-                    <span>{video.views} views • </span>
-                    <span>{/*{video.createdAt}*/} 1 year ago</span>
+                    <span>{formatNumberView(video.views)} views • </span>
+                    <span>{video.createdAt}</span>
                 </div>
                 <div className={style.video__channel}>
-                    <img src={video.avatar} alt={'channel_name'}/>
-                    <p>{video.channelName}</p>
+                    <img src={video.userDto.avatar} alt={'channel_name'}/>
+                    <span>{video.userDto.userName}</span>
                 </div>
             </div>
         </NavLink>

@@ -1,5 +1,4 @@
 import {NavLink} from "react-router-dom";
-import {AiFillEye} from "react-icons/ai";
 import React, {useEffect} from "react";
 import style from '../../../assets/scss/Components/Watching/_suggestionVideo.module.scss'
 import {useDispatch, useSelector} from "react-redux";

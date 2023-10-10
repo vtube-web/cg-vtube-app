@@ -118,7 +118,7 @@ $white: white;
     }
 
     span {
-      color: $white;
+      color: black;
       filter: brightness(150%);
     }
   }
@@ -145,7 +145,7 @@ $white: white;
       height: 2.5rem;
       margin-top: 15px;
       background: rgba(128, 128, 128, 0.1);
-      color: white;
+      color: black;
       overflow: hidden;
       cursor: pointer;
 
@@ -226,7 +226,7 @@ $white: white;
       }
 
       span {
-        color: $white;
+        color: black;
         filter: brightness(150%);
         font-weight: bolder;
         margin-right: 2px;

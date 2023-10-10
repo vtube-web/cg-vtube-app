@@ -1,7 +1,7 @@
 @import '../../base.module';
 
 p {
-  color: $text-color;
+  color: $white-text;
   margin: 0;
 }
 
@@ -60,7 +60,7 @@ p {
       border: none;
 
       &:hover {
-        background-color: $border-color;
+        background-color:$white-mode-hover-component;
         border-radius: 20px;
       }
     }

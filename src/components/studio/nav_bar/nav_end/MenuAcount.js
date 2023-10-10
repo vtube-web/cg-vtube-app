@@ -1,19 +1,20 @@
-import React, { useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import { CiYoutube, CiLogin } from "react-icons/ci";
 import { PiUserSquareLight } from "react-icons/pi";
-import { setUser,setSuccess } from "../../../../features/auth/userSlice";
+import { resetUserAccountState } from "../../../../features/auth/userSlice";
 import { useDispatch } from "react-redux";
 
 function MenuAcount() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function handleLogout () {
     localStorage.removeItem("user");
-    dispatch(setUser(null));
-    dispatch(setSuccess(false));
+    dispatch(resetUserAccountState());
+    navigate("/");
   }
-
+  
   return (
     <div className="absolute bg-white top-9 w-10/12 text-sm shadow-2xl border-1 rounded-xl py-3 ">
       <div className="flex space-x-5 items-center border-b-[1px] px-4 pb-3">
