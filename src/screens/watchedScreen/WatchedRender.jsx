@@ -1,5 +1,5 @@
 import style from "../../assets/scss/Components/Watching/_watchedVideo.module.scss";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   AiOutlineClose,
   AiOutlineMore,
@@ -11,10 +11,15 @@ import { useDispatch } from "react-redux";
 import { removeVideoWatched } from "../../features/video/videoWatchedSlice";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import { PiShareFatLight } from "react-icons/pi";
 
 const WatchedRender = ({ handleRemoveItem, index, ...videoData }) => {
   const dispatch = useDispatch();
+  const [dropdownVisible, setDropdownVisible] = useState(false);
 
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
+  };
   const handleDelete = (videoData) => {
     dispatch(removeVideoWatched(videoData.videoId));
     Swal.fire({
@@ -26,6 +31,21 @@ const WatchedRender = ({ handleRemoveItem, index, ...videoData }) => {
     });
     handleRemoveItem();
   };
+  const handleShareClick = () => {
+    console.log("Share button clicked");
+  };
+
+  useEffect(() => {
+    const handleDocumentClick = (event) => {
+      if (!event.target.closest(`.${style.menu__videos}`)) {
+        setDropdownVisible(false);
+      }
+    };
+    document.addEventListener("click", handleDocumentClick);
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, []);
 
   return (
     <div
@@ -75,16 +95,31 @@ const WatchedRender = ({ handleRemoveItem, index, ...videoData }) => {
               </div>
             </div>
           </div>
-          <div className="col-3" style={{ display: "flex" }}>
+          <div className="col-3" style={style.btn}>
             <button
               className={style.icon__button}
               onClick={() => handleDelete(videoData)}
             >
               <AiOutlineClose size={20} />
             </button>
-            <button className={style.icon__button}>
-              <AiOutlineMore size={20} />
-            </button>
+            <>
+              <button
+                className={style.icon__button}
+                 onClick={toggleDropdown}
+              >
+                <AiOutlineMore size={20} />
+              </button>
+              <ul
+                className={`${style.dropdownMenu}`}
+                style={{ display: dropdownVisible ? "block" : "none" }}
+              >
+                <li>
+                  <a onClick={handleShareClick}>
+                    <PiShareFatLight size={20} /> &nbsp; Share
+                  </a>
+                </li>
+              </ul>
+            </>
           </div>
         </div>
         <div className={style.description__text}>{videoData.description}</div>

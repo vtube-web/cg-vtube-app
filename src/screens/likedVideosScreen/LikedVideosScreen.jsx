@@ -19,17 +19,27 @@ function LikedVideosScreen() {
   const [activeButton, setActiveButton] = useState("All");
   const [showNoLikedMessage, setShowNoLikedMessage] = useState(false);
   const [likedVideoList, setLikedVideoList] = useState({});
+  const [isRemove, setIsRemove] = useState(false);
+  const [isChange, setIsChange] = useState(true);
+  const [likedVideoRender, setLikedVideoRender] = useState({});
+  const handleRemoveItem = () => {
+    setIsRemove(!isRemove);
+  };
 
   useEffect(() => {
-    if (videoList.length === 0) {
-      dispatch(getVideoLiked());
-      console.log("Getting videos...");
-
+    if (isChange || isRemove) {
+      if (videoList.length === 0 || isRemove) {
+        dispatch(getVideoLiked());
+        if (isRemove) {
+          handleRemoveItem();
+        }
+      }
+      setLikedVideoList(videoList.content);
+      setShowNoLikedMessage(Object.keys(videoList).length !== 0);
+      const filteredVideoList = filterVideos();
+      setLikedVideoRender(filteredVideoList);
     }
-    console.log(videoList);
-    setLikedVideoList(videoList.content);
-    setShowNoLikedMessage(Object.keys(videoList).length !== 0);
-  }, [videoList.length, activeButton]);
+  }, [isChange, isRemove, videoList, activeButton]);
 
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
@@ -46,8 +56,6 @@ function LikedVideosScreen() {
     }
   };
 
-  const filteredVideoList = filterVideos();
-
   return (
     <div className={`${style.main} main-container`}>
       {showNoLikedMessage ? <Playlist passedProp={videoList.content} /> : null}
@@ -56,14 +64,17 @@ function LikedVideosScreen() {
           {showNoLikedMessage ? (
             <>
               <AllButton
+                className={style.btn}
                 active={activeButton === "All"}
                 onClick={handleButtonClick}
               />
               <VideosButton
+                className={style.btn}
                 active={activeButton === "Videos"}
                 onClick={handleButtonClick}
               />
               <ShortsButton
+                className={style.btn}
                 active={activeButton === "Shorts"}
                 onClick={handleButtonClick}
               />
@@ -72,9 +83,14 @@ function LikedVideosScreen() {
         </div>
         {showNoLikedMessage ? (
           <div className={`${style.list__videos} `}>
-            {filteredVideoList && filteredVideoList.length > 0 ? (
-              filteredVideoList.map((video, index) => (
-                <ListLikedVideo key={index} index={index} {...video} />
+            {likedVideoRender && likedVideoRender.length > 0 ? (
+              likedVideoRender.map((video, index) => (
+                <ListLikedVideo
+                  key={index}
+                  handleRemoveItem={handleRemoveItem}
+                  index={index}
+                  {...video}
+                />
               ))
             ) : (
               <div className={style.noLikedMessage}>

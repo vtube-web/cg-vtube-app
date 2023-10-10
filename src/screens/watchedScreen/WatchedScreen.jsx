@@ -84,7 +84,9 @@ const WatchedScreen = () => {
             {filteredVideos
               ? Object.keys(filteredVideos).map((date) => (
                   <div key={date}>
-                    <p style={{ marginTop: 30 }}>{formatDateWatched(date)}</p>
+                    <p style={{ marginTop: 30, fontWeight: 550 }}>
+                      {formatDateWatched(date)}
+                    </p>
                     {filteredVideos[date].map((videoData) => (
                       <WatchedRender key={videoData.videoId} {...videoData} />
                     ))}
@@ -92,7 +94,9 @@ const WatchedScreen = () => {
                 ))
               : Object.keys(videosGroupedByDay).map((date) => (
                   <div key={date}>
-                    <p style={{ marginTop: 30 }}>{formatDateWatched(date)}</p>
+                    <p style={{ marginTop: 30, fontWeight: 550 }}>
+                      {formatDateWatched(date)}
+                    </p>
                     {videosGroupedByDay[date].map((videoData) => (
                       <WatchedRender
                         handleRemoveItem={handleRemoveItem}

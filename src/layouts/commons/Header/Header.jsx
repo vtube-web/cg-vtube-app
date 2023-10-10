@@ -17,7 +17,7 @@ import {useEffect, useState} from 'react';
 
 export default function Header({handleSetSidebar}) {
     const logoImg =
-        "https://cdn.discordapp.com/attachments/1139963455038832680/1153326437185626143/AS1.png";
+      "https://media.discordapp.net/attachments/1150729016433725474/1161140557419122828/logo-vtube-1.png";
 
     const userLogo =
         "https://cdn.discordapp.com/attachments/1151490874195316856/1152776018638151710/icons8-user-64.png";
@@ -25,7 +25,7 @@ export default function Header({handleSetSidebar}) {
     const [user, setUser] = useState("");
     useEffect(() => {
         setUser(getStoredUserData());
-    }, [user]);
+    }, []);
 
     return (
         <div className={style.header}>
@@ -41,14 +41,14 @@ export default function Header({handleSetSidebar}) {
             </div>
 
             <form>
-                <input type={"text"} placeholder={"Search here..."}/>
-                <button type={"submit"}>
-                    <AiOutlineSearch size={22}/>
+                <input type={"text"} className={style.search__bar} placeholder={"Search"}/>
+                <button type={"submit"} >
+                    <AiOutlineSearch size={24}/>
                 </button>
             </form>
 
             {user ? (
-                <NavEnd/>
+                <NavEnd className="col-1"/>
             ) : (
                 <div className={style.header__icons}>
                     <FiMoreVertical size={23}/>

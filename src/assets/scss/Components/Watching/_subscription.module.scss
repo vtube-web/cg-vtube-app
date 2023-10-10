@@ -1,14 +1,8 @@
 @import "../../base.module";
 
-// $column-count-small: 3;  // Số cột cho màn hình <= 1200px
-// $column-count-large: 4;  // Số cột cho màn hình > 1200px và <= 1500px
-
 .main {
   margin-left: 30px;
   width: 100%;
-  //   display: flex;
-  // flex-wrap: wrap;
-  // max-width: 1500px;
 }
 
 .header {
@@ -58,10 +52,6 @@
   .info {
     margin: 15px 0 15px 0;
     position: relative;
-    //    flex: 1 0 calc(100% / #{$column-count-small});
-    //      @media (min-width: 1501px) {
-    //   flex: 1 0 calc(100% / #{$column-count-large}); // Switch to 4 columns for larger screens
-    // }
     img {
       border-radius: 10px;
     }
@@ -74,6 +64,7 @@
       background-color: rgba(0, 0, 0, 0.8);
       border-radius: 5px;
       font-size: 12px;
+      color: white;
     }
     .content__tittle {
       font-size: 16px;

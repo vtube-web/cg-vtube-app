@@ -60,7 +60,7 @@ const Playlist = (props) => {
                             </div>
                             <span>Play all</span>
                         </button>
-                        <button>
+                        <button style={{color:"white"}}>
                             <div className={`${style.playlist__button__icon} `}>
                                 <IoShuffleSharp size={30}/>
                             </div>

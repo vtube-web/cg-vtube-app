@@ -1,11 +1,69 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "../../assets/scss/Components/Watching/_likedVideos.module.scss";
 import { AiOutlineMore } from "react-icons/ai";
 import formatDateAgo from "../../format/FormatDateAgo";
 import formatNumberView from "../../format/FormatNumberView";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { PiShareFatLight, PiTrashLight } from "react-icons/pi";
+import { removeVideoLiked } from "../../features/video/videoLikedSlice";
+import Swal from "sweetalert2";
 
-const ListLikedVideo = ({ index, ...video }) => {
+const ListLikedVideo = ({ handleRemoveItem, index, ...video }) => {
+  const dispatch = useDispatch();
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
+  };
+
+  const handleShareClick = (videoId) => {
+    navigator.clipboard
+      .writeText("http://localhost:3000/watching/" + videoId)
+      .then(() =>
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Video URL copied to clipboard",
+          showConfirmButton: false,
+          timer: 1500,
+        })
+      )
+      .catch(() =>
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Failed to copy video URL",
+          showConfirmButton: false,
+          timer: 2000,
+        })
+      );
+  };
+
+  const handleRemoveClick = (video) => {
+    dispatch(removeVideoLiked(video.videoId));
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "This video liked have been removed from the list",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+    handleRemoveItem();
+  };
+
+  useEffect(() => {
+    const handleDocumentClick = (event) => {
+      if (!event.target.closest(`.${style.menu__videos}`)) {
+        setDropdownVisible(false);
+      }
+    };
+    document.addEventListener("click", handleDocumentClick);
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, []);
+
   return (
     <div key={index} className={`${style.video__render} `}>
       <div className={`${style.index__videos} `}>
@@ -34,9 +92,25 @@ const ListLikedVideo = ({ index, ...video }) => {
         </div>
       </div>
       <div className={`${style.menu__videos}`}>
-        <button>
+        <button onClick={toggleDropdown}>
           <AiOutlineMore size={24} style={{ margin: "auto" }} />
         </button>
+        <ul
+          className={`${style.dropdownMenu}`}
+          style={{ display: dropdownVisible ? "block" : "none" }}
+        >
+          <li>
+            <a onClick={() => handleShareClick(video.videoId)}>
+              <PiShareFatLight size={20} /> &nbsp; Share
+            </a>
+          </li>
+          <hr />
+          <li>
+            <a onClick={() => handleRemoveClick(video)}>
+              <PiTrashLight size={20} /> &nbsp; Remove from this Liked videos
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   );
