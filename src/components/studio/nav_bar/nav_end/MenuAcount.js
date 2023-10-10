@@ -1,5 +1,3 @@
-import style from "../../../../assets/scss/Components/Assets/_menuAccount.module.scss";
-
 import React from "react";
 import {Link, NavLink, useNavigate} from "react-router-dom";
 import { CiYoutube, CiLogin } from "react-icons/ci";

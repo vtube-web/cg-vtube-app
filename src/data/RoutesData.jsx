@@ -34,7 +34,7 @@ export const publicRoutes = [
     {path: "/yourVideos", component: yourVideoScreen, layout: MainLayout},
     {path: `/watching/:videoId`, component: watchingScreen, layout: MainLayout},
     {path: `/channel/:channelId`, component: OverviewScreen, layout: StudioLayout,},
-    {path: `/channel/:channelId/content`, component: ContentScreen, layout: StudioLayout,},
+    {path: `/channel/:channelId/content/:subParam`, component: ContentScreen, layout: StudioLayout,},
     {path: `/channel/:channelId/analytical`, component: AnalyticalDataScreen, layout: StudioLayout,},
     {path: `/channel/:channelId/comment`, component: CommentScreen, layout: StudioLayout,},
     {path: `/channel/:channelId/customize`, component: CustomizeChannelsScreen, layout: StudioLayout,},
