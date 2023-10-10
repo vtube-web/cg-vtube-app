@@ -1,13 +1,13 @@
-import style from '../../../assets/scss/Components/Watching/_videoSection.module.scss'
+import style from "../../assets/scss/Components/Watching/_videoSection.module.scss";
 import {BiDislike, BiLike,} from "react-icons/bi"
 import {PiShareFatLight,} from "react-icons/pi";
 import ShowMore from 'react-show-more-text'
 import "react-show-more-text/lib/ShowMoreText.css"
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
-import VideoPlayer from "./VideoPlayer";
-import formatDate from "../../../format/FormatDate";
 import formatNumberView from "../../../format/FormatNumberView";
+import formatDate from "../../../format/FormatDate";
+
 
 function VideoSection({video}) {
     const [userDto, setUserDto] = useState({});
@@ -87,7 +87,7 @@ function VideoSection({video}) {
                     <div className={`${style.video__details}`}>
                         <div className={`${style.details__description}`}>
                             <div className={`${style.details__info}`}>
-                                <span>{formatNumberView(video.views)} views </span>
+                                <span>{formatNumberView(video.views)} views • </span>
                                 <span>{formatDate(video.createAt)}</span>
                             </div>
                             <ShowMore
@@ -105,7 +105,6 @@ function VideoSection({video}) {
                 </div>
                 : <div>Loading...</div>
             }
-
         </>
     )
 }

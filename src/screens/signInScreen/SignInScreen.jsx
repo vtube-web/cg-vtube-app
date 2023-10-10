@@ -3,10 +3,12 @@ import {PiUserCircleThin} from "react-icons/pi";
 import {SiGnuprivacyguard} from "react-icons/si"
 import {FcGoogle} from "react-icons/fc"
 import { useNavigate } from "react-router-dom";
+import logo from "../../assets/img/logo-vtube.png";
 
 
 export default function SignInScreen() {
     const navigate = useNavigate();
+    const logoImg = logo;
 
     function handleAndNavigateToSignInPage() {
       navigate("/login");
@@ -16,8 +18,6 @@ export default function SignInScreen() {
       navigate("/register");
     }
 
-
-    const logoImg = "https://cdn.discordapp.com/attachments/1139963455038832680/1153326437185626143/AS1.png"
     return (
       <div className={style.signIn__container}>
         <img src={logoImg} alt={"logo"} />

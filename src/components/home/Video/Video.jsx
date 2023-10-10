@@ -1,7 +1,6 @@
 import React from 'react'
 import style from '../../../assets/scss/Components/Home/_video.module.scss'
 import formatNumberView from "../../../format/FormatNumberView";
-import {AiFillEye} from 'react-icons/ai'
 
 
 import {NavLink} from "react-router-dom";
