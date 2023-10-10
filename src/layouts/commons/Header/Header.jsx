@@ -26,7 +26,7 @@ export default function Header({handleSetSidebar}) {
     const [user, setUser] = useState("");
     useEffect(() => {
       setUser(getStoredUserData());
-    }, [user]);
+    }, []);
 
   return (
     <div className={style.header}>
