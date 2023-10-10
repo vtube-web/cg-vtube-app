@@ -49,6 +49,7 @@
 
   &.sidebar ~ .app__main {
     transition: all ease-in 0.3s;
+    overflow-x: hidden;
   }
 
   &.open {

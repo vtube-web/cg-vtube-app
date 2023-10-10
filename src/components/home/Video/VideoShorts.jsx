@@ -7,7 +7,6 @@ import {FaCommentDots} from "react-icons/fa";
 import {PiShareFatFill} from "react-icons/pi";
 import {CgDetailsMore} from "react-icons/cg";
 import {AiOutlineClose} from "react-icons/ai";
-import {useDispatch, useSelector} from "react-redux";
 
 
 function VideoShorts({videoShort}) {
@@ -145,12 +144,19 @@ function VideoShorts({videoShort}) {
                             <AiOutlineClose/>
                         </div>
 
-                        <div className={style.comments__bottom}>
+                    </div>
 
-                            <div className={style.function__comments}>
+                    <div className={style.comments__bottom}>
 
-                            </div>
+                        <div className={style.function__comments}>
+                            <img src={videoShort.avatar} alt={'channel_name'}/>
+                            <input type="text"
+                                   placeholder=" Your comments"
+                                   className={style.input__comments}/>
 
+                            <button type="submit">
+                                <span className={style.btn__comments}>Bình luận</span>
+                            </button>
                         </div>
 
                     </div>
