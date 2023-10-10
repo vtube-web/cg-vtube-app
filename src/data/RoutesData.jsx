@@ -1,5 +1,5 @@
 import homeScreen from "../screens/homeScreen/HomeScreen";
-import MainLayout from "../layouts/mainLayout/MainLayout";
+import MainLayout from "../layouts/main_layout/MainLayout";
 import libraryScreen from "../screens/libraryScreen/LibraryScreen";
 import likedVideoScreen from "../screens/likedVideosScreen/LikedVideosScreen";
 import SignInScreen from "../screens/signInScreen/SignInScreen";

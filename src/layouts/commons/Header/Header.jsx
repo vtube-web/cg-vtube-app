@@ -22,10 +22,13 @@ export default function Header({handleSetSidebar}) {
     const userLogo =
         "https://cdn.discordapp.com/attachments/1151490874195316856/1152776018638151710/icons8-user-64.png";
 
-    const [user, setUser] = useState("");
+    const [user, setUser] = useState({});
     useEffect(() => {
-        setUser(getStoredUserData());
-    }, [user]);
+        //cho nay co bug
+        // if (user === {}) {
+            setUser(getStoredUserData());
+        // }
+    }, []);
 
     return (
         <div className={style.header}>

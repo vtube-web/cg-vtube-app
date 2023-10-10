@@ -48,7 +48,7 @@ function SiderBar() {
       distanceTop: "35%",
     },
     {
-      to: `${pathAcountDefault}/content/*`,
+      to: `${pathAcountDefault}/content`,
       label: "Content",
       icon: AiOutlinePlaySquare,
       distanceTop: "47%",

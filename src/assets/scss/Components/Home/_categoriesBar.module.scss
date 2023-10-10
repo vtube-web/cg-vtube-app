@@ -24,6 +24,7 @@
     &:hover{
       background-color: #374a59;
       color: $text-color-for-black;
+      cursor: pointer;
     }
 
     &.active{

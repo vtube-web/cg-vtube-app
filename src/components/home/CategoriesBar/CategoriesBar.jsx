@@ -32,7 +32,7 @@ function CategoriesBar(){
                         <span
                             key={index}
                             onClick={() => handleClick(keyword)}
-                            className={active === keyword ? 'active' : ''}
+                            className={style.active === keyword ? 'active' : ''}
                         >
                             {keyword}
                         </span>

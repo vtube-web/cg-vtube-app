@@ -5,6 +5,7 @@ import {AiFillEye} from 'react-icons/ai'
 
 
 import {NavLink} from "react-router-dom";
+import formatDate from "../../../format/FormatDate";
 
 function Video({video,isSidebarOpen }) {
     const videoClassName = isSidebarOpen
@@ -26,7 +27,7 @@ function Video({video,isSidebarOpen }) {
                 </div>
                 <div className={style.video__detail}>
                     <span>{formatNumberView(video.views)} views • </span>
-                    <span>{video.createdAt}</span>
+                    <span>{formatDate(video.createAt)}</span>
                 </div>
                 <div className={style.video__channel}>
                     <img src={video.userDto.avatar} alt={'channel_name'}/>

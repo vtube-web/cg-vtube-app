@@ -1,5 +1,5 @@
-import VideoSection from "./VideoSection";
-import CommentSection from "./CommentSection";
+import VideoSection from "../../components/watching/video_section/VideoSection";
+import CommentSection from "../../components/watching/comment_section/CommentSection";
 
 import style from '../../assets/scss/Components/Watching/_watching.module.scss'
 import {useEffect, useState} from "react";
