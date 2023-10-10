@@ -4,6 +4,7 @@ import Video from "../../components/home/Video/Video";
 import {useDispatch, useSelector} from "react-redux";
 import {getVideos, selectVideoListSuccess, selectVideoList} from "../../features/video/videoSlice";
 import {useEffect, useState} from "react";
+import {getStoredUserData} from "../../service/accountService";
 
 function HomeScreen() {
     const dispatch = useDispatch();

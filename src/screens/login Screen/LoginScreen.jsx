@@ -3,7 +3,7 @@ import "../../assets/css/login/LoginForm.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  loginUser,
+  loginUser, resetUserAccountState,
   selectLoginIsSuccess,
   selectUserAccountSliceIsError,
   selectUserAccountSliceIsLoading,
@@ -36,11 +36,16 @@ function LoginScreen() {
 
 
   useEffect(() => {
-    if (success && user) {
-      localStorage.setItem("user", JSON.stringify(user));
-      navigate("/");
+    if (success) {
+      if (user) {
+        localStorage.setItem("user", JSON.stringify(user));
+        navigate("/");
+      }
     }
-  }, [success]);
+    return () => {
+      dispatch(resetUserAccountState());
+    };
+  }, [success, user]);
 
   const formik = useFormik({
     initialValues: {

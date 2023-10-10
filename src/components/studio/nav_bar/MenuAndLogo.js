@@ -9,6 +9,8 @@ import {
   setIsModalMenu,
   getIsModalMenu,
 } from "../../../features/studio/modalSlice";
+import logo from "../../../assets/img/logo-vtube.png";
+import {useNavigate} from "react-router-dom";
 function MenuAndLogo() {
   const [mouseMenu, setMouseMenu] = useState(false);
   const [mouseLogo, setMouseLogo] = useState(false);
@@ -16,6 +18,8 @@ function MenuAndLogo() {
   const isModalMenu = useSelector(getIsModalMenu);
   const dispatch = useDispatch();
   const [width, setWidth] = useState();
+  const navigate = useNavigate();
+  const logoImg = logo;
   const handleMenu = () => {
     if (width >= 1536) {
       dispatch(setIsVisibilityMenu(!isVisibilityMenu));
@@ -25,6 +29,9 @@ function MenuAndLogo() {
       dispatch(setIsModalMenu(!isModalMenu));
     }
   };
+  function handleReturnHome() {
+    navigate("/")
+  }
   useEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);
@@ -54,11 +61,12 @@ function MenuAndLogo() {
       </div>
       <div className="relative">
         <img
-          className="bg-dark h-8 object-fill rounded-sm"
-          src="https://cdn.discordapp.com/attachments/1139963455038832680/1153326437185626143/AS1.png"
+          className="h-8 object-fill rounded-sm cursor-pointer"
+          src={logoImg}
           alt="logo"
           onMouseOver={() => setMouseLogo(true)}
           onMouseOut={() => setMouseLogo(false)}
+          onClick={handleReturnHome}
         />
         {mouseLogo == false ? (
           <></>

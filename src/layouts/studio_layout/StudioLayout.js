@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Modal from "../../components/studio/common/modal/Modal";
 import NavBar from "../../components/studio/nav_bar/NavBar";
-import SiderBar from "../../components/studio/siderBar/SiderBar";
+import SideBar from "../../components/studio/sideBar/SideBar";
 import {
   setIsModalSearch,
   setIsModalMenu,
@@ -61,7 +61,7 @@ function StudioLayout({ children }) {
         className={`flex flex-row flex-nowrap  space-x-7 `}
         style={{ height: contentHeight }}
       >
-        <SiderBar contentHeight={contentHeight} />
+        <SideBar contentHeight={contentHeight} />
 
         <div className="bg-[#FAFAFA] grow">
           <div

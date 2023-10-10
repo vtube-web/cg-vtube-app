@@ -1,18 +1,30 @@
+import style from "../../../../assets/scss/Components/Assets/_menuAccount.module.scss";
+
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import {Link, NavLink, useNavigate} from "react-router-dom";
 import { CiYoutube, CiLogin } from "react-icons/ci";
 import { PiUserSquareLight } from "react-icons/pi";
 import { resetUserAccountState } from "../../../../features/auth/userSlice";
 import { useDispatch } from "react-redux";
+import {getStoredUserData} from "../../../../service/accountService";
 
 function MenuAcount() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const user = getStoredUserData();
 
   function handleLogout () {
     localStorage.removeItem("user");
     dispatch(resetUserAccountState());
     navigate("/");
+  }
+
+  function handleYourChanel() {
+      navigate(`/channel/${user.id}`)
+  }
+
+  function handleReturnHome() {
+      navigate("/")
   }
   
   return (
@@ -30,13 +42,12 @@ function MenuAcount() {
       </div>
       <div className="flex space-x-4 items-center px-4 py-2 mt-1 hover:bg-gray-100 hover:cursor-pointer">
         <PiUserSquareLight className="w-6 h-6 text-gray-400" />
-        <div>Your channel</div>
+            <div onClick={handleYourChanel}>Your channel</div>
       </div>
       <div className="flex space-x-4 items-center px-4 py-2 hover:bg-gray-100 hover:cursor-pointer">
         <CiYoutube className="w-6 h-6 text-gray-400" />
-        <div>Vtube</div>
+        <div onClick={handleReturnHome}>Vtube</div>
       </div>
-
       <div
         className="flex space-x-4 items-center px-4 py-2 hover:bg-gray-100 hover:cursor-pointer"
         onClick={handleLogout}
