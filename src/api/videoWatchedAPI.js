@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getStoredUserData } from "../service/accountService";
+import { getStoredUserData } from "../services/accountService";
 
 export const VIDEO_WATCHED_API = "http://localhost:8080/api/watched-videos";
 
