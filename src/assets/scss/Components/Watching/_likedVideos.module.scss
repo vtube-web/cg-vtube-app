@@ -161,6 +161,7 @@
               background-color: rgba(0, 0, 0, 0.8);
               border-radius: 5px;
               font-size: 12px;
+              color: white;
             }
           }
           .info__videos {
@@ -203,13 +204,17 @@
         }
       }
       .video__render:hover {
-        background-color: #282828;
+        background-color: gray;
         border-radius: 10px;
+        filter: brightness(100%);
       }
       .video__render:hover .menu__videos button {
         display: inline-block;
-        background-color: #282828;
+        background-color: gray;
+      }
 
+      a {
+        color: black;
       }
     }
     .noLikedMessage {

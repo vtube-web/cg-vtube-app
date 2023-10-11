@@ -20,10 +20,10 @@ import {
   selectRegisterIsSuccess,
   selectUserAccountSliceIsError,
 } from "../../features/auth/userSlice";
+import logo from "../../assets/img/logo-vtube-2.png"
 
 function RegisterScreen() {
-  const logoImg =
-    "https://cdn.discordapp.com/attachments/1139963455038832680/1153326437185626143/AS1.png";
+  const logoImg = logo;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

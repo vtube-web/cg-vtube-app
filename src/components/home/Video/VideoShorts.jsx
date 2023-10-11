@@ -7,6 +7,7 @@ import {FaCommentDots} from "react-icons/fa";
 import {PiShareFatFill} from "react-icons/pi";
 import {CgDetailsMore} from "react-icons/cg";
 import {AiOutlineClose} from "react-icons/ai";
+import formatNumberView from "../../../format/FormatNumberView";
 
 
 function VideoShorts({videoShort}) {
@@ -35,10 +36,13 @@ function VideoShorts({videoShort}) {
                 <div className={style.video_shorts__container}>
 
                     <div className={style.color__shorts}>
-
-                        <img className={style.shorts__main}
-                             src={videoShort.content}
-                             alt={"short"}/>
+                        <video
+                            className={`${style.shorts__main}`}
+                            controls
+                            onError={(e) => console.error("Shorts error:", e)}
+                        >
+                            <source src={videoShort.videoUrl} type={'video/mp4'} />
+                        </video>
 
                         <div className={style.shorts__top}>
                             <div
@@ -65,7 +69,7 @@ function VideoShorts({videoShort}) {
 
                                 <div className={style.shorts__user}>
                                     <div className={style.user__info}>
-                                        <img src={videoShort.avatar} alt={'channel_name'}/>
+                                        <img src={videoShort.userDto.avatar} alt={'channel_name'}/>
                                         <p>{videoShort.userName}</p>
                                     </div>
                                     <span className={style.subs__btn}>Subscribe</span>
@@ -85,7 +89,8 @@ function VideoShorts({videoShort}) {
                             </div>
 
                         </div>
-                        <span>13 N</span>
+                        <span>{formatNumberView(videoShort.likes)}</span>
+                        {/*<span>13 N</span>*/}
 
                         <div className={style.shorts__btn}>
 

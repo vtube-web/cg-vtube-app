@@ -71,7 +71,7 @@ function VideoSection({video}) {
                         <div className={style.function__channel}>
                             <span className={`${style.function__like}`}>
                                 <BiLike size={20}/>
-                                <span>{video.likes}</span>
+                                <span>{formatNumberView(video.likes)}</span>
                             </span>
                             <span className={`${style.function__dislike}`}>
                                 <BiDislike size={20}/>

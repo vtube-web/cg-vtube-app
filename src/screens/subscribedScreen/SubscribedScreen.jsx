@@ -60,13 +60,12 @@ export default function SubscribedScreen() {
           </a>
         </div>
         <div className={`${style.info} col-md-6 col-lg-4`}>
-          <Link>
+          <a href="">
             <img
               src="https://i.pinimg.com/564x/52/12/dc/5212dccf6f2e37eb54fed01f2cdba199.jpg"
               alt="img"
             />
             <div className={style.time__video}>30:56</div>
-
             <div className={`${style.detail} row`}>
               <div className="col-2">
                 <img
@@ -80,131 +79,405 @@ export default function SubscribedScreen() {
                   4 - LiveSeason 4 - Live
                 </div>
                 <div>name channel</div>
-                <div>view + time ago</div>
+                <div>view • time ago</div>
               </div>
               <div className="col-2">
                 <button>
-                  <BsThreeDotsVertical size={24} />
+                  <BsThreeDotsVertical size={20} />
                 </button>
               </div>
             </div>
-          </Link>
+          </a>
         </div>
         <div className={`${style.info} col-md-6 col-lg-4`}>
-          <img
-            src="https://i.pinimg.com/564x/52/12/dc/5212dccf6f2e37eb54fed01f2cdba199.jpg"
-            alt="img"
-          />
-          <div className={style.time__video}>30:56</div>
-
-          <div className={`${style.detail} row`}>
-            <div className="col-2">
-              <img
-                src="https://yt3.ggpht.com/5oI9heBQT621qOEhp8xi3RMwNpV-B50Qkvrztu8joCzPo69FC3lQzorHGP0ZpJ8eDdNTMqsc7nc=s68-c-k-c0x00ffffff-no-rj-mo"
-                alt="avatar"
-              />
-            </div>
-            <div className="col">
-              <div className={style.content__tittle}>
-                Top Tier Fortnite Agent - Season 4 - LiveSeason 4 - LiveSeason 4
-                - LiveSeason 4 - Live
+          <a href="">
+            <img
+              src="https://i.pinimg.com/564x/52/12/dc/5212dccf6f2e37eb54fed01f2cdba199.jpg"
+              alt="img"
+            />
+            <div className={style.time__video}>30:56</div>
+            <div className={`${style.detail} row`}>
+              <div className="col-2">
+                <img
+                  src="https://yt3.ggpht.com/5oI9heBQT621qOEhp8xi3RMwNpV-B50Qkvrztu8joCzPo69FC3lQzorHGP0ZpJ8eDdNTMqsc7nc=s68-c-k-c0x00ffffff-no-rj-mo"
+                  alt="avatar"
+                />
               </div>
-              <div>name channel</div>
-              <div>view + time ago</div>
+              <div className="col">
+                <div className={style.content__tittle}>
+                  Top Tier Fortnite Agent - Season 4 - LiveSeason 4 - LiveSeason
+                  4 - LiveSeason 4 - Live
+                </div>
+                <div>name channel</div>
+                <div>view • time ago</div>
+              </div>
+              <div className="col-2">
+                <button>
+                  <BsThreeDotsVertical size={20} />
+                </button>
+              </div>
             </div>
-            <div className="col-2">
-              <button>
-                <BsThreeDotsVertical size={24} />
-              </button>
-            </div>
-          </div>
+          </a>
         </div>
         <div className={`${style.info} col-md-6 col-lg-4`}>
-          <img
-            src="https://i.pinimg.com/564x/52/12/dc/5212dccf6f2e37eb54fed01f2cdba199.jpg"
-            alt="img"
-          />
-          <div className={style.time__video}>30:56</div>
-
-          <div className={`${style.detail} row`}>
-            <div className="col-2">
-              <img
-                src="https://yt3.ggpht.com/5oI9heBQT621qOEhp8xi3RMwNpV-B50Qkvrztu8joCzPo69FC3lQzorHGP0ZpJ8eDdNTMqsc7nc=s68-c-k-c0x00ffffff-no-rj-mo"
-                alt="avatar"
-              />
-            </div>
-            <div className="col">
-              <div className={style.content__tittle}>
-                Top Tier Fortnite Agent - Season 4 - LiveSeason 4 - LiveSeason 4
-                - LiveSeason 4 - Live
+          <a href="">
+            <img
+                src="https://i.pinimg.com/564x/52/12/dc/5212dccf6f2e37eb54fed01f2cdba199.jpg"
+                alt="img"
+            />
+            <div className={style.time__video}>30:56</div>
+            <div className={`${style.detail} row`}>
+              <div className="col-2">
+                <img
+                    src="https://yt3.ggpht.com/5oI9heBQT621qOEhp8xi3RMwNpV-B50Qkvrztu8joCzPo69FC3lQzorHGP0ZpJ8eDdNTMqsc7nc=s68-c-k-c0x00ffffff-no-rj-mo"
+                    alt="avatar"
+                />
               </div>
-              <div>name channel</div>
-              <div>view + time ago</div>
+              <div className="col">
+                <div className={style.content__tittle}>
+                  Top Tier Fortnite Agent - Season 4 - LiveSeason 4 - LiveSeason
+                  4 - LiveSeason 4 - Live
+                </div>
+                <div>name channel</div>
+                <div>view • time ago</div>
+              </div>
+              <div className="col-2">
+                <button>
+                  <BsThreeDotsVertical size={20} />
+                </button>
+              </div>
             </div>
-            <div className="col-2">
-              <button>
-                <BsThreeDotsVertical size={24} />
-              </button>
-            </div>
-          </div>
+          </a>
         </div>
         <div className={`${style.info} col-md-6 col-lg-4`}>
-          <img
-            src="https://i.pinimg.com/564x/52/12/dc/5212dccf6f2e37eb54fed01f2cdba199.jpg"
-            alt="img"
-          />
-          <div className={style.time__video}>30:56</div>
-
-          <div className={`${style.detail} row`}>
-            <div className="col-2">
-              <img
-                src="https://yt3.ggpht.com/5oI9heBQT621qOEhp8xi3RMwNpV-B50Qkvrztu8joCzPo69FC3lQzorHGP0ZpJ8eDdNTMqsc7nc=s68-c-k-c0x00ffffff-no-rj-mo"
-                alt="avatar"
-              />
-            </div>
-            <div className="col">
-              <div className={style.content__tittle}>
-                Top Tier Fortnite Agent - Season 4 - LiveSeason 4 - LiveSeason 4
-                - LiveSeason 4 - Live
+          <a href="">
+            <img
+                src="https://i.pinimg.com/564x/52/12/dc/5212dccf6f2e37eb54fed01f2cdba199.jpg"
+                alt="img"
+            />
+            <div className={style.time__video}>30:56</div>
+            <div className={`${style.detail} row`}>
+              <div className="col-2">
+                <img
+                    src="https://yt3.ggpht.com/5oI9heBQT621qOEhp8xi3RMwNpV-B50Qkvrztu8joCzPo69FC3lQzorHGP0ZpJ8eDdNTMqsc7nc=s68-c-k-c0x00ffffff-no-rj-mo"
+                    alt="avatar"
+                />
               </div>
-              <div>name channel</div>
-              <div>view + time ago</div>
+              <div className="col">
+                <div className={style.content__tittle}>
+                  Top Tier Fortnite Agent - Season 4 - LiveSeason 4 - LiveSeason
+                  4 - LiveSeason 4 - Live
+                </div>
+                <div>name channel</div>
+                <div>view • time ago</div>
+              </div>
+              <div className="col-2">
+                <button>
+                  <BsThreeDotsVertical size={20} />
+                </button>
+              </div>
             </div>
-            <div className="col-2">
-              <button>
-                <BsThreeDotsVertical size={24} />
-              </button>
-            </div>
-          </div>
+          </a>
         </div>
         <div className={`${style.info} col-md-6 col-lg-4`}>
-          <img
-            src="https://i.pinimg.com/564x/52/12/dc/5212dccf6f2e37eb54fed01f2cdba199.jpg"
-            alt="img"
-          />
-          <div className={style.time__video}>30:56</div>
-
-          <div className={`${style.detail} row`}>
-            <div className="col-2">
-              <img
-                src="https://yt3.ggpht.com/5oI9heBQT621qOEhp8xi3RMwNpV-B50Qkvrztu8joCzPo69FC3lQzorHGP0ZpJ8eDdNTMqsc7nc=s68-c-k-c0x00ffffff-no-rj-mo"
-                alt="avatar"
-              />
-            </div>
-            <div className="col">
-              <div className={style.content__tittle}>
-                Top Tier Fortnite Agent - Season 4 - LiveSeason 4 - LiveSeason 4
-                - LiveSeason 4 - Live
+          <a href="">
+            <img
+                src="https://i.pinimg.com/564x/52/12/dc/5212dccf6f2e37eb54fed01f2cdba199.jpg"
+                alt="img"
+            />
+            <div className={style.time__video}>30:56</div>
+            <div className={`${style.detail} row`}>
+              <div className="col-2">
+                <img
+                    src="https://yt3.ggpht.com/5oI9heBQT621qOEhp8xi3RMwNpV-B50Qkvrztu8joCzPo69FC3lQzorHGP0ZpJ8eDdNTMqsc7nc=s68-c-k-c0x00ffffff-no-rj-mo"
+                    alt="avatar"
+                />
               </div>
-              <div>name channel</div>
-              <div>view + time ago</div>
+              <div className="col">
+                <div className={style.content__tittle}>
+                  Top Tier Fortnite Agent - Season 4 - LiveSeason 4 - LiveSeason
+                  4 - LiveSeason 4 - Live
+                </div>
+                <div>name channel</div>
+                <div>view • time ago</div>
+              </div>
+              <div className="col-2">
+                <button>
+                  <BsThreeDotsVertical size={20} />
+                </button>
+              </div>
             </div>
-            <div className="col-2">
-              <button>
-                <BsThreeDotsVertical size={24} />
-              </button>
+          </a>
+        </div>
+        <div className={`${style.info} col-md-6 col-lg-4`}>
+          <a href="">
+            <img
+                src="https://i.pinimg.com/564x/52/12/dc/5212dccf6f2e37eb54fed01f2cdba199.jpg"
+                alt="img"
+            />
+            <div className={style.time__video}>30:56</div>
+            <div className={`${style.detail} row`}>
+              <div className="col-2">
+                <img
+                    src="https://yt3.ggpht.com/5oI9heBQT621qOEhp8xi3RMwNpV-B50Qkvrztu8joCzPo69FC3lQzorHGP0ZpJ8eDdNTMqsc7nc=s68-c-k-c0x00ffffff-no-rj-mo"
+                    alt="avatar"
+                />
+              </div>
+              <div className="col">
+                <div className={style.content__tittle}>
+                  Top Tier Fortnite Agent - Season 4 - LiveSeason 4 - LiveSeason
+                  4 - LiveSeason 4 - Live
+                </div>
+                <div>name channel</div>
+                <div>view • time ago</div>
+              </div>
+              <div className="col-2">
+                <button>
+                  <BsThreeDotsVertical size={20} />
+                </button>
+              </div>
             </div>
-          </div>
+          </a>
+        </div>
+        <div className={`${style.info} col-md-6 col-lg-4`}>
+          <a href="">
+            <img
+                src="https://i.pinimg.com/564x/52/12/dc/5212dccf6f2e37eb54fed01f2cdba199.jpg"
+                alt="img"
+            />
+            <div className={style.time__video}>30:56</div>
+            <div className={`${style.detail} row`}>
+              <div className="col-2">
+                <img
+                    src="https://yt3.ggpht.com/5oI9heBQT621qOEhp8xi3RMwNpV-B50Qkvrztu8joCzPo69FC3lQzorHGP0ZpJ8eDdNTMqsc7nc=s68-c-k-c0x00ffffff-no-rj-mo"
+                    alt="avatar"
+                />
+              </div>
+              <div className="col">
+                <div className={style.content__tittle}>
+                  Top Tier Fortnite Agent - Season 4 - LiveSeason 4 - LiveSeason
+                  4 - LiveSeason 4 - Live
+                </div>
+                <div>name channel</div>
+                <div>view • time ago</div>
+              </div>
+              <div className="col-2">
+                <button>
+                  <BsThreeDotsVertical size={20} />
+                </button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div className={`${style.info} col-md-6 col-lg-4`}>
+          <a href="">
+            <img
+                src="https://i.pinimg.com/564x/52/12/dc/5212dccf6f2e37eb54fed01f2cdba199.jpg"
+                alt="img"
+            />
+            <div className={style.time__video}>30:56</div>
+            <div className={`${style.detail} row`}>
+              <div className="col-2">
+                <img
+                    src="https://yt3.ggpht.com/5oI9heBQT621qOEhp8xi3RMwNpV-B50Qkvrztu8joCzPo69FC3lQzorHGP0ZpJ8eDdNTMqsc7nc=s68-c-k-c0x00ffffff-no-rj-mo"
+                    alt="avatar"
+                />
+              </div>
+              <div className="col">
+                <div className={style.content__tittle}>
+                  Top Tier Fortnite Agent - Season 4 - LiveSeason 4 - LiveSeason
+                  4 - LiveSeason 4 - Live
+                </div>
+                <div>name channel</div>
+                <div>view • time ago</div>
+              </div>
+              <div className="col-2">
+                <button>
+                  <BsThreeDotsVertical size={20} />
+                </button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div className={`${style.info} col-md-6 col-lg-4`}>
+          <a href="">
+            <img
+                src="https://i.pinimg.com/564x/52/12/dc/5212dccf6f2e37eb54fed01f2cdba199.jpg"
+                alt="img"
+            />
+            <div className={style.time__video}>30:56</div>
+            <div className={`${style.detail} row`}>
+              <div className="col-2">
+                <img
+                    src="https://yt3.ggpht.com/5oI9heBQT621qOEhp8xi3RMwNpV-B50Qkvrztu8joCzPo69FC3lQzorHGP0ZpJ8eDdNTMqsc7nc=s68-c-k-c0x00ffffff-no-rj-mo"
+                    alt="avatar"
+                />
+              </div>
+              <div className="col">
+                <div className={style.content__tittle}>
+                  Top Tier Fortnite Agent - Season 4 - LiveSeason 4 - LiveSeason
+                  4 - LiveSeason 4 - Live
+                </div>
+                <div>name channel</div>
+                <div>view • time ago</div>
+              </div>
+              <div className="col-2">
+                <button>
+                  <BsThreeDotsVertical size={20} />
+                </button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div className={`${style.info} col-md-6 col-lg-4`}>
+          <a href="">
+            <img
+                src="https://i.pinimg.com/564x/52/12/dc/5212dccf6f2e37eb54fed01f2cdba199.jpg"
+                alt="img"
+            />
+            <div className={style.time__video}>30:56</div>
+            <div className={`${style.detail} row`}>
+              <div className="col-2">
+                <img
+                    src="https://yt3.ggpht.com/5oI9heBQT621qOEhp8xi3RMwNpV-B50Qkvrztu8joCzPo69FC3lQzorHGP0ZpJ8eDdNTMqsc7nc=s68-c-k-c0x00ffffff-no-rj-mo"
+                    alt="avatar"
+                />
+              </div>
+              <div className="col">
+                <div className={style.content__tittle}>
+                  Top Tier Fortnite Agent - Season 4 - LiveSeason 4 - LiveSeason
+                  4 - LiveSeason 4 - Live
+                </div>
+                <div>name channel</div>
+                <div>view • time ago</div>
+              </div>
+              <div className="col-2">
+                <button>
+                  <BsThreeDotsVertical size={20} />
+                </button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div className={`${style.info} col-md-6 col-lg-4`}>
+          <a href="">
+            <img
+                src="https://i.pinimg.com/564x/52/12/dc/5212dccf6f2e37eb54fed01f2cdba199.jpg"
+                alt="img"
+            />
+            <div className={style.time__video}>30:56</div>
+            <div className={`${style.detail} row`}>
+              <div className="col-2">
+                <img
+                    src="https://yt3.ggpht.com/5oI9heBQT621qOEhp8xi3RMwNpV-B50Qkvrztu8joCzPo69FC3lQzorHGP0ZpJ8eDdNTMqsc7nc=s68-c-k-c0x00ffffff-no-rj-mo"
+                    alt="avatar"
+                />
+              </div>
+              <div className="col">
+                <div className={style.content__tittle}>
+                  Top Tier Fortnite Agent - Season 4 - LiveSeason 4 - LiveSeason
+                  4 - LiveSeason 4 - Live
+                </div>
+                <div>name channel</div>
+                <div>view • time ago</div>
+              </div>
+              <div className="col-2">
+                <button>
+                  <BsThreeDotsVertical size={20} />
+                </button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div className={`${style.info} col-md-6 col-lg-4`}>
+          <a href="">
+            <img
+                src="https://i.pinimg.com/564x/52/12/dc/5212dccf6f2e37eb54fed01f2cdba199.jpg"
+                alt="img"
+            />
+            <div className={style.time__video}>30:56</div>
+            <div className={`${style.detail} row`}>
+              <div className="col-2">
+                <img
+                    src="https://yt3.ggpht.com/5oI9heBQT621qOEhp8xi3RMwNpV-B50Qkvrztu8joCzPo69FC3lQzorHGP0ZpJ8eDdNTMqsc7nc=s68-c-k-c0x00ffffff-no-rj-mo"
+                    alt="avatar"
+                />
+              </div>
+              <div className="col">
+                <div className={style.content__tittle}>
+                  Top Tier Fortnite Agent - Season 4 - LiveSeason 4 - LiveSeason
+                  4 - LiveSeason 4 - Live
+                </div>
+                <div>name channel</div>
+                <div>view • time ago</div>
+              </div>
+              <div className="col-2">
+                <button>
+                  <BsThreeDotsVertical size={20} />
+                </button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div className={`${style.info} col-md-6 col-lg-4`}>
+          <a href="">
+            <img
+                src="https://i.pinimg.com/564x/52/12/dc/5212dccf6f2e37eb54fed01f2cdba199.jpg"
+                alt="img"
+            />
+            <div className={style.time__video}>30:56</div>
+            <div className={`${style.detail} row`}>
+              <div className="col-2">
+                <img
+                    src="https://yt3.ggpht.com/5oI9heBQT621qOEhp8xi3RMwNpV-B50Qkvrztu8joCzPo69FC3lQzorHGP0ZpJ8eDdNTMqsc7nc=s68-c-k-c0x00ffffff-no-rj-mo"
+                    alt="avatar"
+                />
+              </div>
+              <div className="col">
+                <div className={style.content__tittle}>
+                  Top Tier Fortnite Agent - Season 4 - LiveSeason 4 - LiveSeason
+                  4 - LiveSeason 4 - Live
+                </div>
+                <div>name channel</div>
+                <div>view • time ago</div>
+              </div>
+              <div className="col-2">
+                <button>
+                  <BsThreeDotsVertical size={20} />
+                </button>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div className={`${style.info} col-md-6 col-lg-4`}>
+          <a href="">
+            <img
+                src="https://i.pinimg.com/564x/52/12/dc/5212dccf6f2e37eb54fed01f2cdba199.jpg"
+                alt="img"
+            />
+            <div className={style.time__video}>30:56</div>
+            <div className={`${style.detail} row`}>
+              <div className="col-2">
+                <img
+                    src="https://yt3.ggpht.com/5oI9heBQT621qOEhp8xi3RMwNpV-B50Qkvrztu8joCzPo69FC3lQzorHGP0ZpJ8eDdNTMqsc7nc=s68-c-k-c0x00ffffff-no-rj-mo"
+                    alt="avatar"
+                />
+              </div>
+              <div className="col">
+                <div className={style.content__tittle}>
+                  Top Tier Fortnite Agent - Season 4 - LiveSeason 4 - LiveSeason
+                  4 - LiveSeason 4 - Live
+                </div>
+                <div>name channel</div>
+                <div>view • time ago</div>
+              </div>
+              <div className="col-2">
+                <button>
+                  <BsThreeDotsVertical size={20} />
+                </button>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </div>

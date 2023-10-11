@@ -13,10 +13,10 @@ import { PiEye, PiEyeSlash } from "react-icons/pi";
 import { Form } from "react-bootstrap";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import logo from "../../assets/img/logo-vtube-2.png"
 
 function LoginScreen() {
-  const logoImg =
-    "https://cdn.discordapp.com/attachments/1139963455038832680/1153326437185626143/AS1.png";
+  const logoImg = logo;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

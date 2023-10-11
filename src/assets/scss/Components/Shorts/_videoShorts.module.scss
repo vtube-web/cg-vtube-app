@@ -25,7 +25,9 @@ $white: white;
       .shorts__main {
         display: flex;
         position: relative;
-
+        height: 85vh;
+        resize: vertical;
+        width: 100%;
       }
 
       .shorts__top {
