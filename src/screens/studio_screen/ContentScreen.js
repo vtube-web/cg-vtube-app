@@ -14,7 +14,7 @@ function ContentScreen() {
       navigate(`/channel/${channelId}/content/upload`);
     }
   },[subParam])
-  const pathAcountDefault = `/channel/${channelId}/content`;
+  const pathAcountDefault = `/channel/${channelId}/content/*`;
   const menus = [
     {
       to: `${pathAcountDefault}/upload`,

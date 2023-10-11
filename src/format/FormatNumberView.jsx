@@ -1,5 +1,6 @@
 export default function formatNumberView(value) {
-  if (typeof value !== "number") {
+
+  if (typeof value !== 'number') {
     return "Invalid value";
   }
   const units = ["", "K", "M", "M", "M", "B"];
