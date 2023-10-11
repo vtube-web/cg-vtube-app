@@ -1,24 +1,24 @@
-import homeScreen from "../screens/homeScreen/HomeScreen";
-import MainLayout from "../layouts/mainLayout/MainLayout";
-import libraryScreen from "../screens/libraryScreen/LibraryScreen";
-import likedVideoScreen from "../screens/likedVideosScreen/LikedVideosScreen";
-import SignInScreen from "../screens/signInScreen/SignInScreen";
-import subscribedScreen from "../screens/subscribedScreen/SubscribedScreen";
-import watchedScreen from "../screens/watchedScreen/WatchedScreen";
-import watchLaterScreen from "../screens/watchLaterScreen/WatchLaterScreen";
-import yourVideoScreen from "../screens/yourVideoScreen/YourVideoScreen";
-import watchingScreen from "../screens/watchingScreen/WatchingScreen";
-import notFoundScreen from "../screens/notFoundScreen/NotFoundScreen";
-import shortsScreen from "../screens/shortsScreen/ShortsScreen";
+import homeScreen from "../screens/main_screen/HomeScreen";
+import MainLayout from "../layouts/main_layout/MainLayout";
+import libraryScreen from "../screens/main_screen/LibraryScreen";
+import likedVideoScreen from "../screens/main_screen/LikedVideosScreen";
+import SignInScreen from "../screens/auth_screen/SignInScreen";
+import subscribedScreen from "../screens/main_screen/SubscribedScreen";
+import watchedScreen from "../screens/main_screen/WatchedScreen";
+import watchLaterScreen from "../screens/main_screen/WatchLaterScreen";
+import yourVideoScreen from "../screens/main_screen/YourVideoScreen";
+import watchingScreen from "../screens/watching_screen/WatchingScreen";
+import notFoundScreen from "../screens/404_screen/NotFoundScreen";
+import shortsScreen from "../screens/main_screen/ShortsScreen";
 import StudioLayout from "../layouts/studio_layout/StudioLayout";
 import OverviewScreen from "../screens/studio_screen/OverviewScreen";
 import ContentScreen from "../screens/studio_screen/ContentScreen";
 import AnalyticalDataScreen from "../screens/studio_screen/AnalyticalDataScreen";
 import CommentScreen from "../screens/studio_screen/CommentScreen";
 import CustomizeChannelsScreen from "../screens/studio_screen/CustomizeChannelsScreen";
-import LoginScreen from "../screens/login Screen/LoginScreen";
-import RegisterScreen from "../screens/registerScreen/RegisterScreen";
-import mainLayout from "../layouts/mainLayout/MainLayout";
+import LoginScreen from "../screens/auth_screen/LoginScreen";
+import RegisterScreen from "../screens/auth_screen/RegisterScreen";
+import mainLayout from "../layouts/main_layout/MainLayout";
 
 export const publicRoutes = [
     {path: "/", component: homeScreen, layout: MainLayout},
