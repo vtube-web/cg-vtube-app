@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { PiShareFatLight, PiTrashLight } from "react-icons/pi";
 import { removeVideoLiked } from "../../features/video/videoLikedSlice";
 import Swal from "sweetalert2";
+import handleShareClick from "../../components/home/Video/handleShareClick";
 
 const ListLikedVideo = ({ handleRemoveItem, index, ...video }) => {
   const dispatch = useDispatch();
@@ -15,29 +16,6 @@ const ListLikedVideo = ({ handleRemoveItem, index, ...video }) => {
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
-  };
-
-  const handleShareClick = (videoId) => {
-    navigator.clipboard
-      .writeText("http://localhost:3000/watching/" + videoId)
-      .then(() =>
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Video URL copied to clipboard",
-          showConfirmButton: false,
-          timer: 1500,
-        })
-      )
-      .catch(() =>
-        Swal.fire({
-          position: "top-end",
-          icon: "error",
-          title: "Failed to copy video URL",
-          showConfirmButton: false,
-          timer: 2000,
-        })
-      );
   };
 
   const handleRemoveClick = (video) => {

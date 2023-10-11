@@ -64,8 +64,11 @@ export default function LibraryScreen() {
           <div className={`${style.body} row`}>
             {showNoWatchHistoryMessage ? (
               Array.isArray(listVideoWatched) && listVideoWatched.length > 0 ? (
-                listVideoWatched.map((videoData) => (
-                  <VideosRender key={videoData.videoId} {...videoData} />
+                listVideoWatched.map((videoData, index) => (
+                  <VideosRender
+                    key={`${videoData.videoId}_${index}`}
+                    {...videoData}
+                  />
                 ))
               ) : (
                 <p>No data to display</p>
@@ -122,12 +125,12 @@ export default function LibraryScreen() {
               <>
                 <div className={style.part}>
                   <div>Subscriptions</div>
-                  <div className={style.number}>145</div>
+                  <div className={style.number}>0</div>
                 </div>
                 <hr />
                 <div className={style.part}>
                   <div>Uploads</div>
-                  <div className={style.number}>2</div>
+                  <div className={style.number}>0</div>
                 </div>
                 <hr />
                 <div className={style.part}>

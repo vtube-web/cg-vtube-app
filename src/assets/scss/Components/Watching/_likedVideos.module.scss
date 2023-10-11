@@ -152,10 +152,11 @@
             display: flex;
             width: 160px;
             height: 106px;
-            padding: 8px 0 8px 0;
             position: relative;
+            background-color: black;
             img {
-              width: 100%;
+              margin: auto;
+              height: 100%;
               object-fit: cover;
               border-radius: 10px;
             }

@@ -87,8 +87,11 @@ const WatchedScreen = () => {
                     <p style={{ marginTop: 30, fontWeight: 550 }}>
                       {formatDateWatched(date)}
                     </p>
-                    {filteredVideos[date].map((videoData) => (
-                      <WatchedRender key={videoData.videoId} {...videoData} />
+                    {filteredVideos[date].map((videoData, index) => (
+                      <WatchedRender
+                        key={`${videoData.videoId}_${index}`}
+                        {...videoData}
+                      />
                     ))}
                   </div>
                 ))
@@ -97,10 +100,10 @@ const WatchedScreen = () => {
                     <p style={{ marginTop: 30, fontWeight: 550 }}>
                       {formatDateWatched(date)}
                     </p>
-                    {videosGroupedByDay[date].map((videoData) => (
+                    {videosGroupedByDay[date].map((videoData, index) => (
                       <WatchedRender
                         handleRemoveItem={handleRemoveItem}
-                        key={videoData.videoId}
+                        key={`${videoData.videoId}_${index}`}
                         {...videoData}
                       />
                     ))}

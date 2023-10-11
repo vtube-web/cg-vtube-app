@@ -12,6 +12,7 @@ import { removeVideoWatched } from "../../features/video/videoWatchedSlice";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import { PiShareFatLight } from "react-icons/pi";
+import handleShareClick from "../../components/home/Video/handleShareClick";
 
 const WatchedRender = ({ handleRemoveItem, index, ...videoData }) => {
   const dispatch = useDispatch();
@@ -31,13 +32,10 @@ const WatchedRender = ({ handleRemoveItem, index, ...videoData }) => {
     });
     handleRemoveItem();
   };
-  const handleShareClick = () => {
-    console.log("Share button clicked");
-  };
 
   useEffect(() => {
     const handleDocumentClick = (event) => {
-      if (!event.target.closest(`.${style.menu__videos}`)) {
+      if (!event.target.closest(`.${style.btn}`)) {
         setDropdownVisible(false);
       }
     };
@@ -50,7 +48,7 @@ const WatchedRender = ({ handleRemoveItem, index, ...videoData }) => {
   return (
     <div
       className={`${style.item__section__render} row`}
-      key={videoData.videoId}
+      key={index}
     >
       <div className={style.video__render}>
         <Link to={`/watching/${videoData.videoId}`}>
@@ -95,7 +93,7 @@ const WatchedRender = ({ handleRemoveItem, index, ...videoData }) => {
               </div>
             </div>
           </div>
-          <div className="col-3" style={style.btn}>
+          <div className={`${style.btn} col-3`}>
             <button
               className={style.icon__button}
               onClick={() => handleDelete(videoData)}
@@ -103,10 +101,7 @@ const WatchedRender = ({ handleRemoveItem, index, ...videoData }) => {
               <AiOutlineClose size={20} />
             </button>
             <>
-              <button
-                className={style.icon__button}
-                 onClick={toggleDropdown}
-              >
+              <button className={style.icon__button} onClick={toggleDropdown}>
                 <AiOutlineMore size={20} />
               </button>
               <ul
@@ -114,7 +109,7 @@ const WatchedRender = ({ handleRemoveItem, index, ...videoData }) => {
                 style={{ display: dropdownVisible ? "block" : "none" }}
               >
                 <li>
-                  <a onClick={handleShareClick}>
+                  <a onClick={() => handleShareClick(videoData.videoId)}>
                     <PiShareFatLight size={20} /> &nbsp; Share
                   </a>
                 </li>

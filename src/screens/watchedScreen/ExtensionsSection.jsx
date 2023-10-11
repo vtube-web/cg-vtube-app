@@ -98,12 +98,12 @@ const ExtensionsSection = ({handleRemoveItem}) => {
           <span>Pause watch history</span>
         </button>
       </div>
-      <div className={style.button__render}>
+      {/* <div className={style.button__render}>
         <button>
           <AiOutlineSetting size={22} />
           <span>Manage all history</span>
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };
