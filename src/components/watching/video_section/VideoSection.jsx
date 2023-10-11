@@ -1,4 +1,4 @@
-import style from "../../assets/scss/Components/Watching/_videoSection.module.scss";
+import style from "../../../assets/scss/watching/_videoSection.module.scss";
 import {BiDislike, BiLike,} from "react-icons/bi"
 import {PiShareFatLight,} from "react-icons/pi";
 import ShowMore from 'react-show-more-text'
@@ -39,7 +39,7 @@ function VideoSection({video}) {
                                         className={`${style.video__main}`}
                                         controls
                                         autoPlay
-                                        onError={(e) => console.error("Video error:", e)}
+                                        onError={(e) => console.error("video error:", e)}
                                     >
                                         <source src={video.videoUrl} type={'video/mp4'} />
                                     </video>
@@ -72,7 +72,7 @@ function VideoSection({video}) {
                         <div className={style.function__channel}>
                             <span className={`${style.function__like}`}>
                                 <BiLike size={20}/>
-                                <span>{video.likes}</span>
+                                <span>{formatNumberView(video.likes)}</span>
                             </span>
                             <span className={`${style.function__dislike}`}>
                                 <BiDislike size={20}/>

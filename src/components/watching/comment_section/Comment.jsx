@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {BiLike, BiDislike} from "react-icons/bi";
-import style from '../../../assets/scss/Components/Watching/_comment.module.scss'
+import style from '../../../assets/scss/watching/_comment.module.scss'
 import {Link} from "react-router-dom";
 const imgUrl ='https://cdn.discordapp.com/attachments/1151490874195316856/1152992123059175694/b2c44a9549a5cf8c9eebb8eb8fc51213.jpg?ex=65144c97&is=6512fb17&hm=7cca2b7ecd47ea4a8350668162dc73dcf9afe9952c7776d480ad07f9dbb55ae0&';
 

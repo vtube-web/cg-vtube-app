@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Modal from "../../components/studio/common/modal/Modal";
-import NavBar from "../../components/studio/nav_bar/NavBar";
-import SideBar from "../../components/studio/sideBar/SideBar";
+import NavBar from "../commons/studio/navbar/NavBar";
+import SideBar from "../commons/studio/sidebar/SideBar";
 import {
   setIsModalSearch,
   setIsModalMenu,

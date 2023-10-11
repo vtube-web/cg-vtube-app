@@ -8,10 +8,10 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import VideoUpload from "./VideoUpload";
-import TitleSection from "./imformation-fill/TitleSection";
-import DescribeSection from "./imformation-fill/DescribeSection";
-import DisplayModeSection from "./imformation-fill/DisplayModeSection";
-import ImageSection from "./imformation-fill/ImageSection";
+import TitleSection from "./imformation_fill/TitleSection";
+import DescribeSection from "./imformation_fill/DescribeSection";
+import DisplayModeSection from "./imformation_fill/DisplayModeSection";
+import ImageSection from "./imformation_fill/ImageSection";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { firebaseStorage } from "../../../firebase";
 import { toast } from "react-toastify";

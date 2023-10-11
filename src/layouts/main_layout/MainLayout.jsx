@@ -1,7 +1,7 @@
-import Header from "../commons/Header/Header";
-import SideBar from "../commons/Sidebar/SideBar";
-import style from '../../assets/scss/_app.module.scss'
-import style2 from '../../assets/scss/Components/Layout/_sidebar.module.scss'
+import Header from "../commons/main/Header";
+import SideBar from "../commons/main/SideBar";
+import style from '../../assets/scss/base/_app.module.scss'
+import style2 from '../../assets/scss/layout/_sidebar.module.scss'
 import {useState} from "react";
 import {Container} from "react-bootstrap";
 

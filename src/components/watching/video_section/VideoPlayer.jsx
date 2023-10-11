@@ -1,4 +1,4 @@
-import style from "../../../assets/scss/Components/Watching/_videoPlayer.module.scss";
+import style from "../../../assets/scss/watching/_videoPlayer.module.scss";
 
 function VideoPlayer(){
     return(

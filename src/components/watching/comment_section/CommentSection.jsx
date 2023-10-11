@@ -1,4 +1,4 @@
-import style from '../../../assets/scss/Components/Watching/_commentSection.module.scss'
+import style from '../../../assets/scss/watching/_commentSection.module.scss'
 import {useEffect, useState} from "react";
 import Comment from './Comment'
 import {useSelector} from "react-redux";
@@ -10,7 +10,6 @@ export default function CommentSection() {
     const [showButton, setShowButton] = useState(false);
     const [commentContent, setCommentContent] = useState("");
 
-    console.log("re-render CommentsSection")
     const showButtonComment = () => {
         setShowButton(!showButton);
     };
