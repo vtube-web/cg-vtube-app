@@ -8,7 +8,6 @@ import {PiShareFatFill} from "react-icons/pi";
 import {CgDetailsMore} from "react-icons/cg";
 import {AiOutlineClose} from "react-icons/ai";
 
-
 function VideoShorts({videoShort}) {
 
     const [playToggle, setPlayToggle] = useState(false);

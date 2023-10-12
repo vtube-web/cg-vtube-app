@@ -5,9 +5,9 @@ const token =
 export const submitComment = async(comment) => {
     let result = null;
     try {
-        result = axios.post(
+        result = await axios.post(
             `http://localhost:8080/api/${comment.videoId}/comment`,
-            {content: comment.content, userId: comment.userId},
+            {content: comment.content},
             {headers: {Authorization: `Bearer ${token}`}}
         );
     } catch (e) {

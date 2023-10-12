@@ -1,26 +1,62 @@
 import style from '../../../assets/scss/watching/_commentSection.module.scss'
 import {useEffect, useState} from "react";
 import Comment from './Comment'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {selectVideoDetail} from "../../../features/video/videoSlice";
+import {useParams} from "react-router-dom";
+import {addComment} from "../../../features/comment_reply/commentSlice";
+import {getStoredUserData} from "../../../services/accountService";
 
 export default function CommentSection() {
+    const params = useParams();
     const video = useSelector(selectVideoDetail);
-    const commentList = video.commentDtoList;
-    const [showButton, setShowButton] = useState(false);
     const [commentContent, setCommentContent] = useState("");
+    const dispatch = useDispatch();
+    const [commentList, setCommentList] = useState([]);
+    const user = getStoredUserData();
 
-    const showButtonComment = () => {
-        setShowButton(!showButton);
-    };
-
-    function handleInputChange(event) {
-        setCommentContent(event.target.value)
+    const commentData = {
+        content: commentContent,
+        videoId: params.videoId
+    }
+    const newComment = {
+        content: commentContent,
+        videoId: params.videoId,
+        likes: 0,
+        dislikes: 0,
+        create_At: Date.now(),
+        userResponseDto: {
+            id: 1,
+            userName: "Trung",
+            avatar: "https://th.bing.com/th/id/R.71d14dec241efa2f8703e7db2f7d0071?rik=aaRrGql9XaBKqw&pid=ImgRaw&r=0"
+        }
     }
 
-    function handleComment(){
+    useEffect(() => {
+        if (video) {
+            setCommentList(video.commentDtoList)
+        }
+    }, [video])
 
-        alert(commentContent)
+    function handleInputChange(event) {
+        setCommentContent(event.target.value);
+    }
+
+    const handleComment = async (e) => {
+        e.preventDefault();
+        const updatedCommentList = [newComment, ...commentList];
+        dispatch(addComment(commentData));
+        setCommentList(updatedCommentList);
+        setCommentContent("");
+    }
+
+    let alertDisplayed = false;
+    function handleCheckLogin() {
+        console.log(user);
+        if (user === undefined && !alertDisplayed) {
+            alert("You must log in");
+            alertDisplayed = true;
+        }
     }
 
     return (
@@ -36,19 +72,20 @@ export default function CommentSection() {
                             alt={"user avatar"}/>
                     </div>
                     <div className={`${style.content__input} col-11`}>
-                        <form>
+                        <form onSubmit={handleComment}>
                             <input
                                 type="text"
                                 name={"content"}
+                                value={commentContent}
                                 placeholder="Viết bình luận ..."
-                                onClick={showButtonComment}
                                 onInput={handleInputChange}
+                                onFocus={handleCheckLogin}
                             />
                         </form>
                     </div>
                 </div>
 
-                {showButton && (
+                {commentContent && (
                     <div className={style.comment__function}>
                         <button>Hủy</button>
                         <button onClick={handleComment}>Bình luận</button>
@@ -56,11 +93,17 @@ export default function CommentSection() {
                 )}
 
                 <div>
-                    {commentList?.map((comment, index) => (
-                        <div key={index}>
-                            <Comment {...comment} />
+                    {Array.isArray(commentList) && commentList.length > 0 ? (
+                        commentList.map((comment, index) => (
+                            <div key={index}>
+                                <Comment {...comment} />
+                            </div>
+                        ))
+                    ) : (
+                        <div className={style.comment__no_content}>
+                            <p>This video has no comments... Be the first one!</p>
                         </div>
-                    ))}
+                    )}
                 </div>
             </div>
         </>

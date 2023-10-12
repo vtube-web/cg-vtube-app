@@ -25,8 +25,8 @@ function HomeScreen() {
             <Row>
                 {videoList.map(
                     (video) => (
-                        <Col lg={3} md={4}>
-                            <Video key={video.id} video={video}/>
+                        <Col lg={3} md={4} key={video.id}>
+                            <Video video={video}/>
                         </Col>
                     ))}
             </Row>
