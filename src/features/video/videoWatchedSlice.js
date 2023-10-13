@@ -14,8 +14,8 @@ const initialState = {
   success: false,
 };
 
-export const getVideoWatched = createAsyncThunk("history/list", async () => {
-  const response = await videoWatchedList();
+export const getVideoWatched = createAsyncThunk("history/list", async (page) => {
+  const response = await videoWatchedList(page);
   return response.data;
 });
 

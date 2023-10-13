@@ -3,11 +3,14 @@ import { getStoredUserData } from "../services/accountService";
 
 export const VIDEO_WATCHED_API = "http://localhost:8080/api/watched-videos";
 
-export const videoWatchedList = async () => {
+export const videoWatchedList = async (page) => {
   let videoList = null;
   let user = getStoredUserData();
   try {
     videoList = await axios.get(`${VIDEO_WATCHED_API}`, {
+      params: {
+        page: page,
+      },
       headers: {
         Authorization: "Bearer " + user.accessToken,
       },

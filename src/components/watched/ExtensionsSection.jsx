@@ -42,7 +42,6 @@ const ExtensionsSection = ({handleRemoveItem}) => {
 
   useEffect(() => {
     if (!videoListPage || !videoListPage.content) {
-      console.error("Invalid videos data.");
       setShowNoWatchHistoryMessage(true);
       return;
     }

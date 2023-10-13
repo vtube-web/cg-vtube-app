@@ -23,8 +23,6 @@ export default function LibraryScreen() {
   const [showNoWatchHistoryMessage, setShowNoWatchHistoryMessage] =
     useState(false);
   const [showNoLikedMessage, setShowNoLikedMessage] = useState(false);
-  // const test = 0;
-  // const [totalLiked, setTotalLiked] = useState();
   useEffect(() => {
     if (videoWatched.length === 0) {
       dispatch(getVideoWatched());
@@ -37,9 +35,6 @@ export default function LibraryScreen() {
     setShowNoLikedMessage(videoLiked.length !== 0);
     setListVideoWatched(videoWatched.content);
     setListVideoLiked(videoLiked.content);
-    // setTotalLiked(videoLiked.length);
-    // test = videoLiked.content.length;
-    // console.log(totalLiked);
   }, [dispatch, videoWatched, videoLiked]);
 
   return (

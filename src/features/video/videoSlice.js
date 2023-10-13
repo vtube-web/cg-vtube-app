@@ -76,7 +76,7 @@ export const videoSlice = createSlice({
                 state.getVideoSuccess = true;
                 state.loading = false;
                 state.error = false;
-                state.videoDetails = action.payload;
+                state.videoDetails = action.payload.data;
             })
     }
 });
