@@ -6,7 +6,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import Upload from "../../components/studio/overview/Upload";
 import InformationFill from "../../components/studio/overview/InformationFill";
-import "../../assets/css/studio/overviewScreen.css";
+import "../../assets/css/studio/overview-screen.css";
  import { ToastContainer} from "react-toastify";
 import { setVideo } from "../../features/studio/videoUploadSlice";
 

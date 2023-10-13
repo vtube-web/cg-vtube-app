@@ -4,7 +4,7 @@ export const VIDEO_API = "http://localhost:8080/api/videos";
 
 export const findVideoList = async () => {
     let videoList = null;
-    console.log("Dang lay Home list")
+    console.log("Dang lay home list")
     try {
         videoList = await axios.get(`${VIDEO_API}`)
     } catch (e) {

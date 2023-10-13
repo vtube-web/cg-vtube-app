@@ -7,7 +7,6 @@ export const findVideoShorts = async () => {
         videoShortsList = await axios.get(`${VIDEO_SHORTS_API}`);
     } catch (e) {
         console.log('getVideoShorts API error: ' + e);
-
     }
     return videoShortsList;
 }

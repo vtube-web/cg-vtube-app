@@ -1,6 +1,6 @@
 import {Route, Routes} from "react-router-dom";
 import {publicRoutes} from "../data/RoutesData";
-import SignInScreen from "../screens/signInScreen/SignInScreen";
+import SignInScreen from "../screens/auth_screen/SignInScreen";
 
 
 export function AppRoutes() {

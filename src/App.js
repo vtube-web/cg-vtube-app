@@ -1,5 +1,5 @@
 import './App.css';
-import './assets/scss/_app.module.scss'
+import './assets/scss/base/_app.module.scss'
 import {BrowserRouter} from "react-router-dom";
 import {AppRoutes} from "./routes/AppRoutes";
 

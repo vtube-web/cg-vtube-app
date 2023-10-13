@@ -16,8 +16,8 @@ function ContentScreen() {
     }
   },[subParam])
 
-  const pathAcountDefault = `/channel/${channelId}/content`;
-  
+  const pathAcountDefault = `/channel/${channelId}/content/*`;
+
   const menus = [
     {
       to: `${pathAcountDefault}/upload`,
