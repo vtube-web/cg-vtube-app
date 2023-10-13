@@ -113,7 +113,7 @@ function RegisterScreen() {
     },
   });
 
-
+  
   useEffect(() => {
     if (registerSuccess) {
       dispatch(resetUserAccountState());

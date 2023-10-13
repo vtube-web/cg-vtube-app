@@ -91,7 +91,6 @@ function LoginScreen() {
             <div className="mt-0 mb-2 input-group flex-nowrap ">
               <label htmlFor="password" className="form-label"></label>
               <input
-
                 type={showPassword ? "text" : "password"}
                 className="form-control input-login p-0"
                 name="password"
@@ -118,13 +117,13 @@ function LoginScreen() {
               {loading ? "Loading..." : "login"}
             </button>
           </Form>
-
-          <div className="d-flex justify-content-between mt-3">
-            <p className="mt-4">
+          
+          <div className="d-flex flex-column flex-sm-row justify-content-between mt-3">
+            <p className="mt-2 mt-sm-4 text-wrap text-center text-sm-left">
               Forgot password? <Link to="/forgot">Forgot</Link>
             </p>
-            <p className="mt-4">
-              Not a member? <Link to="/register">SignUp now</Link>
+            <p className="mt-2 mt-sm-4 text-wrap text-center text-sm-right">
+              Not a member? <Link to="/register">SignUp</Link>
             </p>
           </div>
         </div>

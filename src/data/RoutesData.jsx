@@ -20,6 +20,7 @@ import LoginScreen from "../screens/login Screen/LoginScreen";
 import RegisterScreen from "../screens/registerScreen/RegisterScreen";
 import HomeProfileScreen from "../screens/homeProfileScreen/HomeProfileScreen";
 
+
 export const publicRoutes = [
     {path: "/", component: homeScreen, layout: MainLayout},
     {path: "/library", component: libraryScreen, layout: MainLayout},
@@ -34,9 +35,10 @@ export const publicRoutes = [
     {path: "/yourVideos", component: yourVideoScreen, layout: MainLayout},
     {path: `/watching/:videoId`, component: watchingScreen, layout: MainLayout},
     {path: `/channel/:channelId`, component: OverviewScreen, layout: StudioLayout},
-    {path: `/channel/:channelId/content`, component: ContentScreen, layout: StudioLayout},
+    {path: `/channel/:channelId/content/:subParam`, component: ContentScreen, layout: StudioLayout},
     {path: `/channel/:channelId/analytical`, component: AnalyticalDataScreen, layout: StudioLayout},
     {path: `/channel/:channelId/comment`, component: CommentScreen, layout: StudioLayout},
     {path: `/channel/:channelId/customize`, component: CustomizeChannelsScreen, layout: StudioLayout},
+    {path: `/homeProfile/:userName/:subParam`, component: HomeProfileScreen, layout:MainLayout},
     {path: "/*", component: notFoundScreen, layout: null},
 ]

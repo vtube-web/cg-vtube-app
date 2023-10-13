@@ -9,12 +9,15 @@ import PlayList from "../../components/studio/content/PlaylistSubContent";
 function ContentScreen() {
   const { channelId, subParam } = useParams();
   const navigate = useNavigate();
+
   useEffect(()=>{
     if(subParam == "*"){
       navigate(`/channel/${channelId}/content/upload`);
     }
   },[subParam])
+
   const pathAcountDefault = `/channel/${channelId}/content`;
+  
   const menus = [
     {
       to: `${pathAcountDefault}/upload`,
@@ -45,11 +48,12 @@ function ContentScreen() {
       <div className="pl-6 pt-4 text-2xl font-bold flex">
         Content channel page
       </div>
+
       <div className="flex flex-nowrap space-x-3 py-4 bg-white rounded-lg mt-2">
         <div className="w-full">
           <div className="flex px-4 space-x-8 border-b-[1px] w-full">
             {menus?.map((menu, i) => (
-              <MenuItemChill menu={menu} key={i} />
+              <MenuItemChill menu={menu} key={i}/>
             ))}
           </div>
           {subParam == "upload" ? <Video /> : <></>}
@@ -58,6 +62,7 @@ function ContentScreen() {
         </div>
       </div>
     </div>
+
   );
 }
 
