@@ -31,3 +31,21 @@ export const findVideo = async (id) => {
        console.log("getVideo API error: ", error);
      }
 }
+
+
+export const findVideoSubscribedList = async () => {
+  let result = null;
+  let user = getStoredUserData();
+  try {
+    result = await axios.get(`${VIDEO_API}/subscribed`, {
+      headers: {
+        Authorization: "Bearer " + user.accessToken,
+      },
+    });
+  } catch (e) {
+    console.log(
+      "Error when calling API to get list of subscribed videos: " + e
+    );
+  }
+  return result;
+}
