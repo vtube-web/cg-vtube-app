@@ -17,7 +17,9 @@ $white: white;
     align-items: center;
     background: black;
     position: relative;
-    border-radius: 15px 0 0 15px;
+    transform: translateX(0%);
+    transition: all ease-in 0.5s;
+    border-radius: 15px;
 
     .color__shorts {
       width: 100%;
@@ -28,6 +30,7 @@ $white: white;
         height: 85vh;
         resize: vertical;
         width: 100%;
+        border-radius: 15px;
       }
 
       .shorts__top {
@@ -122,6 +125,12 @@ $white: white;
     span {
       color: black;
       filter: brightness(150%);
+    }
+
+    &.active {
+      transform: translateX(0%);
+      transition: all ease-out 0.5s;
+      border-radius: 15px 0 0 15px;
     }
   }
 

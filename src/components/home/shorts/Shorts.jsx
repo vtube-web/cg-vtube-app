@@ -1,5 +1,5 @@
 import style from "../../../assets/scss/main_screen/shorts/_videoShorts.module.scss";
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {BsPlayFill, BsPauseFill} from "react-icons/bs";
 import {IoIosMore, IoMdVolumeHigh, IoMdVolumeOff} from "react-icons/io";
 import {BiSolidDislike, BiSolidLike} from "react-icons/bi";
@@ -8,6 +8,7 @@ import {PiShareFatFill} from "react-icons/pi";
 import {CgDetailsMore} from "react-icons/cg";
 import {AiOutlineClose} from "react-icons/ai";
 import formatNumberView from "../../../format/FormatNumberView";
+import ReactPlayer from "react-player";
 
 
 function Shorts({videoShort}) {
@@ -15,34 +16,71 @@ function Shorts({videoShort}) {
     const [playToggle, setPlayToggle] = useState(false);
     const [volumeToggle, setVolumeToggle] = useState(false);
     const [commentsToggle, setCommentsToggle] = useState(false);
+    const playerRef = useRef(null);
 
     const handlePlayClick = () => {
         setPlayToggle(!playToggle);
+        if (playerRef.current) {
+            const internalPlaying = playerRef.current.getInternalPlayer();
+            if (internalPlaying.paused) {
+                internalPlaying.play();
+            } else {
+                internalPlaying.pause();
+            }
+        }
     }
 
     const handleVolumeClick = () => {
         setVolumeToggle(!volumeToggle);
+        if (playerRef.current) {
+            const internalVolume = playerRef.current.getInternalPlayer();
+            if (internalVolume.muted) {
+                internalVolume.muted = false;
+                setVolumeToggle(false);
+            } else {
+                internalVolume.muted = true;
+                setVolumeToggle(true);
+            }
+        }
+
     }
+
 
     const handleCommentsClick = () => {
         setCommentsToggle(!commentsToggle);
     }
+
+    const handleVideoClick = () => {
+        if (playerRef.current) {
+            if (playerRef.current.getInternalPlayer().paused) {
+                playerRef.current.getInternalPlayer().play();
+            } else {
+                playerRef.current.getInternalPlayer().pause();
+            }
+        }
+    };
 
 
     return (
         <>
             <div className={style.container}>
 
-                <div className={style.video_shorts__container}>
+                <div className={`${style.video_shorts__container} ${commentsToggle && style.active}`}>
 
                     <div className={style.color__shorts}>
-                        <video
+                        <ReactPlayer
+                            id="myVideo"
                             className={`${style.shorts__main}`}
-                            controls
-                            onError={(e) => console.error("Shorts error:", e)}
-                        >
-                            <source src={videoShort.videoUrl} type={'video/mp4'} />
-                        </video>
+                            url={videoShort.shortsUrl}
+                            controls={false}
+                            ref={playerRef}
+                            onClick={handleVideoClick}
+                            OnUnstarted
+                            loop
+                            width='100%'
+                            height='82vh'
+                            onError={(e) => console.error("Video error:", e)}
+                        />
 
                         <div className={style.shorts__top}>
                             <div
@@ -70,7 +108,7 @@ function Shorts({videoShort}) {
                                 <div className={style.shorts__user}>
                                     <div className={style.user__info}>
                                         <img src={videoShort.userDto.avatar} alt={'channel_name'}/>
-                                        <p>{videoShort.userName}</p>
+                                        <p>{videoShort.userDto.userName}</p>
                                     </div>
                                     <span className={style.subs__btn}>Subscribe</span>
                                 </div>
@@ -99,7 +137,7 @@ function Shorts({videoShort}) {
                             </div>
 
                         </div>
-                        <span>Không ...</span>
+                        <span>{formatNumberView(videoShort.dislikes)}</span>
 
 
                         <div className={style.shorts__btn}>

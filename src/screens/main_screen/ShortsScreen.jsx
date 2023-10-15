@@ -4,7 +4,7 @@ import React, {useEffect} from "react";
 import Shorts from "../../components/home/shorts/Shorts";
 import style from "../../assets/scss/main_screen/shorts/_shorts.module.scss";
 import {selectVideoList} from "../../features/video/videoSlice";
-
+import ReactPlayer from 'react-player';
 
 function ShortsScreen() {
     const dispatch = useDispatch();
@@ -19,7 +19,7 @@ function ShortsScreen() {
     return (
         <div className={style.shorts__container}>
             <div className={style.shorts__content}>
-                {videoList.map(
+                {videoShortsList.map(
                     (videoShort) => (
                         <Shorts
                             key={videoShort.id}
