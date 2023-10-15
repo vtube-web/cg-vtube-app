@@ -9,11 +9,9 @@ function HomeScreen() {
     const dispatch = useDispatch();
     const videoList = useSelector(selectVideoList);
     const success = useSelector(selectVideoListSuccess);
-    console.log("Re-render HomeScreen")
     useEffect(() => {
             if (!success) {
                 dispatch(getVideos());
-                console.log("Getting videos...");
             }
     }, [])
 
@@ -25,8 +23,8 @@ function HomeScreen() {
             <Row>
                 {videoList.map(
                     (video) => (
-                        <Col lg={3} md={4}>
-                            <Video key={video.id} video={video}/>
+                        <Col lg={3} md={4} key={video.id}>
+                            <Video video={video}/>
                         </Col>
                     ))}
             </Row>

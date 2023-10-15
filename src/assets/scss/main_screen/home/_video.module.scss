@@ -37,12 +37,12 @@ a {
       }
 
       .video__thumbnail {
-        height: 200px;
-        border-radius: 20px;
-        margin: 0 auto;
         display: block;
         object-fit: fill;
+        height: 200px;
+        border-radius: 20px;
         position: relative;
+        margin: 0 auto;
         z-index: 2;
       }
 
@@ -59,7 +59,6 @@ a {
     &__title {
       margin-bottom: 0.1rem;
       color: $white-text;
-
       @include line-clamp(1);
     }
 

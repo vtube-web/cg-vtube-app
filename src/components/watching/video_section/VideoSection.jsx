@@ -7,6 +7,8 @@ import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import formatNumberView from "../../../format/FormatNumberView";
 import formatDate from "../../../format/FormatDate";
+import ReactPlayer from "react-player";
+import formatDateAgo from "../../../format/FormatDateAgo";
 
 
 function VideoSection({video}) {
@@ -23,7 +25,6 @@ function VideoSection({video}) {
                 setDescription(video.description);
             }
         }
-
     }, [video]);
 
 
@@ -35,18 +36,19 @@ function VideoSection({video}) {
                         {video.videoUrl &&
                             (
                                 <div className={style.custom__video__container}>
-                                    <video
-                                        className={`${style.video__main}`}
-                                        controls
-                                        autoPlay
-                                        onError={(e) => console.error("video error:", e)}
-                                    >
-                                        <source src={video.videoUrl} type={'video/mp4'} />
-                                    </video>
-                                    {/*<VideoPlayer/>*/}
+                                    <ReactPlayer
+                                        url={video.videoUrl}
+                                        className={style.video__main}
+                                        controls={true}
+                                        pip={true}
+                                        stopOnUnmount={false}
+                                        width='96%'
+                                        height='98.5%'
+                                        playing={true}
+                                        onError={(e) => console.error("Video error:", e)}
+                                    />
                                 </div>
                             )
-
                         }
                     </div>
                     <div className={style.video__title}>
@@ -88,7 +90,7 @@ function VideoSection({video}) {
                         <div className={`${style.details__description}`}>
                             <div className={`${style.details__info}`}>
                                 <span>{formatNumberView(video.views)} views • </span>
-                                <span>{formatDate(video.createAt)}</span>
+                                <span>{formatDateAgo(video.createAt)}</span>
                             </div>
                             <ShowMore
                                 lines={4}

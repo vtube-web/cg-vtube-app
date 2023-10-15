@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from "react-redux";
 import {getVideoShorts, selectVideoShorts} from "../../features/shorts/shortsSlice";
 import React, {useEffect} from "react";
-import VideoShorts from "../../components/home/video/VideoShorts";
+import VideoShorts from "../../components/short/VideoShorts";
 import style from "../../assets/scss/main_screen/shorts/_shorts.module.scss";
 
 
