@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { videoLikedList, deleteVideoLiked } from "../../api/videoLikedAPI";
+import { videoLikedList, deleteVideoLiked, createLiked } from "../../api/videoLikedAPI";
 
 const initialState = {
   videos: [],
@@ -30,6 +30,11 @@ export const removeVideoLiked = createAsyncThunk(
   }
 );
 
+export const addLiked = createAsyncThunk("liked/create", async (videoId) => {
+  const response = await createLiked(videoId);
+  return response.data;
+});
+
 export const videoLikedSlice = createSlice({
   name: "videoLiked",
   initialState,
@@ -46,7 +51,7 @@ export const videoLikedSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      
+
       .addCase(getVideoLiked.pending, (state) => {
         state.success = false;
         state.loading = true;
@@ -79,6 +84,23 @@ export const videoLikedSlice = createSlice({
         state.loading = false;
         state.value = action.payload.data;
         state.error = false;
+      })
+
+      .addCase(addLiked.pending, (state) => {
+        state.success = false;
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(addLiked.rejected, (state, action) => {
+        state.success = false;
+        state.loading = false;
+        state.error = action.error;
+      })
+      .addCase(addLiked.fulfilled, (state, action) => {
+        state.success = true;
+        state.loading = false;
+        state.error = false;
+        state.value = action.payload.data;
       });
   },
 });
@@ -90,6 +112,8 @@ export const selectError = (state) => state.videoLiked.error;
 export const selectSuccess = (state) => state.videoLiked.success;
 export const selectVideoLikedList = (state) => state.videoLiked.videos;
 export const selectVideoLikedRemoved = (state) => state.videoLiked.value;
+export const selectLiked = (state) => state.videoLiked.value;
+
 
 
 export default videoLikedSlice.reducer;

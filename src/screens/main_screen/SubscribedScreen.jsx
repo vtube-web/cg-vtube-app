@@ -20,7 +20,6 @@ export default function SubscribedScreen() {
     }
     setShowNoSubscribedMessage(videoListPage.length !== 0);
     setListVideoSubscribed(videoListPage.content);
-    console.log(videoListPage.content);
   }, [dispatch, videoListPage]);
 
 
