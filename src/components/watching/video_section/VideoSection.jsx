@@ -6,7 +6,6 @@ import "react-show-more-text/lib/ShowMoreText.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import formatNumberView from "../../../format/FormatNumberView";
-import formatDate from "../../../format/FormatDate";
 import {
   addSubscriber,
   removeSubscribed,
@@ -21,6 +20,7 @@ import handleShareClick from "../../../services/handleShareClick";
 import { getInfoUser, selectUserInfo } from "../../../features/auth/userSlice";
 import ReactPlayer from "react-player";
 import formatDateAgo from "../../../format/FormatDateAgo";
+import { getStoredUserData } from "../../../services/accountService";
 
 function VideoSection({ video }) {
   const dispatch = useDispatch();
@@ -28,9 +28,10 @@ function VideoSection({ video }) {
   const [description, setDescription] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
-  const loggerUser = useSelector(selectUserInfo);
+  const user = useSelector(selectUserInfo);
   const [userInfo, setUserInfo] = useState({});
   const [reRender, setReRender] = useState(true);
+  const loggerUser = getStoredUserData();
   useEffect(() => {
     if (video) {
       if (video.userDto) {
@@ -41,12 +42,14 @@ function VideoSection({ video }) {
         setDescription(video.description);
       }
     }
-    if (!loggerUser || reRender) {
-      dispatch(getInfoUser());
-      setReRender(!reRender);
+    if (loggerUser) {
+      if (!user || reRender) {
+        dispatch(getInfoUser());
+        setReRender(!reRender);
+      }
+      setUserInfo(user);
     }
-    setUserInfo(loggerUser);
-  }, [video, loggerUser]);
+  }, [video, user]);
 
   useEffect(() => {
     if (video && video.userDto && video.userDto.id) {
@@ -55,40 +58,53 @@ function VideoSection({ video }) {
       setIsSubscribed(subscribed);
       setIsLiked(liked);
     }
-  }, [video, loggerUser]);
+  }, [video, user]);
 
   const isChannelSubscribed = (channelId) => {
-    const subscribedChannels = userInfo.subscriptions;
-    return subscribedChannels.includes(channelId);
+    const subscribedChannels = userInfo && userInfo.subscriptions;
+    return subscribedChannels ? subscribedChannels.includes(channelId) : false;
   };
 
   const isVideoLiked = (videoId) => {
-    const listVideoLiked = userInfo.likedVideos;
-    return listVideoLiked.includes(videoId);
+    const listVideoLiked = userInfo && userInfo.likedVideos;
+    return listVideoLiked ? listVideoLiked.includes(videoId) : false;
   };
 
   const handleSubscribeClick = (id) => {
     try {
-      if (isSubscribed) {
-        dispatch(removeSubscribed(id));
+      if (loggerUser) {
+        if (isSubscribed) {
+          dispatch(removeSubscribed(id));
+        } else {
+          dispatch(addSubscriber(id));
+        }
+        setIsSubscribed(!isSubscribed);
+        setReRender(!reRender);
+        toast.success(
+          isSubscribed ? "Subscription removed" : "Subscription added",
+          {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          }
+        );
       } else {
-        dispatch(addSubscriber(id));
-      }
-      setIsSubscribed(!isSubscribed);
-      setReRender(!reRender);
-      toast.success(
-        isSubscribed ? "Subscription removed" : "Subscription added",
-        {
+        toast.info("Sign in to subscribe to this channel.", {
           position: "top-right",
-          autoClose: 1500,
-          hideProgressBar: false,
+          autoClose: 2000,
+          hideProgressBar: true,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
           theme: "light",
-        }
-      );
+        });
+      }
     } catch (error) {
       toast.error("Failed to subscribe/unsubscribe:", error, {
         position: "top-right",
@@ -105,22 +121,35 @@ function VideoSection({ video }) {
 
   const handleLikeClick = (id) => {
     try {
-      if (isLiked) {
-        dispatch(removeVideoLiked(id));
+      if (loggerUser) {
+        if (isLiked) {
+          dispatch(removeVideoLiked(id));
+        } else {
+          dispatch(addLiked(id));
+        }
+        setIsLiked(!isLiked);
+        toast.success(isLiked ? "Like removed" : "Like added", {
+          position: "top-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       } else {
-        dispatch(addLiked(id));
+        toast.info("Sign in to make your opinion count.", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       }
-      setIsLiked(!isLiked);
-      toast.success(isLiked ? "Like removed" : "Like added", {
-        position: "top-right",
-        autoClose: 1500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
     } catch (error) {
       toast.error("Failed to like/unlike:", error, {
         position: "top-right",

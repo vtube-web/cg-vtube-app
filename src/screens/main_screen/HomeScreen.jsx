@@ -14,13 +14,13 @@ function HomeScreen() {
   const dispatch = useDispatch();
   const videoList = useSelector(selectVideoList);
   const success = useSelector(selectVideoListSuccess);
-  const param = useParams();
+  const [reRender, setReRender] = useState(true);
   useEffect(() => {
-    if (success) {
+    if (success || reRender) {
       dispatch(getVideos());
       console.log("test");
     }
-  }, [param]);
+  }, []);
 
   return (
     <Container>
