@@ -4,16 +4,15 @@ import formatNumberView from "../../format/FormatNumberView";
 import { Link } from "react-router-dom";
 import formatDateAgo from "../../format/FormatDateAgo";
 
-const VideosRender = ({ ...videoData }) => {
+const VideosRender = ({ index, ...videoData }) => {
   return (
-    <div
-      className={`${style.info} col-sm-6 col-md-4 col-lg-3`}
-      key={videoData.videoId}
-    >
-      <Link to={`/watching/${videoData.videoId}`}>
-        <img src={videoData.thumbnail} alt="thumbnail" />
-      </Link>
-      <div className={style.time__video}>30:56</div>
+    <div className={`${style.info} col-sm-6 col-md-4 col-lg-3`} key={index}>
+      <div className={style.img_thumbnail}>
+        <Link to={`/watching/${videoData.videoId}`}>
+          <img src={videoData.thumbnail} alt="thumbnail" />
+          <div className={style.time__video}>30:56</div>
+        </Link>
+      </div>
       <div className={`${style.detail} row`}>
         <div className="col-10">
           <div className={style.content__tittle}>

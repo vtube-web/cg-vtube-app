@@ -23,8 +23,6 @@ export default function LibraryScreen() {
   const [showNoWatchHistoryMessage, setShowNoWatchHistoryMessage] =
     useState(false);
   const [showNoLikedMessage, setShowNoLikedMessage] = useState(false);
-  // const test = 0;
-  // const [totalLiked, setTotalLiked] = useState();
   useEffect(() => {
     if (videoWatched.length === 0) {
       dispatch(getVideoWatched());
@@ -37,9 +35,6 @@ export default function LibraryScreen() {
     setShowNoLikedMessage(videoLiked.length !== 0);
     setListVideoWatched(videoWatched.content);
     setListVideoLiked(videoLiked.content);
-    // setTotalLiked(videoLiked.length);
-    // test = videoLiked.content.length;
-    // console.log(totalLiked);
   }, [dispatch, videoWatched, videoLiked]);
 
   return (
@@ -64,8 +59,11 @@ export default function LibraryScreen() {
           <div className={`${style.body} row`}>
             {showNoWatchHistoryMessage ? (
               Array.isArray(listVideoWatched) && listVideoWatched.length > 0 ? (
-                listVideoWatched.map((videoData) => (
-                  <VideosRender key={videoData.videoId} {...videoData} />
+                listVideoWatched.map((videoData, index) => (
+                  <VideosRender
+                    key={`${videoData.videoId}_${index}`}
+                    {...videoData}
+                  />
                 ))
               ) : (
                 <p>No data to display</p>
@@ -122,12 +120,12 @@ export default function LibraryScreen() {
               <>
                 <div className={style.part}>
                   <div>Subscriptions</div>
-                  <div className={style.number}>145</div>
+                  <div className={style.number}>0</div>
                 </div>
                 <hr />
                 <div className={style.part}>
                   <div>Uploads</div>
-                  <div className={style.number}>2</div>
+                  <div className={style.number}>0</div>
                 </div>
                 <hr />
                 <div className={style.part}>

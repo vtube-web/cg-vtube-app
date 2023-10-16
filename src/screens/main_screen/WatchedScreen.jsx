@@ -10,6 +10,7 @@ import formatDateWatched from "../../format/FormatDateWatched";
 import ExtensionsSection from "../../components/watched/ExtensionsSection";
 import WatchedRender from "../../components/watched/WatchedRender";
 import groupVideosByDay from "../../components/watched/GroupVideosByDay";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const WatchedScreen = () => {
   const dispatch = useDispatch();
@@ -32,12 +33,12 @@ const WatchedScreen = () => {
         dispatch(getVideoWatched());
         if (isRemove) {
           handleRemoveItem();
-        };
+        }
         return;
       }
       const videos = videoListPage.content;
       const groupedVideos = groupVideosByDay(videos);
-      setVideosGroupedByDay(groupedVideos);
+      setVideosGroupedByDay((prev) => ({ ...prev, ...groupedVideos }));
       setShowNoWatchHistoryMessage(Object.keys(groupedVideos).length !== 0);
     }
   }, [isChange, isRemove, videoListPage]);
@@ -63,6 +64,29 @@ const WatchedScreen = () => {
     setFilteredVideos(filteredVideosGroupedByDay);
   }, [searchKeyword, videosGroupedByDay]);
 
+  const fetchMoreData = () => {
+    setTimeout(async () => {
+      if (videoListPage && videoListPage.hasNext) {
+        await dispatch(getVideoWatched(videoListPage.currentPageNumber + 1))
+          .then((response) => {
+            const newVideos = response.payload.data.content;
+            if (newVideos && newVideos.length > 0) {
+              const currentVideos = { ...videoListPage.content };
+              const currentVideosArray = Object.values(currentVideos);
+              const newVideosReturn = currentVideosArray.concat(newVideos);
+              setVideosGroupedByDay(groupVideosByDay(newVideosReturn));
+              setShowNoWatchHistoryMessage(true);
+            } else {
+              console.log("No new videos received.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching more data:", error);
+          });
+      }
+    }, 1500);
+  };
+
   return (
     <div className={`${style.watched__container} row`}>
       <ExtensionsSection handleRemoveItem={handleRemoveItem} />
@@ -81,27 +105,41 @@ const WatchedScreen = () => {
                 <p>This list has no videos.</p>
               </div>
             )}
-            {filteredVideos
-              ? Object.keys(filteredVideos).map((date) => (
-                  <div key={date}>
-                    <p style={{ marginTop: 30 }}>{formatDateWatched(date)}</p>
-                    {filteredVideos[date].map((videoData) => (
-                      <WatchedRender key={videoData.videoId} {...videoData} />
-                    ))}
-                  </div>
-                ))
-              : Object.keys(videosGroupedByDay).map((date) => (
-                  <div key={date}>
-                    <p style={{ marginTop: 30 }}>{formatDateWatched(date)}</p>
-                    {videosGroupedByDay[date].map((videoData) => (
-                      <WatchedRender
-                        handleRemoveItem={handleRemoveItem}
-                        key={videoData.videoId}
-                        {...videoData}
-                      />
-                    ))}
-                  </div>
-                ))}
+            <InfiniteScroll
+              dataLength={Object.keys(filteredVideos || {}).length}
+              next={fetchMoreData}
+              hasMore={videoListPage && videoListPage.hasNext}
+              loader={<h4>Loading...</h4>}
+            >
+              {filteredVideos
+                ? Object.keys(filteredVideos).map((date) => (
+                    <div key={date}>
+                      <p style={{ marginTop: 30, fontWeight: 550 }}>
+                        {formatDateWatched(date)}
+                      </p>
+                      {filteredVideos[date].map((videoData, index) => (
+                        <WatchedRender
+                          key={`${videoData.videoId}_${index}`}
+                          {...videoData}
+                        />
+                      ))}
+                    </div>
+                  ))
+                : Object.keys(videosGroupedByDay).map((date) => (
+                    <div key={date}>
+                      <p style={{ marginTop: 30, fontWeight: 550 }}>
+                        {formatDateWatched(date)}
+                      </p>
+                      {videosGroupedByDay[date].map((videoData, index) => (
+                        <WatchedRender
+                          handleRemoveItem={handleRemoveItem}
+                          key={`${videoData.videoId}_${index}`}
+                          {...videoData}
+                        />
+                      ))}
+                    </div>
+                  ))}
+            </InfiniteScroll>
           </div>
         </div>
       </div>

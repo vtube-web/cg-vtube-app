@@ -1,6 +1,5 @@
 import style from '../../../assets/scss/layout/_header.module.scss'
 import logo from "../../../assets/img/logo-vtube.png"
-
 import {FaBars} from "react-icons/fa";
 import {AiOutlineSearch} from "react-icons/ai";
 import {Link, useNavigate} from "react-router-dom";
@@ -47,14 +46,14 @@ export default function Header({handleSetSidebar}) {
             </div>
 
             <form>
-                <input type={"text"} placeholder={"Search here..."}/>
+                <input type={"text"} className={style.search__bar} placeholder={"Search"}/>
                 <button type={"submit"}>
-                    <AiOutlineSearch size={22}/>
+                    <AiOutlineSearch size={24}/>
                 </button>
             </form>
 
             {user ? (
-                <NavEnd/>
+                <NavEnd className="col-1"/>
             ) : (
                 <div className={style.header__icons}>
                     <FiMoreVertical size={23}/>

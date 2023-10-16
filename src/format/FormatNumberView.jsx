@@ -1,4 +1,5 @@
 export default function formatNumberView(value) {
+
   if (typeof value !== 'number') {
     return "Invalid value";
   }
