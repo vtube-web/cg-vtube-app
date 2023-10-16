@@ -49,6 +49,7 @@ export const videoSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+
           //getVideoList
           .addCase(getVideos.pending, (state) => {
             state.success = false;
@@ -64,7 +65,7 @@ export const videoSlice = createSlice({
             state.getVideoListSuccess = true;
             state.loading = false;
             state.error = false;
-            state.videos = action.payload;
+            state.videos = action.payload.data;
           })
 
           //getVideo

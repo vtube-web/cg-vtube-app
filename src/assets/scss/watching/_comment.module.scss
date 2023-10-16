@@ -72,6 +72,9 @@
   .reply__container {
     align-items: center;
 
+    .container__img{
+      align-items: flex-start;
+    }
     .reply__function {
       padding: 20px 0 20px 0;
 

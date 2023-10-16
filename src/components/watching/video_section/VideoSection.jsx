@@ -19,6 +19,8 @@ import {
 } from "../../../features/video/videoLikedSlice";
 import handleShareClick from "../../../services/handleShareClick";
 import { getInfoUser, selectUserInfo } from "../../../features/auth/userSlice";
+import ReactPlayer from "react-player";
+import formatDateAgo from "../../../format/FormatDateAgo";
 
 function VideoSection({ video }) {
   const dispatch = useDispatch();
@@ -140,15 +142,17 @@ function VideoSection({ video }) {
           <div className={style.video__container}>
             {video.videoUrl && (
               <div className={style.custom__video__container}>
-                <video
-                  className={`${style.video__main}`}
-                  controls
-                  autoPlay
-                  onError={(e) => console.error("video error:", e)}
-                >
-                  <source src={video.videoUrl} type={"video/mp4"} />
-                </video>
-                {/*<VideoPlayer/>*/}
+                <ReactPlayer
+                  url={video.videoUrl}
+                  className={style.video__main}
+                  controls={true}
+                  pip={true}
+                  stopOnUnmount={false}
+                  width="96%"
+                  height="98.5%"
+                  playing={true}
+                  onError={(e) => console.error("Video error:", e)}
+                />
               </div>
             )}
           </div>
@@ -209,7 +213,7 @@ function VideoSection({ video }) {
             <div className={`${style.details__description}`}>
               <div className={`${style.details__info}`}>
                 <span>{formatNumberView(video.views)} views • </span>
-                <span>{formatDate(video.createAt)}</span>
+                <span>{formatDateAgo(video.createAt)}</span>
               </div>
               <ShowMore
                 lines={4}

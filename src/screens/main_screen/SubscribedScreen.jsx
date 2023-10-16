@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import style from "../../assets/scss/main_screen/subscribe/_subscription.module.scss";
-import {
-  BsGrid3X2GapFill,
-  BsListUl,
-} from "react-icons/bs";
+import { BsGrid3X2GapFill, BsListUl } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
-import { getVideosSubscribed, selectVideoSubscribedList } from "../../features/video/videoSlice";
+import {
+  getVideosSubscribed,
+  selectVideoSubscribedList,
+} from "../../features/video/videoSlice";
 import VideoRender from "../../components/subcribed/VideoRender";
 
 export default function SubscribedScreen() {
@@ -13,15 +13,15 @@ export default function SubscribedScreen() {
   const videoListPage = useSelector(selectVideoSubscribedList);
   const [listVideoSubscribed, setListVideoSubscribed] = useState({});
   const [showNoSubscribedMessage, setShowNoSubscribedMessage] = useState(false);
-
+  const [render, setRender] = useState(true);
   useEffect(() => {
-    if (videoListPage.length === 0) {
+    if (videoListPage.length === 0 || render) {
       dispatch(getVideosSubscribed());
     }
+    setRender(!render);
     setShowNoSubscribedMessage(videoListPage.length !== 0);
     setListVideoSubscribed(videoListPage.content);
   }, [dispatch, videoListPage]);
-
 
   return (
     <div className={`${style.main} row`}>

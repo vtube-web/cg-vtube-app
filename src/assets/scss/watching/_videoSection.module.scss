@@ -23,7 +23,7 @@ $channel-text: #606060;
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: #0f0f0f;
+      background-color: black;
       border-radius: 30px;
 
       .video__main {
@@ -32,7 +32,6 @@ $channel-text: #606060;
         max-height: 100%;
         width: auto;
         height: auto;
-        background-color: #0f0f0f;
         display: block;
         object-fit: fill;
         border-radius: 30px;

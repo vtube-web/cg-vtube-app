@@ -72,7 +72,6 @@ export const userAccountSlice = createSlice({
         state.loading = false;
         state.error = action.error;
         state.userCredential = null;
-        console.log(action.error.message);
         if (action.error) {
           state.error = "Access Denied ! Wrong Email or Password";
         }
