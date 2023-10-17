@@ -6,6 +6,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {useFormik} from "formik";
 import * as Yup from "yup";
 
+import formatUserName from '../../format/FormatUserName';
+
 import {Form, OverlayTrigger, Tooltip} from "react-bootstrap";
 import Swal from "sweetalert2";
 import {
@@ -17,10 +19,14 @@ import {
   selectRegisterIsSuccess,
   selectUserAccountSliceIsError,
 } from "../../features/auth/userSlice";
+import GoogleButton from "../../components/googleButton/GoogleButton";
 
 function RegisterScreen() {
   const logoImg =
     "https://cdn.discordapp.com/attachments/1139963455038832680/1153326437185626143/AS1.png";
+
+  const avatarImgDefault =
+    "https://firebasestorage.googleapis.com/v0/b/vtube-15.appspot.com/o/images%2F387123399_317289870909894_6318809251513139950_n.jpg?alt=media&token=9a676663-abbe-4324-aba8-a634e63b305c&_gl=1*1vll957*_ga*MTE0NzY2MDExNy4xNjkxMDI4NDc2*_ga_CW55HF8NVT*MTY5NzEyNTg4NC4yOC4xLjE2OTcxMjU5MjAuMjQuMC4w";
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -101,16 +107,18 @@ function RegisterScreen() {
     }),
     onSubmit: async (values, { resetForm }) => {
       let user = {
-        userName: values.userName,
+        name: values.userName,
+        userName: formatUserName(values.userName),
         email: values.email,
         password: values.password,
+        avatar: avatarImgDefault,
       };
       console.log(user);
       dispatch(registerAccount(user));
     },
   });
 
-
+  
   useEffect(() => {
     if (registerSuccess) {
       dispatch(resetUserAccountState());
@@ -337,7 +345,7 @@ function RegisterScreen() {
               onBlur={formik.handleBlur}
               value="acceptTermAndConditions"
             />
-            <label className="p-2">Accept Term and Conditions</label>
+            <label className="p-0">Accept Term and Conditions</label>
           </div>
 
           <button
@@ -348,14 +356,13 @@ function RegisterScreen() {
           </button>
 
           {/* Another Option */}
-          <div>
-            <p className="mt-2">
-              Already have an Account? <Link to="/login"> Login</Link>
-            </p>
-            <p> Or? </p>
-            <p>Đăng kí bằng Google ở đây nè</p>
-          </div>
+          <p className="mt-2">
+            Already have an Account? <Link to="/login"> Login</Link>
+          </p>
+          <p> Or? </p>
         </Form>
+
+        <GoogleButton/>
       </div>
     </div>
   );

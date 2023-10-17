@@ -10,7 +10,6 @@ import {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {resetUserAccountState, selectLoginIsSuccess} from "../../../features/auth/userSlice";
 
-
 export default function Header({handleSetSidebar}) {
     const dispatch = useDispatch();
     const user = localStorage.getItem("user");
@@ -31,19 +30,19 @@ export default function Header({handleSetSidebar}) {
         }
     }, [success, user]);
 
-    return (
-        <div className={style.header}>
-            <div className={style.header__menu__logo}>
-                <FaBars
-                    className={style.header__menu}
-                    size={26}
-                    onClick={() => handleSetSidebar()}
-                />
-                <Link to={"/"}>
-                    <img src={logoImg} alt={"logo"} className={style.header__logo}/>
-                </Link>
-            </div>
 
+  return (
+    <div className={style.header}>
+      <div className={style.header__menu__logo}>
+        <FaBars
+          className={style.header__menu}
+          size={26}
+          onClick={() => handleSetSidebar()}
+        />
+        <Link to={"/"}>
+          <img src={logoImg} alt={"logo"} className={style.header__logo} />
+        </Link>
+      </div>
             <form>
                 <input type={"text"} className={style.search__bar} placeholder={"Search"}/>
                 <button type={"submit"} >
@@ -64,6 +63,8 @@ export default function Header({handleSetSidebar}) {
                     </span>
                 </div>
             )}
+            
         </div>
-    );
+
+  );
 }
