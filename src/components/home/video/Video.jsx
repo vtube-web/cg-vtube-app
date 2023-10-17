@@ -5,6 +5,7 @@ import formatNumberView from "../../../format/FormatNumberView";
 
 import {NavLink} from "react-router-dom";
 import formatDate from "../../../format/FormatDate";
+import formatDateAgo from "../../../format/FormatDateAgo";
 
 function Video({video,isSidebarOpen }) {
     const videoClassName = isSidebarOpen
@@ -26,7 +27,7 @@ function Video({video,isSidebarOpen }) {
                 </div>
                 <div className={style.video__detail}>
                     <span>{formatNumberView(video.views)} views • </span>
-                    <span>{formatDate(video.createAt)}</span>
+                    <span>{formatDateAgo(video.createAt)}</span>
                 </div>
                 <div className={style.video__channel}>
                     <img src={video.userDto.avatar} alt={'channel_name'}/>

@@ -1,20 +1,20 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {submitReply} from "../../api/replyApi";
+import {submitCommentShorts} from "../../api/commentShortsApi";
 
 const initialState = {
-    reply: {},
+    commentShorts: {},
     loading: false,
     error: null,
     success: false
 };
 
-export const addReply = createAsyncThunk("addReply", async (reply) => {
-    const response = await submitReply(reply);
+export const addCommentShorts = createAsyncThunk("addComment", async (commentShorts) => {
+    const response = await submitCommentShorts(commentShorts);
     return response.data;
 })
 
-export const replySlice = createSlice({
-    name: "reply",
+export const commentShortsSlice = createSlice({
+    name: "commentShorts",
     initialState,
     reducers: {
         setLoading: (state, action) => {
@@ -26,27 +26,27 @@ export const replySlice = createSlice({
         setSuccess: (state, action) => {
             state.success = action.payload;
         },
-        resetReply: state => {
-            state.reply = {}
+        resetComment: state => {
+            state.comment = {}
         }
     },
     extraReducers: (builder) => {
         builder
-            .addCase(addReply.pending, (state) => {
+            .addCase(addCommentShorts.pending, (state) => {
                 state.success = false;
                 state.loading = true;
                 state.error = false;
             })
-            .addCase(addReply.rejected, (state,action) => {
+            .addCase(addCommentShorts.rejected, (state,action) => {
                 state.success = false;
                 state.loading = false;
                 state.error = action.error;
             })
-            .addCase(addReply.fulfilled, (state) => {
+            .addCase(addCommentShorts.fulfilled, (state) => {
                 state.success = true;
                 state.loading = false;
                 state.error = false;
             });
     }
 });
-export default replySlice.reducer;
+export default commentShortsSlice.reducer;

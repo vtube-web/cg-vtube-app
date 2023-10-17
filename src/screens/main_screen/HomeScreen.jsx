@@ -9,11 +9,9 @@ function HomeScreen() {
     const dispatch = useDispatch();
     const videoList = useSelector(selectVideoList);
     const success = useSelector(selectVideoListSuccess);
-    console.log("Re-render HomeScreen")
     useEffect(() => {
             if (!success) {
                 dispatch(getVideos());
-                console.log("Getting videos...");
             }
     }, [])
 

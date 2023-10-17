@@ -1,5 +1,5 @@
 import style from '../../assets/scss/watching/_suggestionBar.module.scss'
-import {SuggestionVideo} from "../home/video/SuggestionVideo";
+import {SuggestionVideo} from "./SuggestionVideo";
 import CategoriesBar from "../home/categories_bar/CategoriesBar";
 
 export default function SuggestionBar() {

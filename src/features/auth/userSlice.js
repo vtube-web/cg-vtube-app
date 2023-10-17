@@ -16,7 +16,6 @@ const initialState = {
 
 
 export const loginUser = createAsyncThunk("/user/loginUser",async (userCredential) => {
-  console.log("Waiting for response...");
   const response = await login(userCredential);
   return response.data;
 });
@@ -68,7 +67,6 @@ export const userAccountSlice = createSlice({
         state.loading = false;
         state.error = action.error;
         state.userCredential = null;
-        console.log(action.error.message);
         if (action.error) {
           state.error = "Access Denied ! Wrong Email or Password";
         }

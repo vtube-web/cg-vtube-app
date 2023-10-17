@@ -6,6 +6,7 @@ import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {getVideo, resetVideoDetail, selectVideoDetail, selectVideoSuccess} from "../../features/video/videoSlice";
+import {SuggestionVideo} from "../../components/watching/SuggestionVideo";
 
 
 export default function WatchingScreen() {
@@ -39,7 +40,7 @@ export default function WatchingScreen() {
                     <CommentSection/>
                 </div>
                 <div className={`${style.watching__suggestion} col-2`}>
-                    {/*SuggestionVideo not ready*/}
+                    <SuggestionVideo/>
                 </div>
             </div>
         </>

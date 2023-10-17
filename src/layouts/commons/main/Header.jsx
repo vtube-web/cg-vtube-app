@@ -3,22 +3,34 @@ import logo from "../../../assets/img/logo-vtube.png"
 
 import {FaBars} from "react-icons/fa";
 import {AiOutlineSearch} from "react-icons/ai";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {FiMoreVertical} from "react-icons/fi";
 import {PiUserCircleThin} from "react-icons/pi";
-import {getStoredUserData} from '../../../services/accountService';
 import NavEnd from "../studio/navbar/nav_end/NavEnd";
 import {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {resetUserAccountState, selectLoginIsSuccess, selectUserData} from "../../../features/auth/userSlice";
 
 
 export default function Header({handleSetSidebar}) {
+    const dispatch = useDispatch();
+    const user = localStorage.getItem("user");
+    const success = useSelector(selectLoginIsSuccess);
+    const navigate = useNavigate();
 
     const logoImg = logo;
 
-    const [user, setUser] = useState({});
     useEffect(() => {
-            setUser(getStoredUserData());
-    }, [getStoredUserData()]);
+        if (success) {
+            if (user) {
+                localStorage.setItem("user", JSON.stringify(user));
+                navigate("/");
+            }
+        }
+        return () => {
+            dispatch(resetUserAccountState())
+        }
+    }, [success, user]);
 
     return (
         <div className={style.header}>
@@ -46,11 +58,11 @@ export default function Header({handleSetSidebar}) {
                 <div className={style.header__icons}>
                     <FiMoreVertical size={23}/>
                     <span>
-            <Link to={"/signIn"} className={style.signIn}>
-              <PiUserCircleThin size={25}/>
-              Sign in
-            </Link>
-          </span>
+                        <Link to={"/signIn"} className={style.signIn}>
+                            <PiUserCircleThin size={25}/>
+                            Sign in
+                        </Link>
+                    </span>
                 </div>
             )}
         </div>

@@ -8,6 +8,7 @@ import videoUploadReducer from "../features/studio/videoUploadSlice";
 import videoLikedReducer from "../features/video/videoLikedSlice";
 import userReducer from "../features/auth/userSlice";
 import commentReducer from "../features/comment_reply/commentSlice";
+import {commentShortsSlice} from "../features/comment_reply/commentShortsSlice";
 
 
 export const store = configureStore({
@@ -20,7 +21,8 @@ export const store = configureStore({
     isVisibility: isVisibilityReducer,
     videos: videoUploadReducer,
     videoLiked: videoLikedReducer,
-    comment: commentReducer
+    comment: commentReducer,
+    commentShorts: commentShortsSlice.reducer,
   }
 })
 

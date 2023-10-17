@@ -3,13 +3,10 @@ import {getVideoShorts, selectVideoShorts} from "../../features/shorts/shortsSli
 import React, {useEffect} from "react";
 import Shorts from "../../components/home/shorts/Shorts";
 import style from "../../assets/scss/main_screen/shorts/_shorts.module.scss";
-import {selectVideoList} from "../../features/video/videoSlice";
-import ReactPlayer from 'react-player';
 
 function ShortsScreen() {
     const dispatch = useDispatch();
     const videoShortsList = useSelector(selectVideoShorts);
-    const videoList = useSelector(selectVideoList);
 
     useEffect(() => {
         dispatch(getVideoShorts());
@@ -25,7 +22,6 @@ function ShortsScreen() {
                             key={videoShort.id}
                             videoShort={videoShort}/>
                     ))}
-
             </div>
         </div>
     )
