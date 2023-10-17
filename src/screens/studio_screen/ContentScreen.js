@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import MenuItemChill from "../../components/studio/common/menu_item_sub/MenuItemSub";
-import VideoSubContent from "../../components/studio/content/VideoSubContent";
-import DirectSubContent from "../../components/studio/content/DirectSubContent";
-import PlaylistSubContent from "../../components/studio/content/PlaylistSubContent";
-import EditSubContent from "../../components/studio/content/EditSubContent";
+import VideoSubContent from "../../layouts/commons/studio/content/VideoSubContent";
+import DirectSubContent from "../../layouts/commons/studio/content/DirectSubContent";
+import PlaylistSubContent from "../../layouts/commons/studio/content/PlaylistSubContent";
+import EditSubContent from "../../layouts/commons/studio/content/EditSubContent";
 
 function ContentScreen() {
   const { channelId, subParam } = useParams();

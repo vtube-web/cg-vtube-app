@@ -1,21 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import InformationFill from "../overview/InformationFill";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import {
-  setIsModalEdit,
-  getIsModalEdit,
-} from "../../../features/studio/modalSlice";
 import TitleSection from "../overview/imformation_fill/TitleSection";
 import DescribeSection from "../overview/imformation_fill/DescribeSection";
 import DisplayModeSection from "../overview/imformation_fill/DisplayModeSection";
 import ImageSection from "../overview/imformation_fill/ImageSection";
 import VideoUpload from "../overview/VideoUpload";
 import { toast } from "react-toastify";
-import { editVideo } from "../../../features/studio/videoUploadSlice";
+import { editVideo } from "../../../../features/studio/videoUploadSlice";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { firebaseStorage } from "../../../firebase";
+import { firebaseStorage } from "../../../../firebase";
 import { v4 as uuidv4 } from "uuid";
 
 function EditSubContent() {

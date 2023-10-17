@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { BsFilter } from "react-icons/bs";
 import { TiDeleteOutline } from "react-icons/ti";
-import VideoItemCommon from "../common/video/VideoItem";
-import Pagination from "../common/pagination/Pagination";
+import VideoItemCommon from "../../../../components/studio/common/video/VideoItem";
+import Pagination from "../../../../components/studio/common/pagination/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getVideoList,
@@ -12,12 +12,12 @@ import {
   editFormVideo,
   setVideos,
   removeListVideo,
-} from "../../../features/studio/videoContentSlice";
+} from "../../../../features/studio/videoContentSlice";
 
 import { BiSolidDownArrow } from "react-icons/bi";
 import { MdOutlineRemoveFromQueue } from "react-icons/md";
-import EditFormText from "../common/edit_form/EditIFormText";
-import EditFormRadio from "../common/edit_form/EditFormRadio";
+import EditFormText from "../../../../components/studio/common/edit_form/EditIFormText";
+import EditFormRadio from "../../../../components/studio/common/edit_form/EditFormRadio";
 import { toast } from "react-toastify";
 
 function VideoSubContent() {
