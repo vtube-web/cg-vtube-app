@@ -18,29 +18,30 @@ import CommentScreen from "../screens/studio_screen/CommentScreen";
 import CustomizeChannelsScreen from "../screens/studio_screen/CustomizeChannelsScreen";
 import LoginScreen from "../screens/auth_screen/LoginScreen";
 import RegisterScreen from "../screens/auth_screen/RegisterScreen";
-import mainLayout from "../layouts/main_layout/MainLayout";
 import HomeProfileScreen from "../screens/main_screen/HomeProfileScreen";
 
 
+
 export const publicRoutes = [
-    {path: "/", component: homeScreen, layout: MainLayout},
-    {path: "/library", component: libraryScreen, layout: MainLayout},
-    {path: "/likedVideos", component: likedVideoScreen, layout: MainLayout},
-    {path: "/signIn", component: SignInScreen, layout: MainLayout},
-    {path: "/login", component: LoginScreen, layout: null},
-    {path: "/register", component: RegisterScreen, layout: null},
-    {path: "/shorts", component: shortsScreen, layout: mainLayout},
-    {path: "/subscribed", component: subscribedScreen, layout: MainLayout},
-    {path: "/watchedVideos", component: watchedScreen, layout: MainLayout},
-    {path: "/watchLater", component: watchLaterScreen, layout: MainLayout},
-    {path: "/yourVideos", component: yourVideoScreen, layout: MainLayout},
-    {path: `/watching/:videoId`, component: watchingScreen, layout: MainLayout},
-    {path: `/channel/:channelId`, component: OverviewScreen, layout: StudioLayout,},
-    {path: `/channel/:channelId/content/:subParam`, component: ContentScreen, layout: StudioLayout,},
-    {path: `/channel/:channelId/analytical`, component: AnalyticalDataScreen, layout: StudioLayout,},
-    {path: `/channel/:channelId/comment`, component: CommentScreen, layout: StudioLayout,},
-    {path: `/channel/:channelId/customize`, component: CustomizeChannelsScreen, layout: StudioLayout,},
-    {path: `/homeProfile/:userName/:subParam`, component: HomeProfileScreen, layout:MainLayout},
-    {path: "/*", component: notFoundScreen, layout: null},
+  { path: "/", component: homeScreen, layout: MainLayout },
+  { path: "/library", component: libraryScreen, layout: MainLayout },
+  { path: "/likedVideos", component: likedVideoScreen, layout: MainLayout },
+  { path: "/signIn", component: SignInScreen, layout: MainLayout },
+  { path: "/login", component: LoginScreen, layout: null },
+  { path: "/register", component: RegisterScreen, layout: null },
+  { path: "/subscribed", component: subscribedScreen, layout: MainLayout },
+  { path: "/watchedVideos", component: watchedScreen, layout: MainLayout },
+  { path: "/watchLater", component: watchLaterScreen, layout: MainLayout },
+  { path: "/yourVideos", component: yourVideoScreen, layout: MainLayout },
+  { path: `/watching/:videoId`, component: watchingScreen, layout: MainLayout },
+  { path: "/shorts", component: shortsScreen, layout: MainLayout },
+  { path: `/channel/:channelId`, component: OverviewScreen, layout: StudioLayout,},
+  { path: `/channel/:channelId/content/:subParam/:videoId?`,component: ContentScreen, layout: StudioLayout,},
+  { path: `/channel/:channelId/analytical`, component: AnalyticalDataScreen, layout: StudioLayout,},
+  { path: `/channel/:channelId/comment`, component: CommentScreen, layout: StudioLayout,},
+  { path: `/channel/:channelId/customize`, component: CustomizeChannelsScreen, layout: StudioLayout,},
+  {path: `/homeProfile/:userName/:subParam`, component: HomeProfileScreen, layout:MainLayout},
+  { path: "/*", component: notFoundScreen, layout: null },
+
 ];
 
