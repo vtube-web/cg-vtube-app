@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { BsBoxArrowUpRight } from "react-icons/bs";
 import { HiSquares2X2 } from "react-icons/hi2";
 import { AiOutlinePlaySquare } from "react-icons/ai";
@@ -16,6 +16,7 @@ import {
 } from "../../../features/studio/visibilitySlice";
 import { useDispatch, useSelector } from "react-redux";
 import { getIsModalMenu } from "../../../features/studio/modalSlice";
+
 function SiderBar() {
   const [mouseAvatar, setMouseAvatar] = useState(false);
   const { channelId } = useParams();
@@ -28,18 +29,19 @@ function SiderBar() {
   useEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);
+      if (width <= 1500) {
+        dispatch(setIsVisibilityMenu(true));
+      } else {
+        dispatch(setIsVisibilityMenu(false));
+      }
     };
-    if (width < 1500) {
-      dispatch(setIsVisibilityMenu(true));
-    } else {
-      dispatch(setIsVisibilityMenu(false));
-    }
+
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [width]);
-  
+
   const menus = [
     {
       to: pathAcountDefault,
@@ -55,7 +57,7 @@ function SiderBar() {
     },
     {
       to: `${pathAcountDefault}/analytical`,
-      label: "Analytical data",
+      label: "Analytics data",
       icon: MdOutlineDataThresholding,
       distanceTop: "70%",
     },

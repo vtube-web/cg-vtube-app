@@ -10,12 +10,12 @@ import isVisibilityReducer from "../features/studio/visibilitySlice";
 import videoUploadReducer from "../features/studio/videoUploadSlice";
 import videoLikedReducer from "../features/video/videoLikedSlice";
 import userReducer from "../features/auth/userSlice";
-
+import videoContentReducer from "../features/studio/videoContentSlice";
 
 
 const middleware = [...getDefaultMiddleware(), logger];
 export const store = configureStore({
-  reducer: {  
+  reducer: {
     userAccount: userReducer,
     video: videoReducer,
     videoHistory: videoHistoryReducer,
@@ -24,8 +24,9 @@ export const store = configureStore({
     isVisibility: isVisibilityReducer,
     videos: videoUploadReducer,
     videoLiked: videoLikedReducer,
+    content: videoContentReducer,
   },
   middleware,
   devTools: process.env.NODE_ENV !== "production",
-})
+});
 

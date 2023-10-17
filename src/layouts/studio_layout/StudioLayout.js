@@ -65,8 +65,8 @@ function StudioLayout({ children }) {
 
         <div className="bg-[#FAFAFA] grow">
           <div
-            className="flex flex-col overflow-y-scroll mr-1 flex-none overflow-x-scroll"
-            style={{ height: contentHeight, width: window.innerWidth - 330 }}
+            className="flex flex-col overflow-y-scroll mr-1 grow flex-none overflow-x-scroll"
+            style={{ height: contentHeight }}
           >
             <div>{children}</div>
           </div>
