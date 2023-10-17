@@ -11,11 +11,9 @@ import NavEnd from "../studio/navbar/nav_end/NavEnd";
 import {useEffect, useState} from 'react';
 
 export default function Header({handleSetSidebar}) {
-
+    const [user, setUser] = useState(false);
     const logoImg = logo;
-
-    const [user, setUser] = useState({});
-
+    
     useEffect(() => {
         setUser(getStoredUserData());
     }, []);

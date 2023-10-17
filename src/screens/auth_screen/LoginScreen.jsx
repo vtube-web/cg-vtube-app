@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../../assets/css/login/login-form.css";
 import { Link, useNavigate } from "react-router-dom";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
   loginUser, resetUserAccountState,
@@ -13,8 +14,10 @@ import { PiEye, PiEyeSlash } from "react-icons/pi";
 import { Form } from "react-bootstrap";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import GoogleButton from "../../components/googleButton/GoogleButton";
 
 function LoginScreen() {
+
   const logoImg =
     "https://cdn.discordapp.com/attachments/1139963455038832680/1153326437185626143/AS1.png";
 
@@ -43,9 +46,11 @@ function LoginScreen() {
       }
     }
     return () => {
+      console.log("thai");
       dispatch(resetUserAccountState());
     };
   }, [success, user]);
+
 
   const formik = useFormik({
     initialValues: {
@@ -119,11 +124,14 @@ function LoginScreen() {
             )}
 
             <button type="submit" className="btn btn-warning mt-3 login-button">
-              {loading ? "Loading..." : "login"}
+              {loading ? "Loading..." : "Login"}
             </button>
+            <p className="mt-2">Or ?</p>
           </Form>
-          
-          <div className="d-flex flex-column flex-sm-row justify-content-between mt-3">
+
+          <GoogleButton />
+
+          <div className="d-flex flex-column flex-sm-row justify-content-between mt-0">
             <p className="mt-2 mt-sm-4 text-wrap text-center text-sm-left">
               Forgot password? <Link to="/forgot">Forgot</Link>
             </p>
