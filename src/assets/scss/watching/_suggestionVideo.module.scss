@@ -1,0 +1,51 @@
+@import "../base/base.module";
+
+.suggestVideo {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  height: 13vh;
+  width: 100%;
+
+  .container__img {
+    display: flex;
+    justify-content: center;
+    background-color: #0F0F0F;
+    width: 180px ;
+    border-radius: 20px;
+
+    .video__main {
+      display: block;
+      object-fit: fill;
+      height: 13vh;
+      border-radius: 20px;
+      margin-right: 0.5rem;
+    }
+  }
+
+  .video__info {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding-left: 10px;
+    .suggestVideo__title {
+      align-self: flex-start;
+      font-weight: bold;
+      font-size: 15px;
+      align-items: flex-start;
+      @include line-clamp(1);
+    }
+
+    .suggestVideo__channel {
+      align-content: center;
+      font-size: 13px;
+      align-items: center;
+    }
+
+    .suggestVideo__details {
+      font-size: 13px;
+      align-items: flex-end;
+    }
+  }
+}

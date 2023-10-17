@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getAccessToken } from "../service/accountService";
+import { getAccessToken } from "../services/accountService";
 
 const VIDEO_UPLOAD_API = "http://localhost:8080/api/videos/content";
 const token = getAccessToken() || "";
@@ -42,7 +42,7 @@ export const deleteVideo = async (idList) => {
    try{
     result = axios.put(
       `${VIDEO_UPLOAD_API}/delete`,
-      { idList:idList || [] },
+      { idList:idList  },
       { headers: { Authorization: `Bearer ${token}` } }
     );
    }catch (e) {

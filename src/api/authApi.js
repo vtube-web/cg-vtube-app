@@ -1,5 +1,6 @@
 import axios from "axios";
 import { VTUBE_API } from "../app/constants";
+import { getStoredUserData } from "../services/accountService";
 
 export const login = async (userCredential) => {
   let user = null;
@@ -32,3 +33,18 @@ export const checkEmailApi = async (data) => {
     return e.response;
   }
 };
+
+export const getInfo = async () => {
+  let result = null;
+  let user = getStoredUserData();
+  try {
+    result = await axios.get(VTUBE_API + "/users", {
+      headers: {
+        Authorization: "Bearer " + user.accessToken,
+      },
+    })
+  } catch (e) {
+    console.error('Error when fetching info user', e);
+  }
+  return result;
+}

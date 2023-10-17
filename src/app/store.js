@@ -1,8 +1,5 @@
-
-
-import {videoShortsSlice} from "../features/videoShorts/videoShorts";
-import {logger} from "redux-logger/src";
-import {configureStore, getDefaultMiddleware,} from "@reduxjs/toolkit";
+import {videoShortsSlice} from "../features/shorts/shortsSlice";
+import {configureStore,} from "@reduxjs/toolkit";
 import videoReducer from "../features/video/videoSlice";
 import videoHistoryReducer from "../features/video/videoWatchedSlice";
 import isModalReducer from "../features/studio/modalSlice";
@@ -11,9 +8,10 @@ import videoUploadReducer from "../features/studio/videoUploadSlice";
 import videoLikedReducer from "../features/video/videoLikedSlice";
 import userReducer from "../features/auth/userSlice";
 import videoContentReducer from "../features/studio/videoContentSlice";
+import commentReducer from "../features/comment_reply/commentSlice";
+import subscriberReducer from "../features/video/subscriberSlice";
 
 
-const middleware = [...getDefaultMiddleware(), logger];
 export const store = configureStore({
   reducer: {
     userAccount: userReducer,
@@ -25,8 +23,8 @@ export const store = configureStore({
     videos: videoUploadReducer,
     videoLiked: videoLikedReducer,
     content: videoContentReducer,
+    comment: commentReducer,
+    subscriber: subscriberReducer,
   },
-  middleware,
-  devTools: process.env.NODE_ENV !== "production",
 });
 

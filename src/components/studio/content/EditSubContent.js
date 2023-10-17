@@ -7,10 +7,10 @@ import {
   setIsModalEdit,
   getIsModalEdit,
 } from "../../../features/studio/modalSlice";
-import TitleSection from "../overview/imformation-fill/TitleSection";
-import DescribeSection from "../overview/imformation-fill/DescribeSection";
-import DisplayModeSection from "../overview/imformation-fill/DisplayModeSection";
-import ImageSection from "../overview/imformation-fill/ImageSection";
+import TitleSection from "../overview/imformation_fill/TitleSection";
+import DescribeSection from "../overview/imformation_fill/DescribeSection";
+import DisplayModeSection from "../overview/imformation_fill/DisplayModeSection";
+import ImageSection from "../overview/imformation_fill/ImageSection";
 import VideoUpload from "../overview/VideoUpload";
 import { toast } from "react-toastify";
 import { editVideo } from "../../../features/studio/videoUploadSlice";

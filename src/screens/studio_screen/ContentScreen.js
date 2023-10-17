@@ -11,11 +11,11 @@ function ContentScreen() {
   const { channelId, subParam } = useParams();
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    if(subParam == "*"){
+  useEffect(() => {
+    if (subParam == "*") {
       navigate(`/channel/${channelId}/content/upload`);
     }
-  },[subParam])
+  }, [subParam]);
   const pathAcountDefault = `/channel/${channelId}/content`;
   const menus = [
     {

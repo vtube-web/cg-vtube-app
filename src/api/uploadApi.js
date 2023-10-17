@@ -1,21 +1,21 @@
 import axios from "axios";
-import {getAccessToken} from "../service/accountService";
+import {getAccessToken} from "../services/accountService";
 
 const VIDEO_UPLOAD_API = "http://localhost:8080/api/videos";
 const token = getAccessToken() || "";
 
 export const createVideo = async (video) => {
-  let result = null;
-  try {
-    result = axios.post(
-      `${VIDEO_UPLOAD_API}/add`,
-      { title: video.title, videoUrl: video.videoUrl },
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
-  } catch (e) {
-    console.log("Create video error", e);
-  }
-  return result;
+    let result = null;
+    try {
+        result = axios.post(
+            `${VIDEO_UPLOAD_API}/add`,
+            {title: video.title, videoUrl: video.videoUrl},
+            {headers: {Authorization: `Bearer ${token}`}}
+        );
+    } catch (e) {
+        console.log("Create video error", e);
+    }
+    return result;
 };
 
 export const updateVideo = async (video) => {
