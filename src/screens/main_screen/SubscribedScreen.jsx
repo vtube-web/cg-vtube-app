@@ -14,6 +14,7 @@ export default function SubscribedScreen() {
   const [listVideoSubscribed, setListVideoSubscribed] = useState({});
   const [showNoSubscribedMessage, setShowNoSubscribedMessage] = useState(false);
   const [render, setRender] = useState(true);
+  const [isGridMode, setIsGridMode] = useState(true);
   useEffect(() => {
     if (videoListPage.length === 0 || render) {
       dispatch(getVideosSubscribed());
@@ -34,10 +35,10 @@ export default function SubscribedScreen() {
             <button>Manage</button>
           </div>
           <div className={style.header__button__menu}>
-            <button>
+            <button onClick={() => setIsGridMode(true)}>
               <BsGrid3X2GapFill size={24} />
             </button>
-            <button>
+            <button onClick={() => setIsGridMode(false)}>
               <BsListUl size={24} />
             </button>
           </div>
@@ -50,6 +51,7 @@ export default function SubscribedScreen() {
             listVideoSubscribed.map((videoData, index) => (
               <VideoRender
                 key={`${videoData.videoId}_${index}`}
+                isGridMode={isGridMode}
                 {...videoData}
               />
             ))

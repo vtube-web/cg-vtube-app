@@ -49,7 +49,6 @@ import {
   selectUserInfo,
   selectUserList,
 } from "../../../features/auth/userSlice";
-import { Avatar } from "primereact/avatar";
 
 const SideBar = ({ sidebar = true }) => {
   const [path, setPath] = useState("");
