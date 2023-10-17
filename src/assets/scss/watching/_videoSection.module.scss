@@ -23,9 +23,8 @@ $channel-text: #606060;
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: #0F0F0F;
+      background-color: black;
       border-radius: 30px;
-
 
       .video__main {
         box-sizing: border-box;
@@ -33,7 +32,6 @@ $channel-text: #606060;
         max-height: 100%;
         width: auto;
         height: auto;
-        background-color: #0F0F0F;
         display: block;
         object-fit: fill;
         border-radius: 30px;
@@ -110,8 +108,11 @@ $channel-text: #606060;
           cursor: pointer;
         }
       }
+      button.unsubscribed {
+        /* Màu khi đã subscribe-- chưa xong */
+        background-color: red;
+      }
     }
-
 
     .function__channel {
       display: flex;
@@ -132,7 +133,6 @@ $channel-text: #606060;
           background-color: $white-mode-hover-component;
           cursor: pointer;
         }
-
       }
 
       .function__dislike {
@@ -175,7 +175,6 @@ $channel-text: #606060;
       display: flex;
       justify-items: flex-start;
       font-size: 17px;
-
     }
 
     .details__description {

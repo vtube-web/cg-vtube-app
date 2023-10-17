@@ -1,4 +1,4 @@
-import style from "../../../assets/scss/main_screen/shorts/_videoShorts.module.scss";
+import style from "../../assets/scss/main_screen/shorts/_videoShorts.module.scss";
 import React, {useState} from "react";
 import {BsPlayFill, BsPauseFill} from "react-icons/bs";
 import {IoIosMore, IoMdVolumeHigh, IoMdVolumeOff} from "react-icons/io";
@@ -7,7 +7,6 @@ import {FaCommentDots} from "react-icons/fa";
 import {PiShareFatFill} from "react-icons/pi";
 import {CgDetailsMore} from "react-icons/cg";
 import {AiOutlineClose} from "react-icons/ai";
-
 
 function VideoShorts({videoShort}) {
 

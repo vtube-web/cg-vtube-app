@@ -1,25 +1,32 @@
+import style from "../../assets/scss/main_screen/subscribe/_subscription.module.scss";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import style from "../../assets/scss/main_screen/library/_library.module.scss";
 import formatNumberView from "../../format/FormatNumberView";
-import { Link } from "react-router-dom";
 import formatDateAgo from "../../format/FormatDateAgo";
+import { Link } from "react-router-dom";
 
-const VideosRender = ({ index, ...videoData }) => {
+const VideoRender = ({ index, ...videoData }) => {
   return (
-    <div className={`${style.info} col-sm-6 col-md-4 col-lg-3`} key={index}>
+    <div className={`${style.info} col-md-6 col-lg-4`} key={index}>
       <div className={style.img_thumbnail}>
-        <Link to={`/watching/${videoData.videoId}`}>
+        <Link to={`/watching/${videoData.id}`}>
           <img src={videoData.thumbnail} alt="thumbnail" />
           <div className={style.time__video}>30:56</div>
         </Link>
       </div>
       <div className={`${style.detail} row`}>
-        <div className="col-10">
+        <div className="col-2">
+          <Link to={`/@${videoData.userDto.userName}`}>
+            <img src={videoData.userDto.avatar} alt="avatar" />
+          </Link>
+        </div>
+        <div className="col">
           <div className={style.content__tittle}>
-            <Link to={`/watching/${videoData.videoId}`}>{videoData.title}</Link>
+            <Link to={`/watching/${videoData.id}`}>{videoData.title}</Link>
           </div>
-          <div>
-            <Link to={`/@${videoData.userName}`}>{videoData.userName}</Link>
+          <div className={style.content__username}>
+            <Link to={`/@${videoData.userDto.userName}`}>
+              {videoData.userDto.userName}
+            </Link>
           </div>
           <div>
             {formatNumberView(videoData.views)} views •{" "}
@@ -36,4 +43,4 @@ const VideosRender = ({ index, ...videoData }) => {
   );
 };
 
-export default VideosRender;
+export default VideoRender;

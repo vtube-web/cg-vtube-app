@@ -1,5 +1,5 @@
 import { createAsyncThunk,createSlice } from "@reduxjs/toolkit";
-import { checkEmailApi, login,registerApi } from "../../api/authApi";
+import { checkEmailApi, login, registerApi, getInfo } from "../../api/authApi";
 
 
 const initialState = {
@@ -7,7 +7,7 @@ const initialState = {
   userCredential:null,
   loading: false,
   error: null,
-
+  value: null,
   loginSuccess: false,
   registerSuccess: false,
   registerError: false,
@@ -16,7 +16,6 @@ const initialState = {
 
 
 export const loginUser = createAsyncThunk("/user/loginUser",async (userCredential) => {
-  console.log("Waiting for response...");
   const response = await login(userCredential);
   return response.data;
 });
@@ -28,6 +27,11 @@ export const registerAccount = createAsyncThunk("register", async (data) => {
 
 export const checkEmail = createAsyncThunk("check-email", async (data) => {
   return await checkEmailApi(data);
+});
+
+export const getInfoUser = createAsyncThunk("info", async () => {
+  const response = await getInfo();
+  return response.data;
 });
 
 export const userAccountSlice = createSlice({
@@ -68,7 +72,6 @@ export const userAccountSlice = createSlice({
         state.loading = false;
         state.error = action.error;
         state.userCredential = null;
-        console.log(action.error.message);
         if (action.error) {
           state.error = "Access Denied ! Wrong Email or Password";
         }
@@ -111,6 +114,23 @@ export const userAccountSlice = createSlice({
         state.checkEmailSuccess = true;
         state.loading = false;
         state.error = action.payload;
+      })
+
+      .addCase(getInfoUser.pending, (state) => {
+        state.success = false;
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(getInfoUser.rejected, (state, action) => {
+        state.success = false;
+        state.loading = false;
+        state.error = action.error;
+      })
+      .addCase(getInfoUser.fulfilled, (state, action) => {
+        state.success = true;
+        state.loading = false;
+        state.value = action.payload.data;
+        state.error = false;
       });
   },
 });
@@ -131,5 +151,5 @@ export const selectLoginIsSuccess = (state) => state.userAccount.loginSuccess;
 
 // get state of Check Email Register.
 export const selectCheckEmailIsSuccess = (state) => state.userAccount.checkEmailSuccess;
-
+export const selectUserInfo = (state) => state.userAccount.value;
 export default userAccountSlice.reducer;

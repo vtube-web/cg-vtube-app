@@ -1,5 +1,5 @@
 import style from "../../assets/scss/main_screen/watched_video/_watchedVideo.module.scss";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   AiOutlineClose,
   AiOutlineMore,
@@ -11,10 +11,16 @@ import { useDispatch } from "react-redux";
 import { removeVideoWatched } from "../../features/video/videoWatchedSlice";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import { PiShareFatLight } from "react-icons/pi";
+import handleShareClick from "../../services/handleShareClick";
 
 const WatchedRender = ({ handleRemoveItem, index, ...videoData }) => {
   const dispatch = useDispatch();
+  const [dropdownVisible, setDropdownVisible] = useState(false);
 
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
+  };
   const handleDelete = (videoData) => {
     dispatch(removeVideoWatched(videoData.videoId));
     Swal.fire({
@@ -27,11 +33,20 @@ const WatchedRender = ({ handleRemoveItem, index, ...videoData }) => {
     handleRemoveItem();
   };
 
+  useEffect(() => {
+    const handleDocumentClick = (event) => {
+      if (!event.target.closest(`.${style.btn}`)) {
+        setDropdownVisible(false);
+      }
+    };
+    document.addEventListener("click", handleDocumentClick);
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, []);
+
   return (
-    <div
-      className={`${style.item__section__render} row`}
-      key={videoData.videoId}
-    >
+    <div className={`${style.item__section__render} row`} key={index}>
       <div className={style.video__render}>
         <Link to={`/watching/${videoData.videoId}`}>
           <img src={videoData.thumbnail} alt="Video Thumbnail" />
@@ -62,7 +77,10 @@ const WatchedRender = ({ handleRemoveItem, index, ...videoData }) => {
               </div>
               <div className={`${style.data__video} row`}>
                 <div className="col-6">
-                  <a href="src/screens/watchedScreen#" className={style.hover__link}>
+                  <a
+                    href="src/screens/watchedScreen#"
+                    className={style.hover__link}
+                  >
                     {videoData.userName}
                   </a>
                   <span className={style.hover__content}>
@@ -75,16 +93,28 @@ const WatchedRender = ({ handleRemoveItem, index, ...videoData }) => {
               </div>
             </div>
           </div>
-          <div className="col-3" style={{ display: "flex" }}>
+          <div className={`${style.btn} col-3`}>
             <button
               className={style.icon__button}
               onClick={() => handleDelete(videoData)}
             >
               <AiOutlineClose size={20} />
             </button>
-            <button className={style.icon__button}>
-              <AiOutlineMore size={20} />
-            </button>
+            <>
+              <button className={style.icon__button} onClick={toggleDropdown}>
+                <AiOutlineMore size={20} />
+              </button>
+              <ul
+                className={`${style.dropdownMenu}`}
+                style={{ display: dropdownVisible ? "block" : "none" }}
+              >
+                <li>
+                  <a onClick={() => handleShareClick(videoData.videoId)}>
+                    <PiShareFatLight size={20} /> &nbsp; Share
+                  </a>
+                </li>
+              </ul>
+            </>
           </div>
         </div>
         <div className={style.description__text}>{videoData.description}</div>

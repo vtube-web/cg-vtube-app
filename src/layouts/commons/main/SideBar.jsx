@@ -1,41 +1,29 @@
 import style from '../../../assets/scss/layout/_sidebar.module.scss'
 import '../../../assets/scss/base/_misc.scss'
-import {
-    IoGameController, IoGameControllerOutline
-} from "react-icons/io5"
+import {IoGameControllerOutline} from "react-icons/io5"
 
-import {HiNewspaper, HiOutlineNewspaper} from "react-icons/hi2"
+import {HiOutlineNewspaper} from "react-icons/hi2"
 
-import {
-    BsFillCollectionPlayFill, BsCollectionPlay,
-    BsFire
-} from "react-icons/bs"
+import {BsCollectionPlay, BsFillCollectionPlayFill, BsFire} from "react-icons/bs"
 
-import {
-    AiFillPlaySquare, AiOutlinePlaySquare,
-    AiFillHome, AiOutlineHome,
-    AiFillSetting, AiOutlineSetting
-} from "react-icons/ai"
+import {AiFillHome, AiFillPlaySquare, AiOutlineHome, AiOutlinePlaySquare, AiOutlineSetting} from "react-icons/ai"
 
 import {GrHistory} from "react-icons/gr";
 import {GoHistory} from "react-icons/go"
 
-import {
-    BiSolidLike, BiLike,
-    BiSolidDislike, BiDislike,
-    BiSolidHelpCircle, BiHelpCircle,
-    BiSolidMusic, BiMusic,
-    BiSolidTrophy, BiTrophy
-} from "react-icons/bi"
+import {BiHelpCircle, BiLike, BiMusic, BiSolidLike, BiTrophy} from "react-icons/bi"
 
 import {
-    MdVideoLibrary, MdOutlineVideoLibrary,
-    MdWatchLater, MdOutlineWatchLater,
-    MdExitToApp, MdOutlineExitToApp,
-    MdReport, MdOutlineReportGmailerrorred,
-    MdSlowMotionVideo, MdOutlineSlowMotionVideo
+    MdOutlineExitToApp,
+    MdOutlineReportGmailerrorred,
+    MdOutlineSlowMotionVideo,
+    MdOutlineVideoLibrary,
+    MdOutlineWatchLater,
+    MdSlowMotionVideo,
+    MdVideoLibrary,
+    MdWatchLater
 } from "react-icons/md";
-import {Link, NavLink, useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 
 

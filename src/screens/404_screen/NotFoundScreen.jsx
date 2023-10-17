@@ -4,7 +4,6 @@ import  '../../assets/css/404/not-found.css'
 import { CiSearch } from "react-icons/ci";
 import logo from "../../../src/assets/img/logo-vtube.png";
 
-
 function NotFoundScreen() {
     const logoImg = logo;
 
@@ -13,7 +12,6 @@ function NotFoundScreen() {
     function handleClick() {
     navigate('/');
     }  
-     
   return (
     <div id="error-page">
       <div id="error-page-content">
