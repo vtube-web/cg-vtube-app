@@ -1,13 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "../../assets/scss/main_screen/subscribe/_subscription.module.scss";
+import { BsGrid3X2GapFill, BsListUl } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  BsGrid3X2GapFill,
-  BsListUl,
-  BsThreeDotsVertical,
-} from "react-icons/bs";
-import { Link } from "react-router-dom";
+  getVideosSubscribed,
+  selectVideoSubscribedList,
+} from "../../features/video/videoSlice";
+import VideoRender from "../../components/subcribed/VideoRender";
 
 export default function SubscribedScreen() {
+  const dispatch = useDispatch();
+  const videoListPage = useSelector(selectVideoSubscribedList);
+  const [listVideoSubscribed, setListVideoSubscribed] = useState({});
+  const [showNoSubscribedMessage, setShowNoSubscribedMessage] = useState(false);
+  const [render, setRender] = useState(true);
+  useEffect(() => {
+    if (videoListPage.length === 0 || render) {
+      dispatch(getVideosSubscribed());
+    }
+    setRender(!render);
+    setShowNoSubscribedMessage(videoListPage.length !== 0);
+    setListVideoSubscribed(videoListPage.content);
+  }, [dispatch, videoListPage]);
+
   return (
     <div className={`${style.main} row`}>
       <div className={style.header}>
@@ -29,183 +44,21 @@ export default function SubscribedScreen() {
         </div>
       </div>
       <div className={`${style.content} row`}>
-        <div className={`${style.info} col-md-6 col-lg-4`}>
-          <a href="src/screens/subscribedScreen">
-            <img
-              src="https://i.pinimg.com/564x/52/12/dc/5212dccf6f2e37eb54fed01f2cdba199.jpg"
-              alt="img"
-            />
-            <div className={style.time__video}>30:56</div>
-            <div className={`${style.detail} row`}>
-              <div className="col-2">
-                <img
-                  src="https://yt3.ggpht.com/5oI9heBQT621qOEhp8xi3RMwNpV-B50Qkvrztu8joCzPo69FC3lQzorHGP0ZpJ8eDdNTMqsc7nc=s68-c-k-c0x00ffffff-no-rj-mo"
-                  alt="avatar"
-                />
-              </div>
-              <div className="col">
-                <div className={style.content__tittle}>
-                  Top Tier Fortnite Agent - Season 4 - LiveSeason 4 - LiveSeason
-                  4 - LiveSeason 4 - Live
-                </div>
-                <div>name channel</div>
-                <div>view • time ago</div>
-              </div>
-              <div className="col-2">
-                <button>
-                  <BsThreeDotsVertical size={20} />
-                </button>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div className={`${style.info} col-md-6 col-lg-4`}>
-          <Link>
-            <img
-              src="https://i.pinimg.com/564x/52/12/dc/5212dccf6f2e37eb54fed01f2cdba199.jpg"
-              alt="img"
-            />
-            <div className={style.time__video}>30:56</div>
-
-            <div className={`${style.detail} row`}>
-              <div className="col-2">
-                <img
-                  src="https://yt3.ggpht.com/5oI9heBQT621qOEhp8xi3RMwNpV-B50Qkvrztu8joCzPo69FC3lQzorHGP0ZpJ8eDdNTMqsc7nc=s68-c-k-c0x00ffffff-no-rj-mo"
-                  alt="avatar"
-                />
-              </div>
-              <div className="col">
-                <div className={style.content__tittle}>
-                  Top Tier Fortnite Agent - Season 4 - LiveSeason 4 - LiveSeason
-                  4 - LiveSeason 4 - Live
-                </div>
-                <div>name channel</div>
-                <div>view + time ago</div>
-              </div>
-              <div className="col-2">
-                <button>
-                  <BsThreeDotsVertical size={24} />
-                </button>
-              </div>
-            </div>
-          </Link>
-        </div>
-        <div className={`${style.info} col-md-6 col-lg-4`}>
-          <img
-            src="https://i.pinimg.com/564x/52/12/dc/5212dccf6f2e37eb54fed01f2cdba199.jpg"
-            alt="img"
-          />
-          <div className={style.time__video}>30:56</div>
-
-          <div className={`${style.detail} row`}>
-            <div className="col-2">
-              <img
-                src="https://yt3.ggpht.com/5oI9heBQT621qOEhp8xi3RMwNpV-B50Qkvrztu8joCzPo69FC3lQzorHGP0ZpJ8eDdNTMqsc7nc=s68-c-k-c0x00ffffff-no-rj-mo"
-                alt="avatar"
+        {showNoSubscribedMessage ? (
+          Array.isArray(listVideoSubscribed) &&
+          listVideoSubscribed.length > 0 ? (
+            listVideoSubscribed.map((videoData, index) => (
+              <VideoRender
+                key={`${videoData.videoId}_${index}`}
+                {...videoData}
               />
-            </div>
-            <div className="col">
-              <div className={style.content__tittle}>
-                Top Tier Fortnite Agent - Season 4 - LiveSeason 4 - LiveSeason 4
-                - LiveSeason 4 - Live
-              </div>
-              <div>name channel</div>
-              <div>view + time ago</div>
-            </div>
-            <div className="col-2">
-              <button>
-                <BsThreeDotsVertical size={24} />
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className={`${style.info} col-md-6 col-lg-4`}>
-          <img
-            src="https://i.pinimg.com/564x/52/12/dc/5212dccf6f2e37eb54fed01f2cdba199.jpg"
-            alt="img"
-          />
-          <div className={style.time__video}>30:56</div>
-
-          <div className={`${style.detail} row`}>
-            <div className="col-2">
-              <img
-                src="https://yt3.ggpht.com/5oI9heBQT621qOEhp8xi3RMwNpV-B50Qkvrztu8joCzPo69FC3lQzorHGP0ZpJ8eDdNTMqsc7nc=s68-c-k-c0x00ffffff-no-rj-mo"
-                alt="avatar"
-              />
-            </div>
-            <div className="col">
-              <div className={style.content__tittle}>
-                Top Tier Fortnite Agent - Season 4 - LiveSeason 4 - LiveSeason 4
-                - LiveSeason 4 - Live
-              </div>
-              <div>name channel</div>
-              <div>view + time ago</div>
-            </div>
-            <div className="col-2">
-              <button>
-                <BsThreeDotsVertical size={24} />
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className={`${style.info} col-md-6 col-lg-4`}>
-          <img
-            src="https://i.pinimg.com/564x/52/12/dc/5212dccf6f2e37eb54fed01f2cdba199.jpg"
-            alt="img"
-          />
-          <div className={style.time__video}>30:56</div>
-
-          <div className={`${style.detail} row`}>
-            <div className="col-2">
-              <img
-                src="https://yt3.ggpht.com/5oI9heBQT621qOEhp8xi3RMwNpV-B50Qkvrztu8joCzPo69FC3lQzorHGP0ZpJ8eDdNTMqsc7nc=s68-c-k-c0x00ffffff-no-rj-mo"
-                alt="avatar"
-              />
-            </div>
-            <div className="col">
-              <div className={style.content__tittle}>
-                Top Tier Fortnite Agent - Season 4 - LiveSeason 4 - LiveSeason 4
-                - LiveSeason 4 - Live
-              </div>
-              <div>name channel</div>
-              <div>view + time ago</div>
-            </div>
-            <div className="col-2">
-              <button>
-                <BsThreeDotsVertical size={24} />
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className={`${style.info} col-md-6 col-lg-4`}>
-          <img
-            src="https://i.pinimg.com/564x/52/12/dc/5212dccf6f2e37eb54fed01f2cdba199.jpg"
-            alt="img"
-          />
-          <div className={style.time__video}>30:56</div>
-
-          <div className={`${style.detail} row`}>
-            <div className="col-2">
-              <img
-                src="https://yt3.ggpht.com/5oI9heBQT621qOEhp8xi3RMwNpV-B50Qkvrztu8joCzPo69FC3lQzorHGP0ZpJ8eDdNTMqsc7nc=s68-c-k-c0x00ffffff-no-rj-mo"
-                alt="avatar"
-              />
-            </div>
-            <div className="col">
-              <div className={style.content__tittle}>
-                Top Tier Fortnite Agent - Season 4 - LiveSeason 4 - LiveSeason 4
-                - LiveSeason 4 - Live
-              </div>
-              <div>name channel</div>
-              <div>view + time ago</div>
-            </div>
-            <div className="col-2">
-              <button>
-                <BsThreeDotsVertical size={24} />
-              </button>
-            </div>
-          </div>
-        </div>
+            ))
+          ) : (
+            <p>No data to display</p>
+          )
+        ) : (
+          <p>No watch history available</p>
+        )}
       </div>
     </div>
   );

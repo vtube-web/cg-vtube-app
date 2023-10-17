@@ -2,10 +2,10 @@
 import { useNavigate } from 'react-router-dom';
 import  '../../assets/css/404/not-found.css'
 import { CiSearch } from "react-icons/ci";
+import logo from "../../../src/assets/img/logo-vtube.png";
 
 function NotFoundScreen() {
-    const logoImg =
-      "https://cdn.discordapp.com/attachments/1139963455038832680/1153326437185626143/AS1.png";
+    const logoImg = logo;
 
     const navigate = useNavigate(); 
 

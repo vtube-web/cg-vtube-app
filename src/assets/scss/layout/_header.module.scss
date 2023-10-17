@@ -1,4 +1,4 @@
-@import '../base/base.module';
+@import "../base/base.module";
 
 .header {
   display: flex;
@@ -23,48 +23,42 @@
     }
 
     .header__logo {
-      padding-left: 20px;
-      width: 180px;
+      padding: 10px 0 0 20px;
+      width: 130px;
       height: 60px;
       object-fit: contain;
       display: block;
     }
   }
 
-
   form {
-    flex: 0.4;
+    position: relative;
+    max-width: 500px;
+    width: 50%;
+    height: 35px;
     display: flex;
-    margin: 0.1rem;
-    border-radius: 20px;
-    border: 1.2px solid;
-    background-color: transparent;
 
     input {
-      width: 120%;
-      border: none;
-      border-radius: 15px;
-      font-weight: 500;
-      background: transparent;
-      padding: 0.3rem;
-      color: $white-text;
-
-      &:focus {
-        outline: none;
-      }
-
+      width: 85%;
+      height: 100%;
+      border: 2px solid #dbdbdb;
+      padding: 0 20px;
+      font-size: 16px;
+      text-transform: capitalize;
+      border-radius: 40px 0 0 40px;
+    }
+    svg{
+      margin: auto;
     }
 
     button {
-      padding: 0.3rem 1.5rem;
-      color: $text-color-for-black;
-      background: transparent;
-      border: none;
-      border-radius: 0 15px 15px 0;
-
-      &:focus {
-        border: none;
-      }
+      width: 15%;
+      height: 100%;
+      background: #f0f0f0;
+      border: 2px solid #dbdbdb;
+      padding: 5px 0;
+      border-left: none;
+      border-radius: 0 40px 40px 0;
     }
   }
 
@@ -88,19 +82,17 @@
       line-height: 36px;
       padding-right: 10px;
       padding-left: 10px;
-      padding-top: 10px;
       font-size: 15px;
       cursor: pointer;
       color: #3ea6ff;
-
-      &:hover{
+      &:hover {
         background-color: #374a59;
       }
     }
   }
 }
 
-@media(max-width: $breakpoint-small) {
+@media (max-width: $breakpoint-small) {
   .header {
     padding: 1rem;
 
