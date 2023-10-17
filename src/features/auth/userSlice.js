@@ -1,5 +1,5 @@
 import { createAsyncThunk,createSlice } from "@reduxjs/toolkit";
-import { checkEmailApi, login, registerApi, getInfo } from "../../api/authApi";
+import { checkEmailApi, login, registerApi, getInfo, getUserList } from "../../api/authApi";
 
 
 const initialState = {
@@ -12,6 +12,7 @@ const initialState = {
   registerSuccess: false,
   registerError: false,
   checkEmailSuccess: false,
+  userList: []
 };
 
 
@@ -33,6 +34,11 @@ export const getInfoUser = createAsyncThunk("info", async () => {
   const response = await getInfo();
   return response.data;
 });
+
+export const getListUser = createAsyncThunk("list-user", async (data) => {
+  const response = await getUserList(data);
+  return response.data;
+}); 
 
 export const userAccountSlice = createSlice({
   name: "userAccount",
@@ -131,6 +137,23 @@ export const userAccountSlice = createSlice({
         state.loading = false;
         state.value = action.payload.data;
         state.error = false;
+      })
+
+      .addCase(getListUser.pending, (state) => {
+        state.success = false;
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(getListUser.rejected, (state, action) => {
+        state.success = false;
+        state.loading = false;
+        state.error = action.error;
+      })
+      .addCase(getListUser.fulfilled, (state, action) => {
+        state.success = true;
+        state.loading = false;
+        state.error = false;
+        state.userList = action.payload.data;
       });
   },
 });
@@ -151,5 +174,8 @@ export const selectLoginIsSuccess = (state) => state.userAccount.loginSuccess;
 
 // get state of Check Email Register.
 export const selectCheckEmailIsSuccess = (state) => state.userAccount.checkEmailSuccess;
+
 export const selectUserInfo = (state) => state.userAccount.value;
+
+export const selectUserList = (state) => state.userAccount.userList;
 export default userAccountSlice.reducer;
