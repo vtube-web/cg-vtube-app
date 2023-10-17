@@ -6,7 +6,7 @@ function VideoUpload({data}) {
     <div className="w-[40%] p-2 ">
       <div className="bg-gray-100 rounded-lg ">
         <video
-          className="rounded-t-lg"
+          className="rounded-t-lg h-[430px] w-full"
           src={data.videoUrl}
           controls
         />

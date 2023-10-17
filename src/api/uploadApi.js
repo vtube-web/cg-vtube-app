@@ -1,9 +1,8 @@
 import axios from "axios";
+import {getAccessToken} from "../services/accountService";
 
 const VIDEO_UPLOAD_API = "http://localhost:8080/api/videos";
-
-const token =
-  JSON.parse(window.localStorage.getItem("user"))?.accessToken || "";
+const token = getAccessToken() || "";
 
 export const createVideo = async (video) => {
     let result = null;
