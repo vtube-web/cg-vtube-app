@@ -156,15 +156,14 @@ function handleSubmit(e) {
               </ul>
             </div>
           </nav>
-          <div className="homeProfile-content d-flex">
-            <div className="container">
+          <div className="homeProfile-content ">
               {subParam == "featured" ? <Home /> : <></>}
               {subParam == "videos" ? <Video /> : <></>}
               {subParam == "shorts" ? <Shorts /> : <></>}
               {subParam == "playlists" ? <PlayList /> : <></>}
               {subParam == "channels" ? <Channel /> : <></>}
               {subParam == "about" ? <About /> : <></>}
-            </div>
+
           </div>
         </div>
       </div>

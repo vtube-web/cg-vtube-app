@@ -30,7 +30,6 @@ export default function Header({handleSetSidebar}) {
         }
     }, [success, user]);
 
-
   return (
     <div className={style.header}>
       <div className={style.header__menu__logo}>

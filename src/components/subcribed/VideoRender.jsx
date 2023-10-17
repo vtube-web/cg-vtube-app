@@ -9,7 +9,7 @@ const VideoRender = ({ index, ...videoData }) => {
     <div className={`${style.info} col-md-6 col-lg-4`} key={index}>
       <div className={style.img_thumbnail}>
         <Link to={`/watching/${videoData.id}`}>
-          <img src={videoData.thumbnail} alt="thumbnail" />
+          <img src={videoData.thumbnail} alt="thumbnail"/>
           <div className={style.time__video}>30:56</div>
         </Link>
       </div>

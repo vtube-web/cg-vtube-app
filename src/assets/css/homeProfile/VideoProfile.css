@@ -1,0 +1,165 @@
+
+.container {
+    font-family: "Roboto", Arial, sans-serif;
+}
+
+.video-Profile{
+    cursor: pointer;
+    max-width: 19rem;
+}
+
+
+.button-videoProfile {
+    background-color: rgba(139, 122, 122, 0.1);
+    border-radius: 8px;
+}
+
+.video-profile-block-button .button-videoProfile {
+    font-size: 1em; 
+}
+
+.button-videoProfile-active {
+    background-color: black;
+    color: white;
+    border-radius: 8px;
+}
+
+.img-videoProfile-background {
+    height: 12rem; 
+    width: 20rem;
+    border-radius: 12px;
+    position: relative;
+
+
+}
+
+.img-videoProfile{
+    height: 100%;
+    width: 100%;
+    background-color: aqua;
+    border-radius: 12px;
+    position: relative;
+    cursor: pointer;
+
+
+}
+
+.time-videoProfile {
+    position: absolute;
+    top: 84%;
+    left: 79%;
+    color:white;
+    background: black;
+    border-radius: 5px;
+    width: 3.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+    text-align: center;
+
+}
+
+/* two of them for hover clock */
+.clock-videoProfile {
+    display: none;
+    position: absolute;
+    top:5%;
+    left: 88%;
+    background-color: black;
+    color: white;
+    height: 15%;
+    width: 10%;
+    text-align: center;
+}
+.video-Profile:hover .clock-videoProfile {
+    display: block;
+}
+
+/* two of them for hover inside clock */
+.clock-label {
+    display: none;
+    position: absolute;
+    background-color: black;
+    right: 130%;
+    top: 10%;
+    width: 320%;
+}
+.clock-videoProfile:hover .clock-label {
+    display: block;
+}
+
+/* two of them for hover and appear playList-videoProfile */
+.playList-videoProfile {
+    display: none;
+    position: absolute;
+    top: 25%;
+    left: 88%;
+    background-color: black;
+    color: white;
+    height: 15%;
+    width: 10%;
+    text-align: center;
+}
+
+
+.video-Profile:hover .playList-videoProfile {
+    display: block;
+}
+
+/* two of them for hover inside playList-videoProfile */
+.playList-label {
+    display: none;
+    position: absolute;
+    background-color: black;
+    right: 130%;
+    top: 10%;
+    width: 320%;
+}
+
+.playList-videoProfile:hover .playList-label {
+    display:block;
+}
+
+.threedot-videoProfile{
+    text-align: right;
+    padding-right: 1%;
+}
+
+.texttitle-videoProfile {
+    font-size:small;
+    font-weight: bold;
+}
+
+.view-time-size-videoProfile{
+    font-size: small;
+}
+
+.threedot-videoProfile{
+    display: none;
+}
+
+.video-Profile:hover .threedot-videoProfile {
+    display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
