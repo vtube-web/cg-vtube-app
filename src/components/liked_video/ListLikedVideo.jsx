@@ -47,6 +47,7 @@ const ListLikedVideo = ({ handleRemoveItem, index, ...video }) => {
       <div className={`${style.index__videos} `}>
         <p>{index + 1}</p>
       </div>
+
       <div className={`${style.content__videos} `}>
         <Link to={`/watching/${video.videoId}`}>
           <div className={`${style.img__videos} `}>
@@ -54,6 +55,7 @@ const ListLikedVideo = ({ handleRemoveItem, index, ...video }) => {
             <div className={style.time__video}>30:56</div>
           </div>
         </Link>
+
         <div className={`${style.info__videos} `}>
           <Link to={`/watching/${video.videoId}`}>{video.title}</Link>
           <div className={`${style.detail__videos} `}>
@@ -68,6 +70,7 @@ const ListLikedVideo = ({ handleRemoveItem, index, ...video }) => {
             </div>
           </div>
         </div>
+        
       </div>
       <div className={`${style.menu__videos}`}>
         <button onClick={toggleDropdown}>
