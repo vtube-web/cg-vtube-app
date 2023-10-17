@@ -38,6 +38,8 @@ export default function CommentSection() {
                 return new Date(a.createAt) - new Date(b.createAt);
             });
             setCommentList(sortedComments)
+        } else{
+            setCommentList(video.commentDtoList)
         }
     }, [video])
 

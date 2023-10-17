@@ -6,9 +6,8 @@ import "react-show-more-text/lib/ShowMoreText.css"
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import formatNumberView from "../../../format/FormatNumberView";
-import formatDate from "../../../format/FormatDate";
-import ReactPlayer from "react-player";
 import formatDateAgo from "../../../format/FormatDateAgo";
+import ReactPlayer from "react-player";
 
 
 function VideoSection({video}) {
@@ -26,7 +25,6 @@ function VideoSection({video}) {
             }
         }
     }, [video]);
-
 
     return (
         <>
@@ -107,8 +105,10 @@ function VideoSection({video}) {
                 </div>
                 : <div>Loading...</div>
             }
+
         </>
     )
 }
 
 export default VideoSection
+
