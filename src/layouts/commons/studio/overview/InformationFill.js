@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import {
-  setVideo,
   getVideo,
   editVideo,
   getVideoSuccess,
-} from "../../../features/studio/videoUploadSlice";
+} from "../../../../features/studio/videoUploadSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import VideoUpload from "./VideoUpload";
@@ -13,7 +12,7 @@ import DescribeSection from "./imformation_fill/DescribeSection";
 import DisplayModeSection from "./imformation_fill/DisplayModeSection";
 import ImageSection from "./imformation_fill/ImageSection";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { firebaseStorage } from "../../../firebase";
+import { firebaseStorage } from "../../../../firebase";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 function InformationFill({ onClose, handleRefresh }) {

@@ -2,19 +2,21 @@ import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import MenuItemChill from "../../components/studio/common/menu_item_sub/MenuItemSub";
-import Video from "../../components/studio/content/VideoSubContent";
-import Direct from "../../components/studio/content/DirectSubContent";
-import PlayList from "../../components/studio/content/PlaylistSubContent";
+import VideoSubContent from "../../layouts/commons/studio/content/VideoSubContent";
+import DirectSubContent from "../../layouts/commons/studio/content/DirectSubContent";
+import PlaylistSubContent from "../../layouts/commons/studio/content/PlaylistSubContent";
+import EditSubContent from "../../layouts/commons/studio/content/EditSubContent";
 
 function ContentScreen() {
   const { channelId, subParam } = useParams();
   const navigate = useNavigate();
-  useEffect(()=>{
-    if(subParam == "*"){
+
+  useEffect(() => {
+    if (subParam == "*") {
       navigate(`/channel/${channelId}/content/upload`);
     }
-  },[subParam])
-  const pathAcountDefault = `/channel/${channelId}/content/*`;
+  }, [subParam]);
+  const pathAcountDefault = `/channel/${channelId}/content`;
   const menus = [
     {
       to: `${pathAcountDefault}/upload`,
@@ -30,7 +32,7 @@ function ContentScreen() {
     },
   ];
   return (
-    <div className="text-black">
+    <div className="text-black w-full">
       <ToastContainer
         position="top-right"
         autoClose={2000}
@@ -42,6 +44,8 @@ function ContentScreen() {
         draggable
         pauseOnHover
       />
+      {subParam == "edit" ? <EditSubContent /> : <></>}
+
       <div className="pl-6 pt-4 text-2xl font-bold flex">
         Content channel page
       </div>
@@ -52,9 +56,9 @@ function ContentScreen() {
               <MenuItemChill menu={menu} key={i} />
             ))}
           </div>
-          {subParam == "upload" ? <Video /> : <></>}
-          {subParam == "direct" ? <Direct /> : <></>}
-          {subParam == "playlist" ? <PlayList /> : <></>}
+          {subParam == "upload" ? <VideoSubContent /> : <></>}
+          {subParam == "direct" ? <DirectSubContent /> : <></>}
+          {subParam == "playlist" ? <PlaylistSubContent /> : <></>}
         </div>
       </div>
     </div>
