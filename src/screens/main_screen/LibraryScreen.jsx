@@ -13,29 +13,38 @@ import {
   selectVideoLikedList,
 } from "../../features/video/videoLikedSlice";
 import VideosRender from "../../components/library/VideosRender";
+import { getInfoUser, selectUserInfo } from "../../features/auth/userSlice";
 
 export default function LibraryScreen() {
   const dispatch = useDispatch();
   const videoWatched = useSelector(selectVideoWatchedList);
   const videoLiked = useSelector(selectVideoLikedList);
+  const loggerUser = useSelector(selectUserInfo);
+  const [userInfo, setUserInfo] = useState({});
   const [listVideoWatched, setListVideoWatched] = useState({});
   const [listVideoLiked, setListVideoLiked] = useState({});
   const [showNoWatchHistoryMessage, setShowNoWatchHistoryMessage] =
     useState(false);
   const [showNoLikedMessage, setShowNoLikedMessage] = useState(false);
+  const [reRender, setReRender] = useState(true);
+
   useEffect(() => {
-    if (videoWatched.length === 0) {
+    if (videoWatched.length === 0 || reRender) {
       dispatch(getVideoWatched());
     }
-    if (videoLiked.length === 0) {
+    if (videoLiked.length === 0 || reRender) {
       dispatch(getVideoLiked());
     }
-
+    if (!loggerUser || reRender) {
+      dispatch(getInfoUser());
+    }
+    setReRender(!reRender);
     setShowNoWatchHistoryMessage(videoWatched.length !== 0);
     setShowNoLikedMessage(videoLiked.length !== 0);
     setListVideoWatched(videoWatched.content);
     setListVideoLiked(videoLiked.content);
-  }, [dispatch, videoWatched, videoLiked]);
+    setUserInfo(loggerUser);
+  }, [dispatch, videoWatched, videoLiked, loggerUser]);
 
   return (
     <div className="container row">
@@ -106,39 +115,43 @@ export default function LibraryScreen() {
         </div>
       </div>
       <div className={`${style.secondary} col col-2 d-none d-lg-block`}>
-        <div className={`${style.item} `}>
-          <div className={style.info}>
-            <img
-              src="https://yt3.ggpht.com/yti/ADpuP3O4eO2u6zs8luGvroxV_XK6WpAI6Ysctq6EIw=s160-c-k-c0x00ffffff-no-rj"
-              alt="avatar"
-            />
-            <p>Hai Nguyen</p>
-          </div>
-          <hr />
-          <div className={style.general}>
-            {videoLiked && videoLiked.content && (
-              <>
+        {userInfo && (
+          <>
+            <div className={`${style.item} `}>
+              <div className={style.info}>
+                <img
+                  src={userInfo.avatar ? userInfo.avatar : ""}
+                  alt="avatar"
+                />
+                <p>{userInfo.userName}</p>
+              </div>
+              <hr />
+              <div className={style.general}>
                 <div className={style.part}>
                   <div>Subscriptions</div>
-                  <div className={style.number}>0</div>
+                  <div className={style.number}>
+                    {userInfo.subscriptions ? userInfo.subscriptions.length : 0}
+                  </div>
                 </div>
                 <hr />
                 <div className={style.part}>
                   <div>Uploads</div>
-                  <div className={style.number}>0</div>
+                  <div className={style.number}>
+                    {userInfo.videoList ? userInfo.videoList.length : 0}
+                  </div>
                 </div>
                 <hr />
                 <div className={style.part}>
                   <div>Likes</div>
                   <div className={style.number}>
-                    {videoLiked.content.length}
+                    {userInfo.likedVideos ? userInfo.likedVideos.length : 0}
                   </div>
                 </div>
                 <hr />
-              </>
-            )}
-          </div>
-        </div>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

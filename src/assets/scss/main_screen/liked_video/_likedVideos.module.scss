@@ -29,10 +29,11 @@
         width: 100%;
         height: 224px;
         .content__thumbnail {
-          width: 135px;
+          // width: 135px;
           height: 100%;
           display: flex;
           margin: auto;
+          object-fit: cover;
           .content__thumbnail__img {
             img {
               border-radius: 10px;
@@ -245,6 +246,43 @@
       .video__render:hover .menu__videos button {
         display: inline-block;
         background-color: #909090;
+      }
+    }
+    .list__shorts {
+      display: flex;
+      flex-wrap: wrap;
+      // margin: 10px 0 10px 0;
+      margin-left: 36px;
+    position: relative;
+
+      .short__render {
+        max-width: 201px;
+        margin: 15px 2px;
+        .content__img{
+          img{
+            border-radius: 10px;
+          }
+        }
+        .content__tittle {
+          margin-top: 10px;
+          color: black;
+          font-weight: 550;
+          font-size: 16px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+        }
+        .content__view {
+          font-size: 14px;
+        }
+        button{
+          display: none;
+        }
+      }
+      .short__render:hover button {
+        display: inline-block;
       }
     }
     .noLikedMessage {

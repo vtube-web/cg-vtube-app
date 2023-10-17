@@ -5,11 +5,10 @@ import {AiOutlineSearch} from "react-icons/ai";
 import {Link, useNavigate} from "react-router-dom";
 import {FiMoreVertical} from "react-icons/fi";
 import {PiUserCircleThin} from "react-icons/pi";
-import {getStoredUserData} from '../../../services/accountService';
 import NavEnd from "../studio/navbar/nav_end/NavEnd";
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {resetUserAccountState, selectLoginIsSuccess, selectUserData} from "../../../features/auth/userSlice";
+import {resetUserAccountState, selectLoginIsSuccess} from "../../../features/auth/userSlice";
 
 
 export default function Header({handleSetSidebar}) {

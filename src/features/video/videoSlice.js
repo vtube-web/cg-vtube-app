@@ -2,7 +2,8 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 
 import {
     findVideoList,
-    findVideo
+    findVideo,
+    findVideoSubscribedList
 } from "../../api/videoAPI";
 
 const initialState = {
@@ -21,6 +22,11 @@ export const getVideos = createAsyncThunk("getVideos", async () => {
 
 export const getVideo = createAsyncThunk("getVideo", async (videoId) => {
     const response = await findVideo(videoId);
+    return response.data;
+});
+
+export const getVideosSubscribed = createAsyncThunk("getVideosSubscribed", async () => {
+    const response = await findVideoSubscribedList();
     return response.data;
 });
 
@@ -43,41 +49,59 @@ export const videoSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            //getVideoList
-            .addCase(getVideos.pending, (state) => {
-                state.success = false;
-                state.loading = true;
-                state.error = false;
-            })
-            .addCase(getVideos.rejected, (state, action) => {
-                state.success = false;
-                state.loading = false;
-                state.error = action.error;
-            })
-            .addCase(getVideos.fulfilled, (state, action) => {
-                state.getVideoListSuccess = true;
-                state.loading = false;
-                state.error = false;
-                state.videos = action.payload.data;
-            })
 
-            //getVideo
-            .addCase(getVideo.pending, (state) => {
-                state.success = false;
-                state.loading = true;
-                state.error = false;
-            })
-            .addCase(getVideo.rejected, (state, action) => {
-                state.success = false;
-                state.loading = false;
-                state.error = action.error;
-            })
-            .addCase(getVideo.fulfilled, (state, action) => {
-                state.getVideoSuccess = true;
-                state.loading = false;
-                state.error = false;
-                state.videoDetails = action.payload.data;
-            })
+          //getVideoList
+          .addCase(getVideos.pending, (state) => {
+            state.success = false;
+            state.loading = true;
+            state.error = false;
+          })
+          .addCase(getVideos.rejected, (state, action) => {
+            state.success = false;
+            state.loading = false;
+            state.error = action.error;
+          })
+          .addCase(getVideos.fulfilled, (state, action) => {
+            state.getVideoListSuccess = true;
+            state.loading = false;
+            state.error = false;
+            state.videos = action.payload.data;
+          })
+
+          //getVideo
+          .addCase(getVideo.pending, (state) => {
+            state.success = false;
+            state.loading = true;
+            state.error = false;
+          })
+          .addCase(getVideo.rejected, (state, action) => {
+            state.success = false;
+            state.loading = false;
+            state.error = action.error;
+          })
+          .addCase(getVideo.fulfilled, (state, action) => {
+            state.getVideoSuccess = true;
+            state.loading = false;
+            state.error = false;
+            state.videoDetails = action.payload.data;
+          })
+
+          .addCase(getVideosSubscribed.pending, (state) => {
+            state.success = false;
+            state.loading = true;
+            state.error = false;
+          })
+          .addCase(getVideosSubscribed.rejected, (state, action) => {
+            state.success = false;
+            state.loading = false;
+            state.error = action.error;
+          })
+          .addCase(getVideosSubscribed.fulfilled, (state, action) => {
+            state.getVideoListSuccess = true;
+            state.loading = false;
+            state.error = false;
+            state.videos = action.payload.data;
+          });
     }
 });
 
@@ -91,5 +115,6 @@ export const selectVideoListSuccess = (state) => state.video.getVideoListSuccess
 export const selectVideoSuccess = (state) => state.video.getVideoSuccess;
 export const selectVideoList = (state) => state.video.videos;
 export const selectVideoDetail = (state) => state.video.videoDetails;
+export const selectVideoSubscribedList = (state) => state.video.videos;
 
 export default videoSlice.reducer;

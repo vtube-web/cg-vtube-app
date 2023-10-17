@@ -32,3 +32,21 @@ export const deleteVideoLiked = async (videoId) => {
   }
   return result;
 };
+
+export const createLiked = async (videoId) => {
+  let result = null;
+  let user = getStoredUserData();
+  try {
+    result = await axios({
+      url: `${VIDEO_LIKED_API}/${videoId}`,
+      method: "post",
+      headers: {
+        Authorization: "Bearer " + user.accessToken,
+      },
+    });
+  } catch (e) {
+    console.log("Error when calling API to add liked:", e);
+  }
+
+  return result;
+};

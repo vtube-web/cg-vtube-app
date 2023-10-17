@@ -11,6 +11,7 @@ import ExtensionsSection from "../../components/watched/ExtensionsSection";
 import WatchedRender from "../../components/watched/WatchedRender";
 import groupVideosByDay from "../../components/watched/GroupVideosByDay";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { ProgressSpinner } from "primereact/progressspinner";
 
 const WatchedScreen = () => {
   const dispatch = useDispatch();
@@ -109,7 +110,9 @@ const WatchedScreen = () => {
               dataLength={Object.keys(filteredVideos || {}).length}
               next={fetchMoreData}
               hasMore={videoListPage && videoListPage.hasNext}
-              loader={<h4>Loading...</h4>}
+              loader={
+                <ProgressSpinner style={{ width: "50px", height: "50px" }} />
+              }
             >
               {filteredVideos
                 ? Object.keys(filteredVideos).map((date) => (
