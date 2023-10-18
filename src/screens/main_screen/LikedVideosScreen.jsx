@@ -7,11 +7,12 @@ import {
 } from "../../features/video/videoLikedSlice";
 import { useEffect, useState } from "react";
 import Playlist from "../../components/liked_video/Playlist";
-import ListLikedVideo from "../../components/liked_video/ListLikedVideo";
 import AllButton from "../../components/liked_video/AllButton";
 import VideosButton from "../../components/liked_video/VideosButton";
 import ShortsButton from "../../components/liked_video/ShortsButton";
 import { BiSolidLike } from "react-icons/bi";
+import RenderShorts from "../../components/liked_video/RenderShorts";
+import RenderVideos from "../../components/liked_video/RenderVideos";
 
 function LikedVideosScreen() {
   const dispatch = useDispatch();
@@ -19,17 +20,27 @@ function LikedVideosScreen() {
   const [activeButton, setActiveButton] = useState("All");
   const [showNoLikedMessage, setShowNoLikedMessage] = useState(false);
   const [likedVideoList, setLikedVideoList] = useState({});
+  const [isRemove, setIsRemove] = useState(false);
+  const [isChange, setIsChange] = useState(true);
+  // const [likedVideoRender, setLikedVideoRender] = useState({});
+  const handleRemoveItem = () => {
+    setIsRemove(!isRemove);
+  };
 
   useEffect(() => {
-    if (videoList.length === 0) {
-      dispatch(getVideoLiked());
-      console.log("Getting videos...");
-
+    if (isChange || isRemove) {
+      if (videoList.length === 0 || isRemove) {
+        dispatch(getVideoLiked());
+        if (isRemove) {
+          handleRemoveItem();
+        }
+      }
+      setLikedVideoList(videoList.content);
+      setShowNoLikedMessage(Object.keys(videoList).length !== 0);
+      const filteredVideoList = filterVideos();
+      // setLikedVideoRender(filteredVideoList);
     }
-    console.log(videoList);
-    setLikedVideoList(videoList.content);
-    setShowNoLikedMessage(Object.keys(videoList).length !== 0);
-  }, [videoList.length, activeButton]);
+  }, [isChange, isRemove, videoList]);
 
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
@@ -38,50 +49,53 @@ function LikedVideosScreen() {
   const filterVideos = () => {
     switch (activeButton) {
       case "Videos":
-        return likedVideoList.filter((video) => video.type === "video");
-      case "shorts":
-        return likedVideoList.filter((video) => video.type === "short");
+        return likedVideoList && likedVideoList.length > 0
+          ? RenderVideos(handleRemoveItem, ...likedVideoList)
+          : null;
+      case "Shorts":
+        return likedVideoList && likedVideoList.length > 0
+          ? RenderShorts()
+          : null;
       default:
-        return likedVideoList;
+        return likedVideoList && likedVideoList.length > 0
+          ? RenderVideos(handleRemoveItem, ...likedVideoList)
+          : null;
     }
   };
 
-  const filteredVideoList = filterVideos();
-
   return (
+
     <div className={`${style.main} main-container`}>
-      {showNoLikedMessage ? <Playlist passedProp={videoList.content} /> : null}
+      {showNoLikedMessage &&
+        videoList.content &&
+        videoList.content.length > 0 && (
+          <Playlist passedProp={videoList.content} />
+        )}
       <div className={`${style.playlist__content} `}>
         <div className={`${style.list__button__search} `}>
           {showNoLikedMessage ? (
             <>
               <AllButton
+                className={style.btn}
                 active={activeButton === "All"}
                 onClick={handleButtonClick}
               />
               <VideosButton
+                className={style.btn}
                 active={activeButton === "Videos"}
                 onClick={handleButtonClick}
               />
               <ShortsButton
-                active={activeButton === "shorts"}
+                className={style.btn}
+                active={activeButton === "Shorts"}
                 onClick={handleButtonClick}
               />
             </>
           ) : null}
         </div>
+        
         {showNoLikedMessage ? (
-          <div className={`${style.list__videos} `}>
-            {filteredVideoList && filteredVideoList.length > 0 ? (
-              filteredVideoList.map((video, index) => (
-                <ListLikedVideo key={index} index={index} {...video} />
-              ))
-            ) : (
-              <div className={style.noLikedMessage}>
-                <p>No videos found.</p>
-              </div>
-            )}
-          </div>
+          filterVideos()
         ) : (
           <div className={style.noLikedMessage}>
             <BiSolidLike size={100} />

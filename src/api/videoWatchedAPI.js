@@ -3,11 +3,14 @@ import { getStoredUserData } from "../services/accountService";
 
 export const VIDEO_WATCHED_API = "http://localhost:8080/api/watched-videos";
 
-export const videoWatchedList = async () => {
+export const videoWatchedList = async (page) => {
   let videoList = null;
   let user = getStoredUserData();
   try {
-    videoList = await axios.get(`${VIDEO_WATCHED_API}/` + user.id, {
+    videoList = await axios.get(`${VIDEO_WATCHED_API}`, {
+      params: {
+        page: page,
+      },
       headers: {
         Authorization: "Bearer " + user.accessToken,
       },
@@ -24,7 +27,7 @@ export const deleteVideoWatched = async (videoId) => {
   let user = getStoredUserData();
   try {
     result = await axios.delete(
-      `${VIDEO_WATCHED_API}/${user.id}/videos/${videoId}`,
+      `${VIDEO_WATCHED_API}/${videoId}`,
       {
         headers: {
           Authorization: "Bearer " + user.accessToken,
@@ -43,7 +46,7 @@ export const deleteAllVideoWatched = async () => {
   let result=null;
   let user = getStoredUserData();
   try {
-    result = await axios.delete(`${VIDEO_WATCHED_API}/` + user.id, {
+    result = await axios.delete(`${VIDEO_WATCHED_API}`, {
       headers: {
         Authorization: "Bearer " + user.accessToken,
       },

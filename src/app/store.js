@@ -7,12 +7,14 @@ import isVisibilityReducer from "../features/studio/visibilitySlice";
 import videoUploadReducer from "../features/studio/videoUploadSlice";
 import videoLikedReducer from "../features/video/videoLikedSlice";
 import userReducer from "../features/auth/userSlice";
+import videoContentReducer from "../features/studio/videoContentSlice";
 import commentReducer from "../features/comment_reply/commentSlice";
 import {commentShortsSlice} from "../features/comment_reply/commentShortsSlice";
+import subscriberReducer from "../features/video/subscriberSlice";
 
 
 export const store = configureStore({
-  reducer: {  
+  reducer: {
     userAccount: userReducer,
     video: videoReducer,
     videoHistory: videoHistoryReducer,
@@ -23,6 +25,8 @@ export const store = configureStore({
     videoLiked: videoLikedReducer,
     comment: commentReducer,
     commentShorts: commentShortsSlice.reducer,
-  }
-})
+    content: videoContentReducer,
+    subscriber: subscriberReducer,
+  },
+});
 

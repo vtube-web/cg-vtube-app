@@ -14,9 +14,8 @@ const initialState = {
   success: false,
 };
 
-export const getVideoWatched = createAsyncThunk("history/list", async () => {
-  console.log("Waiting for response...");
-  const response = await videoWatchedList();
+export const getVideoWatched = createAsyncThunk("history/list", async (page) => {
+  const response = await videoWatchedList(page);
   return response.data;
 });
 
@@ -64,19 +63,16 @@ export const videoWatchedSlice = createSlice({
   extraReducers: (builder) => {
     builder
         .addCase(getVideoWatched.pending, (state) => {
-          console.log("Extra reducer: Pending...");
           state.success = false;
           state.loading = true;
           state.error = false;
         })
         .addCase(getVideoWatched.rejected, (state, action) => {
-          console.log("Extra reducer: Rejected...");
           state.success = false;
           state.loading = false;
           state.error = action.error;
         })
         .addCase(getVideoWatched.fulfilled, (state, action) => {
-          console.log("Extra reducer: Success...");
           state.success = true;
           state.loading = false;
           state.error = false;

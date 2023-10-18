@@ -1,5 +1,5 @@
-const groupVideosByDay = (videos) => {
-  const groupedVideos = {};
+const groupVideosByDay = (videos, existingGroupedVideos) => {
+    const groupedVideos = { ...existingGroupedVideos };
   videos.forEach((video) => {
     if (video && video.watchedAt) {
       const dateParts = video.watchedAt.split("T");

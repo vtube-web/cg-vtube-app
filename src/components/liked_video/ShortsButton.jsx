@@ -5,7 +5,7 @@ const ShortsButton = ({ active, onClick }) => {
   return (
     <button
       className={active ? style.activeButton : ""}
-      onClick={() => onClick("shorts")}
+      onClick={() => onClick("Shorts")}
     >
       Shorts
     </button>

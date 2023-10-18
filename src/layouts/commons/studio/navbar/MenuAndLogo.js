@@ -17,18 +17,11 @@ function MenuAndLogo() {
   const isVisibilityMenu = useSelector(getIsVisibilityMenu);
   const isModalMenu = useSelector(getIsModalMenu);
   const dispatch = useDispatch();
-  const [width, setWidth] = useState();
+  const [width, setWidth] = useState(window.innerWidth);
+
   const navigate = useNavigate();
   const logoImg = logo;
-  const handleMenu = () => {
-    if (width >= 1536) {
-      dispatch(setIsVisibilityMenu(!isVisibilityMenu));
-      dispatch(setIsModalMenu(false));
-    } else {
-      dispatch(setIsVisibilityMenu(!isVisibilityMenu));
-      dispatch(setIsModalMenu(!isModalMenu));
-    }
-  };
+
   function handleReturnHome() {
     navigate("/")
   }
@@ -42,6 +35,16 @@ function MenuAndLogo() {
       window.removeEventListener("resize", handleResize);
     };
   }, [width]);
+
+    const handleMenu = () => {
+      if (width >= 1536) {
+        dispatch(setIsVisibilityMenu(!isVisibilityMenu));
+        dispatch(setIsModalMenu(false));
+      } else {
+        dispatch(setIsVisibilityMenu(!isVisibilityMenu));
+        dispatch(setIsModalMenu(!isModalMenu));
+      }
+    };
   return (
     <div className="col-4 flex justify-start items-center space-x-6">
       <div
