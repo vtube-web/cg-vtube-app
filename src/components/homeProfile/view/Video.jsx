@@ -4,30 +4,68 @@ import "../../../assets/css/homeProfile/VideoProfile.css";
 import { MdPlaylistAdd } from "react-icons/md";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import NewestButton from "../common/button/NewestButton"
+import OldestButton from "../common/button/OldestButton"
+import PopularButton from "../common/button/PopularButton"
+import { BiSolidLike } from "react-icons/bi";
+import RenderVideosHomeProfile from "../common/list/RenderVideosHomeProfile"
 
 function Video() {
-
   const [activeButton, setActiveButton] = useState("Newest");
+  const [homeProfileVideoList, setHomeProfileVideoList] = useState({});
+  const [showNoVideoMessage, setShowNoVideoMessage] = useState(true);
+
 
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
   };
 
+    const filterVideos = () => {
+      switch (activeButton) {
+        case "Oldest":
+          return homeProfileVideoList && homeProfileVideoList.length > 0
+            ? RenderVideosHomeProfile(...homeProfileVideoList)
+            : null;
+        case "Popular":
+          return homeProfileVideoList && homeProfileVideoList.length > 0
+            ? RenderVideosHomeProfile(...homeProfileVideoList)
+            : null;
+        default:
+          return homeProfileVideoList && homeProfileVideoList.length > 0
+            ? RenderVideosHomeProfile(...homeProfileVideoList)
+            : null;
+      }
+    };
+
   return (
     <div className="container ">
-
       {/* này là của button */}
       <div className="container d-flex video-profile-block-button p-0">
-        <button className="button-videoProfile-active me-3 mt-3 w-20 h-8">
-          Mới nhất
-        </button>
-        <button className="button-videoProfile me-3 mt-3 w-20 h-8">
-          Phổ biến
-        </button>
-        <button className="button-videoProfile me-3 mt-3 w-20 h-8">
-          Cũ nhất
-        </button>
+        {showNoVideoMessage ? (
+          <>
+            <NewestButton
+              active={activeButton === "Newest"}
+              onClick={handleButtonClick}
+            />
+            <OldestButton
+              active={activeButton === "Oldest"}
+              onClick={handleButtonClick}
+            />
+            <PopularButton
+              active={activeButton === "Popular"}
+              onClick={handleButtonClick}
+            />
+          </>
+        ) : null}
       </div>
+      {showNoVideoMessage ? (
+        filterVideos()
+      ) : (
+        <div>
+          <BiSolidLike size={100} />
+          <h3>There are no videos in your channel yet</h3>
+        </div>
+      )}
 
       <div className="container w-100 h-100 mt-3">
         {/* Phần của 1 ô video bắt đầu từ đây */}
@@ -48,7 +86,9 @@ function Video() {
                 <div className="playList-videoProfile">
                   <button>
                     <MdPlaylistAdd size={25} />
-                    <span className="playList-label">Thêm vào danh sách chờ</span>
+                    <span className="playList-label">
+                      Thêm vào danh sách chờ
+                    </span>
                   </button>
                 </div>
               </div>
