@@ -57,7 +57,7 @@ export default function CommentSection() {
             replyDtoList: [],
             userResponseDto: {
                 id: loggedUser.id,
-                userName: loggedUser.username,
+                userName: loggedUser.userName,
                 avatar: loggedUser.avatar || imgUrl
             }
         }
@@ -67,10 +67,9 @@ export default function CommentSection() {
         setComment("");
     }
 
-
     function handleCheckLogin() {
         if (loggedUser === null) {
-            navigate("/login");
+            navigate("/signIn");
         }
     }
 
@@ -104,7 +103,6 @@ export default function CommentSection() {
 
                 {comment && (
                     <div className={style.comment__function}>
-                        <button>Hủy</button>
                         <button onClick={handleComment}>Bình luận</button>
                     </div>
                 )}
