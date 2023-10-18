@@ -1,4 +1,5 @@
 
+import "../../../../assets/css/homeProfile/VideoProfile.css"
 
 function NewestButton({ active, onClick }) {
 
@@ -7,7 +8,7 @@ function NewestButton({ active, onClick }) {
      className={active ? "" : ""}
      onClick={() => onClick("NEWEST")}
    >
-     Newest
+     Mới nhất
    </button>
  );
 }

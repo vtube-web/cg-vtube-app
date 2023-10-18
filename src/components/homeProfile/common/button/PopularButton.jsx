@@ -1,9 +1,15 @@
 
+import "../../../../assets/css/homeProfile/VideoProfile.css";
 
-function PopularButton() {
+function PopularButton({ active, onClick }) {
   return (
-    <div>PopularButton</div>
-  )
+    <button
+      className={active ? "" : ""}
+      onClick={() => onClick("Popular")}
+    >
+      Phổ biến
+    </button>
+  );
 }
 
 export default PopularButton

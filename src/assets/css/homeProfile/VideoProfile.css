@@ -34,8 +34,10 @@
 }
 
 .img-videoProfile{
+    margin: auto;
+    object-fit: contain;
     height: 100%;
-    width: 100%;
+    /* width: 100%; */
     background-color: aqua;
     border-radius: 12px;
     position: relative;
@@ -62,13 +64,14 @@
 .clock-videoProfile {
     display: none;
     position: absolute;
-    top:5%;
+    top:6%;
     left: 88%;
     background-color: black;
     color: white;
     height: 15%;
     width: 10%;
     text-align: center;
+    border-radius: 5px;
 }
 .video-Profile:hover .clock-videoProfile {
     display: block;
@@ -81,7 +84,8 @@
     background-color: black;
     right: 130%;
     top: 10%;
-    width: 320%;
+    width: 280%;
+    border-radius: 5px;
 }
 .clock-videoProfile:hover .clock-label {
     display: block;
@@ -90,6 +94,7 @@
 /* two of them for hover and appear playList-videoProfile */
 .playList-videoProfile {
     display: none;
+    border-radius: 5px;
     position: absolute;
     top: 25%;
     left: 88%;
@@ -108,11 +113,12 @@
 /* two of them for hover inside playList-videoProfile */
 .playList-label {
     display: none;
+    border-radius: 5px;
     position: absolute;
     background-color: black;
     right: 130%;
     top: 10%;
-    width: 320%;
+    width: 630%;
 }
 
 .playList-videoProfile:hover .playList-label {

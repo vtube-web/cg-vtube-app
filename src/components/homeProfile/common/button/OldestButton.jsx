@@ -1,9 +1,15 @@
-import React from 'react'
 
-function OldestButton() {
+import "../../../../assets/css/homeProfile/VideoProfile.css";
+
+function OldestButton({ active, onClick }) {
   return (
-    <div>OldestButton</div>
-  )
+    <button
+      className={active ? "" : ""}
+      onClick={() => onClick("Oldest")}
+    >
+      Cũ nhất
+    </button>
+  );
 }
 
 export default OldestButton

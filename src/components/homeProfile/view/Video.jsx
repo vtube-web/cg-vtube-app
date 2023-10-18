@@ -1,23 +1,21 @@
 import { useState } from "react";
 
-import "../../../assets/css/homeProfile/VideoProfile.css"
+import "../../../assets/css/homeProfile/VideoProfile.css";
 import { MdPlaylistAdd } from "react-icons/md";
-import {AiOutlineClockCircle} from "react-icons/ai";
+import { AiOutlineClockCircle } from "react-icons/ai";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
 function Video() {
 
   const [activeButton, setActiveButton] = useState("Newest");
 
-
-
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
   };
 
-
   return (
     <div className="container ">
+
       {/* này là của button */}
       <div className="container d-flex video-profile-block-button p-0">
         <button className="button-videoProfile-active me-3 mt-3 w-20 h-8">
@@ -44,13 +42,13 @@ function Video() {
                 <div className="clock-videoProfile">
                   <button>
                     <AiOutlineClockCircle size={25} />
-                    <span className="clock-label">Watch Later</span>
+                    <span className="clock-label">Xem sau</span>
                   </button>
                 </div>
                 <div className="playList-videoProfile">
                   <button>
                     <MdPlaylistAdd size={25} />
-                    <span className="playList-label">Add to queue</span>
+                    <span className="playList-label">Thêm vào danh sách chờ</span>
                   </button>
                 </div>
               </div>
@@ -68,12 +66,11 @@ function Video() {
 
               <div className="d-flex flex-row p-0 mt-1 view-time-size-videoProfile ">
                 <div className="me-2">53 Tr Lượt xem</div>
-                <div>• 4 Tháng trước  </div>
+                <div>• 4 Tháng trước </div>
               </div>
             </div>
           </div>
           {/* Kết thúc 1 ô Video */}
-
           
         </div>
       </div>
@@ -81,4 +78,4 @@ function Video() {
   );
 }
 
-export default Video
+export default Video;
