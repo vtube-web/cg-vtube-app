@@ -74,6 +74,7 @@ const Comment = (comment) => {
                         />
                     </div>
                     <div className="col-11">
+
                         <div className={style.user__info}>
                             <Link to={"/"} className={style.user__name}>
                                 {comment.userResponseDto.userName}
@@ -82,9 +83,11 @@ const Comment = (comment) => {
                                 {formatDateAgo(comment.createAt)}
                             </span>
                         </div>
+
                         <div className={style.comment__content}>
                             {comment.content}
                         </div>
+
                         <div className={style.comment__function}>
                             <span className={style.function__button}>
                                 <BiLike size={23} className={style.button}/>
@@ -98,6 +101,7 @@ const Comment = (comment) => {
                                 Reply
                             </span>
                         </div>
+
                         <div>
                             {showInput && (
                                 <div className={`${style.reply__container} row`}>

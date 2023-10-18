@@ -12,7 +12,6 @@ function NotFoundScreen() {
     function handleClick() {
     navigate('/');
     }  
-      
   return (
     <div id="error-page">
       <div id="error-page-content">

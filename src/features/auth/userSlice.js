@@ -3,7 +3,6 @@ import { checkEmailApi, login, registerApi, getInfo, getUserList } from "../../a
 
 
 const initialState = {
-
   userCredential:null,
   loading: false,
   error: null,

@@ -1,25 +1,58 @@
-import style from "../../assets/scss/main_screen/shorts/_videoShorts.module.scss";
-import React, {useState} from "react";
+import style from "../../../assets/scss/main_screen/shorts/_videoShorts.module.scss";
+import React, {useEffect, useRef, useState} from "react";
 import {BsPlayFill, BsPauseFill} from "react-icons/bs";
 import {IoIosMore, IoMdVolumeHigh, IoMdVolumeOff} from "react-icons/io";
 import {BiSolidDislike, BiSolidLike} from "react-icons/bi";
 import {FaCommentDots} from "react-icons/fa";
 import {PiShareFatFill} from "react-icons/pi";
+import formatNumberView from "../../../format/FormatNumberView";
+import ReactPlayer from "react-player";
 import {CgDetailsMore} from "react-icons/cg";
 import {AiOutlineClose} from "react-icons/ai";
+import {useDispatch, useSelector} from "react-redux";
+import {getVideoShorts} from "../../../features/shorts/shortsSlice";
+import CommentShorts from "./CommentsShorts/CommentShorts";
 
-function VideoShorts({videoShort}) {
+function Shorts({videoShort}) {
 
     const [playToggle, setPlayToggle] = useState(false);
     const [volumeToggle, setVolumeToggle] = useState(false);
     const [commentsToggle, setCommentsToggle] = useState(false);
+    const playerRef = useRef(null);
+    const [commentShortList, setCommentShortList] = useState([]);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        setCommentShortList(videoShort.commentShortsDtoList)
+    }, [])
 
     const handlePlayClick = () => {
-        setPlayToggle(!playToggle);
+        setPlayToggle((prevPlayToggle) => {
+            if (playerRef.current) {
+                const internalPlaying = playerRef.current.getInternalPlayer();
+                if (internalPlaying.paused) {
+                    internalPlaying.play();
+                } else {
+                    internalPlaying.pause();
+                }
+            }
+            return !prevPlayToggle;
+        })
     }
 
     const handleVolumeClick = () => {
         setVolumeToggle(!volumeToggle);
+        if (playerRef.current) {
+            const internalVolume = playerRef.current.getInternalPlayer();
+            if (internalVolume.muted) {
+                internalVolume.muted = false;
+                setVolumeToggle(false);
+            } else {
+                internalVolume.muted = true;
+                setVolumeToggle(true);
+            }
+        }
+
     }
 
     const handleCommentsClick = () => {
@@ -27,24 +60,33 @@ function VideoShorts({videoShort}) {
     }
 
 
+
     return (
         <>
             <div className={style.container}>
 
-                <div className={style.video_shorts__container}>
+                <div className={`${style.video_shorts__container} ${commentsToggle && style.active}`}>
 
                     <div className={style.color__shorts}>
-
-                        <img className={style.shorts__main}
-                             src={videoShort.content}
-                             alt={"short"}/>
-
+                        <ReactPlayer
+                            id="myVideo"
+                            className={`${style.shorts__main}`}
+                            url={videoShort.shortsUrl}
+                            controls={false}
+                            ref={playerRef}
+                            onClick={handlePlayClick}
+                            OnUnstarted
+                            loop
+                            width='100%'
+                            height='82vh'
+                            onError={(e) => console.error("Video error:", e)}
+                        />
                         <div className={style.shorts__top}>
                             <div
                                 onClick={handlePlayClick}>
                                 {playToggle
-                                    ? <BsPlayFill size={23}/>
-                                    : <BsPauseFill size={23}/>}
+                                    ? <BsPauseFill size={23}/>
+                                    : <BsPlayFill size={23}/>}
                             </div>
                             <div
                                 onClick={handleVolumeClick}>
@@ -64,8 +106,8 @@ function VideoShorts({videoShort}) {
 
                                 <div className={style.shorts__user}>
                                     <div className={style.user__info}>
-                                        <img src={videoShort.avatar} alt={'channel_name'}/>
-                                        <p>{videoShort.userName}</p>
+                                        <img src={videoShort.userDto.avatar} alt={'channel_name'}/>
+                                        <p>{videoShort.userDto.userName}</p>
                                     </div>
                                     <span className={style.subs__btn}>Subscribe</span>
                                 </div>
@@ -84,7 +126,8 @@ function VideoShorts({videoShort}) {
                             </div>
 
                         </div>
-                        <span>13 N</span>
+                        <span>{formatNumberView(videoShort.likes)}</span>
+                        {/*<span>13 N</span>*/}
 
                         <div className={style.shorts__btn}>
 
@@ -93,7 +136,7 @@ function VideoShorts({videoShort}) {
                             </div>
 
                         </div>
-                        <span>Không ...</span>
+                        <span>{formatNumberView(videoShort.dislikes)}</span>
 
 
                         <div className={style.shorts__btn}>
@@ -104,7 +147,7 @@ function VideoShorts({videoShort}) {
                             </div>
 
                         </div>
-                        <span>103</span>
+                        <span>5</span>
 
                         <div className={style.shorts__btn}>
 
@@ -132,7 +175,7 @@ function VideoShorts({videoShort}) {
 
                         <div className={style.comments__views}>
                             <span>Bình luận</span>
-                            <i>12 N</i>
+                            <i>5</i>
                         </div>
 
                         <div className={style.comments__btn__details}>
@@ -140,15 +183,28 @@ function VideoShorts({videoShort}) {
                         </div>
 
                         <div className={style.comments__btn__cancel}>
-                            <AiOutlineClose/>
+                            {/*<AiOutlineClose/>*/}
                         </div>
 
+                    </div>
+
+
+                    <div className={style.comments__middle}>
+                        {commentShortList.map(
+                            (commentShorts)=>(
+                                <CommentShorts
+                                    key={commentShorts.id}
+                                    commentShorts={commentShorts}
+                                />
+                            ))}
                     </div>
 
                     <div className={style.comments__bottom}>
 
                         <div className={style.function__comments}>
-                            <img src={videoShort.avatar} alt={'channel_name'}/>
+                            <img
+                                src="https://play-lh.googleusercontent.com/Fro4e_osoDhhrjgiZ_Y2C5FNXBMWvrb4rGpmkM1PDAcUPXeiAlPCq7NeaT4Q6NRUxRqo"
+                                alt={"user avatar"}/>
                             <input type="text"
                                    placeholder=" Your comments"
                                    className={style.input__comments}/>
@@ -167,4 +223,4 @@ function VideoShorts({videoShort}) {
     )
 }
 
-export default VideoShorts;
+export default Shorts;

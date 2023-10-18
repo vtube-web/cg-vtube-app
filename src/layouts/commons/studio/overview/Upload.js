@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { MdFileUpload } from "react-icons/md";
 import { v4 as uuidv4 } from "uuid";
-import { firebaseStorage } from "../../../firebase";
+import { firebaseStorage } from "../../../../firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { addVideo } from "../../../features/studio/videoUploadSlice";
+import { addVideo } from "../../../../features/studio/videoUploadSlice";
 import { useDispatch } from "react-redux";
 
 function Upload({ onClose, stepUpload }) {

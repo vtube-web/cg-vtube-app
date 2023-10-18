@@ -105,15 +105,11 @@
     background-color: gold;
     color: black;
     font-size: 16px;
-
 }
+
 .custom-tooltip .tooltip-arrow {
     --bs-tooltip-bg: gold;
 }
-
-
-
-
 
 input[type=password]::-ms-reveal,
 input[type=password]::-ms-clear {

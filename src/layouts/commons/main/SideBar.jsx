@@ -166,10 +166,12 @@ const SideBar = ({ sidebar = true }) => {
             <ul style={{ padding: 0 }}>
               {userList.map((channel) => (
                 <li key={channel.id}>
-                  <img src={channel.avatar} alt="avatar" className={style.img__avatar} />
-                  <span>
-                    {channel.userName}
-                  </span>
+                  <img
+                    src={channel.avatar}
+                    alt="avatar"
+                    className={style.img__avatar}
+                  />
+                  <span>{channel.userName}</span>
                 </li>
               ))}
             </ul>
@@ -182,9 +184,7 @@ const SideBar = ({ sidebar = true }) => {
           Sign in to like videos, comment, and subscribe.
         </p>
       )}
-
       <hr />
-
       <ul>
         <span>Explore</span>
       </ul>
