@@ -23,10 +23,9 @@ function EditSubContent() {
   const [data, setData] = useState("");
   useEffect(() => {
     axios.get(`http://localhost:8080/api/videos/${videoId}`).then((res) => {
-      setData(res.data);
+      setData(res.data.data);
     });
   }, []);
-
   const [title, setTitle] = useState("");
   const [isValidateTitle, setIsValidateTitle] = useState(false);
   const [isTitleLengthMax, setIsTitleLengthMax] = useState(false);

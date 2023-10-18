@@ -159,13 +159,18 @@ function VideoSubContent() {
       handleClickApply("Title");
     }
   };
+
+  const [tempTitleValue,setTempTitleValue] = useState("");
+
   const handleClickApply = (label) => {
+
     if (label == "Title" && value == "") {
       const arr = [...filters, menus[0]];
       setFilters(arr);
       menus[0].value = `title contains "${value}"`;
       menus[0].hiden = true;
       setIsSubFormTitle(false);
+     
     } else if (label == "Display mode") {
       const arr = [...filters, menus[1]];
       menus[1].value = `Display mode: ${displayRadio}`;
@@ -186,13 +191,15 @@ function VideoSubContent() {
       menus[0].value = `title contains "${value}"`;
       menus[0].hiden = true;
       setIsSubFormTitle(false);
+       setTempTitleValue(value);
+       setValue("");
     }
   };
 
   const handleRemoveFilter = (title) => {
     for (let i = 0; i < menus.length; i++) {
       if (title == menus[i].title) {
-        menus[i].hiden = false;
+        menus[i].hiden = false;   
       }
     }
     let index = -1;
@@ -204,8 +211,13 @@ function VideoSubContent() {
     let temp = [...filters];
     temp.splice(index, 1);
     setFilters(temp);
+    if(title == menus[1].title){
+      setDisplayRadio("public");
+    }
+    if(title == menus[0].title){
+      setTempTitleValue("");
+    }
   };
-
   useEffect(() => {
     const dataReq = {
       displayMode: null,
@@ -214,11 +226,10 @@ function VideoSubContent() {
     };
     for (let i = 0; i < filters.length; i++) {
       if (filters[i].title == "Title") {
-        dataReq.titles = value;
-        setValue("");
+        dataReq.titles = tempTitleValue;
       } else if (filters[i].title == "Display mode") {
         dataReq.displayMode = displayRadio;
-        setDisplayRadio("public");
+        
       } else {
         dataReq.numberOfViews = `${operatorViews}-${numberValue}`;
       }
@@ -226,7 +237,7 @@ function VideoSubContent() {
     dispatch(setDataReq(dataReq));
     dispatch(
       findChannelVideo({
-        dataReq,
+        dataReq
       })
     );
   }, [filters]);
