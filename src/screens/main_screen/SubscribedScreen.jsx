@@ -14,6 +14,7 @@ export default function SubscribedScreen() {
   const [listVideoSubscribed, setListVideoSubscribed] = useState({});
   const [showNoSubscribedMessage, setShowNoSubscribedMessage] = useState(false);
   const [render, setRender] = useState(true);
+  const [isGridMode, setIsGridMode] = useState(true);
   useEffect(() => {
     if (videoListPage.length === 0 || render) {
       dispatch(getVideosSubscribed());
@@ -24,42 +25,43 @@ export default function SubscribedScreen() {
   }, [dispatch, videoListPage]);
 
   return (
-    <div className={`${style.main} row`}>
-      <div className={style.header}>
-        <div className={style.tittle}>
-          <p>Latest</p>
-        </div>
-        <div className={style.header__button}>
-          <div className={style.header__button__manage}>
-            <button>Manage</button>
+      <div className={`${style.main} row`}>
+        <div className={style.header}>
+          <div className={style.tittle}>
+            <p>Latest</p>
           </div>
-          <div className={style.header__button__menu}>
-            <button>
-              <BsGrid3X2GapFill size={24} />
-            </button>
-            <button>
-              <BsListUl size={24} />
-            </button>
+          <div className={style.header__button}>
+            <div className={style.header__button__manage}>
+              <button>Manage</button>
+            </div>
+            <div className={style.header__button__menu}>
+              <button onClick={() => setIsGridMode(true)}>
+                <BsGrid3X2GapFill size={24} />
+              </button>
+              <button onClick={() => setIsGridMode(false)}>
+                <BsListUl size={24} />
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <div className={`${style.content} row`}>
-        {showNoSubscribedMessage ? (
-          Array.isArray(listVideoSubscribed) &&
-          listVideoSubscribed.length > 0 ? (
-            listVideoSubscribed.map((videoData, index) => (
-              <VideoRender
-                key={`${videoData.videoId}_${index}`}
-                {...videoData}
-              />
-            ))
+        <div className={`${style.content} row`}>
+          {showNoSubscribedMessage ? (
+              Array.isArray(listVideoSubscribed) &&
+              listVideoSubscribed.length > 0 ? (
+                  listVideoSubscribed.map((videoData, index) => (
+                      <VideoRender
+                          key={`${videoData.videoId}_${index}`}
+                          isGridMode={isGridMode}
+                          {...videoData}
+                      />
+                  ))
+              ) : (
+                  <p>No data to display</p>
+              )
           ) : (
-            <p>No data to display</p>
-          )
-        ) : (
-          <p>No watch history available</p>
-        )}
+              <p>No watch history available</p>
+          )}
+        </div>
       </div>
-    </div>
   );
 }

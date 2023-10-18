@@ -64,6 +64,7 @@ function LikedVideosScreen() {
   };
 
   return (
+
     <div className={`${style.main} main-container`}>
       {showNoLikedMessage &&
         videoList.content &&
@@ -92,6 +93,7 @@ function LikedVideosScreen() {
             </>
           ) : null}
         </div>
+        
         {showNoLikedMessage ? (
           filterVideos()
         ) : (

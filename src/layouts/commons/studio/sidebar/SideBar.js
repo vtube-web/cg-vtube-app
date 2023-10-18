@@ -147,7 +147,7 @@ function SideBar() {
           )}
         </div>
         {menus?.map((menu, i) => (
-          <MenuItem key={i} menu={menu} isVisibilityMenu={isVisibilityMenu} />
+          <MenuItem key={i} menu={menu} isVisibilityMenu={isVisibilityMenu}/>
         ))}
       </div>
     </div>

@@ -242,6 +242,7 @@
       .video__render:hover {
         background-color: #909090;
         border-radius: 10px;
+        filter: brightness(100%);
       }
       .video__render:hover .menu__videos button {
         display: inline-block;
