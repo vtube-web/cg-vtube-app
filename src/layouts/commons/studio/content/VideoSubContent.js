@@ -10,7 +10,6 @@ import {
   setDataReq,
   getDataReq,
   editFormVideo,
-  setVideos,
   removeListVideo,
 } from "../../../../features/studio/videoContentSlice";
 
@@ -246,7 +245,7 @@ function VideoSubContent() {
   const handleNextPage = (label) => {
     const currentPageNumber = datas?.currentPageNumber;
     const totalPages = datas?.totalPages;
-    if (label == "Next page") {
+    if (label == "Next page" && datas?.hasNext) {
       if (currentPageNumber < totalPages) {
         dispatch(
           findChannelVideo({
@@ -255,7 +254,7 @@ function VideoSubContent() {
           })
         );
       }
-    } else if (label == "Previous page") {
+    } else if (label == "Previous page" && datas?.hasPrevious) {
       if (currentPageNumber > 0) {
         dispatch(
           findChannelVideo({
@@ -266,7 +265,7 @@ function VideoSubContent() {
       }
     } else if (label == "First page") {
       dispatch(findChannelVideo({ currentPageNumber: 0, dataReq: dataReq }));
-    } else {
+    } else if (label == "Last page") {
       dispatch(
         findChannelVideo({
           currentPageNumber: totalPages - 1,

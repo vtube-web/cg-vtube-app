@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import TitleSection from "../overview/imformation_fill/TitleSection";
 import DescribeSection from "../overview/imformation_fill/DescribeSection";
@@ -12,6 +12,10 @@ import { editVideo } from "../../../../features/studio/videoUploadSlice";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { firebaseStorage } from "../../../../firebase";
 import { v4 as uuidv4 } from "uuid";
+import {
+  findChannelVideo,
+  getDataReq,
+} from "../../../../features/studio/videoContentSlice";
 
 function EditSubContent() {
   const { videoId } = useParams();
@@ -55,7 +59,9 @@ function EditSubContent() {
 
   useEffect(() => {
     setTitle(data?.title);
-    setDescribe(`${data?.description} ${data?.tagDtoList?.map((tag)=> tag.name)}`);
+    setDescribe(
+      `${data?.description} ${data?.tagDtoList?.map((tag) => tag.name)}`
+    );
     setImage(data?.thumbnail);
     setIsValidateImage(true);
     if (handleCheckDateSchedule()) {
@@ -81,16 +87,16 @@ function EditSubContent() {
       return false;
     }
   }
-    const handleImage = (e) => {
-      const img = e.target.files[0];
-      const imageRef = ref(firebaseStorage, `images/${img.name + uuidv4()}`);
-      uploadBytes(imageRef, img).then((snapshort) => {
-        getDownloadURL(snapshort.ref).then((url) => {
-          setIsValidateImage(true);
-          setImage(url);
-        });
+  const handleImage = (e) => {
+    const img = e.target.files[0];
+    const imageRef = ref(firebaseStorage, `images/${img.name + uuidv4()}`);
+    uploadBytes(imageRef, img).then((snapshort) => {
+      getDownloadURL(snapshort.ref).then((url) => {
+        setIsValidateImage(true);
+        setImage(url);
       });
-    };
+    });
+  };
   const handleChange = (e, type) => {
     const value = e.target.value;
     const length = value.length;
@@ -178,6 +184,7 @@ function EditSubContent() {
       return true;
     }
   };
+  const dataReq = useSelector(getDataReq);
   const handleSubmit = () => {
     if (
       isValidateTitle &&
@@ -202,8 +209,10 @@ function EditSubContent() {
           hashtags: hashtags,
         };
         dispatch(editVideo(video));
-        toast.success("success");
+        toast.success("Edit success");
         setStartTitle(false);
+        dispatch(findChannelVideo(dataReq));
+        navigate(-1);
       } else {
         if (handleCheckDateTimeRelease()) {
           release_date = new Date(`${date}T${time}`).toISOString();
@@ -217,8 +226,10 @@ function EditSubContent() {
             hashtags: hashtags,
           };
           dispatch(editVideo(video));
-          toast.success("success");
+          toast.success("Edit success");
           setStartTitle(false);
+          dispatch(findChannelVideo(dataReq));
+          navigate(-1);
         }
       }
     } else {

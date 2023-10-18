@@ -12,12 +12,7 @@ function PaginationItem({ pageIcon, datas, handleNextPage }) {
 
   return (
     <div
-      className={`flex items-center hover:cursor-pointer relative justify-center ${
-        (datas?.hasPrevious && pageIcon.label == "Next page") ||
-        (datas?.hasNext && pageIcon.label == "Previous page")
-          ? "pointer-events-none"
-          : "pointer-events-auto"
-      }`}
+      className={`flex items-center hover:cursor-pointer relative justify-center`}
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
       onClick={() => handleNextPage(pageIcon?.label)}
