@@ -21,8 +21,6 @@ const Reply = ({addReplyToComment, reply, commentId}) => {
         content: replyContent
     };
 
-
-
     const showInputReply = () => {
         setReplyContent(`@${reply.userResponseDto.userName}`)
         setShowInput(!showInput);
@@ -42,7 +40,7 @@ const Reply = ({addReplyToComment, reply, commentId}) => {
             createAt: Date.now(),
             userResponseDto: {
                 id: currentUser.id,
-                userName: currentUser.email,
+                userName: currentUser.username,
                 avatar: currentUser.avatar || imgUrl
             }
         };

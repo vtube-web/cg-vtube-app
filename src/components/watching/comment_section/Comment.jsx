@@ -7,7 +7,9 @@ import {addReply} from "../../../features/comment_reply/replySlice";
 import Reply from "./Reply";
 import {getStoredUserData} from "../../../services/accountService";
 import formatDateAgo from "../../../format/FormatDateAgo";
-
+import {TiDeleteOutline} from 'react-icons/ti'
+import{BiEdit} from 'react-icons/bi'
+import {MdReportGmailerrorred} from 'react-icons/md'
 const imgUrl = 'https://firebasestorage.googleapis.com/v0/b/vtube-15.appspot.com/o/images%2F387123399_317289870909894_6318809251513139950_n.jpg?alt=media&token=9a676663-abbe-4324-aba8-a634e63b305c&_gl=1*1vll957*_ga*MTE0NzY2MDExNy4xNjkxMDI8GW6-4mAT_V_E-GKjLSm1e-CZ6CG4PAG3eh5QDvLuhYxE';
 
 const Comment = (comment) => {
@@ -50,7 +52,7 @@ const Comment = (comment) => {
             createAt: Date.now(),
             userResponseDto: {
                 id: currentUser.id,
-                userName: currentUser.email,
+                userName: currentUser.username,
                 avatar: currentUser.avatar || imgUrl
             }
         };
@@ -73,7 +75,7 @@ const Comment = (comment) => {
                             alt={"user avatar"}
                         />
                     </div>
-                    <div className="col-11">
+                    <div className="col-10">
                         <div className={style.user__info}>
                             <Link to={"/"} className={style.user__name}>
                                 {comment.userResponseDto.userName}
@@ -141,6 +143,10 @@ const Comment = (comment) => {
                                 />
                             ))}
                         </div>
+                    </div>
+                    <div className={`${style.button__update__delete} col-1`}>
+                        <TiDeleteOutline size={20} className={style.button__delete}/>
+                        <BiEdit size={20} className={style.button__edit}/>
                     </div>
                 </div>
             )}

@@ -25,7 +25,6 @@ export default function CommentSection() {
         videoId: params.videoId
     }
 
-
     useEffect(() => {
         if (video && video.commentDtoList && loggedUser) {
             const sortedComments = video.commentDtoList.slice().sort((a, b) => {
@@ -38,7 +37,7 @@ export default function CommentSection() {
                 return new Date(a.createAt) - new Date(b.createAt);
             });
             setCommentList(sortedComments)
-        } else{
+        } else {
             setCommentList(video.commentDtoList)
         }
     }, [video])
@@ -58,7 +57,7 @@ export default function CommentSection() {
             replyDtoList: [],
             userResponseDto: {
                 id: loggedUser.id,
-                userName: loggedUser.email,
+                userName: loggedUser.username,
                 avatar: loggedUser.avatar || imgUrl
             }
         }

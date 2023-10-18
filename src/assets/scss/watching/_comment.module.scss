@@ -32,6 +32,18 @@
         padding-left: 10px;
       }
     }
+    .button__update__delete{
+      display: none;
+      &:hover{
+        display:block;
+      }
+      .button__delete{
+        cursor:pointer;
+      }
+      .button__edit{
+        cursor:pointer;
+      }
+    }
   }
 
   .comment__content {
