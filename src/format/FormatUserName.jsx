@@ -16,7 +16,7 @@ export default function formatUserName(username) {
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/\s/g, "");
   const randomCode = generateRandomCode();
-  const finalUsername = `@${cleanedUsername}-${randomCode}`;
+  const finalUsername = `${cleanedUsername}-${randomCode}`;
 
   return finalUsername;
 }

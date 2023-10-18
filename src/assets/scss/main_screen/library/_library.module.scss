@@ -32,6 +32,10 @@
           background-color: #374a59;
         }
       }
+
+      a {
+        color: black;
+      }
     }
   }
   .body {
@@ -82,13 +86,19 @@
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
+
       }
       .detail {
         height: 100px;
         padding-top: 10px;
+
         button {
           display: none;
         }
+      }
+
+      a {
+        color: black;
       }
     }
     .info:hover button {

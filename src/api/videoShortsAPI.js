@@ -1,5 +1,5 @@
 import axios from "axios";
-export const VIDEO_SHORTS_API = "https://64c33808eb7fd5d6ebd09efe.mockapi.io/api/v1/videoShorts";
+export const VIDEO_SHORTS_API = "http://localhost:8080/api/shorts";
 
 export const findVideoShorts = async () => {
     let videoShortsList = null;
