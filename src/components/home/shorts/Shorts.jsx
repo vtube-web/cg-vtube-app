@@ -147,7 +147,7 @@ function Shorts({videoShort}) {
                             </div>
 
                         </div>
-                        <span>103</span>
+                        <span>5</span>
 
                         <div className={style.shorts__btn}>
 
@@ -175,7 +175,7 @@ function Shorts({videoShort}) {
 
                         <div className={style.comments__views}>
                             <span>Bình luận</span>
-                            <i>12 N</i>
+                            <i>5</i>
                         </div>
 
                         <div className={style.comments__btn__details}>
@@ -183,7 +183,7 @@ function Shorts({videoShort}) {
                         </div>
 
                         <div className={style.comments__btn__cancel}>
-                            <AiOutlineClose/>
+                            {/*<AiOutlineClose/>*/}
                         </div>
 
                     </div>
