@@ -61,6 +61,7 @@
     border-radius: 0;
     width: 100%;
     font-weight: bold;
+    border-radius: 1rem;
 }
 
 .form-login p {
@@ -91,6 +92,17 @@
     margin-top: 5%;
     text-align: center;
 }
+
+.google-button-text{
+    font-size: 1rem;
+    font-weight: bold ;
+}
+
+.google-button{
+    border-radius: 10rem;
+}
+
+
 
 input[type=password]::-ms-reveal,
 input[type=password]::-ms-clear {

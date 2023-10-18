@@ -6,6 +6,7 @@ function MenuItemChill({ menu }) {
     path: menu.to,
     exact: true,
   });
+  
   const isActive = match !== null;
   return (
     <>

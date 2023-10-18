@@ -11,6 +11,7 @@ function MenuAccount() {
     const navigate = useNavigate();
     const user = getStoredUserData();
 
+
     function handleLogout() {
         localStorage.removeItem("user");
         dispatch(resetUserAccountState());

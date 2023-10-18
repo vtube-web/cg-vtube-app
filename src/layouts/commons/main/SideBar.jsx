@@ -93,9 +93,13 @@ const SideBar = ({sidebar = true}) => {
             <li>
                 <span>Trung</span>
             </li>
-            <li>
-                <span>Thai</span>
-            </li>
+
+            <NavLink to={"/homeProfile/@thai/*"}>
+                <li>
+                    <span>Thai</span>
+                </li>
+        </NavLink>
+
             <li>
                 <span>Hai</span>
             </li>
@@ -170,4 +174,3 @@ const SideBar = ({sidebar = true}) => {
     )
 }
 export default SideBar;
-

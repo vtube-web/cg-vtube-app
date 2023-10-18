@@ -1,0 +1,119 @@
+.homeProfile-screen {
+    --grey-text: #828282;
+    --black-text: #111;
+    font-family: "Roboto", Arial, sans-serif;
+}
+
+.homeProfile-banner {
+    flex-basis: 15vw;
+    background: url("https://images.unsplash.com/photo-1486597622250-f997d79907f8?w=1400&h=600&fit=crop");
+    background-position: center 35%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 1.6rem;
+}
+
+.container {
+    height: 100%;
+}
+
+.homeProfile-avartar {
+    flex-basis: 8rem;
+    height: 8rem;
+}
+
+.homeProfile-username-text{
+    color:rgb(96, 96, 96);
+    font-weight: bold;
+}
+
+.homeProfile-subscribe {
+    color: var(--grey-text);
+}
+
+.subscribe-btn {
+    font-size: 1.4rem;
+    font-weight: 500;
+    background-color: #eee;
+    margin-right: 0.4rem;
+    border-radius: 35%;
+}
+
+
+
+.homeProfile-text p {
+    color: #383434;
+}
+
+.homeProfile-text {
+    color: rgb(96, 96, 96);
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+
+
+
+/* Channel navigation */
+.homeProfile-nav {
+    border-bottom: #ccc1c1 1px solid;
+}
+
+.homeProfile-nav ul {
+    display: flex;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.nav-item a {
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--grey-text);
+    padding: 1.5rem 3.2rem;
+    padding-top: 0;
+    padding-bottom: 0.7rem; 
+
+}
+
+.nav-item a.current {
+    color: var(--black-text);
+    border-bottom: 0.3rem solid #6e6e6e;
+}
+
+.nav-item a:hover {
+    color: var(--black-text);
+}
+
+.search-item  {
+    display: inline-block;
+    font-size: 1rem;
+    padding: 0 3.2rem ;
+    padding-bottom: 0.5rem;
+}
+
+.search-item .search-input {
+    margin-left: 1rem;
+    border-bottom: solid;
+}
+
+.search-item .search-input:focus {
+    background-color: transparent;
+    border: none;
+    border-bottom: solid;
+}
+
+
+
+
+
+
+
+
+
+
+
