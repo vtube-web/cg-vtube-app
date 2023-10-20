@@ -52,19 +52,25 @@ function LikedVideosScreen() {
         return likedVideoList && likedVideoList.length > 0 ? (
           RenderVideos(handleRemoveItem, ...likedVideoList)
         ) : (
-          <p>You haven't liked any videos yet, please watch and like it</p>
+          <p className={style.message}>
+            You haven't liked any videos yet, please watch and like it
+          </p>
         );
       case "Shorts":
         return likedVideoList && likedVideoList.length > 0 ? (
           RenderShorts()
         ) : (
-          <p>You haven't liked any short videos yet, please watch and like it</p>
+          <p className={style.message}>
+            You haven't liked any short videos yet, please watch and like it
+          </p>
         );
       default:
         return likedVideoList && likedVideoList.length > 0 ? (
           RenderVideos(handleRemoveItem, ...likedVideoList)
         ) : (
-          <p>You haven't liked any videos yet, please watch and like it</p>
+          <p className={style.message}>
+            You haven't liked any videos yet, please watch and like it
+          </p>
         );
     }
   };

@@ -19,7 +19,11 @@ const VideosRender = ({ index, ...videoData }) => {
             <Link to={`/watching/${videoData.videoId}`}>{videoData.title}</Link>
           </div>
           <div>
-            <Link to={`/@${videoData.userName}`}>{videoData.userName}</Link>
+            <Link to={`/homeProfile/${videoData.userName}/*`}>
+              {videoData.channelName
+                ? videoData.channelName
+                : videoData.userName}
+            </Link>
           </div>
           <div>
             {formatNumberView(videoData.views)} views •{" "}
