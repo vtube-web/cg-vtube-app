@@ -49,22 +49,27 @@ function LikedVideosScreen() {
   const filterVideos = () => {
     switch (activeButton) {
       case "Videos":
-        return likedVideoList && likedVideoList.length > 0
-          ? RenderVideos(handleRemoveItem, ...likedVideoList)
-          : null;
+        return likedVideoList && likedVideoList.length > 0 ? (
+          RenderVideos(handleRemoveItem, ...likedVideoList)
+        ) : (
+          <p>You haven't liked any videos yet, please watch and like it</p>
+        );
       case "Shorts":
-        return likedVideoList && likedVideoList.length > 0
-          ? RenderShorts()
-          : null;
+        return likedVideoList && likedVideoList.length > 0 ? (
+          RenderShorts()
+        ) : (
+          <p>You haven't liked any short videos yet, please watch and like it</p>
+        );
       default:
-        return likedVideoList && likedVideoList.length > 0
-          ? RenderVideos(handleRemoveItem, ...likedVideoList)
-          : null;
+        return likedVideoList && likedVideoList.length > 0 ? (
+          RenderVideos(handleRemoveItem, ...likedVideoList)
+        ) : (
+          <p>You haven't liked any videos yet, please watch and like it</p>
+        );
     }
   };
 
   return (
-
     <div className={`${style.main} main-container`}>
       {showNoLikedMessage &&
         videoList.content &&
@@ -93,7 +98,7 @@ function LikedVideosScreen() {
             </>
           ) : null}
         </div>
-        
+
         {showNoLikedMessage ? (
           filterVideos()
         ) : (

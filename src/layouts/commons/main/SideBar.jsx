@@ -39,7 +39,7 @@ import {
   MdVideoLibrary,
   MdWatchLater,
 } from "react-icons/md";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getStoredUserData } from "../../../services/accountService";
 import { useDispatch, useSelector } from "react-redux";
@@ -165,14 +165,20 @@ const SideBar = ({ sidebar = true }) => {
           {userList && userList.length > 0 ? (
             <ul style={{ padding: 0 }}>
               {userList.map((channel) => (
-                <li key={channel.id}>
-                  <img
-                    src={channel.avatar}
-                    alt="avatar"
-                    className={style.img__avatar}
-                  />
-                  <span>{channel.userName}</span>
-                </li>
+                <Link to={`/homeProfile/${channel.userName}/*`}>
+                  <li key={channel.id}>
+                    <img
+                      src={channel.avatar}
+                      alt="avatar"
+                      className={style.img__avatar}
+                    />
+                    <span>
+                      {channel.channelName
+                        ? channel.channelName
+                        : channel.userName}
+                    </span>
+                  </li>
+                </Link>
               ))}
             </ul>
           ) : (
