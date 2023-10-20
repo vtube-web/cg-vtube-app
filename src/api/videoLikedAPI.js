@@ -13,7 +13,7 @@ export const videoLikedList = async () => {
       },
     });
   } catch (e) {
-    console.log("Error when calling API to get list of liked videos:" + e);
+    console.error(e);
   }
   return result;
 };
@@ -28,24 +28,30 @@ export const deleteVideoLiked = async (videoId) => {
       },
     });
   } catch (e) {
-    console.log("Delete book API error: " + e);
+    console.error(e);
   }
   return result;
 };
 
-export const createLiked = async (videoId) => {
+export const createLikeOrDisLike = async (data) => {
   let result = null;
   let user = getStoredUserData();
   try {
     result = await axios({
-      url: `${VIDEO_LIKED_API}/${videoId}`,
       method: "post",
+      url: `${VIDEO_LIKED_API}`,
       headers: {
         Authorization: "Bearer " + user.accessToken,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      data: {
+        videoId: data.id,
+        likedStatus: data.likeStatus,
       },
     });
   } catch (e) {
-    console.log("Error when calling API to add liked:", e);
+    console.error(e);
   }
 
   return result;
