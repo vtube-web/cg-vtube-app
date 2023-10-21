@@ -7,21 +7,17 @@ import {addReply} from "../../../features/comment_reply/replySlice";
 import Reply from "./Reply";
 import {getStoredUserData} from "../../../services/accountService";
 import formatDateAgo from "../../../format/FormatDateAgo";
-import {TiDeleteOutline} from 'react-icons/ti'
-import {BiEdit} from 'react-icons/bi'
-import {MdReportGmailerrorred} from 'react-icons/md'
 import {InputTextarea} from "primereact/inputtextarea";
 
 const imgUrl = 'https://firebasestorage.googleapis.com/v0/b/vtube-15.appspot.com/o/images%2F387123399_317289870909894_6318809251513139950_n.jpg?alt=media&token=9a676663-abbe-4324-aba8-a634e63b305c&_gl=1*1vll957*_ga*MTE0NzY2MDExNy4xNjkxMDI8GW6-4mAT_V_E-GKjLSm1e-CZ6CG4PAG3eh5QDvLuhYxE';
 
 const Comment = (comment) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [showInput, setShowInput] = useState(false);
     const [reply, setReply] = useState("");
     const [replyList, setReplyList] = useState([]);
     const currentUser = getStoredUserData();
-    const navigate = useNavigate();
-    const loggedUser = getStoredUserData();
 
     useEffect(() => {
         if (comment && comment.replyDtoList) {
@@ -45,9 +41,8 @@ const Comment = (comment) => {
     const handleInputChange = (event) => {
         setReply(event.target.value);
     };
-
     function handleCheckLogin() {
-        if (loggedUser === null) {
+        if (currentUser === null) {
             navigate("/signIn");
         }
     }
@@ -85,7 +80,8 @@ const Comment = (comment) => {
                             alt={"user avatar"}
                         />
                     </div>
-                    <div className={`${style.content__main} col-10`}>
+                    <div className="col-11">
+
                         <div className={style.user__info}>
                             <Link to={"/"} className={style.user__name}>
                                 {comment.userResponseDto.userName}
@@ -127,20 +123,21 @@ const Comment = (comment) => {
                                             <InputTextarea
                                                 rows={2}
                                                 className={style.reply__content}
-                                                value={reply}
-                                                placeholder={"Reply here..."}
+                                                value={reply}                                                placeholder={"Comment here..."}
                                                 onChange={(e) => setReply(e.target.value)}
                                                 onInput={handleInputChange}
                                                 onFocus={handleCheckLogin}
+                                                onSubmit={handleSubmit}
                                                 autoResize
                                             />
-                                            {reply &&
-                                                (<div className={style.reply__button}>
-                                                    <button className={style.submit} onClick={handleSubmit}>
-                                                        Reply
-                                                    </button>
-                                                </div>)
-                                            }
+                                            <div className={style.reply__button}>
+                                                <button onClick={showInputReply} className={style.cancel}>
+                                                    Cancel
+                                                </button>
+                                                <button className={style.submit} onClick={handleSubmit}>
+                                                    Reply
+                                                </button>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
@@ -156,10 +153,6 @@ const Comment = (comment) => {
                                 />
                             ))}
                         </div>
-                    </div>
-                    <div className={`${style.button__update__delete} col-1`}>
-                        <TiDeleteOutline size={20} className={style.button__delete}/>
-                        <BiEdit size={20} className={style.button__edit}/>
                     </div>
                 </div>
             )}

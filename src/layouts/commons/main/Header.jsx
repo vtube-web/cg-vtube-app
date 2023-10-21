@@ -44,7 +44,7 @@ export default function Header({handleSetSidebar}) {
         </Link>
       </div>
             <form>
-                <input type={"text"} className={style.search__bar} placeholder={"Search"}/>
+                <input type={"text"} className={style.search__bar} placeholder={" Search"}/>
                 <button type={"submit"}>
                     <AiOutlineSearch size={24}/>
                 </button>

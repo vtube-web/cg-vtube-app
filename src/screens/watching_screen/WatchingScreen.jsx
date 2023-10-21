@@ -6,8 +6,9 @@ import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {getVideo, resetVideoDetail, selectVideoDetail, selectVideoSuccess} from "../../features/video/videoSlice";
-import {SuggestionVideo} from "../../components/watching/SuggestionVideo";
-
+import {SuggestionVideo} from "../../components/watching/right_bar/SuggestionVideo";
+import PlaylistBox from "../../components/watching/right_bar/playlist/PlaylistBox";
+import {Helmet} from "react-helmet";
 
 export default function WatchingScreen() {
     const params = useParams();
@@ -25,21 +26,25 @@ export default function WatchingScreen() {
         }
 
         //cleanup function
-        return () =>{
+        return () => {
             dispatch(resetVideoDetail())
         }
     }, [params.videoId]);
 
 
-
     return (
         <>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>{displayVideo.title}</title>
+            </Helmet>
             <div className={style.watching__container}>
                 <div className={`${style.watching__main} col-10`}>
                     <VideoSection video={displayVideo}/>
                     <CommentSection/>
                 </div>
                 <div className={`${style.watching__suggestion} col-2`}>
+                    <PlaylistBox/>
                     <SuggestionVideo/>
                 </div>
             </div>

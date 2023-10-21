@@ -18,7 +18,6 @@ function Playlist() {
                 <div className={style.back_card}/>
                 <div className={style.third_card}/>
             </div>
-
         </div>
     )
 }

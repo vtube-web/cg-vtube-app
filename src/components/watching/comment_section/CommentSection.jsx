@@ -7,7 +7,6 @@ import {selectVideoDetail} from "../../../features/video/videoSlice";
 import {useNavigate, useParams} from "react-router-dom";
 import {addComment} from "../../../features/comment_reply/commentSlice";
 import {getStoredUserData} from "../../../services/accountService";
-import formatDate from "../../../format/FormatDate";
 
 const imgUrl = 'https://firebasestorage.googleapis.com/v0/b/vtube-15.appspot.com/o/images%2F387123399_317289870909894_6318809251513139950_n.jpg?alt=media&token=9a676663-abbe-4324-aba8-a634e63b305c&_gl=1*1vll957*_ga*MTE0NzY2MDExNy4xNjkxMDI4NDc2*_ga_CW55HF8NVT*MTY5NzEyNTg4NC4yOC4xLjE2OTcxMjU5MjAuMjQuMC4w';
 
@@ -25,6 +24,7 @@ export default function CommentSection() {
         videoId: params.videoId
     }
 
+
     useEffect(() => {
         if (video && video.commentDtoList && loggedUser) {
             const sortedComments = video.commentDtoList.slice().sort((a, b) => {
@@ -37,8 +37,6 @@ export default function CommentSection() {
                 return new Date(a.createAt) - new Date(b.createAt);
             });
             setCommentList(sortedComments)
-        } else {
-            setCommentList(video.commentDtoList)
         }
     }, [video])
 
@@ -67,9 +65,10 @@ export default function CommentSection() {
         setComment("");
     }
 
+
     function handleCheckLogin() {
         if (loggedUser === null) {
-            navigate("/signIn");
+            navigate("/login");
         }
     }
 

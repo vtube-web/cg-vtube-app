@@ -5,7 +5,7 @@ import {NavLink} from "react-router-dom";
 import formatDate from "../../../format/FormatDate";
 import formatDateAgo from "../../../format/FormatDateAgo";
 
-function Video({video }) {
+function Video({video}) {
     return (
         <NavLink to={`/watching/${video.id}`}>
             <div className={style.video}>

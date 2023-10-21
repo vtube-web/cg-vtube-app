@@ -5,6 +5,7 @@ import Video from "../../components/home/video/Video";
 import {useDispatch, useSelector} from "react-redux";
 import {getVideos, selectVideoListSuccess, selectVideoList} from "../../features/video/videoSlice";
 import {useEffect, useState} from "react";
+import {Helmet} from "react-helmet";
 
 function HomeScreen() {
     const dispatch = useDispatch();
@@ -19,22 +20,28 @@ function HomeScreen() {
     }, []);
 
     return (
-        <Container>
-            <div style={{paddingBottom: "15px"}}>
-                <CategoriesBar/>
-            </div>
-            <Row>
-                {Array.isArray(videoList) && videoList.length > 0 ? (
-                    videoList.map((video) => (
-                        <Col lg={3} md={4} key={video.id}>
-                            <Video video={video}/>
-                        </Col>
-                    ))
-                ) : (
-                    <p>No videos available</p>
-                )}
-            </Row>
-        </Container>
+        <>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Vtube - home</title>
+            </Helmet>
+            <Container>
+                <div style={{paddingBottom: "15px"}}>
+                    <CategoriesBar/>
+                </div>
+                <Row>
+                    {Array.isArray(videoList) && videoList.length > 0 ? (
+                        videoList.map((video) => (
+                            <Col lg={3} md={4} key={video.id}>
+                                <Video video={video}/>
+                            </Col>
+                        ))
+                    ) : (
+                        <p>No videos available</p>
+                    )}
+                </Row>
+            </Container>
+        </>
     );
 }
 

@@ -19,10 +19,10 @@ $breakpoint-small: 520px;
 }
 
 body{
-  background: $white-background fixed;
   color: $white-text;
-  font-family: "Roboto", sans-serif;
   letter-spacing: 0.1px;
+  font-family: "Roboto", sans-serif;
+  background: $white-background fixed;
 }
 
 

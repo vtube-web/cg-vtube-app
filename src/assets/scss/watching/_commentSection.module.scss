@@ -43,6 +43,7 @@ p {
         border: none;
         background-color: transparent;
         border-bottom: 1px solid transparent;
+        word-wrap: break-word;
         &:hover {
           border-bottom: 2px solid black;
         }
@@ -75,5 +76,4 @@ p {
   }
 
 }
-
 
