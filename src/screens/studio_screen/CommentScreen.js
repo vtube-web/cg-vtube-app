@@ -2,13 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import MenuItemChill from "../../components/studio/common/menu_item_sub/MenuItemSub";
-
 import Comment from "../../layouts/commons/studio/comment/Comment";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getCommentByChannel,
   getData,
-  setData,
 } from "../../features/studio/commentChannelSlice";
 import Pagination from "../../components/studio/common/pagination/Pagination";
 import { BiSearchAlt2 } from "react-icons/bi";

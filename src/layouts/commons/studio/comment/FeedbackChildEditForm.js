@@ -1,11 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import {
-  editCommentByUser,
-  getCommentByChannel,
-  getEdit,
   setData,
-  setEdit,
   editFeedbackByUser,
 } from "../../../../features/studio/commentChannelSlice";
 import { toast } from "react-toastify";

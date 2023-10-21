@@ -1,15 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
-import { BiLike, BiDislike, BiPencil } from "react-icons/bi";
+import { BiPencil } from "react-icons/bi";
 import { PiDotsThreeVerticalBold } from "react-icons/pi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { getStoredUserData } from "../../../../services/accountService";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   deleteCommentByUser,
-  getDelete,
   setData,
-  setDelete,
 } from "../../../../features/studio/commentChannelSlice";
 import { toast } from "react-toastify";
 import LikeComment from "./LikeComment";

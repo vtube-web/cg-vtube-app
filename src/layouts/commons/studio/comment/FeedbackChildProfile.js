@@ -1,15 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import { BiLike, BiDislike, BiPencil } from "react-icons/bi";
+import { BiPencil } from "react-icons/bi";
 import { PiDotsThreeVerticalBold } from "react-icons/pi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { getStoredUserData } from "../../../../services/accountService";
 import { useDispatch } from "react-redux";
 import {
-  editCommentByUser,
-  getCommentByChannel,
-  getEdit,
   setData,
-  setEdit,
   deleteFeedbackByUser,
 } from "../../../../features/studio/commentChannelSlice";
 import { toast } from "react-toastify";

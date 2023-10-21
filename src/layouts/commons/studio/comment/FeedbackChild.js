@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 import { BsBoxArrowUpRight } from "react-icons/bs";
 import FeedbackChildProfile from "./FeedbackChildProfile";
-import CommentEditForm from "./CommentEditForm";
 import FeedbackForm from "./FeedbackForm";
 import FeedbackChildEditForm from "./FeedbackChildEditForm";
 import {Link} from "react-router-dom";
