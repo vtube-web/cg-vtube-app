@@ -10,10 +10,8 @@ import {
   findChannelVideo,
   getVideoList,
 } from "../../../../../features/studio/videoContentSlice";
-import { useParams } from "react-router-dom";
 
 function Search() {
-  const { channelId } = useParams();
   const [search, setSearch] = useState("");
   const [remove, setRemove] = useState(false);
   const statusTheme = useSelector(getIsModalSearch);
@@ -24,7 +22,6 @@ function Search() {
 
   const dataList = useSelector(getVideoList);
   const [datas, setDatas] = useState(null);
-  console.log("a", datas);
   useEffect(() => {
     if (search != "") {
       const dataReq = {
