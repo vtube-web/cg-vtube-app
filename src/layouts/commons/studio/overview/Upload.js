@@ -10,28 +10,38 @@ function Upload({ onClose, stepUpload }) {
   const [uploadStatus, setUploadStatus] = useState(false);
   const dispatch = useDispatch();
 
-const handleFile = (e) => {
-  const file = e.target.files[0];
+  const handleFile = (e) => {
+    const file = e.target.files[0];
+    let duration = 0;
+    if (file) {
+      const videoTime = document.createElement("video");
+      videoTime.addEventListener("loadedmetadata", () => {
+        duration=videoTime.duration
+      });
+      const reader = new FileReader();
 
-  if (file) {
-    setUploadStatus(true);
-    
-    const fileName = file.name;
-    const videoRef = ref(firebaseStorage, `videos/${fileName + uuidv4()}`);
+      reader.onload = (e) => {
+        videoTime.src = e.target.result;
+      };
 
-    uploadBytes(videoRef, file).then((snapshort) => {
-      getDownloadURL(snapshort.ref).then((url) => {
-        const video = { title: file.name, videoUrl: url };
-        dispatch(addVideo(video)).then(() => {
+      reader.readAsDataURL(file);
 
-          setUploadStatus(false);
-          stepUpload();
+      setUploadStatus(true);
+
+      const fileName = file.name;
+      const videoRef = ref(firebaseStorage, `videos/${fileName + uuidv4()}`);
+
+      uploadBytes(videoRef, file).then((snapshort) => {
+        getDownloadURL(snapshort.ref).then((url) => {
+          const video = { title: file.name, videoUrl: url, duration: duration };
+          dispatch(addVideo(video)).then(() => {
+            setUploadStatus(false);
+            stepUpload();
+          });
         });
       });
-    });
-  }
-};
-
+    }
+  };
 
   return (
     <div className="h-full">
