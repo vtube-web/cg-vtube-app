@@ -1,6 +1,5 @@
 import VideoSection from "../../components/watching/video_section/VideoSection";
 import CommentSection from "../../components/watching/comment_section/CommentSection";
-
 import style from '../../assets/scss/watching/_watching.module.scss'
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
