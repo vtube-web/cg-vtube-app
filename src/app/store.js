@@ -11,7 +11,7 @@ import videoContentReducer from "../features/studio/videoContentSlice";
 import commentReducer from "../features/comment_reply/commentSlice";
 import {commentShortsSlice} from "../features/comment_reply/commentShortsSlice";
 import subscriberReducer from "../features/video/subscriberSlice";
-
+import commentChannelSlice from "../features/studio/commentChannelSlice";
 
 export const store = configureStore({
   reducer: {
@@ -27,6 +27,7 @@ export const store = configureStore({
     commentShorts: commentShortsSlice.reducer,
     content: videoContentReducer,
     subscriber: subscriberReducer,
+    commentChannel: commentChannelSlice,
   },
 });
 
