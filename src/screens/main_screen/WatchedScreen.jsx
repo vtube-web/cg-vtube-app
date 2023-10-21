@@ -41,6 +41,8 @@ const WatchedScreen = () => {
       const groupedVideos = groupVideosByDay(videos);
       setVideosGroupedByDay((prev) => ({ ...prev, ...groupedVideos }));
       setShowNoWatchHistoryMessage(Object.keys(groupedVideos).length !== 0);
+      // setIsRemove(false);
+      console.log(isRemove);
     }
   }, [isChange, isRemove, videoListPage]);
 
@@ -122,6 +124,7 @@ const WatchedScreen = () => {
                       </p>
                       {filteredVideos[date].map((videoData, index) => (
                         <WatchedRender
+                          handleRemoveItem={handleRemoveItem}
                           key={`${videoData.videoId}_${index}`}
                           {...videoData}
                         />

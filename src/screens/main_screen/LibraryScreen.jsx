@@ -44,7 +44,7 @@ export default function LibraryScreen() {
     setListVideoWatched(videoWatched.content);
     setListVideoLiked(videoLiked.content);
     setUserInfo(loggerUser);
-  }, [dispatch, videoWatched, videoLiked, loggerUser]);
+  }, [dispatch]);
 
   return (
     <div className="container row">
