@@ -6,8 +6,14 @@ import {
   getIsModalSearch,
 } from "../../../../../features/studio/modalSlice";
 import Videos from "./Videos";
+import {
+  findChannelVideo,
+  getVideoList,
+} from "../../../../../features/studio/videoContentSlice";
+import { useParams } from "react-router-dom";
 
 function Search() {
+  const { channelId } = useParams();
   const [search, setSearch] = useState("");
   const [remove, setRemove] = useState(false);
   const statusTheme = useSelector(getIsModalSearch);
@@ -15,8 +21,19 @@ function Search() {
   const handleSearch = (e) => {
     setSearch(e.target.value);
   };
+
+  const dataList = useSelector(getVideoList);
+  const [datas, setDatas] = useState(null);
+  console.log("a", datas);
   useEffect(() => {
     if (search != "") {
+      const dataReq = {
+        displayMode: null,
+        titles: null,
+        numberOfViews: null,
+      };
+      dataReq.titles = search;
+      dispatch(findChannelVideo({ dataReq }));
       setRemove(true);
       dispatch(setIsModalSearch(true));
     } else {
@@ -24,6 +41,16 @@ function Search() {
       dispatch(setIsModalSearch(false));
     }
   }, [search]);
+
+  useEffect(() => {
+    if (search != "") {
+      setDatas(dataList);
+    }
+  }, [dataList]);
+
+  const handleClickLink = (data) => {
+    setSearch("");
+  };
 
   return (
     <div
@@ -57,28 +84,32 @@ function Search() {
           {remove == false ? (
             <></>
           ) : (
-           
-            <div className="col-1 text-lg text-gray-300 hover:text-gray-500 hover:cursor-pointer"
+            <div
+              className="col-1 text-lg text-gray-300 hover:text-gray-500 hover:cursor-pointer"
               onClick={() => {
                 setSearch("");
-              }}>✖</div>
+              }}
+            >
+              ✖
+            </div>
           )}
         </div>
         {statusTheme ? (
           <div className="pb-3">
             <div className="border-b-[1px] py-2">
               {remove ? (
-                <span className="pl-7">Video (2)</span>
+                <span className="pl-7">Video ({datas?.content?.length})</span>
               ) : (
                 <span className="pl-7">Video recent</span>
               )}
             </div>
-
-            {/* data */}
-
-            <Videos key={1} />
-            <Videos key={2} />
-            {/* data */}
+            {datas?.content?.map((data, i) => (
+                <Videos
+                  data={data}
+                  onClickLink={(data) => handleClickLink(data)}
+                  key={i}
+                />
+            ))}
           </div>
         ) : (
           <></>

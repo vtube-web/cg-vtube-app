@@ -4,8 +4,6 @@ const token = getAccessToken();
 
 export const getComment = async (page) => {
   let result = null;
-  console.log(page);
-  console.log(page?.content == null ? "" : page?.content);
   try {
     result = await axios.get(
       `http://localhost:8080/api/comment?page=${
@@ -91,7 +89,6 @@ export const likeComment = async (id) => {
 
 export const dislikeComment = async (id) => {
   let result = null;
-  console.log(id);
   try {
     result = await axios.post(`http://localhost:8080/api/vote/comment/down/${id}`,{} ,{
       headers: { Authorization: `Bearer ${token}` },
@@ -120,7 +117,6 @@ export const likeFeedback = async (id) => {
 
 export const dislikeFeedback = async (id) => {
   let result = null;
-  console.log(id);
   try {
     result = await axios.post(
       `http://localhost:8080/api/vote/reply/down/${id}`,

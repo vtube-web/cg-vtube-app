@@ -3,7 +3,6 @@ import PaginationItem from "./PaginationItem";
 import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
 
 function Pagination({datas,handleNextPage}) {
-  console.log(datas);
   const pageIcons = [
     { icon: MdArrowBackIosNew, label: "First page", before: true },
     { icon: MdArrowBackIosNew, label: "Previous page" },
