@@ -3,9 +3,15 @@ import { useParams } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import MenuItemChill from "../../components/studio/common/menu_item_sub/MenuItemSub";
 
-import axios from "axios";
-import { getAccessToken } from "../../services/accountService";
 import Comment from "../../layouts/commons/studio/comment/Comment";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getCommentByChannel,
+  getData,
+  setData,
+} from "../../features/studio/commentChannelSlice";
+import Pagination from "../../components/studio/common/pagination/Pagination";
+import { BiSearchAlt2 } from "react-icons/bi";
 
 function CommentScreen() {
   const { channelId } = useParams();
@@ -17,21 +23,72 @@ function CommentScreen() {
       title: "Comment",
     },
   ];
+  const dispatch = useDispatch();
+  const dataList = useSelector(getData);
+  const [datas, setDatas] = useState([]);
+  const [value, setValue] = useState("");
 
-  const [data,setData] = useState([]);
-  useEffect(()=>{
-    const token = getAccessToken();
-    axios.get("http://localhost:8080/api/comment", {
-      headers: { Authorization: `Bearer ${token}` },
-    }).then((res)=>{
-      console.log(res.data.data);
-      setData(res.data.data);
-    }).catch((e)=>{
-      console.log("error",e);
-    });
-  },[])
+  useEffect(() => {
+    if (dataList == null) {
+      handleSearchData();
+    } else {
+      setDatas(dataList);
+    }
+  }, [dataList]);
+
+  const handleChangeValue = (e) => {
+    setValue(e.target.value);
+   
+  };
+  const handleSearchData = () => {
+      dispatch(
+        getCommentByChannel({
+          currentPageNumber: 0,
+          content: value,
+        })
+      );
+  };
+  useEffect(() => {
+    if (value === "") {
+      handleSearchData();
+    }
+  }, [value]);
 
 
+  const handleNextPage = (label) => {
+    const currentPageNumber = datas?.currentPageNumber;
+    const totalPages = datas?.totalPages;
+    if (label == "Next page" && datas?.hasNext) {
+      if (currentPageNumber < totalPages) {
+        dispatch(
+          getCommentByChannel({ currentPageNumber: currentPageNumber + 1,content:value })
+        );
+      }
+    } else if (label == "Previous page" && datas?.hasPrevious) {
+      if (currentPageNumber > 0) {
+          dispatch(
+            getCommentByChannel({
+              currentPageNumber: currentPageNumber - 1,
+              content: value,
+            })
+          );
+      }
+    } else if (label == "First page") {
+         dispatch(
+           getCommentByChannel({
+             currentPageNumber: 0,
+             content: value,
+           })
+         );
+    } else if (label == "Last page") {
+       dispatch(
+         getCommentByChannel({
+           currentPageNumber: totalPages - 1,
+           content: value,
+         })
+       );
+    }
+  };
   return (
     <div className="text-black w-full">
       <ToastContainer
@@ -55,24 +112,32 @@ function CommentScreen() {
             {menus?.map((menu, i) => (
               <MenuItemChill menu={menu} key={i} />
             ))}
-            <div className="w-1/2 border flex items-center justify-between space-x-5 px-3 py-1 mb-1 rounded-lg">
-              <div>
-                <select>
-                  <option>a</option>
-                </select>
+            <div className="w-1/2 border flex items-center justify-between space-x-4 px-3 py-1 mb-1 rounded-lg">
+              <div className="border-r-2 pr-3 text-gray-700 cursor-default">
+                Content
               </div>
               <input
                 type="text"
                 className="w-full border-none focus:border-none focus:outline-none"
                 placeholder="value"
+                value={value}
+                onChange={handleChangeValue}
               />
-              <div>a</div>
+              <BiSearchAlt2
+                className="w-7 h-7 text-gray-400 hover:text-gray-700 hover:cursor-pointer"
+                onClick={handleSearchData}
+              />
             </div>
           </div>
 
-         <Comment data={data} />
+          {datas?.content?.map((data, i) => (
+            <Comment data={data} key={i} />
+          ))}
 
-          
+          <div>
+            <Pagination datas={datas} handleNextPage={handleNextPage} />
+            <div className="py-4"></div>
+          </div>
         </div>
       </div>
     </div>
