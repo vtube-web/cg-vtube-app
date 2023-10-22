@@ -28,25 +28,26 @@ export const commentSlice = createSlice({
         },
         resetComment: state => {
             state.comment = {}
-        }
+        },
     },
     extraReducers: (builder) => {
         builder
-            .addCase(addComment.pending, (state) => {
-                state.success = false;
-                state.loading = true;
-                state.error = false;
-            })
-            .addCase(addComment.rejected, (state,action) => {
-                state.success = false;
-                state.loading = false;
-                state.error = action.error;
-            })
-            .addCase(addComment.fulfilled, (state) => {
-                state.success = true;
-                state.loading = false;
-                state.error = false;
-            });
+          .addCase(addComment.pending, (state) => {
+            state.success = false;
+            state.loading = true;
+            state.error = false;
+          })
+          .addCase(addComment.rejected, (state, action) => {
+            state.success = false;
+            state.loading = false;
+            state.error = action.error;
+          })
+          .addCase(addComment.fulfilled, (state) => {
+            state.success = true;
+            state.loading = false;
+            state.error = false;
+          });
     }
 });
+
 export default commentSlice.reducer;

@@ -16,7 +16,7 @@ const SearchComponent = ({
   return (
     <div className={`${style.input__wrapper} row`}>
       <div className="col-1">
-        <button>
+        <button onClick={performSearch}>
           <AiOutlineSearch size={22} />
         </button>
       </div>

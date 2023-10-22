@@ -1,6 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { videoLikedList, deleteVideoLiked, createLiked } from "../../api/videoLikedAPI";
+import {
+  videoLikedList,
+  deleteVideoLiked,
+  createLikeOrDisLike,
+} from "../../api/videoLikedAPI";
 
 const initialState = {
   videos: [],
@@ -30,10 +34,13 @@ export const removeVideoLiked = createAsyncThunk(
   }
 );
 
-export const addLiked = createAsyncThunk("liked/create", async (videoId) => {
-  const response = await createLiked(videoId);
-  return response.data;
-});
+export const addLikeOrDislikeVideo = createAsyncThunk(
+  "liked/create",
+  async (data) => {
+    const response = await createLikeOrDisLike(data);
+    return response.data;
+  }
+);
 
 export const videoLikedSlice = createSlice({
   name: "videoLiked",
@@ -86,17 +93,17 @@ export const videoLikedSlice = createSlice({
         state.error = false;
       })
 
-      .addCase(addLiked.pending, (state) => {
+      .addCase(addLikeOrDislikeVideo.pending, (state) => {
         state.success = false;
         state.loading = true;
         state.error = false;
       })
-      .addCase(addLiked.rejected, (state, action) => {
+      .addCase(addLikeOrDislikeVideo.rejected, (state, action) => {
         state.success = false;
         state.loading = false;
         state.error = action.error;
       })
-      .addCase(addLiked.fulfilled, (state, action) => {
+      .addCase(addLikeOrDislikeVideo.fulfilled, (state, action) => {
         state.success = true;
         state.loading = false;
         state.error = false;

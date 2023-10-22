@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import TitleSection from "../overview/imformation_fill/TitleSection";
 import DescribeSection from "../overview/imformation_fill/DescribeSection";
@@ -12,6 +12,12 @@ import { editVideo } from "../../../../features/studio/videoUploadSlice";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { firebaseStorage } from "../../../../firebase";
 import { v4 as uuidv4 } from "uuid";
+import {
+  findChannelVideo,
+  getDataReq,
+} from "../../../../features/studio/videoContentSlice";
+import {getAccessToken} from "../../../../services/accountService";
+import VideoShort from "../overview/imformation_fill/VideoShort";
 
 function EditSubContent() {
   const { videoId } = useParams();
@@ -22,11 +28,14 @@ function EditSubContent() {
   };
   const [data, setData] = useState("");
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/videos/${videoId}`).then((res) => {
-      setData(res.data);
-    });
+    axios
+      .get(`http://localhost:8080/api/videos/${videoId}`, {
+        headers: { Authorization: `Bearer ${getAccessToken()}` },
+      })
+      .then((res) => {
+        setData(res.data.data);
+      });
   }, []);
-
   const [title, setTitle] = useState("");
   const [isValidateTitle, setIsValidateTitle] = useState(false);
   const [isTitleLengthMax, setIsTitleLengthMax] = useState(false);
@@ -53,10 +62,13 @@ function EditSubContent() {
   const [image, setImage] = useState("");
   const [mouseImg, setMouseImg] = useState(false);
   const [isValidateImage, setIsValidateImage] = useState(false);
+    const [isShorts, setIsShorts] = useState(false);
 
   useEffect(() => {
     setTitle(data?.title);
-    setDescribe(`${data?.description} ${data?.tagDtoList?.map((tag)=> tag.name)}`);
+    setDescribe(
+      `${data?.description} ${data?.tagDtoList?.map((tag) => tag.name)}`
+    );
     setImage(data?.thumbnail);
     setIsValidateImage(true);
     if (handleCheckDateSchedule()) {
@@ -82,16 +94,16 @@ function EditSubContent() {
       return false;
     }
   }
-    const handleImage = (e) => {
-      const img = e.target.files[0];
-      const imageRef = ref(firebaseStorage, `images/${img.name + uuidv4()}`);
-      uploadBytes(imageRef, img).then((snapshort) => {
-        getDownloadURL(snapshort.ref).then((url) => {
-          setIsValidateImage(true);
-          setImage(url);
-        });
+  const handleImage = (e) => {
+    const img = e.target.files[0];
+    const imageRef = ref(firebaseStorage, `images/${img.name + uuidv4()}`);
+    uploadBytes(imageRef, img).then((snapshort) => {
+      getDownloadURL(snapshort.ref).then((url) => {
+        setIsValidateImage(true);
+        setImage(url);
       });
-    };
+    });
+  };
   const handleChange = (e, type) => {
     const value = e.target.value;
     const length = value.length;
@@ -179,6 +191,19 @@ function EditSubContent() {
       return true;
     }
   };
+    const handleClickVideoButton = () => {
+      setIsShorts(false);
+    };
+    const handleClickShortsButton = () => {
+      let duraction = parseInt(data?.duration.split(".")[0]);
+
+      if (duraction > 180) {
+        toast.warning("The length of the video exceeds 3 minutes");
+      } else {
+        setIsShorts(true);
+      }
+    };
+  const dataReq = useSelector(getDataReq);
   const handleSubmit = () => {
     if (
       isValidateTitle &&
@@ -201,10 +226,13 @@ function EditSubContent() {
           release_date: release_date,
           is_private: is_private,
           hashtags: hashtags,
+          is_shorts: isShorts,
         };
         dispatch(editVideo(video));
-        toast.success("success");
+        toast.success("Edit success");
         setStartTitle(false);
+        dispatch(findChannelVideo(dataReq));
+        navigate(-1);
       } else {
         if (handleCheckDateTimeRelease()) {
           release_date = new Date(`${date}T${time}`).toISOString();
@@ -216,10 +244,13 @@ function EditSubContent() {
             release_date: release_date,
             is_private: is_private,
             hashtags: hashtags,
+            is_shorts: isShorts,
           };
           dispatch(editVideo(video));
-          toast.success("success");
+          toast.success("Edit success");
           setStartTitle(false);
+          dispatch(findChannelVideo(dataReq));
+          navigate(-1);
         }
       }
     } else {
@@ -292,7 +323,11 @@ function EditSubContent() {
         </div>
       </div>
       <div className="flex justify-between items-center fixed bottom-0 right-0  w-full border-t-[1px] py-2 bg-white">
-        <div className="ml-7 text-sm text-gray-500">Moderated by vtube...</div>
+        <VideoShort
+          isShorts={isShorts}
+          handleClickShortsButton={handleClickShortsButton}
+          handleClickVideoButton={handleClickVideoButton}
+        />
         <span
           onClick={handleSubmit}
           className="bg-blue-600 mr-7 py-2 px-4 text-white hover:cursor-pointer hover:bg-blue-700 rounded-sm"

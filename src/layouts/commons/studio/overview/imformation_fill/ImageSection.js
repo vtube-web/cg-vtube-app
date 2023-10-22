@@ -57,7 +57,7 @@ function ImageSection({
           >
             <img
               src={`${image}`}
-              className=" object-cover w-64 h-40 rounded-sm shadow-sm"
+              className=" object-cover object-top w-64 h-40 rounded-sm shadow-sm"
             />
             <div
               className={`absolute bg-black w-64 h-40 top-0 bg-opacity-50 z-50  flex flex-col space-y-3 justify-center hover:cursor-default ${

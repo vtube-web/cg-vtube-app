@@ -12,7 +12,7 @@ export const getChannelVideo = async (page) => {
         page?.dataReq?.titles || ""
       }&status=${page?.dataReq?.displayMode || ""}&views=${
         page?.dataReq?.numberOfViews || ""
-      }`,
+      }&isShort=${page?.isShort ? page?.isShort: false}`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }

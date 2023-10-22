@@ -6,7 +6,9 @@ export const VIDEO_API = "http://localhost:8080/api/videos";
 export const findVideoList = async () => {
     let videoList = null;
     try {
-        videoList = await axios.get(`${VIDEO_API}`)
+        videoList = await axios.get(`${VIDEO_API}`, {
+          headers: { Authorization: `Bearer ${getStoredUserData()?.accessToken}` },
+        });
     } catch (e) {
         console.log('getVideoList API error: ' + e);
     }
