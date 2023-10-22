@@ -9,7 +9,7 @@ export const createVideo = async (video) => {
     try {
         result = axios.post(
             `${VIDEO_UPLOAD_API}/add`,
-            {title: video.title, videoUrl: video.videoUrl},
+            {title: video?.title, videoUrl: video?.videoUrl,duration:video?.duration},
             {headers: {Authorization: `Bearer ${token}`}}
         );
     } catch (e) {
@@ -19,6 +19,7 @@ export const createVideo = async (video) => {
 };
 
 export const updateVideo = async (video) => {
+  console.log(video);
   let result = null;
   try {
     result = axios.put(`${VIDEO_UPLOAD_API}/update`, video, {

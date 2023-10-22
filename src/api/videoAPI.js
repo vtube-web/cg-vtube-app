@@ -4,14 +4,17 @@ import { getStoredUserData } from "../services/accountService";
 export const VIDEO_API = "http://localhost:8080/api/videos";
 
 export const findVideoList = async () => {
-  let videoList = null;
-  try {
-    videoList = await axios.get(`${VIDEO_API}`);
-  } catch (e) {
-    console.log("getVideoList API error: " + e);
-  }
-  return videoList;
-};
+    let videoList = null;
+    try {
+        videoList = await axios.get(`${VIDEO_API}`, {
+          headers: { Authorization: `Bearer ${getStoredUserData()?.accessToken}` },
+        });
+    } catch (e) {
+        console.log('getVideoList API error: ' + e);
+    }
+    return videoList;
+}
+
 
 export const findVideo = async (id) => {
   let headers = {};

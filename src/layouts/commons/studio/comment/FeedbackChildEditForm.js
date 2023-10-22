@@ -1,29 +1,31 @@
 import React, { useState } from "react";
-import {useDispatch} from "react-redux";
-import { editCommentByUser, setData } from "../../../../features/studio/commentChannelSlice";
-import {toast} from "react-toastify";
+import { useDispatch } from "react-redux";
+import {
+  setData,
+  editFeedbackByUser,
+} from "../../../../features/studio/commentChannelSlice";
+import { toast } from "react-toastify";
 
-function CommentEditForm({
+function FeedbackChildEditForm({
   data,
   handleClickCancelEditForm,
   hoverCommentItem,
 }) {
-
   const [value, setValue] = useState(data.content);
-  const handleChangeValue = (e)=> {
+  const handleChangeValue = (e) => {
     setValue(e.target.value);
-  }
+  };
 
   const dispatch = useDispatch();
 
   const handleClickSaveEditForm = () => {
-    dispatch(editCommentByUser({ id: data?.id, content: value })).then(()=>{
-       toast.success("Edit success");
-       dispatch(setData(null));
-       handleClickCancelEditForm();
+    dispatch(editFeedbackByUser({ id: data?.id, content: value })).then(() => {
+      toast.success("Edit success");
+      dispatch(setData(null));
+      handleClickCancelEditForm();
     });
   };
- 
+
   return (
     <div className="grow">
       <div className="border-2 w-2/3 px-3 py-3">
@@ -56,4 +58,4 @@ function CommentEditForm({
   );
 }
 
-export default CommentEditForm;
+export default FeedbackChildEditForm;

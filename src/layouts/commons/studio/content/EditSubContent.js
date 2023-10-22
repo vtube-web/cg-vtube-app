@@ -16,6 +16,8 @@ import {
   findChannelVideo,
   getDataReq,
 } from "../../../../features/studio/videoContentSlice";
+import {getAccessToken} from "../../../../services/accountService";
+import VideoShort from "../overview/imformation_fill/VideoShort";
 
 function EditSubContent() {
   const { videoId } = useParams();
@@ -26,9 +28,13 @@ function EditSubContent() {
   };
   const [data, setData] = useState("");
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/videos/${videoId}`).then((res) => {
-      setData(res.data.data);
-    });
+    axios
+      .get(`http://localhost:8080/api/videos/${videoId}`, {
+        headers: { Authorization: `Bearer ${getAccessToken()}` },
+      })
+      .then((res) => {
+        setData(res.data.data);
+      });
   }, []);
   const [title, setTitle] = useState("");
   const [isValidateTitle, setIsValidateTitle] = useState(false);
@@ -56,6 +62,7 @@ function EditSubContent() {
   const [image, setImage] = useState("");
   const [mouseImg, setMouseImg] = useState(false);
   const [isValidateImage, setIsValidateImage] = useState(false);
+    const [isShorts, setIsShorts] = useState(false);
 
   useEffect(() => {
     setTitle(data?.title);
@@ -184,6 +191,18 @@ function EditSubContent() {
       return true;
     }
   };
+    const handleClickVideoButton = () => {
+      setIsShorts(false);
+    };
+    const handleClickShortsButton = () => {
+      let duraction = parseInt(data?.duration.split(".")[0]);
+
+      if (duraction > 180) {
+        toast.warning("The length of the video exceeds 3 minutes");
+      } else {
+        setIsShorts(true);
+      }
+    };
   const dataReq = useSelector(getDataReq);
   const handleSubmit = () => {
     if (
@@ -207,6 +226,7 @@ function EditSubContent() {
           release_date: release_date,
           is_private: is_private,
           hashtags: hashtags,
+          is_shorts: isShorts,
         };
         dispatch(editVideo(video));
         toast.success("Edit success");
@@ -224,6 +244,7 @@ function EditSubContent() {
             release_date: release_date,
             is_private: is_private,
             hashtags: hashtags,
+            is_shorts: isShorts,
           };
           dispatch(editVideo(video));
           toast.success("Edit success");
@@ -302,7 +323,11 @@ function EditSubContent() {
         </div>
       </div>
       <div className="flex justify-between items-center fixed bottom-0 right-0  w-full border-t-[1px] py-2 bg-white">
-        <div className="ml-7 text-sm text-gray-500">Moderated by vtube...</div>
+        <VideoShort
+          isShorts={isShorts}
+          handleClickShortsButton={handleClickShortsButton}
+          handleClickVideoButton={handleClickVideoButton}
+        />
         <span
           onClick={handleSubmit}
           className="bg-blue-600 mr-7 py-2 px-4 text-white hover:cursor-pointer hover:bg-blue-700 rounded-sm"

@@ -1,11 +1,28 @@
 import React, { useState } from "react";
 import { GoPencil } from "react-icons/go";
 import { CiYoutube } from "react-icons/ci";
+import FormatDateUpdate from "../../../../../format/FomatDateUpdate";
+import { useNavigate, useParams } from "react-router-dom";
 
-function Videos() {
+function Videos({ data, onClickLink }) {
+  const { channelId } = useParams();
+  const navigate = useNavigate();
   const [hoverVideo, setHoverVideo] = useState(false);
   const [mouseDetail, setMouseDetail] = useState(false);
   const [mouseWatchVideo, setMouseWatchVideo] = useState(false);
+
+  const handleNextPage = () => {
+    onClickLink();
+    navigate(`/channel/${channelId}/content/upload`);
+  };
+  const handleNextPageEdit = (e) => {
+    e.stopPropagation();
+    navigate(`/channel/${channelId}/content/edit/${data?.id}`);
+  };
+  const handleNextPageWatching = (e) => {
+    e.stopPropagation();
+    navigate(`/watching/${data?.id}`);
+  };
   return (
     <div
       className="border-b-[1px] py-2 hover:cursor-pointer hover:bg-gray-100"
@@ -15,15 +32,16 @@ function Videos() {
       onMouseOut={() => {
         setHoverVideo(false);
       }}
+      onClick={handleNextPage}
     >
       <div className="px-7 flex space-x-4">
         <div className="relative opacity-60 flex-none">
           <img
-            className="w-32 h-16 rounded-sm"
-            src="https://img.meta.com.vn/Data/image/2022/01/13/anh-dep-thien-nhien-11.jpg"
+            className="w-32 h-16 rounded-sm object-cover object-top"
+            src={`${data?.thumbnail}`}
           />
           <div className="absolute right-1 top-11 bg-black px-1 rounded-sm">
-            <span className="text-white">0:19</span>
+            {/* <span className="text-white">0:19</span> */}
           </div>
         </div>
         <div className="pt-2 text-gray-600 min-w-0">
@@ -37,7 +55,10 @@ function Videos() {
                 onMouseOver={() => setMouseDetail(true)}
                 onMouseOut={() => setMouseDetail(false)}
               >
-                <GoPencil className="w-5 h-5 hover:text-gray-600" />
+                <GoPencil
+                  className="w-5 h-5 hover:text-gray-600"
+                  onClick={handleNextPageEdit}
+                />
                 {mouseDetail == false ? (
                   <></>
                 ) : (
@@ -51,7 +72,10 @@ function Videos() {
                 onMouseOver={() => setMouseWatchVideo(true)}
                 onMouseOut={() => setMouseWatchVideo(false)}
               >
-                <CiYoutube className="w-5 h-5 hover:text-gray-600" />{" "}
+                <CiYoutube
+                  className="w-5 h-5 hover:text-gray-600"
+                  onClick={handleNextPageWatching}
+                />
                 {mouseWatchVideo == false ? (
                   <></>
                 ) : (
@@ -66,7 +90,7 @@ function Videos() {
           )}
         </div>
         <div className="pt-2 text-gray-600 flex-auto text-center min-w-0 lg:hidden xl:block truncate">
-          <div className="">27-09-2023</div>
+          <div className="">{FormatDateUpdate(data?.createAt)}</div>
           <div className="mt-1 text-gray-400">Date upload</div>
         </div>
       </div>

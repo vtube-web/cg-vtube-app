@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CiYoutube } from "react-icons/ci";
 import { GoPencil } from "react-icons/go";
 import { Link, useParams } from 'react-router-dom';
+import fomatTimeVideo  from "../../../../format/FomatTimeVideo";
 
 function Video({item}) {
     const [hoverVideo, setHoverVideo] = useState(false);
@@ -25,7 +26,7 @@ function Video({item}) {
           {/* <img className="w-32 h-16 rounded-sm" src={`${item.thumbnail}`} /> */}
           <video className="w-32 h-16 rounded-sm" src={item?.videoUrl} />
           <div className="absolute right-1 top-9 bg-black px-1 rounded-sm">
-            {/* <span className="text-white text-sm">0:19</span> */}
+            <span className="text-white text-sm">{fomatTimeVideo(item?.duration)}</span>
           </div>
         </div>
         <div className="pt-2 text-gray-600 min-w-0">
