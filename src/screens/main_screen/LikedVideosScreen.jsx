@@ -13,13 +13,15 @@ import ShortsButton from "../../components/liked_video/ShortsButton";
 import { BiSolidLike } from "react-icons/bi";
 import RenderShorts from "../../components/liked_video/RenderShorts";
 import RenderVideos from "../../components/liked_video/RenderVideos";
+import { ProgressSpinner } from "primereact/progressspinner";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 function LikedVideosScreen() {
   const dispatch = useDispatch();
   const videoList = useSelector(selectVideoLikedList);
   const [activeButton, setActiveButton] = useState("All");
   const [showNoLikedMessage, setShowNoLikedMessage] = useState(false);
-  const [likedVideoList, setLikedVideoList] = useState({});
+  const [likedVideoList, setLikedVideoList] = useState([]);
   const [isRemove, setIsRemove] = useState(false);
   const [isChange, setIsChange] = useState(true);
   // const [likedVideoRender, setLikedVideoRender] = useState({});
@@ -44,6 +46,29 @@ function LikedVideosScreen() {
 
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
+  };
+
+  const fetchMoreData = () => {
+    setTimeout(async () => {
+      if (videoList && videoList.hasNext) {
+        await dispatch(getVideoLiked(videoList.currentPageNumber + 1))
+          .then((response) => {
+            const newVideos = response.payload.data.content;
+            if (newVideos && newVideos.length > 0) {
+              const currentVideos = { ...videoList.content };
+              const currentVideosArray = Object.values(currentVideos);
+              const newVideosReturn = currentVideosArray.concat(newVideos);
+              setLikedVideoList(newVideosReturn);
+              setShowNoLikedMessage(true);
+            } else {
+              console.log("No new videos received.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching more data:", error);
+          });
+      }
+    }, 1500);
   };
 
   const filterVideos = () => {
@@ -80,7 +105,10 @@ function LikedVideosScreen() {
       {showNoLikedMessage &&
         videoList.content &&
         videoList.content.length > 0 && (
-          <Playlist passedProp={videoList.content} />
+          <Playlist
+            likedVideoList={likedVideoList}
+            totalElements={videoList.totalElements}
+          />
         )}
       <div className={`${style.playlist__content} `}>
         <div className={`${style.list__button__search} `}>
@@ -105,14 +133,23 @@ function LikedVideosScreen() {
           ) : null}
         </div>
 
-        {showNoLikedMessage ? (
-          filterVideos()
-        ) : (
-          <div className={style.noLikedMessage}>
-            <BiSolidLike size={100} />
-            <h3>There are no videos in this playlist yet</h3>
-          </div>
-        )}
+        <InfiniteScroll
+          className="row"
+          style={{ overflow: "hidden" }}
+          dataLength={likedVideoList ? likedVideoList.length : 0}
+          next={fetchMoreData}
+          hasMore={videoList && videoList.hasNext}
+          loader={<ProgressSpinner className={style.my__spinner} />}
+        >
+          {showNoLikedMessage ? (
+            filterVideos()
+          ) : (
+            <div className={style.noLikedMessage}>
+              <BiSolidLike size={100} />
+              <h3>There are no videos in this playlist yet</h3>
+            </div>
+          )}
+        </InfiniteScroll>
       </div>
     </div>
   );

@@ -35,11 +35,31 @@
           margin: auto;
           object-fit: cover;
           .content__thumbnail__img {
+            position: relative;
             img {
               border-radius: 10px;
+              width: 100%;
               height: 100%;
               object-fit: cover;
             }
+          }
+          .content__thumbnail__img:hover::after {
+            content: "▶ PLAY ALL";
+            font-size: 14px;
+            font-weight: 550;
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: auto;
+            border-radius: 10px;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
           }
         }
       }
@@ -128,7 +148,7 @@
         color: white;
       }
     }
-    .message{
+    .message {
       transform: translateY(1000%);
     }
     .list__videos {
@@ -188,6 +208,7 @@
               display: -webkit-box;
               -webkit-line-clamp: 2;
               -webkit-box-orient: vertical;
+              padding-bottom: 5px;
             }
             .detail__videos {
               display: flex;
@@ -257,13 +278,13 @@
       flex-wrap: wrap;
       // margin: 10px 0 10px 0;
       margin-left: 36px;
-    position: relative;
+      position: relative;
 
       .short__render {
         max-width: 201px;
         margin: 15px 2px;
-        .content__img{
-          img{
+        .content__img {
+          img {
             border-radius: 10px;
           }
         }
@@ -281,7 +302,7 @@
         .content__view {
           font-size: 14px;
         }
-        button{
+        button {
           display: none;
         }
       }
@@ -300,22 +321,10 @@
       }
     }
   }
-}
-
-.content__thumbnail__img:hover::after {
-  content: "▶ PLAY ALL";
-  font-size: 14px;
-  font-weight: 550;
-  position: absolute;
-  top: 0;
-  margin: auto;
-  border-radius: 10px;
-  width: 135px;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: white;
+  .my__spinner {
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: auto;
+  }
 }

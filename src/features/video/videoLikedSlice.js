@@ -14,8 +14,8 @@ const initialState = {
   success: false,
 };
 
-export const getVideoLiked = createAsyncThunk("liked/history", async () => {
-  const response = await videoLikedList();
+export const getVideoLiked = createAsyncThunk("liked/history", async (page) => {
+  const response = await videoLikedList(page);
   return response.data;
 });
 

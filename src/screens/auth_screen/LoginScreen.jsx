@@ -46,7 +46,6 @@ function LoginScreen() {
       }
     }
     return () => {
-      console.log("thai");
       dispatch(resetUserAccountState());
     };
   }, [success, user]);
