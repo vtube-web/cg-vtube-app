@@ -12,6 +12,11 @@ import {AiOutlineClose} from "react-icons/ai";
 import {useDispatch, useSelector} from "react-redux";
 import {getVideoShorts} from "../../../features/shorts/shortsSlice";
 import CommentShorts from "./CommentsShorts/CommentShorts";
+import {InputTextarea} from "primereact/inputtextarea";
+import {addComment} from "../../../features/comment_reply/commentSlice";
+import {getStoredUserData} from "../../../services/accountService";
+import {useNavigate, useParams} from "react-router-dom";
+import {addCommentShorts} from "../../../features/comment_reply/commentShortsSlice";
 
 function Shorts({videoShort}) {
 
@@ -21,6 +26,12 @@ function Shorts({videoShort}) {
     const playerRef = useRef(null);
     const [commentShortList, setCommentShortList] = useState([]);
     const dispatch = useDispatch();
+    const params = useParams();
+    const [commentShorts, setCommentShorts] = useState("");
+    const loggedUser = getStoredUserData();
+    const navigate = useNavigate();
+
+    const imgUrl = 'https://firebasestorage.googleapis.com/v0/b/vtube-15.appspot.com/o/images%2F387123399_317289870909894_6318809251513139950_n.jpg?alt=media&token=9a676663-abbe-4324-aba8-a634e63b305c&_gl=1*1vll957*_ga*MTE0NzY2MDExNy4xNjkxMDI4NDc2*_ga_CW55HF8NVT*MTY5NzEyNTg4NC4yOC4xLjE2OTcxMjU5MjAuMjQuMC4w';
 
     useEffect(() => {
         setCommentShortList(videoShort.commentShortsDtoList)
@@ -59,7 +70,37 @@ function Shorts({videoShort}) {
         setCommentsToggle(!commentsToggle);
     }
 
+    const commentShortsData = {
+        content: commentShorts,
+        shortsId: videoShort.id
+    }
 
+    const handleCommentShorts = async (e) => {
+        e.preventDefault();
+        const newCommentShorts = {
+            content: commentShorts,
+            shortsId: params.shortsId,
+            likes: 0,
+            dislikes: 0,
+            createAt: Date.now(),
+            replyDtoList: [],
+            userResponseDto: {
+                id: loggedUser.id,
+                userName: loggedUser.email,
+                avatar: loggedUser.avatar || imgUrl
+            }
+        }
+        const updatedCommentShortsList = [newCommentShorts, ...commentShortList];
+        dispatch(addCommentShorts(commentShortsData));
+        setCommentShortList(updatedCommentShortsList);
+        setCommentShorts("");
+    }
+
+    function handleCheckLogin() {
+        if (loggedUser === null) {
+            navigate("/login");
+        }
+    }
 
     return (
         <>
@@ -106,8 +147,8 @@ function Shorts({videoShort}) {
 
                                 <div className={style.shorts__user}>
                                     <div className={style.user__info}>
-                                        <img src={videoShort.userDto.avatar} alt={'channel_name'}/>
-                                        <p>{videoShort.userDto.userName}</p>
+                                        <img src={videoShort?.userDto?.avatar} alt={'channel_name'}/>
+                                        <p>{videoShort?.userDto?.userName}</p>
                                     </div>
                                     <span className={style.subs__btn}>Subscribe</span>
                                 </div>
@@ -127,7 +168,6 @@ function Shorts({videoShort}) {
 
                         </div>
                         <span>{formatNumberView(videoShort.likes)}</span>
-                        {/*<span>13 N</span>*/}
 
                         <div className={style.shorts__btn}>
 
@@ -205,11 +245,19 @@ function Shorts({videoShort}) {
                             <img
                                 src="https://play-lh.googleusercontent.com/Fro4e_osoDhhrjgiZ_Y2C5FNXBMWvrb4rGpmkM1PDAcUPXeiAlPCq7NeaT4Q6NRUxRqo"
                                 alt={"user avatar"}/>
-                            <input type="text"
-                                   placeholder=" Your comments"
-                                   className={style.input__comments}/>
-
-                            <button type="submit">
+                            <form
+                                onSubmit={handleCommentShorts}>
+                                <InputTextarea
+                                    rows={1}
+                                    className={style.input__comments}
+                                    value={commentShorts}
+                                    placeholder={"Your comment"}
+                                    onChange={(e) => setCommentShorts(e.target.value)}
+                                    onFocus={handleCheckLogin}
+                                    autoResize
+                                />
+                            </form>
+                            <button onClick={handleCommentShorts}>
                                 <span className={style.btn__comments}>Bình luận</span>
                             </button>
                         </div>

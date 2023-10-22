@@ -24,13 +24,13 @@ function CommentShorts({commentShorts}) {
                                 <div className={style.info__container}>
 
                                     <div className={style.user__info}>
-                                <span className={style.user__name}>
-                                @ {commentShorts.userResponseDto.userName}
-                                </span>
+                                        <span className={style.user__name}>
+                                        @{commentShorts.userResponseDto.userName}
+                                        </span>
                                         <span
                                             className={style.comment__date}>
-                                {formatDateAgo(commentShorts.createAt)}
-                                </span>
+                                            {formatDateAgo(commentShorts.createAt)}
+                                        </span>
                                     </div>
 
                                     <div className={style.comment__content}>
@@ -48,6 +48,11 @@ function CommentShorts({commentShorts}) {
                                                 <BiSolidDislike/>
                                             </div>
                                             <span>{formatNumberView(commentShorts.dislikes)}</span>
+
+
+                                            <div className={style.reply__comment}>
+                                                <span className={style.btn__reply}>Reply</span>
+                                            </div>
                                         </div>
 
                                     </div>

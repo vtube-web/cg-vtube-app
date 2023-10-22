@@ -1,4 +1,5 @@
 import axios from "axios";
+
 export const VIDEO_SHORTS_API = "http://localhost:8080/api/shorts";
 
 export const findVideoShorts = async () => {

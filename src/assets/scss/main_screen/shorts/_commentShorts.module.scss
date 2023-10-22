@@ -2,7 +2,6 @@
 
 .comment__container {
 
-
   .comment__body {
     display: flex;
     flex-direction: row;
@@ -29,6 +28,8 @@
 
         .info__container {
           flex-direction: column;
+          width: 350px;
+
           .user__info {
 
             .user__name {
@@ -37,30 +38,53 @@
             }
 
             .comment__date {
-              font-size: 12px;
-              margin-left: 5px;
+              font-size: 70%;
+              margin-left: 10px;
             }
-
-            .comment__content {
-
-            }
+          }
+          .comment__content {
+            margin-top: 5%;
+            word-wrap: break-word;
           }
 
           .comment__btn__container {
             color: white;
+            margin-top: 5%;
 
             .function__btn {
               display: flex;
               flex-direction: row;
 
-
               .intrinsic__btn {
-                margin-right: 5%;
+                margin-right: 4%;
+                display: flex;
+                flex-direction: row;
+                cursor: pointer;
               }
 
               span {
-                margin-bottom: 3%;
-                margin-right: 10%;
+                margin-right: 30px;
+                cursor: pointer;
+              }
+
+              .reply__comment {
+                border-radius: 25px;
+                background: white;
+                color: black;
+                cursor: pointer;
+                height: 30px;
+
+                &:hover {
+                  opacity: 65%;
+                }
+
+                .btn__reply {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  margin-left: 30px;
+                  margin-top: 2px;
+                }
               }
             }
           }
