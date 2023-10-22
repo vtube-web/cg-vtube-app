@@ -13,7 +13,6 @@ function DislikeComment({ commentId, vote }) {
   const dispatch = useDispatch();
   const handleClickSaveDisLike = () => {
     dispatch(dislikeCommentByUser(commentId)).then((res) => {
-      console.log(res.payload);
       if (res.payload.data) {
         toast.success(res.payload.message);
       } else {

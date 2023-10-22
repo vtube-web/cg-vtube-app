@@ -20,12 +20,9 @@ function FeedbackChildProfile({
 }) {
   const [taskMenuLabel, setTaskMenuLabel] = useState(false);
   const [taskMenu, setTaskMenu] = useState(false);
-  const [hoverLike, setHoverLike] = useState(false);
-  const [hoverDislike, setHoverDislike] = useState(false);
   const dispatch = useDispatch();
 
   const handleClickRemoveFeedback = () => {
-    console.log("as");
     dispatch(deleteFeedbackByUser(data?.id)).then(() => {
       toast.success("delete success");
       dispatch(setData(null));
