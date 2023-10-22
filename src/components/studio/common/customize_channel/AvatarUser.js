@@ -24,7 +24,6 @@ function AvatarUser() {
   };
   const handleClickSave = () => {
     const user = getStoredUserData();
-    console.log("a", user?.id);
     if (user != null) {
       axios
         .put(
@@ -57,7 +56,7 @@ function AvatarUser() {
   const handleClickRemove = () => {
     setTempImage(false);
     setImage(null);
-  }
+  };
   return (
     <div className="mb-[22px]">
       <div className="mb-2 font-semibold">Image</div>

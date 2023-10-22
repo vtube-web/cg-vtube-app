@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { firebaseStorage } from "../../../../firebase";
 import { getDownloadURL, ref, uploadBytes } from "@firebase/storage";
 import { v4 as uuidv4 } from "uuid";
@@ -9,7 +9,6 @@ import { getStoredUserData } from "../../../../services/accountService";
 function BannerChannel() {
   const [imageBanner, setImageBanner] = useState(null);
   const [tempImage, setTempImage] = useState(false);
-  console.log(tempImage);
 
   const handleImage = (e) => {
     const img = e.target.files[0];
@@ -55,10 +54,10 @@ function BannerChannel() {
       });
   };
 
-    const handleClickRemove = () => {
-      setTempImage(false);
-      setImageBanner(null);
-    };
+  const handleClickRemove = () => {
+    setTempImage(false);
+    setImageBanner(null);
+  };
 
   return (
     <div>
