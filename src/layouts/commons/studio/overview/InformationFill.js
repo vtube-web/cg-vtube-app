@@ -15,6 +15,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { firebaseStorage } from "../../../../firebase";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import VideoShort from "./imformation_fill/VideoShort";
 function InformationFill({ onClose, handleRefresh }) {
   const data = useSelector(getVideo);
   const getDataSuccess = useSelector(getVideoSuccess);
@@ -30,7 +31,7 @@ function InformationFill({ onClose, handleRefresh }) {
   const [selectedOption, setSelectedOption] = useState("save");
   const [selectedOptionSaveChill, setSelectedOptionSaveChill] =
     useState("private");
-    const [startTitle,setStartTitle] = useState(false);
+  const [startTitle, setStartTitle] = useState(false);
 
   const handleTimeNow = () => {
     const now = new Date();
@@ -45,6 +46,8 @@ function InformationFill({ onClose, handleRefresh }) {
   const [image, setImage] = useState("");
   const [mouseImg, setMouseImg] = useState(false);
   const [isValidateImage, setIsValidateImage] = useState(false);
+
+  const [isShorts, setIsShorts] = useState(false);
 
   const handleChange = (e, type) => {
     const value = e.target.value;
@@ -71,7 +74,7 @@ function InformationFill({ onClose, handleRefresh }) {
   useEffect(() => {
     checkTitle();
     checkDescribe();
-  }, [title, describe, data, getDataSuccess,image]);
+  }, [title, describe, data, getDataSuccess, image]);
 
   const checkTitle = () => {
     if (JSON.stringify(data) !== "{}" && title == "" && startTitle == false) {
@@ -142,6 +145,20 @@ function InformationFill({ onClose, handleRefresh }) {
       return true;
     }
   };
+
+  const handleClickVideoButton = () => {
+    setIsShorts(false);
+  };
+  const handleClickShortsButton = () => {
+    let duraction = parseInt(data?.duration.split(".")[0]);
+
+    if (duraction > 180) {
+      toast.warning("The length of the video exceeds 3 minutes");
+    } else {
+      setIsShorts(true);
+    }
+  };
+
   const handleSubmit = () => {
     if (
       isValidateTitle &&
@@ -164,6 +181,7 @@ function InformationFill({ onClose, handleRefresh }) {
           release_date: release_date,
           is_private: is_private,
           hashtags: hashtags,
+          is_shorts: isShorts,
         };
         dispatch(editVideo(video));
         toast.success("success");
@@ -180,6 +198,7 @@ function InformationFill({ onClose, handleRefresh }) {
             release_date: release_date,
             is_private: is_private,
             hashtags: hashtags,
+            is_shorts: isShorts,
           };
           dispatch(editVideo(video));
           toast.success("success");
@@ -191,13 +210,12 @@ function InformationFill({ onClose, handleRefresh }) {
       toast.error("Please fill in all information and upload images.");
     }
   };
-
   return (
     <>
       <div className="h-full pb-[55px]">
         <div className="px-6 h-[13%] py-3 border-b-[1px] border-gray-200 flex flex-none justify-between items-center ">
           <div className="text-xl font-semibold">
-            Document Google Chrome 2023 04 20 16 35 54
+            {data?.title}
           </div>
           <div
             className="text-2xl text-gray-300 hover:cursor-pointer hover:text-gray-500"
@@ -257,7 +275,11 @@ function InformationFill({ onClose, handleRefresh }) {
         </div>
       </div>
       <div className="flex justify-between items-center fixed bottom-0 right-0  w-full border-t-[1px] py-2 bg-white">
-        <div className="ml-7 text-sm text-gray-500">Moderated by vtube...</div>
+        <VideoShort
+          isShorts={isShorts}
+          handleClickShortsButton={handleClickShortsButton}
+          handleClickVideoButton={handleClickVideoButton}
+        />
         <span
           onClick={handleSubmit}
           className="bg-blue-600 mr-7 py-2 px-4 text-white hover:cursor-pointer hover:bg-blue-700 rounded-sm"
