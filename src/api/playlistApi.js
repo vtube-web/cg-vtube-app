@@ -21,3 +21,13 @@ export const savePlaylist = async (playlistData) => {
     }
     return result;
 }
+
+export const getWatchedPlaylist = async () => {
+    let result = null;
+    try {
+        result = await axios.get(VTUBE_API + `/playlist/watched`);
+    } catch (e) {
+        console.log("get Playlist API error: " + e);
+    }
+    return result;
+};

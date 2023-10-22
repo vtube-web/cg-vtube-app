@@ -18,7 +18,7 @@ export default function CommentSection() {
     const [comment, setComment] = useState("");
     const [commentList, setCommentList] = useState([]);
     const loggedUser = getStoredUserData();
-
+    const [userAvatar, setUserAvatar] = useState(imgUrl);
     const commentData = {
         content: comment,
         videoId: params.videoId
@@ -27,6 +27,7 @@ export default function CommentSection() {
 
     useEffect(() => {
         if (video && video.commentDtoList && loggedUser) {
+            setUserAvatar(loggedUser.avatar);
             const sortedComments = video.commentDtoList.slice().sort((a, b) => {
                 if (a.userResponseDto.id === loggedUser.id && b.userResponseDto.id !== loggedUser.id) {
                     return -1;
@@ -81,7 +82,7 @@ export default function CommentSection() {
                 <div className={style.comments__content}>
                     <div className={`${style.user__avatar} col-1`}>
                         <img
-                            src="https://play-lh.googleusercontent.com/Fro4e_osoDhhrjgiZ_Y2C5FNXBMWvrb4rGpmkM1PDAcUPXeiAlPCq7NeaT4Q6NRUxRqo"
+                            src={userAvatar}
                             alt={"user avatar"}/>
                     </div>
                     <div className={`${style.content__input} col-11`}>

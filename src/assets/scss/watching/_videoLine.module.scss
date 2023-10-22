@@ -1,30 +1,71 @@
 @import '../base/base.module';
 
 .container {
+  padding: 10px;
   width: 100%;
   height: 15%;
-  margin-bottom: 3px;
-  background-color: transparent;
   display: flex;
+  margin-bottom: 3px;
   flex-direction: row;
+  align-items: flex-start;
+  background-color: transparent;
 
   &:hover {
     background-color: #c8f4f6;
   }
 
-  .thumbnail {
-    margin: 0 0 0 10px;
-    box-sizing: border-box;
-    width: 125px;
-    height: 75px;
-    display: block;
-    object-fit: fill;
+  .thumbnail__container {
+    width: 30%;
+    height: 4rem;
+    display: flex;
+    position: relative;
+    align-items: center;
     border-radius: 10px;
+    background-color: black;
+    justify-content: center;
+
+    .thumbnail {
+      width: auto;
+      height: inherit;
+      display: block;
+      max-width: 97%;
+      object-fit: fill;
+      max-height: 100%;
+      border-radius: 10px;
+      box-sizing: border-box;
+    }
   }
-  .title{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: calc(100% - 150px);
-    white-space: nowrap;
+
+  .info__container {
+    margin-left: 10px;
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+
+    .title {
+      font-size: 15px;
+      max-height: 3em;
+      overflow: hidden;
+      font-weight: bold;
+      white-space: normal;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      word-break: break-word;
+      text-overflow: ellipsis;
+      -webkit-box-orient: vertical;
+    }
+
+    .channel__name {
+      font-size: 13px;
+      max-height: 2em;
+      font-weight: 300;
+      overflow: hidden;
+      white-space: normal;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      word-break: break-word;
+      text-overflow: ellipsis;
+      -webkit-box-orient: vertical;
+    }
   }
 }
