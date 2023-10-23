@@ -281,11 +281,19 @@
       position: relative;
 
       .short__render {
-        max-width: 201px;
+        min-width: 201px;
         margin: 15px 2px;
         .content__img {
+          height: 370px;
+          position: relative;
+          border-radius: 10px;
+          background-color: #0f0f0f;
           img {
             border-radius: 10px;
+            object-fit: cover;
+              height: 100%;
+            // width: 100%;
+            margin: auto 0;
           }
         }
         .content__tittle {

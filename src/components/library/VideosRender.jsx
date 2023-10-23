@@ -3,6 +3,7 @@ import style from "../../assets/scss/main_screen/library/_library.module.scss";
 import formatNumberView from "../../format/FormatNumberView";
 import { Link } from "react-router-dom";
 import formatDateAgo from "../../format/FormatDateAgo";
+import formatDuration from "../../format/FomatTimeVideo";
 
 const VideosRender = ({ index, ...videoData }) => {
   return (
@@ -10,7 +11,10 @@ const VideosRender = ({ index, ...videoData }) => {
       <div className={style.img_thumbnail}>
         <Link to={`/watching/${videoData.videoId}`}>
           <img src={videoData.thumbnail} alt="thumbnail" />
-          <div className={style.time__video}>30:56</div>
+          <div className={style.time__video}>
+            {" "}
+            {formatDuration(videoData?.duration)}
+          </div>
         </Link>
       </div>
       <div className={`${style.detail} row`}>

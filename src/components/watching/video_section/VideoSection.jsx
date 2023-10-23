@@ -9,7 +9,7 @@ import {
 import { PiShareFatLight } from "react-icons/pi";
 import ShowMore from "react-show-more-text";
 import "react-show-more-text/lib/ShowMoreText.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import formatNumberView from "../../../format/FormatNumberView";
 import {
@@ -24,7 +24,6 @@ import { getInfoUser, selectUserInfo } from "../../../features/auth/userSlice";
 import ReactPlayer from "react-player";
 import formatDateAgo from "../../../format/FormatDateAgo";
 import { getStoredUserData } from "../../../services/accountService";
-import { ConfirmToast } from "react-confirm-toast";
 
 function VideoSection({ video }) {
   const dispatch = useDispatch();
@@ -37,6 +36,7 @@ function VideoSection({ video }) {
   const [userInfo, setUserInfo] = useState({});
   const [reRender, setReRender] = useState(true);
   const loggerUser = getStoredUserData();
+  const navigate = useNavigate();
   useEffect(() => {
     if (video) {
       if (video.userDto) {
@@ -90,6 +90,10 @@ function VideoSection({ video }) {
   const myFunction = (id) => {
     dispatch(removeSubscribed(id));
   };
+
+ const handleEditVideoClick = (userId, videoId) => {
+   navigate(`/channel/${userId}/content/edit/${videoId}`);
+ };
 
   const handleSubscribeClick = (id) => {
     try {
@@ -279,7 +283,12 @@ function VideoSection({ video }) {
                   )}
                 </button>
               ) : (
-                <button className={style.function__manage}>Manage video</button>
+                <button
+                  className={style.function__manage}
+                  onClick={() => handleEditVideoClick(userInfo.id, video.id)}
+                >
+                  Edit video
+                </button>
               )}
             </div>
             <div className={style.function__channel}>

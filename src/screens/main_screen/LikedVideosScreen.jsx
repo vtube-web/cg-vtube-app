@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getVideoLiked,
   selectVideoLikedList,
+  setVideos,
 } from "../../features/video/videoLikedSlice";
 import { useEffect, useState } from "react";
 import Playlist from "../../components/liked_video/Playlist";
@@ -22,16 +23,17 @@ function LikedVideosScreen() {
   const [activeButton, setActiveButton] = useState("All");
   const [showNoLikedMessage, setShowNoLikedMessage] = useState(false);
   const [likedVideoList, setLikedVideoList] = useState([]);
+  const [likedRegularVideos, setLikedRegularVideos] = useState([]);
+  const [likedShortVideos, setLikedShortVideos] = useState([]);
   const [isRemove, setIsRemove] = useState(false);
   const [isChange, setIsChange] = useState(true);
-  // const [likedVideoRender, setLikedVideoRender] = useState({});
   const handleRemoveItem = () => {
     setIsRemove(!isRemove);
   };
 
   useEffect(() => {
     if (isChange || isRemove) {
-      if (videoList.length === 0 || isRemove) {
+      if (videoList.length === 0 || isRemove || likedVideoList?.length === 0) {
         dispatch(getVideoLiked());
         if (isRemove) {
           handleRemoveItem();
@@ -39,11 +41,18 @@ function LikedVideosScreen() {
       }
       setLikedVideoList(videoList.content);
       setShowNoLikedMessage(Object.keys(videoList).length !== 0);
-      const filteredVideoList = filterVideos();
-      // setLikedVideoRender(filteredVideoList);
     }
+    return () => setLikedVideoList([]);
   }, [isChange, isRemove, videoList]);
 
+  useEffect(() => {
+    if (likedVideoList && likedVideoList.length > 0) {
+      const shortVideos = likedVideoList?.filter((video) => video.isShorts);
+      const regularVideos = likedVideoList?.filter((video) => !video.isShorts);
+      setLikedRegularVideos(regularVideos);
+      setLikedShortVideos(shortVideos);
+    }
+  }, [likedVideoList]);
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
   };
@@ -74,23 +83,23 @@ function LikedVideosScreen() {
   const filterVideos = () => {
     switch (activeButton) {
       case "Videos":
-        return likedVideoList && likedVideoList.length > 0 ? (
-          RenderVideos(handleRemoveItem, ...likedVideoList)
+        return likedRegularVideos ? (
+          RenderVideos(handleRemoveItem, ...likedRegularVideos)
         ) : (
           <p className={style.message}>
             You haven't liked any videos yet, please watch and like it
           </p>
         );
       case "Shorts":
-        return likedVideoList && likedVideoList.length > 0 ? (
-          RenderShorts()
+        return likedShortVideos ? (
+          RenderShorts(handleRemoveItem, ...likedShortVideos)
         ) : (
           <p className={style.message}>
             You haven't liked any short videos yet, please watch and like it
           </p>
         );
       default:
-        return likedVideoList && likedVideoList.length > 0 ? (
+        return likedVideoList ? (
           RenderVideos(handleRemoveItem, ...likedVideoList)
         ) : (
           <p className={style.message}>
@@ -132,7 +141,6 @@ function LikedVideosScreen() {
             </>
           ) : null}
         </div>
-
         <InfiniteScroll
           className="row"
           style={{ overflow: "hidden" }}

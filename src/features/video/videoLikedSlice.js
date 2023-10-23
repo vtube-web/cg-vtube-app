@@ -55,6 +55,9 @@ export const videoLikedSlice = createSlice({
     setSuccess: (state, action) => {
       state.success = action.payload;
     },
+    setVideos: (state, action) => {
+      state.videos = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -112,7 +115,7 @@ export const videoLikedSlice = createSlice({
   },
 });
 
-export const { setLoading, setError, setSuccess } = videoLikedSlice.actions;
+export const { setLoading, setError, setSuccess, setVideos } = videoLikedSlice.actions;
 
 export const selectLoading = (state) => state.videoLiked.loading;
 export const selectError = (state) => state.videoLiked.error;

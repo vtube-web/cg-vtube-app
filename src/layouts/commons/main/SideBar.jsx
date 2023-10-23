@@ -76,7 +76,6 @@ const SideBar = ({ sidebar = true }) => {
         dispatch(getListUser(userInfo.subscriptions));
       }
       setUserList(users);
-      console.log(userList);
     }
   }, [dispatch, user, reRender]);
 

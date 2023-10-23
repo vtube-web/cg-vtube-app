@@ -13,6 +13,7 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import { PiShareFatLight } from "react-icons/pi";
 import handleShareClick from "../../services/handleShareClick";
+import formatDuration from "../../format/FomatTimeVideo";
 
 const WatchedRender = ({ handleRemoveItem, index, ...videoData }) => {
   const dispatch = useDispatch();
@@ -50,7 +51,11 @@ const WatchedRender = ({ handleRemoveItem, index, ...videoData }) => {
       <div className={style.video__render}>
         <Link to={`/watching/${videoData.videoId}`}>
           <img src={videoData.thumbnail} alt="Video Thumbnail" />
-          <div className={style.time__video}>30:56</div>
+          <div className={style.time__video}>
+            {formatDuration(videoData?.duration)}
+            {/* 34
+            {console.log(videoData.watchedAt)} */}
+          </div>
 
           <div className={style.icon__hover}>
             <button>

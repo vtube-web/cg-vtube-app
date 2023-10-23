@@ -34,7 +34,7 @@ const Playlist = (props) => {
           </div>
           <div className={`${style.content__text__body} `}>
             <div className={`${style.content__text__username} `}>
-              <p>{firstVideo.userLike}</p>
+              <p>{firstVideo?.userLike}</p>
             </div>
             <div className={`${style.content__text__data} `}>
               <p>{totalVideos} videos</p>
