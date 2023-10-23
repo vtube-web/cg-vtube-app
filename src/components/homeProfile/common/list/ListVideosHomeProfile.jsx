@@ -11,13 +11,18 @@ import formatNumberView from "../../../../format/FormatNumberView";
 
 function ListVideosHomeProfile({ index, ...video }) {
   return (
+    
     // 1 ô video từ đây
-    <Link to={`/watching/${video.videoId}`}>
-      <div className="col-md-6 col-lg-3 mb-3 me-3 video-Profile">
+    <div key={index} className="col-md-6 col-lg-3 mb-3 me-2 video-Profile">
+      <Link to={`/watching/${video.id}`}>
         <div className="d-flex flex row">
           {/* này là cái ô ảnh */}
-          <div className="img-videoProfile-background bg-dark p-1">
-            <img className="img-videoProfile" src={video.thumbnail} alt="Video Thumbnail" />
+          <div className="img-videoProfile-background p-1 bg-dark">
+            <img
+              className="img-videoProfile"
+              src={video.thumbnail}
+              alt="Video Thumbnail"
+            />
             <div className="time-videoProfile">30:56</div>
             <div className="clock-videoProfile">
               <button>
@@ -32,26 +37,28 @@ function ListVideosHomeProfile({ index, ...video }) {
               </button>
             </div>
           </div>
-          {/* này là name với nội dung */}
-          <div className="d-flex flex-row  mt-2 p-0 content-videoProfile ">
-            <div className="col-9 texttitle-videoProfile">
+
+          <div className="row p-0 mt-2">
+            <div className="col-11 ">
+              <div className="texttitle-videoProfile ">
                 {video.title}
-              SỰ MẬP MỜ (COVER) - ĐỨC PHÚC | OFFICIAL
+              </div>
+              <div className="d-flex flex-row p-0 mt-2 view-time-size-videoProfile mb-3">
+                <div className="me-2">{formatNumberView(video.views)} lượt xem</div>
+                <div>• {formatDateAgo(video.createAt)} </div>
+              </div>
             </div>
-            <div className="col-3 threedot-videoProfile">
+
+            <div className="col-1 threedot-videoProfile">
               <button>
                 <BsThreeDotsVertical size={20} />
               </button>
             </div>
           </div>
-
-          <div className="d-flex flex-row p-0 mt-1 view-time-size-videoProfile ">
-            <div className="me-2">{formatNumberView(video.views)}Lượt xem</div>
-            <div>• {formatDateAgo(video.createAt)}</div>
-          </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
+
     // kết thúc 1 ô video.
   );
 }

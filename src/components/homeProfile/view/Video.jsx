@@ -1,27 +1,48 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "../../../assets/css/homeProfile/VideoProfile.css";
-import { MdPlaylistAdd } from "react-icons/md";
-import { AiOutlineClockCircle } from "react-icons/ai";
-import { BsThreeDotsVertical } from "react-icons/bs";
 import NewestButton from "../common/button/NewestButton"
 import OldestButton from "../common/button/OldestButton"
 import PopularButton from "../common/button/PopularButton"
 import { BiSolidLike } from "react-icons/bi";
 import RenderVideosHomeProfile from "../common/list/RenderVideosHomeProfile"
+import { useDispatch, useSelector } from "react-redux";
+import { getVideoHomeProfile, selectVideoHomeProfileList } from "../../../features/video/videoHomeProfileSlice";
+import { useParams } from "react-router-dom";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { ProgressSpinner } from "primereact/progressspinner";
 
 function Video() {
-  const [activeButton, setActiveButton] = useState("Newest");
+  const [type, setType] = useState("Newest");
+  const videoList = useSelector(selectVideoHomeProfileList);
   const [homeProfileVideoList, setHomeProfileVideoList] = useState({});
-  const [showNoVideoMessage, setShowNoVideoMessage] = useState(true);
+  const [showNoVideoMessage, setShowNoVideoMessage] = useState(false);
 
+  const dispatch = useDispatch();
 
-  const handleButtonClick = (buttonName) => {
-    setActiveButton(buttonName);
+  const handleButtonClick = (typeName) => {
+    setType(typeName);
+    dispatch(getVideoHomeProfile({ userName: userName.slice(1), type: typeName }));
   };
 
+  const { userName } = useParams();
+
+  useEffect(() => {
+    dispatch(getVideoHomeProfile({ userName: userName.slice(1), type: type }));
+    setHomeProfileVideoList(videoList.content);
+  }, [userName]);
+
+  useEffect(() => {
+    if (videoList.length == 0) {
+      dispatch(getVideoHomeProfile({userName: userName.slice(1), type: type }));
+    } else {
+      setHomeProfileVideoList(videoList.content);
+      setShowNoVideoMessage(Object.keys(videoList).length !== 0);
+    }
+  }, [videoList]);
+
     const filterVideos = () => {
-      switch (activeButton) {
+      switch (type) {
         case "Oldest":
           return homeProfileVideoList && homeProfileVideoList.length > 0
             ? RenderVideosHomeProfile(...homeProfileVideoList)
@@ -37,83 +58,72 @@ function Video() {
       }
     };
 
+    const fetchMoreData = () => {
+      setTimeout(async () => {
+        if (videoList && videoList.hasNext) {
+          await dispatch(
+            getVideoHomeProfile({
+              userName: userName.slice(1),
+              type: type,
+              page: videoList.currentPageNumber + 1,
+            })
+          )
+            .then((response) => {
+              const newVideos = response.payload.data.content;
+              if (newVideos && newVideos.length > 0) {
+                const currentVideos = { ...videoList.content };
+                const currentVideosArray = Object.values(currentVideos);
+                const newVideosReturn = currentVideosArray.concat(newVideos);
+                setHomeProfileVideoList(newVideosReturn);
+              } else {
+                console.log("No videos received");
+              }
+            })
+            .catch((error) => {
+              console.error("Error Fetching more data:", error);
+            });
+        }
+      }, 1500);
+    };
+
   return (
-    <div className="container ">
+    <div className="container">
       {/* này là của button */}
       <div className="container d-flex video-profile-block-button p-0">
         {showNoVideoMessage ? (
           <>
             <NewestButton
-              active={activeButton === "Newest"}
+              active={type === "Newest"}
               onClick={handleButtonClick}
             />
             <OldestButton
-              active={activeButton === "Oldest"}
+              active={type === "Oldest"}
               onClick={handleButtonClick}
             />
             <PopularButton
-              active={activeButton === "Popular"}
+              active={type === "Popular"}
               onClick={handleButtonClick}
             />
           </>
         ) : null}
       </div>
-      {showNoVideoMessage ? (
-        filterVideos()
-      ) : (
-        <div>
-          <BiSolidLike size={100} />
-          <h3>There are no videos in your channel yet</h3>
-        </div>
-      )}
-
-      <div className="container w-100 h-100 mt-3">
-        {/* Phần của 1 ô video bắt đầu từ đây */}
-        <div className="row">
-          {/* 1 ô video ở đây */}
-          <div className="col-md-6 col-lg-3 mb-3 me-3 video-Profile">
-            <div className="d-flex flex row">
-              {/* này là cái ô ảnh */}
-              <div className="img-videoProfile-background bg-dark p-1">
-                <img className="img-videoProfile" />
-                <div className="time-videoProfile">30:56</div>
-                <div className="clock-videoProfile">
-                  <button>
-                    <AiOutlineClockCircle size={25} />
-                    <span className="clock-label">Xem sau</span>
-                  </button>
-                </div>
-                <div className="playList-videoProfile">
-                  <button>
-                    <MdPlaylistAdd size={25} />
-                    <span className="playList-label">
-                      Thêm vào danh sách chờ
-                    </span>
-                  </button>
-                </div>
-              </div>
-              {/* này là name với nội dung */}
-              <div className="d-flex flex-row  mt-2 p-0 content-videoProfile ">
-                <div className="col-9 texttitle-videoProfile">
-                  SỰ MẬP MỜ (COVER) - ĐỨC PHÚC | OFFICIAL
-                </div>
-                <div className="col-3 threedot-videoProfile">
-                  <button>
-                    <BsThreeDotsVertical size={20} />
-                  </button>
-                </div>
-              </div>
-
-              <div className="d-flex flex-row p-0 mt-1 view-time-size-videoProfile ">
-                <div className="me-2">53 Tr Lượt xem</div>
-                <div>• 4 Tháng trước </div>
-              </div>
-            </div>
+      <InfiniteScroll
+        // homeProfileVideoList lúc nào là 1 đối tượng chứa các mảng nên cần . ra để biết length
+        dataLength={Object.keys(homeProfileVideoList || {}).length}
+        next={fetchMoreData}
+        hasMore={videoList && videoList.hasNext}
+        loader={<ProgressSpinner style={{ width: "50px", height: "50px" }} />}
+        className="custom-infinite-scroll"
+      >
+        {showNoVideoMessage ? (
+          filterVideos()
+        ) : (
+          <div>
+            <BiSolidLike size={100} />
+            <h3>There are no videos in your channel yet</h3>
           </div>
-          {/* Kết thúc 1 ô Video */}
-          
-        </div>
-      </div>
+        )}
+      </InfiniteScroll>
     </div>
   );
 }

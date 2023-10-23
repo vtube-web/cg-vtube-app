@@ -2,7 +2,9 @@
 
 function Search() {
   return (
-    <div>Search</div>
+    <div className="container">
+      Search
+    </div>
   )
 }
 

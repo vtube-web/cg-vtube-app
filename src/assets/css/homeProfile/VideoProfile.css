@@ -1,13 +1,13 @@
 
 .container {
     font-family: "Roboto", Arial, sans-serif;
+    width: 100%;
 }
 
 .video-Profile{
     cursor: pointer;
     max-width: 19rem;
 }
-
 
 .button-videoProfile {
     background-color: rgba(139, 122, 122, 0.1);
@@ -30,15 +30,14 @@
     border-radius: 12px;
     position: relative;
 
-
 }
 
 .img-videoProfile{
     margin: auto;
-    object-fit: contain;
+    object-fit: cover;
     height: 100%;
-    /* width: 100%; */
-    background-color: aqua;
+    width: 100%;
+    /* background-color: aqua; */
     border-radius: 12px;
     position: relative;
     cursor: pointer;
@@ -120,32 +119,46 @@
     top: 10%;
     width: 630%;
 }
-
 .playList-videoProfile:hover .playList-label {
     display:block;
 }
 
+
 .threedot-videoProfile{
     text-align: right;
     padding-right: 1%;
+    transform: translateX(0.5rem);
 }
 
-.texttitle-videoProfile {
-    font-size:small;
-    font-weight: bold;
-}
-
-.view-time-size-videoProfile{
-    font-size: small;
-}
-
-.threedot-videoProfile{
+.threedot-videoProfile {
     display: none;
 }
 
 .video-Profile:hover .threedot-videoProfile {
     display: block;
 }
+
+.texttitle-videoProfile {
+    font-size:smaller;
+    font-weight: bold;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 3rem;
+    display: -webkit-box;
+}
+
+.view-time-size-videoProfile{
+    font-size: smaller;
+    color: rgb(117, 109, 109);
+
+}
+
+.custom-infinite-scroll::-webkit-scrollbar {
+    width: 0 !important;
+}
+
 
 
 

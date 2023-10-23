@@ -13,17 +13,22 @@ import Shorts from "../../components/homeProfile/view/Shorts"
 import PlayList from "../../components/homeProfile/view/PlayList"
 import About from "../../components/homeProfile/view/About"
 import Channel from "../../components/homeProfile/view/Channel"
+import { useDispatch } from "react-redux";
+
 
 function HomeProfileScreen() {
-
+  
  const { userName, subParam} = useParams();
  const navigate = useNavigate();
+ const dispatch = useDispatch();
 
    useEffect(() => {
      if (subParam == "*") {
        navigate(`/homeProfile/${userName}/featured`);
      }
    }, [subParam]);
+
+
 
 const pathAcountDefault = `/homeProfile/${userName}`;
 
@@ -158,7 +163,7 @@ function handleSubmit(e) {
           </nav>
           <div className="homeProfile-content ">
               {subParam == "featured" ? <Home /> : <></>}
-              {subParam == "videos" ? <Video /> : <></>}
+              {subParam == "videos" ? <Video/> : <></>}
               {subParam == "shorts" ? <Shorts /> : <></>}
               {subParam == "playlists" ? <PlayList /> : <></>}
               {subParam == "channels" ? <Channel /> : <></>}
