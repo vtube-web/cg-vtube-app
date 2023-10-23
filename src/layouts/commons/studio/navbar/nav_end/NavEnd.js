@@ -1,11 +1,13 @@
 import React, {useEffect, useRef, useState} from "react";
 import {CiCircleQuestion} from "react-icons/ci";
 import MenuAccount from "./MenuAccount";
+import {getStoredUserData} from "../../../../../services/accountService";
 
 function NavEnd() {
     const [mouseAvatar, setMouseAvatar] = useState(false);
     const [mouseHelp, setMouseHelp] = useState(false);
     const [clickAvatar, setClickAvatar] = useState(false);
+    const user = getStoredUserData();
     const myRef = useRef(null);
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -46,7 +48,7 @@ function NavEnd() {
             >
                 <img
                     className="w-9 h-9 border rounded-full flex-none hover:cursor-pointer"
-                    src="https://antimatter.vn/wp-content/uploads/2022/11/hinh-anh-gai-xinh-trung-quoc.jpg"
+                    src={`${user?.avatar}`}
                     alt="avatar"
                 />
                 {mouseAvatar === false ? (
