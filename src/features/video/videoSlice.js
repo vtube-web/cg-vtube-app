@@ -11,6 +11,7 @@ const initialState = {
     videoDetails: {},
     loading: false,
     error: null,
+    success: false,
     getVideoListSuccess: false,
     getVideoSuccess: false
 };

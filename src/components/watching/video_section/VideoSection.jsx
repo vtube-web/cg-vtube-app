@@ -28,6 +28,7 @@ function VideoSection({video}) {
     const [reRender, setReRender] = useState(true);
     const loggerUser = getStoredUserData();
     const [subcribeNumber, setSubcribeNumber] = useState(0);
+
     useEffect(() => {
         if (video) {
             if (video.userDto) {
@@ -35,6 +36,7 @@ function VideoSection({video}) {
                 setSubcribeNumber(userDto.subscribers);
             }
             const des = video.description;
+
             if ("string" === typeof des) {
                 setDescription(video.description);
             }

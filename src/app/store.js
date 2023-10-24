@@ -13,6 +13,7 @@ import commentShortsSliceReducer from "../features/comment_reply/commentShortsSl
 import subscriberReducer from "../features/video/subscriberSlice";
 import playlistReducer from "../features/playlist/playlistSlice"
 import commentChannelSlice from "../features/studio/commentChannelSlice";
+import searchSliceReducer from "../features/search/searchSlice"
 
 export const store = configureStore({
   reducer: {
@@ -30,6 +31,7 @@ export const store = configureStore({
     subscriber: subscriberReducer,
     playlist: playlistReducer,
     commentChannel: commentChannelSlice,
+    search: searchSliceReducer
   },
 });
 

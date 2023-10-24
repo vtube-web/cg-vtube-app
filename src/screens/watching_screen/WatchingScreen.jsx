@@ -46,7 +46,6 @@ export default function WatchingScreen() {
                     <CommentSection/>
                 </div>
                 <div className={`${style.watching__suggestion} col-2`}>
-                    <PlaylistBox/>
                     <SuggestionVideo/>
                 </div>
             </div>
