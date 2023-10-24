@@ -42,6 +42,7 @@ function LoginScreen() {
     if (success) {
       if (user) {
         localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("userLoginTime",new Date());
         navigate("/");
       }
     }
