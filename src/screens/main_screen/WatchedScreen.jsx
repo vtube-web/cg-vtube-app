@@ -16,11 +16,11 @@ import { ProgressSpinner } from "primereact/progressspinner";
 const WatchedScreen = () => {
   const dispatch = useDispatch();
   const videoListPage = useSelector(selectVideoWatchedList);
-  const [videosGroupedByDay, setVideosGroupedByDay] = useState({});
+  const [videosGroupedByDay, setVideosGroupedByDay] = useState([]);
   const [showNoWatchHistoryMessage, setShowNoWatchHistoryMessage] =
     useState(false);
-  const [searchKeyword, setSearchKeyword] = useState("");
-  const [filteredVideos, setFilteredVideos] = useState(null);
+  const [searchKeyword, setSearchKeyword] = useState('');
+  const [filteredVideos, setFilteredVideos] = useState([]);
   const [isChange, setIsChange] = useState(true);
   const [isRemove, setIsRemove] = useState(false);
 
@@ -41,8 +41,7 @@ const WatchedScreen = () => {
       const groupedVideos = groupVideosByDay(videos);
       setVideosGroupedByDay((prev) => ({ ...prev, ...groupedVideos }));
       setShowNoWatchHistoryMessage(Object.keys(groupedVideos).length !== 0);
-      // setIsRemove(false);
-      console.log(isRemove);
+      setIsRemove(false);
     }
   }, [isChange, isRemove, videoListPage]);
 
@@ -52,11 +51,40 @@ const WatchedScreen = () => {
       return;
     }
 
+    const removeDiacritics = (text) => {
+      return text
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/đ/g, "d")
+        .replace(/Đ/g, "D"); 
+    };
+
+    const searchVideos = (videos, searchKeyword) => {
+      const normalizedSearchTerm =
+        removeDiacritics(searchKeyword).toLowerCase();
+
+      return videos.filter((video) => {
+        const videoTitle = removeDiacritics(video.title).toLowerCase();
+        const userName = removeDiacritics(video.userName).toLowerCase();
+        const channelName = video.channelName
+          ? removeDiacritics(video.channelName).toLowerCase()
+          : "";
+
+        return (
+          videoTitle.includes(normalizedSearchTerm) ||
+          userName.includes(normalizedSearchTerm) ||
+          channelName.includes(normalizedSearchTerm)
+        );
+      });
+    };
+
     const filteredVideosGroupedByDay = Object.keys(videosGroupedByDay).reduce(
       (acc, key) => {
-        const filteredVideos = videosGroupedByDay[key].filter((video) =>
-          video.title.toLowerCase().includes(searchKeyword.toLowerCase())
+        const filteredVideos = searchVideos(
+          videosGroupedByDay[key],
+          searchKeyword
         );
+
         if (filteredVideos.length > 0) {
           acc[key] = filteredVideos;
         }
@@ -64,9 +92,15 @@ const WatchedScreen = () => {
       },
       {}
     );
+
+
     setFilteredVideos(filteredVideosGroupedByDay);
   }, [searchKeyword, videosGroupedByDay]);
 
+ const handleSearch = (result) => {
+   setSearchKeyword(result);
+ };
+ 
   const fetchMoreData = () => {
     setTimeout(async () => {
       if (videoListPage && videoListPage.hasNext) {
@@ -92,7 +126,12 @@ const WatchedScreen = () => {
 
   return (
     <div className={`${style.watched__container} row`}>
-      <ExtensionsSection handleRemoveItem={handleRemoveItem} />
+      <ExtensionsSection
+        handleRemoveItem={handleRemoveItem}
+        onSearch={handleSearch}
+        setShowNoWatchHistoryMessage={setShowNoWatchHistoryMessage}
+        setVideosGroupedByDay={setVideosGroupedByDay}
+      />
       <div className={`${style.primary} col-auto`}>
         <div className={style.section__list__render}>
           {showNoWatchHistoryMessage && (
@@ -109,12 +148,11 @@ const WatchedScreen = () => {
               </div>
             )}
             <InfiniteScroll
-              dataLength={Object.keys(filteredVideos || {}).length}
+              style={{ overflow: "hidden" }}
+              dataLength={videosGroupedByDay && videosGroupedByDay.length}
               next={fetchMoreData}
               hasMore={videoListPage && videoListPage.hasNext}
-              loader={
-                <ProgressSpinner style={{ width: "50px", height: "50px" }} />
-              }
+              loader={<ProgressSpinner className={style.my__spinner} />}
             >
               {filteredVideos
                 ? Object.keys(filteredVideos).map((date) => (

@@ -9,6 +9,7 @@ import { PiShareFatLight, PiTrashLight } from "react-icons/pi";
 import { removeVideoLiked } from "../../features/video/videoLikedSlice";
 import Swal from "sweetalert2";
 import handleShareClick from "../../services/handleShareClick";
+import formatDuration from "../../format/FomatTimeVideo";
 
 const ListLikedVideo = ({ handleRemoveItem, index, ...video }) => {
   const dispatch = useDispatch();
@@ -52,7 +53,10 @@ const ListLikedVideo = ({ handleRemoveItem, index, ...video }) => {
         <Link to={`/watching/${video.videoId}`}>
           <div className={`${style.img__videos} `}>
             <img src={video.thumbnail} alt="Video Thumbnail"></img>
-            <div className={style.time__video}>30:56</div>
+            <div className={style.time__video}>
+              {" "}
+              {formatDuration(video?.duration)}
+            </div>
           </div>
         </Link>
 
@@ -70,7 +74,6 @@ const ListLikedVideo = ({ handleRemoveItem, index, ...video }) => {
             </div>
           </div>
         </div>
-        
       </div>
       <div className={`${style.menu__videos}`}>
         <button onClick={toggleDropdown}>
