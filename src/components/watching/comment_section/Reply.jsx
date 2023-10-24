@@ -1,17 +1,19 @@
 import React, {useState} from "react";
 import {BiLike, BiDislike} from "react-icons/bi";
 import style from '../../../assets/scss/watching/_comment.module.scss';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {addReply} from "../../../features/comment_reply/replySlice";
 import {getStoredUserData} from "../../../services/accountService";
 import formatDate from "../../../format/FormatDate";
 import formatDateAgo from "../../../format/FormatDateAgo";
+import {InputTextarea} from "primereact/inputtextarea";
 
 const imgUrl = 'https://firebasestorage.googleapis.com/v0/b/vtube-15.appspot.com/o/images%2F387123399_317289870909894_6318809251513139950_n.jpg?alt=media&token=9a676663-abbe-4324-aba8-a634e63b305c&_gl=1*1vll957*_ga*MTE0NzY2MDExNy4xNjkxMDI8GW6-4mAT_V_E-GKjLSm1e-CZ6CG4PAG3eh5QDvLuhYxE';
 
 const Reply = ({addReplyToComment, reply, commentId}) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [showInput, setShowInput] = useState(false);
     const [replyContent, setReplyContent] = useState("");
     const currentUser = getStoredUserData() || {};
@@ -21,8 +23,6 @@ const Reply = ({addReplyToComment, reply, commentId}) => {
         content: replyContent
     };
 
-
-
     const showInputReply = () => {
         setReplyContent(`@${reply.userResponseDto.userName}`)
         setShowInput(!showInput);
@@ -31,6 +31,11 @@ const Reply = ({addReplyToComment, reply, commentId}) => {
     const handleInputChange = (event) => {
         setReplyContent(event.target.value);
     };
+    function handleCheckLogin() {
+        if (currentUser === null) {
+            navigate("/login");
+        }
+    }
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -42,7 +47,7 @@ const Reply = ({addReplyToComment, reply, commentId}) => {
             createAt: Date.now(),
             userResponseDto: {
                 id: currentUser.id,
-                userName: currentUser.email,
+                userName: currentUser.userName,
                 avatar: currentUser.avatar || imgUrl
             }
         };
@@ -98,14 +103,15 @@ const Reply = ({addReplyToComment, reply, commentId}) => {
                                     </div>
                                     <div className={`${style.reply__function} col-11`}>
                                         <form>
-                                            <input
-                                                type="text"
-                                                placeholder="Write a reply..."
-                                                name="content"
-                                                value={replyContent}
+                                            <InputTextarea
+                                                rows={2}
                                                 className={style.reply__content}
-                                                onChange={handleInputChange}
-                                                onSubmit={handleSubmit}
+                                                value={replyContent}
+                                                placeholder={"Comment here..."}
+                                                onChange={(e) => setReplyContent(e.target.value)}
+                                                onInput={handleInputChange}
+                                                onFocus={handleCheckLogin}
+                                                autoResize
                                             />
                                             <div className={style.reply__button}>
                                                 <button onClick={showInputReply} className={style.cancel}>

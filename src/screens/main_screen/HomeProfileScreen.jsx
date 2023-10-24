@@ -85,7 +85,7 @@ function handleSubmit(e) {
                 />
               </div>
 
-              <div class="homeProfile-title flex-grow-1 mx-3 py-2 ">
+              <div className="homeProfile-title flex-grow-1 mx-3 py-2 ">
                 <div className="flex-item mb-2">
                   <h1 className="fs-2 m-0 p-0 text-black d-flex align-items-center">
                     Thái OCD Vlogs
@@ -97,17 +97,17 @@ function handleSubmit(e) {
                     </i>
                   </h1>
                 </div>
-                <div class="homeProfile-subscriber-count d-flex flex-column flex-sm-row flex-item mb-2 ">
-                  <div class="text-body-tertiary d-flex justify-content-center justify-content-sm-start">
+                <div className="homeProfile-subscriber-count d-flex flex-column flex-sm-row flex-item mb-2 ">
+                  <div className="text-body-tertiary d-flex justify-content-center justify-content-sm-start">
                     @
-                    <span class="homeProfile-username-text">
+                    <span className="homeProfile-username-text">
                       ThaiDevOfficial
                     </span>
                   </div>
-                  <div class="text-body-tertiary d-flex justify-content-center justify-content-sm-start mx-2 ">
+                  <div className="text-body-tertiary d-flex justify-content-center justify-content-sm-start mx-2 ">
                     ? subscribers
                   </div>
-                  <div class="text-body-tertiary d-flex justify-content-center justify-content-sm-start">
+                  <div className="text-body-tertiary d-flex justify-content-center justify-content-sm-start">
                     ? video
                   </div>
                 </div>
@@ -158,12 +158,12 @@ function handleSubmit(e) {
           </nav>
           <div className="homeProfile-content d-flex">
             <div className="container">
-              {subParam == "featured" ? <Home /> : <></>}
-              {subParam == "videos" ? <Video /> : <></>}
-              {subParam == "shorts" ? <Shorts /> : <></>}
-              {subParam == "playlists" ? <PlayList /> : <></>}
-              {subParam == "channels" ? <Channel /> : <></>}
-              {subParam == "about" ? <About /> : <></>}
+              {subParam === "featured" ? <Home /> : <></>}
+              {subParam === "videos" ? <Video /> : <></>}
+              {subParam === "shorts" ? <Shorts /> : <></>}
+              {subParam === "playlists" ? <PlayList /> : <></>}
+              {subParam === "channels" ? <Channel /> : <></>}
+              {subParam === "about" ? <About /> : <></>}
             </div>
           </div>
         </div>

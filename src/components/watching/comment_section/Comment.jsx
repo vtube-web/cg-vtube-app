@@ -1,17 +1,19 @@
 import React, {useEffect, useState} from "react";
 import {BiLike, BiDislike} from "react-icons/bi";
 import style from '../../../assets/scss/watching/_comment.module.scss';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {addReply} from "../../../features/comment_reply/replySlice";
 import Reply from "./Reply";
 import {getStoredUserData} from "../../../services/accountService";
 import formatDateAgo from "../../../format/FormatDateAgo";
+import {InputTextarea} from "primereact/inputtextarea";
 
 const imgUrl = 'https://firebasestorage.googleapis.com/v0/b/vtube-15.appspot.com/o/images%2F387123399_317289870909894_6318809251513139950_n.jpg?alt=media&token=9a676663-abbe-4324-aba8-a634e63b305c&_gl=1*1vll957*_ga*MTE0NzY2MDExNy4xNjkxMDI8GW6-4mAT_V_E-GKjLSm1e-CZ6CG4PAG3eh5QDvLuhYxE';
 
 const Comment = (comment) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [showInput, setShowInput] = useState(false);
     const [reply, setReply] = useState("");
     const [replyList, setReplyList] = useState([]);
@@ -39,6 +41,11 @@ const Comment = (comment) => {
     const handleInputChange = (event) => {
         setReply(event.target.value);
     };
+    function handleCheckLogin() {
+        if (currentUser === null) {
+            navigate("/signIn");
+        }
+    }
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -50,7 +57,7 @@ const Comment = (comment) => {
             createAt: Date.now(),
             userResponseDto: {
                 id: currentUser.id,
-                userName: currentUser.email,
+                userName: currentUser.userName,
                 avatar: currentUser.avatar || imgUrl
             }
         };
@@ -113,14 +120,15 @@ const Comment = (comment) => {
                                     </div>
                                     <div className={`${style.reply__function} col-11`}>
                                         <form>
-                                            <input
-                                                type="text"
-                                                placeholder="Write a reply..."
-                                                name="content"
-                                                value={reply}
+                                            <InputTextarea
+                                                rows={2}
                                                 className={style.reply__content}
-                                                onChange={handleInputChange}
+                                                value={reply}                                                placeholder={"Comment here..."}
+                                                onChange={(e) => setReply(e.target.value)}
+                                                onInput={handleInputChange}
+                                                onFocus={handleCheckLogin}
                                                 onSubmit={handleSubmit}
+                                                autoResize
                                             />
                                             <div className={style.reply__button}>
                                                 <button onClick={showInputReply} className={style.cancel}>
