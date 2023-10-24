@@ -26,10 +26,13 @@ export const getVideo = createAsyncThunk("getVideo", async (videoId) => {
     return response.data;
 });
 
-export const getVideosSubscribed = createAsyncThunk("getVideosSubscribed", async () => {
-    const response = await findVideoSubscribedList();
+export const getVideosSubscribed = createAsyncThunk(
+  "getVideosSubscribed",
+  async (page) => {
+    const response = await findVideoSubscribedList(page);
     return response.data;
-});
+  }
+);
 
 export const videoSlice = createSlice({
     name: "video",

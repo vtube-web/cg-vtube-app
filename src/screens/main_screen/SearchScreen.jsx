@@ -6,7 +6,6 @@ import {Col, Container, Row} from "react-bootstrap";
 
 export default function SearchScreen() {
     const searchData = useSelector(selectSearchData);
-    console.log(searchData.data.content);
     const [videos, setVideos] = useState([]);
 
     useEffect(() => {

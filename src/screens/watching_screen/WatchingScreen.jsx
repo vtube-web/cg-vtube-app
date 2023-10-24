@@ -27,6 +27,7 @@ export default function WatchingScreen() {
             dispatch(collectPlaylists(currentUser.id));
             dispatch(getVideo(params.videoId));
         }
+        window.scrollTo({ behavior: "smooth", top: 0, left: 0 });
 
         //cleanup function
         return () => {

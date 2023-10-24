@@ -61,31 +61,37 @@ const SideBar = ({ sidebar = true }) => {
   const [userList, setUserList] = useState([]);
 
   const dispatch = useDispatch();
-
+  const handleNavLinkClick = () => {
+    setReRender(true);
+  };
   useEffect(() => {
     setPath(window.location.pathname.substring(1));
-    if (loggerUser) {
+    if (loggerUser && reRender) {
       if (!user || reRender) {
         dispatch(getInfoUser());
         setReRender(false);
       }
+      setUserInfo(user);
+      if (user && userInfo) {
+        dispatch(getListUser(userInfo.subscriptions));
+      }
+      setUserList(users);
     }
-    setUserInfo(user);
-    if (user && userInfo) {
-      dispatch(getListUser(userInfo.subscriptions));
-    }
-    setUserList(users);
-  }, [dispatch, user]);
+  }, [dispatch, user, reRender]);
 
   return (
     <nav className={sidebar ? `${style.sidebar} ${style.open}` : style.sidebar}>
-      <NavLink to={"/"} activeClassName={"active"}>
+      <NavLink to={"/"} activeClassName={"active"} onClick={handleNavLinkClick}>
         <li>
           {path === "" ? <AiFillHome size={23} /> : <AiOutlineHome size={23} />}
           <span>Home</span>
         </li>
       </NavLink>
-      <NavLink to={"/shorts"} activeClassName={"active"}>
+      <NavLink
+        to={"/shorts"}
+        activeClassName={"active"}
+        onClick={handleNavLinkClick}
+      >
         <li>
           {path === "" ? (
             <MdSlowMotionVideo size={23} />
@@ -95,7 +101,11 @@ const SideBar = ({ sidebar = true }) => {
           <span>Shorts</span>
         </li>
       </NavLink>
-      <NavLink to={"/subscribed"} activeClassName={"active"}>
+      <NavLink
+        to={"/subscribed"}
+        activeClassName={"active"}
+        onClick={handleNavLinkClick}
+      >
         <li>
           {path === "subscribed" ? (
             <BsFillCollectionPlayFill size={23} />
@@ -106,7 +116,11 @@ const SideBar = ({ sidebar = true }) => {
         </li>
       </NavLink>
       <hr />
-      <NavLink to={"/library"} activeClassName={"active-home"}>
+      <NavLink
+        to={"/library"}
+        activeClassName={"active-home"}
+        onClick={handleNavLinkClick}
+      >
         <li>
           {path === "library" ? (
             <MdVideoLibrary size={23} />
@@ -116,7 +130,11 @@ const SideBar = ({ sidebar = true }) => {
           <span>Library</span>
         </li>
       </NavLink>
-      <NavLink to={"/watchedVideos"} activeClassName={"active"}>
+      <NavLink
+        to={"/watchedVideos"}
+        activeClassName={"active"}
+        onClick={handleNavLinkClick}
+      >
         <li>
           {path === "watchedVideos" ? (
             <GrHistory size={23} />
@@ -126,7 +144,11 @@ const SideBar = ({ sidebar = true }) => {
           <span>Watched Videos</span>
         </li>
       </NavLink>
-      <NavLink to={"/yourVideos"} activeClassName={"active"}>
+      <NavLink
+        to={"/yourVideos"}
+        activeClassName={"active"}
+        onClick={handleNavLinkClick}
+      >
         <li>
           {path === "yourVideos" ? (
             <AiFillPlaySquare size={23} />
@@ -136,7 +158,11 @@ const SideBar = ({ sidebar = true }) => {
           <span>Your Videos</span>
         </li>
       </NavLink>
-      <NavLink to={"/watchLater"} activeClassName={"active"}>
+      <NavLink
+        to={"/watchLater"}
+        activeClassName={"active"}
+        onClick={handleNavLinkClick}
+      >
         <li>
           {path === "watchLater" ? (
             <MdWatchLater size={23} />
@@ -146,7 +172,11 @@ const SideBar = ({ sidebar = true }) => {
           <span>Watch Later</span>
         </li>
       </NavLink>
-      <NavLink to={"/likedVideos"} activeClassName={"active"}>
+      <NavLink
+        to={"/likedVideos"}
+        activeClassName={"active"}
+        onClick={handleNavLinkClick}
+      >
         <li>
           {path === "likedVideos" ? (
             <BiSolidLike size={23} />
@@ -243,11 +273,6 @@ const SideBar = ({ sidebar = true }) => {
           <span>Reports</span>
         </li>
       </ul>
-      <hr />
-      <li>
-        <MdOutlineExitToApp size={23} />
-        <span>Log Out</span>
-      </li>
       <hr />
     </nav>
   );

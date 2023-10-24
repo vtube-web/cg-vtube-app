@@ -37,7 +37,9 @@ export function SuggestionVideo() {
                   {suggestionVideo.title}
                 </span>
                 <span className={style.suggestVideo__channel}>
-                  {suggestionVideo.userDto.userName}
+                  {suggestionVideo.userDto.channelName
+                    ? suggestionVideo.userDto.channelName
+                    : suggestionVideo.userDto.userName}
                 </span>
                 <span className={style.suggestVideo__details}>
                   {formatNumberView(suggestionVideo.views)} views •{" "}
