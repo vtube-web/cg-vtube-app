@@ -3,16 +3,22 @@ import {selectSearchData} from "../../features/search/searchSlice";
 import {useEffect, useState} from "react";
 import Video from "../../components/home/video/Video";
 import {Col, Container, Row} from "react-bootstrap";
+import CategoriesBar from "../../components/home/categories_bar/CategoriesBar";
 
 export default function SearchScreen() {
     const searchData = useSelector(selectSearchData);
     const [videos, setVideos] = useState([]);
 
     useEffect(() => {
-        setVideos(searchData.data.content);
+        if (searchData) {
+            setVideos(searchData.data.content);
+        }
     }, [searchData])
     return (
         <Container>
+            <div style={{paddingBottom: "15px"}}>
+                <CategoriesBar/>
+            </div>
             <Row>
                 {Array.isArray(videos) && videos.length > 0 ? (
                     videos.map((video) => (
