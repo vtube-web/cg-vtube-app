@@ -42,11 +42,11 @@ function LoginScreen() {
     if (success) {
       if (user) {
         localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("userLoginTime",new Date());
         navigate("/");
       }
     }
     return () => {
-      console.log("thai");
       dispatch(resetUserAccountState());
     };
   }, [success, user]);

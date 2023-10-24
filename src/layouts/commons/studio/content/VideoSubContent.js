@@ -18,6 +18,7 @@ import { MdOutlineRemoveFromQueue } from "react-icons/md";
 import EditFormText from "../../../../components/studio/common/edit_form/EditIFormText";
 import EditFormRadio from "../../../../components/studio/common/edit_form/EditFormRadio";
 import { toast } from "react-toastify";
+import NoDataPage from "../../../../components/studio/common/blank_page/NoDataPage";
 
 function VideoSubContent() {
   const [value, setValue] = useState("");
@@ -782,18 +783,28 @@ function VideoSubContent() {
             <div className="text-end   col-2">Number of comment</div>
             <div className="text-end   col-2 pr-3">Number of like</div>
           </div>
-          {datas?.content?.map((item, i) => (
-            <VideoItemCommon
-              isChecked={isChecked.includes(item?.id)}
-              onChangeItem={(isChecked) =>
-                handleChildCheckboxChange(item?.id, isChecked)
-              }
-              key={i}
-              item={item}
-            />
-          ))}
+
+          {datas?.content?.length == 0 ? (
+            <NoDataPage title={"Video not found."} />
+          ) : (
+            datas?.content?.map((item, i) => (
+              <VideoItemCommon
+                isChecked={isChecked.includes(item?.id)}
+                onChangeItem={(isChecked) =>
+                  handleChildCheckboxChange(item?.id, isChecked)
+                }
+                key={i}
+                item={item}
+              />
+            ))
+          )}
         </div>
-        <Pagination datas={datas} handleNextPage={handleNextPage} />
+        {datas?.content?.length == 0 ? (
+          <></>
+        ) : (
+          <Pagination datas={datas} handleNextPage={handleNextPage} />
+        )}
+
         <div className="py-4"></div>
       </div>
     </div>
