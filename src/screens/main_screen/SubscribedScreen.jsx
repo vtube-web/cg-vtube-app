@@ -61,7 +61,6 @@ export default function SubscribedScreen() {
       dispatch(getListUser(userInfo.subscriptions));
     }
     setChannelList(channel);
-    console.log(channel);
     return () => setUserInfo({});
   }, []);
   const handleSetIsGridMode = (gridMode) => {

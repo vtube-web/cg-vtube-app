@@ -51,17 +51,39 @@ const WatchedScreen = () => {
       return;
     }
 
+    const removeDiacritics = (text) => {
+      return text
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/đ/g, "d")
+        .replace(/Đ/g, "D"); 
+    };
+
+    const searchVideos = (videos, searchKeyword) => {
+      const normalizedSearchTerm =
+        removeDiacritics(searchKeyword).toLowerCase();
+
+      return videos.filter((video) => {
+        const videoTitle = removeDiacritics(video.title).toLowerCase();
+        const userName = removeDiacritics(video.userName).toLowerCase();
+        const channelName = video.channelName
+          ? removeDiacritics(video.channelName).toLowerCase()
+          : "";
+
+        return (
+          videoTitle.includes(normalizedSearchTerm) ||
+          userName.includes(normalizedSearchTerm) ||
+          channelName.includes(normalizedSearchTerm)
+        );
+      });
+    };
+
     const filteredVideosGroupedByDay = Object.keys(videosGroupedByDay).reduce(
       (acc, key) => {
-        const filteredVideos = videosGroupedByDay[key].filter((video) => {
-          const searchTerm = searchKeyword.toLowerCase();
-          return (
-            video.title.toLowerCase().includes(searchTerm) ||
-            video.userName.toLowerCase().includes(searchTerm) ||
-            (video.channelName &&
-              video.channelName.toLowerCase().includes(searchTerm))
-          );
-        });
+        const filteredVideos = searchVideos(
+          videosGroupedByDay[key],
+          searchKeyword
+        );
 
         if (filteredVideos.length > 0) {
           acc[key] = filteredVideos;
@@ -70,6 +92,7 @@ const WatchedScreen = () => {
       },
       {}
     );
+
 
     setFilteredVideos(filteredVideosGroupedByDay);
   }, [searchKeyword, videosGroupedByDay]);
