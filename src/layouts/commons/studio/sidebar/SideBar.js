@@ -16,6 +16,7 @@ import {
 } from "../../../../features/studio/visibilitySlice";
 import { useDispatch, useSelector } from "react-redux";
 import { getIsModalMenu } from "../../../../features/studio/modalSlice";
+import {getStoredUserData} from "../../../../services/accountService";
 
 function SideBar() {
   const [mouseAvatar, setMouseAvatar] = useState(false);
@@ -25,6 +26,7 @@ function SideBar() {
   const [width, setWidth] = useState(window.innerWidth);
   const isModalMenu = useSelector(getIsModalMenu);
   const dispatch = useDispatch();
+  const user= getStoredUserData();
 
   useEffect(() => {
     const handleResize = () => {
@@ -102,7 +104,7 @@ function SideBar() {
             className={`border rounded-full flex-none hover:cursor-pointer ${
               isVisibilityMenu ? "w-12 h-12 mx-3" : "w-28 h-28 "
             }`}
-            src="https://antimatter.vn/wp-content/uploads/2022/11/hinh-anh-gai-xinh-trung-quoc.jpg"
+            src={`${user?.avatar}`}
             alt="avatar"
           />
           {mouseAvatar == false ? (
@@ -142,7 +144,7 @@ function SideBar() {
               <div className="text-gray-600 font-semibold text-sm ">
                 Channel your
               </div>
-              <div className="text-xs mt-1">Bố nè</div>
+              <div className="text-xs mt-1">{user?.channelName}</div>
             </>
           )}
         </div>
