@@ -31,6 +31,7 @@ const Reply = ({addReplyToComment, reply, commentId}) => {
     const handleInputChange = (event) => {
         setReplyContent(event.target.value);
     };
+
     function handleCheckLogin() {
         if (currentUser === null) {
             navigate("/login");
@@ -39,22 +40,40 @@ const Reply = ({addReplyToComment, reply, commentId}) => {
 
     function handleSubmit(e) {
         e.preventDefault();
-        const newReply = {
-            commentId: commentId,
-            content: replyContent,
-            likes: 0,
-            dislikes: 0,
-            createAt: Date.now(),
-            userResponseDto: {
-                id: currentUser.id,
-                userName: currentUser.userName,
-                avatar: currentUser.avatar || imgUrl
-            }
-        };
-        dispatch(addReply(replyData));
-        addReplyToComment(newReply);
-        setReplyContent("");
-        showInputReply();
+        if (replyContent === "") {
+            const newReply = {
+                commentId: commentId,
+                content: "This field has no content and will be delete after",
+                likes: 0,
+                dislikes: 0,
+                createAt: Date.now(),
+                userResponseDto: {
+                    id: currentUser.id,
+                    userName: currentUser.userName,
+                    avatar: currentUser.avatar || imgUrl
+                }
+            };
+            addReplyToComment(newReply);
+            setReplyContent("");
+            showInputReply();
+        } else {
+            const newReply = {
+                commentId: commentId,
+                content: replyContent,
+                likes: 0,
+                dislikes: 0,
+                createAt: Date.now(),
+                userResponseDto: {
+                    id: currentUser.id,
+                    userName: currentUser.userName,
+                    avatar: currentUser.avatar || imgUrl
+                }
+            };
+            dispatch(addReply(replyData));
+            addReplyToComment(newReply);
+            setReplyContent("");
+            showInputReply();
+        }
     }
 
     return (

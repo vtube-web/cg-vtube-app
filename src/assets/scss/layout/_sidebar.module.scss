@@ -2,17 +2,14 @@
 
 .sidebar {
   background: $white-background;
-
   display: flex;
   flex-direction: column;
   width: 250px;
-  height: 90vh;
+  height: 100vh;
   transform: translateX(-100%);
   position: fixed;
   z-index: 9;
-
-  overflow-y: auto;
-
+  overflow-y: scroll;
   transition: transform 0.3s ease-in;
 
   a {
@@ -37,16 +34,18 @@
     }
 
     &:hover {
-      background-color:$white-mode-background-component;
+      background-color: $white-mode-background-component;
       border-radius: 40px;
     }
   }
-  .img__avatar{
+
+  .img__avatar {
     height: 36px;
     width: 36px;
     border-radius: 50%;
     object-fit: cover;
   }
+
   hr {
     background-color: $border-color;
   }
@@ -68,10 +67,8 @@
     padding-left: 250px;
     transition: all ease-in 0.3s;
   }
-}
 
-@media (max-width: $breakpoint-medium) {
-  .sidebar {
+  @media (max-width: $breakpoint-medium) {
     width: 90px;
 
     li {
@@ -95,10 +92,8 @@
       transition: all ease-in 0.3s;
     }
   }
-}
 
-@media (max-width: $breakpoint-small) {
-  .sidebar {
+  @media (max-width: $breakpoint-small) {
     transform: translateX(-100%);
     position: fixed;
     z-index: 9;

@@ -8,10 +8,10 @@ import CategoriesBar from "../../components/home/categories_bar/CategoriesBar";
 export default function SearchScreen() {
     const searchData = useSelector(selectSearchData);
     const [videos, setVideos] = useState([]);
-
     useEffect(() => {
-        if (searchData) {
-            setVideos(searchData.data.content);
+        if (searchData && searchData.data && searchData.data.content) {
+            const searchContent = searchData.data.content;
+            setVideos(searchContent);
         }
     }, [searchData])
     return (

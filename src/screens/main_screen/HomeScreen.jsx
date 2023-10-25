@@ -2,19 +2,16 @@ import {Col, Container, Row} from "react-bootstrap";
 import CategoriesBar from "../../components/home/categories_bar/CategoriesBar";
 import Video from "../../components/home/video/Video";
 import {Helmet} from "react-helmet";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  getVideos,
-  selectVideoListSuccess,
-  selectVideoList,
-} from "../../features/video/videoSlice";
-import { useEffect, useState } from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {getVideos, selectVideoList, selectVideoListSuccess,} from "../../features/video/videoSlice";
+import {useEffect, useState} from "react";
 
 function HomeScreen() {
   const dispatch = useDispatch();
   const videoList = useSelector(selectVideoList);
   const success = useSelector(selectVideoListSuccess);
   const [reRender, setReRender] = useState(true);
+
   useEffect(() => {
     if (success || reRender) {
       dispatch(getVideos());
@@ -28,7 +25,7 @@ function HomeScreen() {
                 <title>Vtube - home</title>
             </Helmet>
             <Container>
-                <div style={{paddingBottom: "15px"}}>
+                <div className={'p-4'}>
                     <CategoriesBar/>
                 </div>
                 <Row>
