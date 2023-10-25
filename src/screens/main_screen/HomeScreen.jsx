@@ -29,7 +29,7 @@ function HomeScreen() {
         {Array.isArray(videoList) && videoList.length > 0 ? (
           videoList.map((video) => (
             <Col lg={3} md={4} key={video.id}>
-              <Video video={video} />
+              <Video video={video} className={"p-7"} />
             </Col>
           ))
         ) : (
