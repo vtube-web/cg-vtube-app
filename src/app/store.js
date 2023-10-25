@@ -11,9 +11,11 @@ import videoContentReducer from "../features/studio/videoContentSlice";
 import commentReducer from "../features/comment_reply/commentSlice";
 import commentShortsSliceReducer from "../features/comment_reply/commentShortsSlice";
 import subscriberReducer from "../features/video/subscriberSlice";
+import videoHomeProfileReducer from "../features/video/videoHomeProfileSlice";
 import playlistReducer from "../features/playlist/playlistSlice"
 import commentChannelSlice from "../features/studio/commentChannelSlice";
 import searchSliceReducer from "../features/search/searchSlice"
+
 
 export const store = configureStore({
   reducer: {
@@ -29,6 +31,7 @@ export const store = configureStore({
     commentShorts: commentShortsSliceReducer,
     content: videoContentReducer,
     subscriber: subscriberReducer,
+    videoHomeProfile : videoHomeProfileReducer,
     playlist: playlistReducer,
     commentChannel: commentChannelSlice,
     search: searchSliceReducer

@@ -24,10 +24,6 @@ import GoogleButton from "../../components/googleButton/GoogleButton";
 
 function RegisterScreen() {
   const logoImg = logo;
-
-  const avatarImgDefault =
-    "https://firebasestorage.googleapis.com/v0/b/vtube-15.appspot.com/o/images%2F387123399_317289870909894_6318809251513139950_n.jpg?alt=media&token=9a676663-abbe-4324-aba8-a634e63b305c&_gl=1*1vll957*_ga*MTE0NzY2MDExNy4xNjkxMDI4NDc2*_ga_CW55HF8NVT*MTY5NzEyNTg4NC4yOC4xLjE2OTcxMjU5MjAuMjQuMC4w";
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -107,11 +103,10 @@ function RegisterScreen() {
     }),
     onSubmit: async (values, { resetForm }) => {
       let user = {
-        name: values.userName,
+        channelName: values.userName,
         userName: formatUserName(values.userName),
         email: values.email,
         password: values.password,
-        avatar: avatarImgDefault,
       };
       console.log(user);
       dispatch(registerAccount(user));

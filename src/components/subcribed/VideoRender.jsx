@@ -22,7 +22,7 @@ const VideoRender = ({ index, isGridMode, ...videoData }) => {
         </div>
         <div className={`${style.detail} row`}>
           <div className="col-2">
-            <Link to={`/@${videoData.userDto.userName}`}>
+            <Link to={`/homeProfile/@${videoData.userDto.userName}/*`}>
               <img src={videoData.userDto.avatar} alt="avatar" />
             </Link>
           </div>
@@ -31,7 +31,7 @@ const VideoRender = ({ index, isGridMode, ...videoData }) => {
               <Link to={`/watching/${videoData.id}`}>{videoData.title}</Link>
             </div>
             <div className={style.content__username}>
-              <Link to={`/@${videoData.userDto.userName}`}>
+              <Link to={`/homeProfile/@${videoData.userDto.userName}/*`}>
                 {videoData.userDto.userName}
               </Link>
             </div>
@@ -53,7 +53,7 @@ const VideoRender = ({ index, isGridMode, ...videoData }) => {
     return (
       <div className={`${style.info2} col-md-11`} key={index}>
         <div className={style.header__info2}>
-          <Link to={`/@${videoData.userDto.userName}`}>
+          <Link to={`/homeProfile/@${videoData.userDto.userName}/*`}>
             <img src={videoData.userDto.avatar} alt="avatar" />
             <span>{videoData.userDto.userName}</span>
           </Link>
@@ -91,7 +91,7 @@ const VideoRender = ({ index, isGridMode, ...videoData }) => {
                   </div>
                   <div className={`${style.data__video} row`}>
                     <Link
-                      to={`/@${videoData.userDto.userName}`}
+                      to={`/homeProfile/@${videoData.userDto.userName}/*`}
                       className={style.hover__link}
                     >
                       {videoData.userDto.userName}

@@ -64,7 +64,7 @@ const ListLikedVideo = ({ handleRemoveItem, index, ...video }) => {
           <Link to={`/watching/${video.videoId}`}>{video.title}</Link>
           <div className={`${style.detail__videos} `}>
             <div className={style.detail__item}>
-              <Link to={`/@${video.userName}`}>{video.userName}</Link>
+              <Link to={`/homeProfile/@${video.userName}/*`}>{video.userName}</Link>
             </div>
             <div className={style.detail__item}>
               {formatNumberView(video.views)} views

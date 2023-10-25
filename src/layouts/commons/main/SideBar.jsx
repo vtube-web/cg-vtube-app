@@ -145,7 +145,7 @@ const SideBar = ({ sidebar = true }) => {
         </li>
       </NavLink>
       <NavLink
-        to={"/yourVideos"}
+        to={`/homeProfile/@${loggerUser?.userName}/*`}
         activeClassName={"active"}
         onClick={handleNavLinkClick}
       >
@@ -195,7 +195,7 @@ const SideBar = ({ sidebar = true }) => {
           {userList && userList.length > 0 ? (
             <ul style={{ padding: 0 }}>
               {userList.map((channel) => (
-                <Link to={`/homeProfile/${channel.userName}/*`}>
+                <Link to={`/homeProfile/@${channel.userName}/*`}>
                   <li key={channel.id}>
                     <img
                       src={channel.avatar}
@@ -278,3 +278,4 @@ const SideBar = ({ sidebar = true }) => {
   );
 };
 export default SideBar;
+

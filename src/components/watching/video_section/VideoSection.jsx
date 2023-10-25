@@ -72,6 +72,7 @@ function VideoSection({ video }) {
         return subscribedChannels ? subscribedChannels.includes(channelId) : false;
     };
 
+
     const isVideoLiked = (videoId) => {
         const listVideoLiked = userInfo && userInfo.likedVideos;
         return listVideoLiked ? listVideoLiked.includes(videoId) : false;
@@ -246,7 +247,7 @@ function VideoSection({ video }) {
                     <div className={style.video__title}>{video.title}</div>
                     <div className={`${style.video__info__function}`}>
                         <div className={style.info__channel}>
-                            <Link to={`/homeProfile/${userDto.userName}/*`}>
+                            <Link to={`/homeProfile/@${userDto.userName}/*`}>
                                 <img
                                     className={style.channel__avatar}
                                     src={userDto.avatar}
@@ -254,7 +255,8 @@ function VideoSection({ video }) {
                                 />
                             </Link>
                             <div className={style.channel__info}>
-                                <Link to={`/homeProfile/${userDto.userName}/*`}>
+                                <Link to={`/homeProfile/@${userDto.userName}/*`}>
+
                   <span className={style.channel__name}>
                     {userDto.channelName
                         ? userDto.channelName
