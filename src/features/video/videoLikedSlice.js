@@ -14,8 +14,8 @@ const initialState = {
   success: false,
 };
 
-export const getVideoLiked = createAsyncThunk("liked/history", async () => {
-  const response = await videoLikedList();
+export const getVideoLiked = createAsyncThunk("liked/history", async (page) => {
+  const response = await videoLikedList(page);
   return response.data;
 });
 
@@ -54,6 +54,9 @@ export const videoLikedSlice = createSlice({
     },
     setSuccess: (state, action) => {
       state.success = action.payload;
+    },
+    setVideos: (state, action) => {
+      state.videos = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -112,7 +115,7 @@ export const videoLikedSlice = createSlice({
   },
 });
 
-export const { setLoading, setError, setSuccess } = videoLikedSlice.actions;
+export const { setLoading, setError, setSuccess, setVideos } = videoLikedSlice.actions;
 
 export const selectLoading = (state) => state.videoLiked.loading;
 export const selectError = (state) => state.videoLiked.error;

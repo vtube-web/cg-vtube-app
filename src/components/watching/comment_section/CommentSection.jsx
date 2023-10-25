@@ -7,7 +7,6 @@ import {selectVideoDetail} from "../../../features/video/videoSlice";
 import {useNavigate, useParams} from "react-router-dom";
 import {addComment} from "../../../features/comment_reply/commentSlice";
 import {getStoredUserData} from "../../../services/accountService";
-import formatDate from "../../../format/FormatDate";
 
 const imgUrl = 'https://firebasestorage.googleapis.com/v0/b/vtube-15.appspot.com/o/images%2F387123399_317289870909894_6318809251513139950_n.jpg?alt=media&token=9a676663-abbe-4324-aba8-a634e63b305c&_gl=1*1vll957*_ga*MTE0NzY2MDExNy4xNjkxMDI4NDc2*_ga_CW55HF8NVT*MTY5NzEyNTg4NC4yOC4xLjE2OTcxMjU5MjAuMjQuMC4w';
 
@@ -19,7 +18,7 @@ export default function CommentSection() {
     const [comment, setComment] = useState("");
     const [commentList, setCommentList] = useState([]);
     const loggedUser = getStoredUserData();
-
+    const [userAvatar, setUserAvatar] = useState(imgUrl);
     const commentData = {
         content: comment,
         videoId: params.videoId
@@ -28,6 +27,7 @@ export default function CommentSection() {
 
     useEffect(() => {
         if (video && video.commentDtoList && loggedUser) {
+            setUserAvatar(loggedUser.avatar);
             const sortedComments = video.commentDtoList.slice().sort((a, b) => {
                 if (a.userResponseDto.id === loggedUser.id && b.userResponseDto.id !== loggedUser.id) {
                     return -1;
@@ -56,7 +56,7 @@ export default function CommentSection() {
             replyDtoList: [],
             userResponseDto: {
                 id: loggedUser.id,
-                userName: loggedUser.email,
+                userName: loggedUser.userName,
                 avatar: loggedUser.avatar || imgUrl
             }
         }
@@ -82,7 +82,7 @@ export default function CommentSection() {
                 <div className={style.comments__content}>
                     <div className={`${style.user__avatar} col-1`}>
                         <img
-                            src="https://play-lh.googleusercontent.com/Fro4e_osoDhhrjgiZ_Y2C5FNXBMWvrb4rGpmkM1PDAcUPXeiAlPCq7NeaT4Q6NRUxRqo"
+                            src={userAvatar}
                             alt={"user avatar"}/>
                     </div>
                     <div className={`${style.content__input} col-11`}>
@@ -103,7 +103,6 @@ export default function CommentSection() {
 
                 {comment && (
                     <div className={style.comment__function}>
-                        <button>Hủy</button>
                         <button onClick={handleComment}>Bình luận</button>
                     </div>
                 )}

@@ -1,0 +1,94 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .card {
+    position: relative;
+    margin-top: 50px;
+    width: 20rem;
+    height:23rem;
+    &:hover {
+      .card__play_button {
+        background-color: #fff;
+        color: #000;
+        font-weight: bold;
+      }
+
+      .back_card {
+        transform: rotate(5deg);
+      }
+
+      .third_card {
+        transform: rotate(-5deg);
+      }
+    }
+
+    .card__container {
+      width: 20rem;
+      height:23rem;
+      background-color: white;
+      position: relative;
+      text-align: center;
+      border-radius: 30px;
+
+      .card__thumbnail {
+        width: 100%;
+        border-radius: 30px;
+      }
+
+      .card__title {
+        text-align: center;
+        color: #fff;
+        font-weight: bold;
+        width: 100%;
+        font-size: 24px;
+      }
+
+      .card__details {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        color: black;
+      }
+
+      .card__play_button {
+        background-color: #000;
+        border: 4px solid #181515;
+        padding: 10px 5px;
+        color: #fff;
+        text-align: center;
+        transition: all 0.4s;
+        font-size: 16px;
+      }
+    }
+
+    .back_card {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 20rem;
+      height:23rem;
+      transition: transform .4s ease-in;
+      background: linear-gradient(270deg, rgb(255, 25, 195) 0%, rgb(0, 220, 255) 16%, rgb(122, 255, 0) 82%, rgb(0, 254, 207) 100%);
+      z-index: -1;
+      box-shadow: 0px 0px 112px -41px rgb(255, 25, 195), 0 -10px 26px -5px rgb(0, 220, 255), 0px 0px 112px -41px rgb(122, 255, 0), 0 -10px 26px -5px rgb(0, 254, 207);
+      border-radius: 30px;
+
+    }
+
+    .third_card {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 20rem;
+      height:23rem;
+      transition: transform .4s ease-in;
+      background: linear-gradient(270deg, rgb(255, 25, 195) 0%, rgb(0, 220, 255) 16%, rgb(122, 255, 0) 82%, rgb(0, 254, 207) 100%);
+      z-index: -1;
+      box-shadow: 0px 0px 112px -41px rgb(255, 25, 195), 0 -10px 26px -5px rgb(0, 220, 255), 0px 0px 112px -41px rgb(122, 255, 0), 0 -10px 26px -5px rgb(0, 254, 207);
+      border-radius: 30px;
+
+    }
+  }
+}

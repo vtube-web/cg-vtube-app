@@ -9,6 +9,7 @@ import InformationFill from "../../layouts/commons/studio/overview/InformationFi
 import "../../assets/css/studio/overview-screen.css";
 import { ToastContainer } from "react-toastify";
 import { setVideo } from "../../features/studio/videoUploadSlice";
+import AnalytiscChannel from "../../layouts/commons/studio/overview/AnalytiscChannel";
 
 function OverviewScreen() {
   const isModalUpload = useSelector(getIsModalUpload);
@@ -61,39 +62,8 @@ function OverviewScreen() {
             </div>
           </div>
         </div>
-        <div className="w-[400px] h-[29em] bg-white border-[1px] border-gray-300 rounded-md p-6">
-          <div className="pb-6 border-b-[1px]">
-            <div className="text-xl font-bold">Số liệu phân tích về kênh</div>
-            <div className="pt-2 text-sm text-gray-700">
-              Số người đăng ký hiện tại
-            </div>
-            <div className="text-4xl pb-4">0</div>
-          </div>
-          <div className="pb-6 border-b-[1px]">
-            <div className="text-md pt-3 font-bold">Tóm tắt</div>
-            <div className=" text-xs text-gray-700">28 ngày qua</div>
-            <div className="flex justify-between pt-2 items-center text-md">
-              <div className="col-8">Số lượt xem</div>
-              <div className="col-3 text-end">1</div>
-              <div className="col-1 text-center text-xs">—</div>
-            </div>
-            <div className="flex justify-between pt-2 items-center text-md">
-              <div className="col-8">Số lượt xem</div>
-              <div className="col-3 text-end">1</div>
-              <div className="col-1 text-center text-xs">—</div>
-            </div>
-          </div>
-          <div className="">
-            <div className="text-md pt-3 font-bold">Video hàng đầu</div>
-            <div className=" text-xs text-gray-700">
-              48 giờ qua · Số lượt xem
-            </div>
-            <div className="h-8"></div>
-            <span className="text-md font-bold p-2 text-blue-700 hover:cursor-pointer  rounded-sm active:bg-blue-100 active:transition-all active:ease-in active:duration-500 active:animate-spin select-none  active:select-all">
-              Go to analytics
-            </span>
-          </div>
-        </div>
+        <AnalytiscChannel />
+      
       </div>
 
       {isModalUpload ? (

@@ -1,0 +1,25 @@
+.container {
+    font-family: "Roboto", Arial, sans-serif;
+    width: 100%;
+}
+
+.channelHomeProfile-title {
+    font-size: larger;
+}
+
+
+.avatar-channelHomeProfile{
+    height: 7rem;
+    width: 7rem;
+}
+
+.name-text {
+    font-size: medium ;
+    font-weight: bold;
+    color: black;
+}
+
+.subcribe-text {
+    font-size: small;
+    color: rgb(146, 139, 139);
+}

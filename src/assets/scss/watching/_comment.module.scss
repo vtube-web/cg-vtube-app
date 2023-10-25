@@ -36,6 +36,7 @@
 
   .comment__content {
     padding: 10px 0 10px 0;
+    word-wrap: break-word;
   }
 
   .comment__function {
@@ -83,6 +84,8 @@
         border: none;
         background-color: transparent;
         border-bottom: 1px solid grey;
+        width:100%;
+        word-wrap: break-word;
       }
 
       .reply__button {

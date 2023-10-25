@@ -2,7 +2,9 @@
 
 function PlayList() {
   return (
-    <div>PlayList</div>
+    <div className="container">
+      PlayList
+    </div>
   )
 }
 

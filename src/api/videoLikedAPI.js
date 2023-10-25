@@ -3,11 +3,14 @@ import { getStoredUserData } from "../services/accountService";
 
 export const VIDEO_LIKED_API = "http://localhost:8080/api/liked-videos";
 
-export const videoLikedList = async () => {
+export const videoLikedList = async (page) => {
   let result = null;
-    let user = getStoredUserData();
+  let user = getStoredUserData();
   try {
     result = await axios.get(`${VIDEO_LIKED_API}`, {
+      params: {
+        page: page,
+      },
       headers: {
         Authorization: "Bearer " + user.accessToken,
       },

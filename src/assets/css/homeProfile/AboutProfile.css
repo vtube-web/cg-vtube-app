@@ -1,0 +1,44 @@
+.container {
+    font-family: "Roboto", Arial, sans-serif;
+    width: 100%;
+}
+
+.detail-user-homeProfile-section {
+    border-top: solid 1px rgb(233, 227, 227);
+    border-bottom: solid 1px rgb(233, 227, 227);
+}
+
+.description-homeProfile-title {
+    font-size: larger;
+
+}
+
+.description-homeProfile-text {
+    color: rgb(75, 68, 68);
+    line-height: 1.5;
+    font-size: 0.9rem;
+
+}
+
+.detail-homeProfile-title {
+    font-size: larger;
+}
+
+.detail-homeProfile-text {
+    font-size:small;
+    color: rgb(100, 93, 93);
+
+}
+.detail-homeProfile-email {
+    color: blue;
+    text-decoration: underline;
+}
+
+.text {
+    border-bottom: solid 1px rgb(233, 227, 227);
+    font-size: medium;
+}
+
+.just-for-nothing {
+    height: 25rem;
+}

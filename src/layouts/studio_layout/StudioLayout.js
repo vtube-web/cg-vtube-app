@@ -12,8 +12,14 @@ import {
 } from "../../features/studio/modalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsVisibilityMenu } from "../../features/studio/visibilitySlice";
+import {getStoredUserData} from "../../services/accountService";
+import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
+
 
 function StudioLayout({ children }) {
+  const navigate = useNavigate();
+
   const [contentHeight, setContentHeight] = useState(0);
 
   const isModalSearch = useSelector(getIsModalSearch);
@@ -35,8 +41,19 @@ function StudioLayout({ children }) {
     };
   }, []);
 
+  if (getStoredUserData() == null) {
+     Swal.fire({
+       icon: "warning",
+       title: "warning !",
+       text: "You are not logged in, please log in!",
+     });
+     navigate("/login");
+    return null;
+  }
+
   return (
     <div className="flex flex-col flex-nowrap relative h-screen bg-[#FAFAFA]">
+      
       <Modal
         isModal={isModalSearch}
         onClose={() => dispatch(setIsModalSearch(false))}
