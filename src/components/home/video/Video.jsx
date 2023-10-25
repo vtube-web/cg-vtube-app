@@ -6,7 +6,7 @@ import style from '../../../assets/scss/main_screen/home/_video.module.scss'
 
 function Video({video}) {
     return (
-        <NavLink to={`/watching/${video.id}`}>
+        <NavLink to={`/watching/${video.id}`} className={style.container}>
             <div className={style.video}>
                 <div className={style.video__top}>
                     <div className={style.video__background}

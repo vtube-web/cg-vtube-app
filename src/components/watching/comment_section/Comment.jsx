@@ -49,6 +49,24 @@ const Comment = (comment) => {
 
     function handleSubmit(e) {
         e.preventDefault();
+        if(reply === ""){
+            const newReply = {
+                commentId: comment.id,
+                content: "This field has no content and will be delete after",
+                likes: 0,
+                dislikes: 0,
+                createAt: Date.now(),
+                userResponseDto: {
+                    id: currentUser.id,
+                    userName: currentUser.userName,
+                    avatar: currentUser.avatar || imgUrl
+                }
+            };
+            const updatedReplyList = [newReply, ...replyList];
+            setReplyList(updatedReplyList);
+            setReply("");
+            showInputReply();
+        }else{
         const newReply = {
             commentId: comment.id,
             content: reply,
@@ -66,6 +84,7 @@ const Comment = (comment) => {
         setReplyList(updatedReplyList);
         setReply("");
         showInputReply();
+        }
     }
 
     return (
@@ -123,7 +142,8 @@ const Comment = (comment) => {
                                             <InputTextarea
                                                 rows={2}
                                                 className={style.reply__content}
-                                                value={reply}                                                placeholder={"Comment here..."}
+                                                value={reply}
+                                                placeholder={"Comment here..."}
                                                 onChange={(e) => setReply(e.target.value)}
                                                 onInput={handleInputChange}
                                                 onFocus={handleCheckLogin}
