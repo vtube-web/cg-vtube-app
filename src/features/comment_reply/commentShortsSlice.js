@@ -8,7 +8,7 @@ const initialState = {
     success: false
 };
 
-export const addCommentShorts = createAsyncThunk("addComment", async (commentShorts) => {
+export const addCommentShorts = createAsyncThunk("addCommentShorts", async (commentShorts) => {
     const response = await submitCommentShorts(commentShorts);
     return response.data;
 })

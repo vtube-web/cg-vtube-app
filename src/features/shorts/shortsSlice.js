@@ -9,9 +9,9 @@ const initialState = {
     success: false,
 };
 
-export const getVideoShorts = createAsyncThunk("shorts", async () => {
+export const getVideoShorts = createAsyncThunk("shorts", async (page) => {
     console.log("Waiting for response...");
-    const response = await findVideoShorts();
+    const response = await findVideoShorts(page);
     return response.data;
 });
 

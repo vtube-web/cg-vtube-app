@@ -14,9 +14,6 @@ export const videoHomeProfileList = async (data) => {
         type: data.type,
         page: data.page || 0,
       },
-      headers: {
-        Authorization: "Bearer " + user.accessToken,
-      },
     });
   } catch (e) {
     console.log(

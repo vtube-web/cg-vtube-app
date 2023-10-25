@@ -54,9 +54,6 @@ export const getInfoByUserName = async (data) => {
   let user = getStoredUserData();
   try {
     result = await axios.get(VTUBE_API + `/users/${data.userName}`, {
-      headers: {
-        Authorization: "Bearer " + user.accessToken,
-      },
     });
   } catch (e) {
     console.error("Error when fetching info user by userName", e);

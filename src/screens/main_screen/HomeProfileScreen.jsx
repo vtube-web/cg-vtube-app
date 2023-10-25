@@ -76,12 +76,7 @@ function HomeProfileScreen() {
     const fetchDataUserInfo = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/users/${userName.slice(1)}`,
-          {
-            headers: {
-              Authorization: "Bearer " + getStoredUserData().accessToken,
-            },
-          }
+          `http://localhost:8080/api/users/${userName.slice(1)}`
         );
         setUserInfo(response.data.data);
       } catch (error) {
@@ -146,6 +141,17 @@ function HomeProfileScreen() {
             theme: "dark",
           }
         );
+      }else {
+        toast.info("Sign in to subscribe to this channel.", {
+          position: "bottom-left",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       }
     } catch (error) {
       toast.error("Failed to subscribe/unsubscribe:", error, {

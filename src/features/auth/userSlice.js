@@ -48,7 +48,7 @@ export const getListUser = createAsyncThunk("list-user", async (data) => {
     throw new Error('No Data');
 
   }
-}); 
+});
 
 export const userAccountSlice = createSlice({
   name: "userAccount",
@@ -80,111 +80,111 @@ export const userAccountSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      // LOGIN
-      .addCase(loginUser.pending, (state) => {
-        state.loginSuccess = false;
-        state.loading = true;
-        state.error = false;
-      })
-      .addCase(loginUser.rejected, (state, action) => {
-        state.loginSuccess = false;
-        state.loading = false;
-        state.error = action.error;
-        state.userCredential = null;
-        if (action.error) {
-          state.error = "Access Denied ! Wrong Email or Password";
-        }
-      })
-      .addCase(loginUser.fulfilled, (state, action) => {
-        state.loginSuccess = true;
-        state.loading = false;
-        state.error = false;
-        state.userCredential = action.payload;
-      })
+        // LOGIN
+        .addCase(loginUser.pending, (state) => {
+          state.loginSuccess = false;
+          state.loading = true;
+          state.error = false;
+        })
+        .addCase(loginUser.rejected, (state, action) => {
+          state.loginSuccess = false;
+          state.loading = false;
+          state.error = action.error;
+          state.userCredential = null;
+          if (action.error) {
+            state.error = "Access Denied ! Wrong Email or Password";
+          }
+        })
+        .addCase(loginUser.fulfilled, (state, action) => {
+          state.loginSuccess = true;
+          state.loading = false;
+          state.error = false;
+          state.userCredential = action.payload;
+        })
 
-      // REGISTER
-      .addCase(registerAccount.pending, (state) => {
-        state.registerSuccess = false;
-        state.loading = true;
-        state.registerError = false;
-      })
-      .addCase(registerAccount.rejected, (state, action) => {
-        state.registerSuccess = false;
-        state.loading = false;
-        state.registerError = action.error;
-      })
-      .addCase(registerAccount.fulfilled, (state) => {
-        state.registerSuccess = true;
-        state.loading = false;
-        state.registerError = false;
-      })
-      // CHECK EMAIL
-      .addCase(checkEmail.pending, (state) => {
-        state.checkEmailSuccess = false;
-        state.loading = true;
-        state.error = false;
-      })
-      .addCase(checkEmail.rejected, (state, action) => {
-        state.checkEmailSuccess = false;
-        state.loading = false;
-        state.error = action.error;
-      })
-      .addCase(checkEmail.fulfilled, (state, action) => {
-        state.checkEmailSuccess = true;
-        state.loading = false;
-        state.error = action.payload;
-      })
-      // INFO USER BY TOKEN
-      .addCase(getInfoUser.pending, (state) => {
-        state.success = false;
-        state.loading = true;
-        state.error = false;
-      })
-      .addCase(getInfoUser.rejected, (state, action) => {
-        state.success = false;
-        state.loading = false;
-        state.error = action.error;
-      })
-      .addCase(getInfoUser.fulfilled, (state, action) => {
-        state.success = true;
-        state.loading = false;
-        state.value = action.payload.data;
-        state.error = false;
-      })
-      // INFO USER BY USERNAME
-      .addCase(getInfoUserByUsername.pending, (state) => {
-        state.success = false;
-        state.loading = true;
-        state.error = false;
-      })
-      .addCase(getInfoUserByUsername.rejected, (state, action) => {
-        state.success = false;
-        state.loading = true;
-        state.error = action.error;
-      })
-      .addCase(getInfoUserByUsername.fulfilled, (state, action) => {
-        state.success = true;
-        state.loading = false;
-        state.userInfoFindByUserName = action.payload.data;
-        state.error = false;
-      })
-      // LIST USERS FIND BY USER TOKEN
-      .addCase(getListUser.pending, (state) => {
-        state.success = false;
-        state.loading = true;
-        state.error = false;
-      })
-      .addCase(getListUser.rejected, (state, action) => {
-        state.success = false;
-        state.loading = false;
-        state.error = action.error;
-      })
-      .addCase(getListUser.fulfilled, (state, action) => {
-        state.success = true;
-        state.loading = false;
-        state.error = false;
-        state.userList = action.payload.data;
-      });
+        // REGISTER
+        .addCase(registerAccount.pending, (state) => {
+          state.registerSuccess = false;
+          state.loading = true;
+          state.registerError = false;
+        })
+        .addCase(registerAccount.rejected, (state, action) => {
+          state.registerSuccess = false;
+          state.loading = false;
+          state.registerError = action.error;
+        })
+        .addCase(registerAccount.fulfilled, (state) => {
+          state.registerSuccess = true;
+          state.loading = false;
+          state.registerError = false;
+        })
+        // CHECK EMAIL
+        .addCase(checkEmail.pending, (state) => {
+          state.checkEmailSuccess = false;
+          state.loading = true;
+          state.error = false;
+        })
+        .addCase(checkEmail.rejected, (state, action) => {
+          state.checkEmailSuccess = false;
+          state.loading = false;
+          state.error = action.error;
+        })
+        .addCase(checkEmail.fulfilled, (state, action) => {
+          state.checkEmailSuccess = true;
+          state.loading = false;
+          state.error = action.payload;
+        })
+        // INFO USER BY TOKEN
+        .addCase(getInfoUser.pending, (state) => {
+          state.success = false;
+          state.loading = true;
+          state.error = false;
+        })
+        .addCase(getInfoUser.rejected, (state, action) => {
+          state.success = false;
+          state.loading = false;
+          state.error = action.error;
+        })
+        .addCase(getInfoUser.fulfilled, (state, action) => {
+          state.success = true;
+          state.loading = false;
+          state.value = action.payload.data;
+          state.error = false;
+        })
+        // INFO USER BY USERNAME
+        .addCase(getInfoUserByUsername.pending, (state) => {
+          state.success = false;
+          state.loading = true;
+          state.error = false;
+        })
+        .addCase(getInfoUserByUsername.rejected, (state, action) => {
+          state.success = false;
+          state.loading = true;
+          state.error = action.error;
+        })
+        .addCase(getInfoUserByUsername.fulfilled, (state, action) => {
+          state.success = true;
+          state.loading = false;
+          state.userInfoFindByUserName = action.payload.data;
+          state.error = false;
+        })
+        // LIST USERS FIND BY USER TOKEN
+        .addCase(getListUser.pending, (state) => {
+          state.success = false;
+          state.loading = true;
+          state.error = false;
+        })
+        .addCase(getListUser.rejected, (state, action) => {
+          state.success = false;
+          state.loading = false;
+          state.error = action.error;
+        })
+        .addCase(getListUser.fulfilled, (state, action) => {
+          state.success = true;
+          state.loading = false;
+          state.error = false;
+          state.userList = action.payload.data;
+        });
   },
 });
 
