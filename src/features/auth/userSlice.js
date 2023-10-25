@@ -35,9 +35,13 @@ export const getInfoUser = createAsyncThunk("info", async () => {
 });
 
 export const getListUser = createAsyncThunk("list-user", async (data) => {
-  const response = await getUserList(data);
-  return response.data;
-}); 
+  if (data && data.length > 0) {
+    const response = await getUserList(data);
+    return response.data;
+  } else {
+    throw new Error('No Data');
+  }
+});
 
 export const userAccountSlice = createSlice({
   name: "userAccount",

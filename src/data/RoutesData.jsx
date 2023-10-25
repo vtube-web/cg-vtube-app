@@ -34,7 +34,7 @@ export const publicRoutes = [
   { path: "/watchLater", component: watchLaterScreen, layout: MainLayout },
   { path: "/yourVideos", component: yourVideoScreen, layout: MainLayout },
   { path: `/watching/:videoId`, component: watchingScreen, layout: MainLayout },
-  { path: "/shorts", component: shortsScreen, layout: MainLayout },
+  { path: "/shorts/", component: shortsScreen, layout: MainLayout },
   { path: `/channel/:channelId`, component: OverviewScreen, layout: StudioLayout,},
   { path: `/channel/:channelId/content/:subParam/:videoId?`,component: ContentScreen, layout: StudioLayout,},
   { path: `/channel/:channelId/analytical`, component: AnalyticalDataScreen, layout: StudioLayout,},

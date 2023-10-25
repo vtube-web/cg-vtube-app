@@ -11,7 +11,7 @@ const initialState = {
 
 export const getVideoShorts = createAsyncThunk("shorts", async (page) => {
     console.log("Waiting for response...");
-    const response = await findVideoShorts();
+    const response = await findVideoShorts(page);
     return response.data;
 });
 
@@ -48,7 +48,7 @@ export const videoShortsSlice = createSlice({
                 state.success = true;
                 state.loading = false;
                 state.error = false;
-                state.videos = action.payload.data.content;
+                state.videos = action.payload.data;
             })
     }
 })

@@ -1,4 +1,5 @@
 @import "../../base/base.module";
+
 $white: white;
 
 .container {
@@ -12,7 +13,8 @@ $white: white;
   margin-left: 5%;
 
   .video_shorts__container {
-    width: 50%;
+    width: 21rem;
+    height: 38.77rem;
     display: flex;
     align-items: center;
     background: black;
@@ -88,21 +90,51 @@ $white: white;
               flex-direction: row;
               align-items: center;
             }
+            .bg__btn{
+              background: white;
+              color:black;
+              border-radius: 20px;
+              padding: 5px;
+
+              &:hover {
+                background: gray;
+              }
+            }
+
+            .text_color{
+              opacity: 1;
+              position: absolute;
+            }
+
+            .bg__button{
+              width: 100%;
+              height: 100%;
+              position: absolute;
+              background: black;
+              opacity: 0.1;
+              border-radius: 20px;
+
+              &:hover {
+                opacity: 0.6
+              }
+            }
 
             .subs__btn {
               display: flex;
-              background: white;
               width: 90px;
               height: 30px;
               border-radius: 20px;
+              color: black;
               align-items: center;
               justify-content: center;
               cursor: pointer;
-              color: black;
               font-weight: bolder;
+              position: relative;
 
-              &:hover {
-                opacity: 85%;
+
+
+              &.active {
+                color: white;
               }
             }
 
@@ -116,15 +148,14 @@ $white: white;
             p {
               color: white;
               margin: 0;
+
+              &:hover {
+                opacity: 0.6
+              }
             }
           }
         }
       }
-    }
-
-    span {
-      color: black;
-      filter: brightness(150%);
     }
 
     &.active {
@@ -144,7 +175,7 @@ $white: white;
     background: transparent;
     position: absolute;
     right: -65px;
-    transform: translateX(10%) ;
+    transform: translateX(10%);
     transition: all ease-out 0.2s;
 
     .shorts__btn {
@@ -200,8 +231,8 @@ $white: white;
     z-index: -1;
     position: absolute;
     flex-direction: column;
-    margin: 0 200% ;
-    left: -50%;
+    margin: 0 300%;
+    left: -26%;
     width: 50%;
     height: 100%;
     background: #2b2b2b;
@@ -223,6 +254,7 @@ $white: white;
       .comments__views {
         display: flex;
         padding-right: 30%;
+        color: white;
       }
 
       .comments__btn__details {
@@ -261,6 +293,7 @@ $white: white;
 
     .comments__middle {
       overflow-y: auto;
+      overflow-x: hidden;
     }
 
     .comments__bottom {
@@ -286,13 +319,17 @@ $white: white;
           background-color: transparent;
           border: none;
           border-bottom: 1px solid gray;
-          width: 17rem;
+          width: 16rem;
           color: white;
 
           &:focus {
             background-color: transparent;
             border: none;
             border-bottom: 2px solid white;
+          }
+
+          &.active {
+            color: red;
           }
         }
 
@@ -325,7 +362,8 @@ $white: white;
 
     &.active {
       z-index: 0;
-      transform: translateX(-150%);
+      width: 130%;
+      transform: translateX(-134%);
       transition: all ease-out 0.5s;
     }
   }

@@ -17,8 +17,7 @@ const WatchedScreen = () => {
   const dispatch = useDispatch();
   const videoListPage = useSelector(selectVideoWatchedList);
   const [videosGroupedByDay, setVideosGroupedByDay] = useState({});
-  const [showNoWatchHistoryMessage, setShowNoWatchHistoryMessage] =
-    useState(false);
+  const [showNoWatchHistoryMessage, setShowNoWatchHistoryMessage] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState("");
   const [filteredVideos, setFilteredVideos] = useState(null);
   const [isChange, setIsChange] = useState(true);
