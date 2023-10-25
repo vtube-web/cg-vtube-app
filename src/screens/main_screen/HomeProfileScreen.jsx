@@ -16,10 +16,7 @@ import Channel from "../../components/homeProfile/view/Channel";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getInfoUser,
-  getInfoUserByUsername,
   selectUserInfo,
-  selectUserInfoByUserName,
-  setUserInfoFindByUserName,
 } from "../../features/auth/userSlice";
 import formatNumberView from "../../format/FormatNumberView";
 import axios from "axios";
@@ -28,7 +25,6 @@ import { ToastContainer, toast } from "react-toastify";
 import {
   addSubscriber,
   removeSubscribed,
-  selectSuccess,
 } from "../../features/video/subscriberSlice";
 
 function HomeProfileScreen() {
@@ -119,6 +115,7 @@ function HomeProfileScreen() {
       setMyInfo(myDataInfo);
     }
   },[userName]);
+
 
   
   const isChannelSubscribed = (channelId) => {

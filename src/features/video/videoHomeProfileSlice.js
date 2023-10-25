@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import {
-    videoHomeProfileList, videoHomeProfileListNewest
+    videoHomeProfileList
 } from "../../api/videoHomeProfileAPI";
 
 const initialState = {

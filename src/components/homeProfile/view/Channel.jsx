@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "../../../assets/css/homeProfile/ChannelProfile.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getListUser,
   selectUserInfoByUserName,
   selectUserList,
 } from "../../../features/auth/userSlice";

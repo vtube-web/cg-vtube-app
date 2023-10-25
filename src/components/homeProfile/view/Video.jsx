@@ -88,7 +88,6 @@ function Video() {
 
   return (
     <div className="container">
-      {/* này là của button */}
       <div className="container d-flex video-profile-block-button p-0">
         {showNoVideoMessage ? (
           <>
@@ -108,7 +107,6 @@ function Video() {
         ) : null}
       </div>
       <InfiniteScroll
-        // homeProfileVideoList lúc nào là 1 đối tượng chứa các mảng nên cần . ra để biết length
         dataLength={Object.keys(homeProfileVideoList || {}).length}
         next={fetchMoreData}
         hasMore={videoList && videoList.hasNext}
