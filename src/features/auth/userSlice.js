@@ -1,9 +1,10 @@
 import { createAsyncThunk,createSlice } from "@reduxjs/toolkit";
-import { checkEmailApi, login, registerApi, getInfo } from "../../api/authApi";
+import { checkEmailApi, login, registerApi, getInfo, getUserList, getInfoByUserName } from "../../api/authApi";
 
 
 const initialState = {
   userCredential:null,
+  userInfoFindByUserName:null,
   loading: false,
   error: null,
   value: null,
@@ -11,6 +12,7 @@ const initialState = {
   registerSuccess: false,
   registerError: false,
   checkEmailSuccess: false,
+  userList: []
 };
 
 
@@ -32,6 +34,20 @@ export const getInfoUser = createAsyncThunk("info", async () => {
   const response = await getInfo();
   return response.data;
 });
+
+export const getInfoUserByUsername = createAsyncThunk("info-findByUserName", async (data) => {
+  const response = await getInfoByUserName(data);
+  return response.data;
+});
+
+export const getListUser = createAsyncThunk("list-user", async (data) => {
+  if (data && data.length > 0) {
+    const response = await getUserList(data);
+    return response.data;
+  } else {
+    throw new Error("No Data");
+  }
+}); 
 
 export const userAccountSlice = createSlice({
   name: "userAccount",
@@ -56,6 +72,9 @@ export const userAccountSlice = createSlice({
       state.registerSuccess = false;
       state.registerError = false;
       state.checkEmailSuccess = false;
+    },
+    setUserInfoFindByUserName: (state,action) => {
+      state.userInfoFindByUserName = action.payload;
     }
   },
   extraReducers: builder => {
@@ -114,7 +133,7 @@ export const userAccountSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-
+      // INFO USER BY TOKEN
       .addCase(getInfoUser.pending, (state) => {
         state.success = false;
         state.loading = true;
@@ -130,12 +149,53 @@ export const userAccountSlice = createSlice({
         state.loading = false;
         state.value = action.payload.data;
         state.error = false;
+      })
+      // INFO USER BY USERNAME
+      .addCase(getInfoUserByUsername.pending, (state) => {
+        state.success = false;
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(getInfoUserByUsername.rejected, (state, action) => {
+        state.success = false;
+        state.loading = true;
+        state.error = action.error;
+      })
+      .addCase(getInfoUserByUsername.fulfilled, (state, action) => {
+        state.success = true;
+        state.loading = false;
+        state.userInfoFindByUserName = action.payload.data;
+        state.error = false;
+      })
+      // LIST USERS FIND BY USER TOKEN
+      .addCase(getListUser.pending, (state) => {
+        state.success = false;
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(getListUser.rejected, (state, action) => {
+        state.success = false;
+        state.loading = false;
+        state.error = action.error;
+      })
+      .addCase(getListUser.fulfilled, (state, action) => {
+        state.success = true;
+        state.loading = false;
+        state.error = false;
+        state.userList = action.payload.data;
       });
   },
 });
 
 
-export const {setLoading, setError, setLoginSuccess, setUserCredential, resetUserAccountState} = userAccountSlice.actions;
+export const {
+  setLoading,
+  setError,
+  setLoginSuccess,
+  setUserCredential,
+  resetUserAccountState,
+  setUserInfoFindByUserName,
+} = userAccountSlice.actions;
 export const selectUserAccountSliceIsLoading = (state) => state.userAccount.loading;
 export const selectUserAccountSliceIsError = (state) => state.userAccount.error;
 // get state of userCredentials.
@@ -150,5 +210,12 @@ export const selectLoginIsSuccess = (state) => state.userAccount.loginSuccess;
 
 // get state of Check Email Register.
 export const selectCheckEmailIsSuccess = (state) => state.userAccount.checkEmailSuccess;
+
+// get state of userInfo
 export const selectUserInfo = (state) => state.userAccount.value;
+
+// get state of userInfo by Username.
+export const selectUserInfoByUserName = (state) => state.userAccount.userInfoFindByUserName;
+
+export const selectUserList = (state) => state.userAccount.userList;
 export default userAccountSlice.reducer;

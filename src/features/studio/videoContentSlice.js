@@ -8,6 +8,7 @@ const initialState = {
     displayMode: null,
     titles: null,
     numberOfViews: null,
+    isShorts:false
   },
   success: false,
   edit: null,

@@ -12,6 +12,7 @@ import commentReducer from "../features/comment_reply/commentSlice";
 import {commentShortsSlice} from "../features/comment_reply/commentShortsSlice";
 import subscriberReducer from "../features/video/subscriberSlice";
 import videoHomeProfileReducer from "../features/video/videoHomeProfileSlice";
+import commentChannelSlice from "../features/studio/commentChannelSlice";
 
 
 export const store = configureStore({
@@ -28,7 +29,8 @@ export const store = configureStore({
     commentShorts: commentShortsSlice.reducer,
     content: videoContentReducer,
     subscriber: subscriberReducer,
-    videoHomeProfile : videoHomeProfileReducer
+    videoHomeProfile : videoHomeProfileReducer,
+    commentChannel: commentChannelSlice,
   },
 });
 

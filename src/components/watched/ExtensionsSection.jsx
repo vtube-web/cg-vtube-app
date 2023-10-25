@@ -17,7 +17,7 @@ const ExtensionsSection = ({handleRemoveItem}) => {
   const [videosGroupedByDay, setVideosGroupedByDay] = useState({});
   const [showNoWatchHistoryMessage, setShowNoWatchHistoryMessage] =
     useState(false);
-
+  const [searchResults, setSearchResults] = useState(null);
   const [searchKeyword, setSearchKeyword] = useState("");
 
   const handleSearchChange = (event) => {
@@ -37,7 +37,7 @@ const ExtensionsSection = ({handleRemoveItem}) => {
       },
       {}
     );
-    setVideosGroupedByDay(filteredVideosGroupedByDay);
+    setSearchResults(filteredVideosGroupedByDay);
   };
 
   useEffect(() => {

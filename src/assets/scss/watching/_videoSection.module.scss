@@ -52,9 +52,10 @@ $channel-text: #606060;
   }
 
   .video__title {
-    font-weight: bold;
+    font-weight: 550;
     font-size: 20px;
-    padding-top: 20px;
+    padding: 20px 0;
+    color: #0f0f0f;
   }
 
   .video__info__function {
@@ -72,21 +73,23 @@ $channel-text: #606060;
         border-radius: 100%;
         width: 3rem;
         height: 3rem;
+        object-fit: cover;
       }
 
       .channel__info {
         display: flex;
         flex-direction: column;
-        margin-left: 10px;
+        margin: 0 20px;
 
         .channel__name {
-          color: $white-text;
-          font-size: 20px;
+          color: #0f0f0f;
+          font-size: 16px;
+          font-weight: 550;
         }
 
         .channel__subscribers {
-          font-size: 15px;
-          color: $white-text;
+          font-size: 12px;
+          color: #606060;
         }
       }
 
@@ -97,20 +100,36 @@ $channel-text: #606060;
         margin-left: 40px;
         background-color: $black-primary;
         border-radius: 20px;
-        height: 70%;
+        height: 35px;
         font-weight: bold;
         color: white;
         padding: 10px;
         font-size: 13px;
-
+        transform: translateY(10px);
         &:hover {
           background-color: #4c4c4c;
           cursor: pointer;
         }
+        // & .unsubscribed{
+        // background-color: red;
+        // }
       }
-      button.unsubscribed {
+      .unsubscribed {
         /* Màu khi đã subscribe-- chưa xong */
-        background-color: red;
+        color: #0f0f0f;
+        background-color: $white-mode-background-component;
+        &:hover {
+          background-color: $white-mode-hover-component;
+          cursor: pointer;
+        }
+      }
+      .function__manage {
+        color: white;
+        background-color: #065fd4;
+        border-radius: 20px;
+        height: 35px;
+        width: calc(25% + 10px);
+        transform: translateY(10px);
       }
     }
 
@@ -118,6 +137,7 @@ $channel-text: #606060;
       display: flex;
       justify-content: flex-end;
       align-items: center;
+      color: #0f0f0f;
 
       .function__like {
         display: flex;
@@ -133,8 +153,33 @@ $channel-text: #606060;
           background-color: $white-mode-hover-component;
           cursor: pointer;
         }
-      }
 
+        .like__icon {
+          font-size: 20px;
+          transition: all 0.5s ease;
+        }
+
+        .like__icon__liked {
+          font-size: 20px;
+          color: inherit;
+          animation: zoomInAndOut 1s ease-in-out;
+          animation-iteration-count: 1;
+          animation-fill-mode: forwards;
+        }
+      }
+      @keyframes zoomInAndOut {
+        0%,
+        100% {
+          font-size: 20px;
+        }
+        50% {
+          font-size: 30px;
+          color: rgb(255, 0, 153);
+          box-shadow: 0 0 10px rgba(255, 0, 153, 0.7);
+          border-radius: 50%;
+          transform: translateY(-7px);
+        }
+      }
       .function__dislike {
         display: flex;
         justify-content: center;

@@ -48,3 +48,39 @@ export const getInfo = async () => {
   }
   return result;
 }
+
+export const getInfoByUserName = async (data) => {
+  let result = null;
+  let user = getStoredUserData();
+  try {
+    result = await axios.get(VTUBE_API + `/users/${data.userName}`, {
+      headers: {
+        Authorization: "Bearer " + user.accessToken,
+      },
+    });
+  } catch (e) {
+    console.error("Error when fetching info user by userName", e);
+  }
+  return result;
+};
+
+
+export const getUserList = async (data) => {
+  let result = [];
+  let user = getStoredUserData();
+  try {
+    result = await axios({
+      url: `${VTUBE_API}/users/list-user`,
+      method: "post",
+      headers: {
+        Authorization: "Bearer " + user.accessToken,
+      },
+      data: {
+        userIdList:data,
+      }
+    });
+  } catch (e) {
+    console.error("Error when fetching list user by list userId", e);
+  }
+  return result;
+};

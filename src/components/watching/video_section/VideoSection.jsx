@@ -1,5 +1,11 @@
 import style from "../../../assets/scss/watching/_videoSection.module.scss";
-import { BiDislike, BiLike, BiSolidLike } from "react-icons/bi";
+import {
+  BiBell,
+  BiDislike,
+  BiLike,
+  BiSolidDislike,
+  BiSolidLike,
+} from "react-icons/bi";
 import { PiShareFatLight } from "react-icons/pi";
 import ShowMore from "react-show-more-text";
 import "react-show-more-text/lib/ShowMoreText.css";
@@ -12,10 +18,7 @@ import {
 } from "../../../features/video/subscriberSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
-import {
-  addLiked,
-  removeVideoLiked,
-} from "../../../features/video/videoLikedSlice";
+import { addLikeOrDislikeVideo } from "../../../features/video/videoLikedSlice";
 import handleShareClick from "../../../services/handleShareClick";
 import { getInfoUser, selectUserInfo } from "../../../features/auth/userSlice";
 import ReactPlayer from "react-player";
@@ -28,6 +31,7 @@ function VideoSection({ video }) {
   const [description, setDescription] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
+  const [isDisliked, setIsDisliked] = useState(false);
   const user = useSelector(selectUserInfo);
   const [userInfo, setUserInfo] = useState({});
   const [reRender, setReRender] = useState(true);
@@ -55,8 +59,10 @@ function VideoSection({ video }) {
     if (video && video.userDto && video.userDto.id) {
       const subscribed = isChannelSubscribed(video.userDto.id);
       const liked = isVideoLiked(video.id);
+      const disliked = isVideoDisliked(video.id);
       setIsSubscribed(subscribed);
       setIsLiked(liked);
+      setIsDisliked(disliked);
     }
   }, [video, user]);
 
@@ -68,6 +74,20 @@ function VideoSection({ video }) {
   const isVideoLiked = (videoId) => {
     const listVideoLiked = userInfo && userInfo.likedVideos;
     return listVideoLiked ? listVideoLiked.includes(videoId) : false;
+  };
+
+  const isVideoDisliked = (videoId) => {
+    const listVideoDisliked = userInfo && userInfo.disLikedVideos;
+    return listVideoDisliked ? listVideoDisliked.includes(videoId) : false;
+  };
+
+  const isVideoOwner = (videoId) => {
+    const listVideoOwner = userInfo && userInfo.videoList;
+    return listVideoOwner ? listVideoOwner.includes(videoId) : false;
+  };
+
+  const myFunction = (id) => {
+    dispatch(removeSubscribed(id));
   };
 
   const handleSubscribeClick = (id) => {
@@ -83,32 +103,32 @@ function VideoSection({ video }) {
         toast.success(
           isSubscribed ? "Subscription removed" : "Subscription added",
           {
-            position: "top-right",
+            position: "bottom-left",
             autoClose: 1500,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "light",
+            theme: "dark",
           }
         );
       } else {
         toast.info("Sign in to subscribe to this channel.", {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: true,
+          position: "bottom-left",
+          autoClose: 1500,
+          hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "light",
+          theme: "dark",
         });
       }
     } catch (error) {
       toast.error("Failed to subscribe/unsubscribe:", error, {
         position: "top-right",
-        autoClose: 2000,
+        autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -119,41 +139,74 @@ function VideoSection({ video }) {
     }
   };
 
-  const handleLikeClick = (id) => {
+  const handleLikeClick = (id, likeStatus) => {
     try {
       if (loggerUser) {
-        if (isLiked) {
-          dispatch(removeVideoLiked(id));
-        } else {
-          dispatch(addLiked(id));
+        if (isDisliked) {
+          setIsDisliked(false);
         }
-        setIsLiked(!isLiked);
-        toast.success(isLiked ? "Like removed" : "Like added", {
-          position: "top-right",
+        if (isLiked) {
+          dispatch(addLikeOrDislikeVideo({ id, likeStatus }));
+          setIsLiked(false);
+        } else {
+          dispatch(addLikeOrDislikeVideo({ id, likeStatus }));
+          setIsLiked(true);
+        }
+      } else {
+        toast.info("Sign in to like to this video.", {
+          position: "bottom-left",
           autoClose: 1500,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "light",
-        });
-      } else {
-        toast.info("Sign in to make your opinion count.", {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
+          theme: "dark",
         });
       }
     } catch (error) {
       toast.error("Failed to like/unlike:", error, {
         position: "top-right",
-        autoClose: 2000,
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
+
+  const handleDislikeClick = (id, likeStatus) => {
+    try {
+      if (loggerUser) {
+        if (isLiked) {
+          setIsLiked(false);
+        }
+        if (isDisliked) {
+          dispatch(addLikeOrDislikeVideo({ id, likeStatus }));
+          setIsDisliked(false);
+        } else {
+          dispatch(addLikeOrDislikeVideo({ id, likeStatus }));
+          setIsDisliked(true);
+        }
+      } else {
+        toast.info("Sign in to dislike to this video.", {
+          position: "bottom-left",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      }
+    } catch (error) {
+      toast.error("Failed to like/unlike:", error, {
+        position: "top-right",
+        autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -188,46 +241,72 @@ function VideoSection({ video }) {
           <div className={style.video__title}>{video.title}</div>
           <div className={`${style.video__info__function}`}>
             <div className={style.info__channel}>
-              <img
-                className={style.channel__avatar}
-                src={userDto.avatar}
-                alt={"user avatar"}
-              />
+              <Link to={`/homeProfile/@${userDto.userName}/*`}>
+                <img
+                  className={style.channel__avatar}
+                  src={userDto.avatar}
+                  alt={"user avatar"}
+                />
+              </Link>
               <div className={style.channel__info}>
-                <Link to={"/"}>
+                <Link to={`/homeProfile/@${userDto.userName}/*`}>
                   <span className={style.channel__name}>
-                    {userDto.userName}
+                    {userDto.channelName
+                      ? userDto.channelName
+                      : userDto.userName}
                   </span>
                 </Link>
                 <span className={style.channel__subscribers}>
-                  40m Subscribers
+                  {formatNumberView(userDto.subscribers)}
+                  subscribers
                 </span>
               </div>
               <ToastContainer />
-              <button
-                className={`${style.function__subscribe} ${
-                  isSubscribed ? "unsubscribed" : ""
-                }`}
-                onClick={() => handleSubscribeClick(userDto.id)}
-              >
-                {isSubscribed ? "Unsubscribe" : "Subscribe"}
-              </button>
+              {!isVideoOwner(video.id) ? (
+                <button
+                  className={`${style.function__subscribe} ${
+                    isSubscribed ? style.unsubscribed : ""
+                  }`}
+                  onClick={() => handleSubscribeClick(userDto.id)}
+                >
+                  {isSubscribed ? (
+                    <span style={{ display: "flex" }}>
+                      <BiBell size={20} /> Subscribed
+                    </span>
+                  ) : (
+                    <span>Subscribe</span>
+                  )}
+                </button>
+              ) : (
+                <button className={style.function__manage}>Manage video</button>
+              )}
             </div>
             <div className={style.function__channel}>
               <button
                 className={`${style.function__like}`}
-                onClick={() => handleLikeClick(video.id)}
+                onClick={() => handleLikeClick(video.id, true)}
               >
-                {isLiked ? <BiSolidLike size={20} /> : <BiLike size={20} />}
+                {isLiked ? (
+                  <BiSolidLike className={`${style.like__icon__liked} `} />
+                ) : (
+                  <BiLike className={style.like__icon} />
+                )}
                 <span>
                   {isLiked
                     ? formatNumberView(video.likes + 1)
                     : formatNumberView(video.likes)}
                 </span>
               </button>
-              <span className={`${style.function__dislike}`}>
-                <BiDislike size={20} />
-              </span>
+              <button
+                className={`${style.function__dislike}`}
+                onClick={() => handleDislikeClick(video.id, false)}
+              >
+                {isDisliked ? (
+                  <BiSolidDislike size={20} />
+                ) : (
+                  <BiDislike size={20} />
+                )}
+              </button>
               <button
                 className={style.function__share}
                 onClick={() => handleShareClick(video.id)}

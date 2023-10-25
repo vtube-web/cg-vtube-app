@@ -8,7 +8,6 @@ import {
   selectVideoList,
 } from "../../features/video/videoSlice";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
 
 function HomeScreen() {
   const dispatch = useDispatch();
@@ -18,7 +17,6 @@ function HomeScreen() {
   useEffect(() => {
     if (success || reRender) {
       dispatch(getVideos());
-      console.log("test");
     }
   }, []);
 

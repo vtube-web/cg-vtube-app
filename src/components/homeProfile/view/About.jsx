@@ -2,8 +2,9 @@
 import { Link } from 'react-router-dom';
 import '../../../assets/css/homeProfile/AboutProfile.css';
 import { PiShareFatLight } from 'react-icons/pi';
+import formatDate from '../../../format/FormatDate';
 
-function About() {
+function About(props) {
 
   return (
     <div className="container mt-5">
@@ -16,20 +17,7 @@ function About() {
                 </div>
                 <div>
                   <p className="description-homeProfile-text ">
-                    Thái Dơm ! Debug để thêm bug. Kênh này là kênh cá nhân nhé.
-                    Thằng nào vào đây ý kiến bố chém.
-                    <br />
-                    Channel này là nơi Thái Dev chia sẻ những kinh nghiệm, suy
-                    nghĩ và kiến thức từ cơ bản đến nâng cao trong lập trình.
-                    <br />
-                    Cảm ơn mọi người đã đồng hành và ủng hộ mình.Sống tốt nhá,
-                    ai FA thì sớm có người yêu nhá.
-                    <br />
-                    Xem thêm thông tin của mình tại: <br />
-                    Dashboard: https://thaidev.com <br />
-                    Facebook Page: https://www.facebook.com/ongdevvuitinh <br />
-                    Discord: https://discord.gg/UAjbyrcZT5 <br />
-                    Github: https://github.com/ThaiNguyen99. <br />
+                    {props.description}
                   </p>
                 </div>
               </div>
@@ -42,10 +30,11 @@ function About() {
                     to={"https://www.w3schools.com"}
                     className="detail-homeProfile-email"
                   >
-                    thainguyengg12@gmail.com!
+                    {props.email}
                   </Link>
                 </div>
               </div>
+
               <div className='just-for-nothing'></div>
 
             </div>
@@ -55,11 +44,9 @@ function About() {
             <div className="d-flex flex-column">
               <div className="mb-3 pb-3 px-0 text">Statistic</div>
               <div className="mb-3 pb-3 px-0 text">
-                Created At : July 19, 2016
+                Created At :
+                {formatDate(props.createdAt)}
               </div>
-              {/* <div className="mb-3 pb-3 px-0 text">
-                Total views : 100.000.000
-              </div> */}
               <div className="px-0">
                 <button>
                   <PiShareFatLight size={25} />

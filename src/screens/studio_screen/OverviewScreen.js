@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   setIsModalUpload,
   getIsModalUpload,
@@ -7,20 +7,19 @@ import { useDispatch, useSelector } from "react-redux";
 import Upload from "../../layouts/commons/studio/overview/Upload";
 import InformationFill from "../../layouts/commons/studio/overview/InformationFill";
 import "../../assets/css/studio/overview-screen.css";
- import { ToastContainer} from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { setVideo } from "../../features/studio/videoUploadSlice";
-
 
 function OverviewScreen() {
   const isModalUpload = useSelector(getIsModalUpload);
   const [stepUpload, setStepUpload] = useState(false);
   const [refresh, setRefresh] = useState(false);
-   const handleRefresh = () => {
-     setRefresh(!refresh);
-     setStepUpload(false);
+  const handleRefresh = () => {
+    setRefresh(!refresh);
+    setStepUpload(false);
     dispatch(setIsModalUpload(false));
     dispatch(setVideo({}));
-   };
+  };
   const dispatch = useDispatch();
   return (
     <div className="text-black">
@@ -112,7 +111,6 @@ function OverviewScreen() {
                 dispatch(setIsModalUpload(false));
               }}
               stepUpload={() => setStepUpload(true)}
-            
             />
           )}
         </div>
