@@ -131,6 +131,7 @@ const WatchedScreen = () => {
         onSearch={handleSearch}
         setShowNoWatchHistoryMessage={setShowNoWatchHistoryMessage}
         setVideosGroupedByDay={setVideosGroupedByDay}
+        setIsRemove={setIsRemove}
       />
       <div className={`${style.primary} col-auto`}>
         <div className={style.section__list__render}>

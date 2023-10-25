@@ -11,7 +11,7 @@ export default function SearchScreen() {
 
     useEffect(() => {
         if (searchData) {
-            setVideos(searchData.data.content);
+            setVideos(searchData.data?.content);
         }
     }, [searchData])
     return (

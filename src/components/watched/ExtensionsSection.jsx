@@ -14,6 +14,7 @@ const ExtensionsSection = ({
   onSearch,
   setShowNoWatchHistoryMessage,
   setVideosGroupedByDay,
+  setIsRemove,
 }) => {
   const dispatch = useDispatch();
   const [searchKeyword, setSearchKeyword] = useState("");
@@ -39,6 +40,7 @@ const ExtensionsSection = ({
       if (result.isConfirmed) {
         dispatch(removeAllVideoWatched());
         setVideosGroupedByDay({});
+        setIsRemove(true);
         setShowNoWatchHistoryMessage(true);
         handleRemoveItem();
         Swal.fire("Cleared!", "All videos have been cleared.", "success");
