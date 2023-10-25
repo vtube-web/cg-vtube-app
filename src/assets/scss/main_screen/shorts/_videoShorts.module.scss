@@ -357,6 +357,8 @@ $white: white;
             opacity: 85%;
           }
         }
+
+
       }
     }
 
@@ -367,4 +369,7 @@ $white: white;
       transition: all ease-out 0.5s;
     }
   }
+}
+small {
+  color: red !important;
 }

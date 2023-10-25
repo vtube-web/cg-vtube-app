@@ -88,9 +88,9 @@ function VideoSection({ video }) {
         return listVideoOwner ? listVideoOwner.includes(videoId) : false;
     };
 
-    const myFunction = (id) => {
-        dispatch(removeSubscribed(id));
-    };
+    // const myFunction = (id) => {
+    //     dispatch(removeSubscribed(id));
+    // };
 
     const handleEditVideoClick = (userId, videoId) => {
         navigate(`/channel/${userId}/content/edit/${videoId}`);
