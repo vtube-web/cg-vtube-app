@@ -1,10 +1,10 @@
 import { NavLink, useParams } from "react-router-dom";
 import React, { useEffect } from "react";
-import style from "../../assets/scss/watching/_suggestionVideo.module.scss";
+import style from "../../../assets/scss/watching/_suggestionVideo.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { getVideos, selectVideoList } from "../../features/video/videoSlice";
-import formatNumberView from "../../format/FormatNumberView";
-import formatDateAgo from "../../format/FormatDateAgo";
+import { getVideos, selectVideoList } from "../../../features/video/videoSlice";
+import formatNumberView from "../../../format/FormatNumberView";
+import formatDateAgo from "../../../format/FormatDateAgo";
 
 export function SuggestionVideo() {
   const dispatch = useDispatch();
@@ -37,7 +37,9 @@ export function SuggestionVideo() {
                   {suggestionVideo.title}
                 </span>
                 <span className={style.suggestVideo__channel}>
-                  {suggestionVideo.userDto.userName}
+                  {suggestionVideo.userDto.channelName
+                    ? suggestionVideo.userDto.channelName
+                    : suggestionVideo.userDto.userName}
                 </span>
                 <span className={style.suggestVideo__details}>
                   {formatNumberView(suggestionVideo.views)} views •{" "}

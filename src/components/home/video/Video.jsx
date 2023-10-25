@@ -1,24 +1,20 @@
-import React from 'react'
-import style from '../../../assets/scss/main_screen/home/_video.module.scss'
-import formatNumberView from "../../../format/FormatNumberView";
+import React from "react";
 import {NavLink} from "react-router-dom";
-import formatDate from "../../../format/FormatDate";
 import formatDateAgo from "../../../format/FormatDateAgo";
+import formatNumberView from "../../../format/FormatNumberView";
+import style from '../../../assets/scss/main_screen/home/_video.module.scss'
 
-function Video({video,isSidebarOpen }) {
-    const videoClassName = isSidebarOpen
-        ? style.video
-        : `${style.video} ${style.videoLarge}`;
+function Video({video}) {
     return (
-        <NavLink to={`/watching/${video.id}`}>
+        <NavLink to={`/watching/${video.id}`} className={style.container}>
             <div className={style.video}>
                 <div className={style.video__top}>
                     <div className={style.video__background}
-                        style={{ backgroundImage: `url(${video.thumbnail})` }}
+                         style={{backgroundImage: `url(${video.thumbnail})`}}
                     />
                     <img src={video.thumbnail}
                          alt="thumbnail"
-                         className={style.video__thumbnail} />
+                         className={style.video__thumbnail}/>
                 </div>
                 <div className={style.video__title}>
                     {video.title}

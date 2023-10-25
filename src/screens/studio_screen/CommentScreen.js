@@ -10,6 +10,7 @@ import {
 } from "../../features/studio/commentChannelSlice";
 import Pagination from "../../components/studio/common/pagination/Pagination";
 import { BiSearchAlt2 } from "react-icons/bi";
+import NoDataPage from "../../components/studio/common/blank_page/NoDataPage";
 
 function CommentScreen() {
   const { channelId } = useParams();
@@ -34,17 +35,22 @@ function CommentScreen() {
     }
   }, [dataList]);
 
+  const handleKeyPress = (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    handleSearchData();
+  }
+  }
   const handleChangeValue = (e) => {
     setValue(e.target.value);
-   
   };
   const handleSearchData = () => {
-      dispatch(
-        getCommentByChannel({
-          currentPageNumber: 0,
-          content: value,
-        })
-      );
+    dispatch(
+      getCommentByChannel({
+        currentPageNumber: 0,
+        content: value,
+      })
+    );
   };
   useEffect(() => {
     if (value === "") {
@@ -52,39 +58,41 @@ function CommentScreen() {
     }
   }, [value]);
 
-
   const handleNextPage = (label) => {
     const currentPageNumber = datas?.currentPageNumber;
     const totalPages = datas?.totalPages;
     if (label == "Next page" && datas?.hasNext) {
       if (currentPageNumber < totalPages) {
         dispatch(
-          getCommentByChannel({ currentPageNumber: currentPageNumber + 1,content:value })
+          getCommentByChannel({
+            currentPageNumber: currentPageNumber + 1,
+            content: value,
+          })
         );
       }
     } else if (label == "Previous page" && datas?.hasPrevious) {
       if (currentPageNumber > 0) {
-          dispatch(
-            getCommentByChannel({
-              currentPageNumber: currentPageNumber - 1,
-              content: value,
-            })
-          );
+        dispatch(
+          getCommentByChannel({
+            currentPageNumber: currentPageNumber - 1,
+            content: value,
+          })
+        );
       }
     } else if (label == "First page") {
-         dispatch(
-           getCommentByChannel({
-             currentPageNumber: 0,
-             content: value,
-           })
-         );
+      dispatch(
+        getCommentByChannel({
+          currentPageNumber: 0,
+          content: value,
+        })
+      );
     } else if (label == "Last page") {
-       dispatch(
-         getCommentByChannel({
-           currentPageNumber: totalPages - 1,
-           content: value,
-         })
-       );
+      dispatch(
+        getCommentByChannel({
+          currentPageNumber: totalPages - 1,
+          content: value,
+        })
+      );
     }
   };
   return (
@@ -120,6 +128,7 @@ function CommentScreen() {
                 placeholder="value"
                 value={value}
                 onChange={handleChangeValue}
+                onKeyPress={handleKeyPress}
               />
               <BiSearchAlt2
                 className="w-7 h-7 text-gray-400 hover:text-gray-700 hover:cursor-pointer"
@@ -127,15 +136,20 @@ function CommentScreen() {
               />
             </div>
           </div>
+          {datas?.content?.length != 0 ? (
+            <>
+              {datas?.content?.map((data, i) => (
+                <Comment data={data} key={i} />
+              ))}
 
-          {datas?.content?.map((data, i) => (
-            <Comment data={data} key={i} />
-          ))}
-
-          <div>
-            <Pagination datas={datas} handleNextPage={handleNextPage} />
-            <div className="py-4"></div>
-          </div>
+              <div>
+                <Pagination datas={datas} handleNextPage={handleNextPage} />
+                <div className="py-4"></div>
+              </div>
+            </>
+          ) : (
+            <NoDataPage title={"No comments found."} />
+          )}
         </div>
       </div>
     </div>

@@ -14,10 +14,7 @@ import PlayList from "../../components/homeProfile/view/PlayList";
 import About from "../../components/homeProfile/view/About";
 import Channel from "../../components/homeProfile/view/Channel";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getInfoUser,
-  selectUserInfo,
-} from "../../features/auth/userSlice";
+import { getInfoUser, selectUserInfo } from "../../features/auth/userSlice";
 import formatNumberView from "../../format/FormatNumberView";
 import axios from "axios";
 import { getStoredUserData } from "../../services/accountService";
@@ -69,7 +66,6 @@ function HomeProfileScreen() {
     },
   ];
 
-
   useEffect(() => {
     if (subParam == "*") {
       navigate(`/homeProfile/${userName}/featured`);
@@ -95,7 +91,6 @@ function HomeProfileScreen() {
     fetchDataUserInfo();
   }, [userName]);
 
-
   useEffect(() => {
     if (loggerUser) {
       if (!myDataInfo) {
@@ -107,17 +102,14 @@ function HomeProfileScreen() {
     setIsSubscribed(subscribed);
   }, [myDataInfo, userName, userInfo]);
 
-
   useEffect(() => {
-    if(userInfo) {
+    if (userInfo) {
       dispatch(getInfoUser());
     } else {
       setMyInfo(myDataInfo);
     }
-  },[userName]);
+  }, [userName]);
 
-
-  
   const isChannelSubscribed = (channelId) => {
     const subscribedChannels = myInfo?.subscriptions;
     return subscribedChannels ? subscribedChannels.includes(channelId) : false;
@@ -131,7 +123,6 @@ function HomeProfileScreen() {
   function handleSubmit(e) {
     e.preventDefault();
   }
-
 
   const handleSubscribeClick = (id) => {
     try {
@@ -186,7 +177,7 @@ function HomeProfileScreen() {
                 />
               </div>
 
-              <div class="homeProfile-title flex-grow-1 mx-3 py-2 ">
+              <div className="homeProfile-title flex-grow-1 mx-3 py-2 ">
                 <div className="flex-item mb-2">
                   <h1 className="fs-2 m-0 p-0 text-black d-flex align-items-center">
                     {userInfo?.channelName}
@@ -198,19 +189,19 @@ function HomeProfileScreen() {
                     </i>
                   </h1>
                 </div>
-                <div class="homeProfile-subscriber-count d-flex flex-column flex-sm-row flex-item mb-2 ">
-                  <div class="text-body-tertiary d-flex justify-content-center justify-content-sm-start">
+                <div className="homeProfile-subscriber-count d-flex flex-column flex-sm-row flex-item mb-2 ">
+                  <div className="text-body-tertiary d-flex justify-content-center justify-content-sm-start">
                     @
-                    <span class="homeProfile-username-text">
+                    <span className="homeProfile-username-text">
                       {userInfo?.userName}
                     </span>
                   </div>
-                  <div class="text-body-tertiary d-flex justify-content-center justify-content-sm-start mx-2 ">
+                  <div className="text-body-tertiary d-flex justify-content-center justify-content-sm-start mx-2 ">
                     {userInfo?.subscribers
                       ? `${formatNumberView(userInfo.subscribers)} subscribers`
                       : "0 subscribers"}
                   </div>
-                  <div class="text-body-tertiary d-flex justify-content-center justify-content-sm-start">
+                  <div className="text-body-tertiary d-flex justify-content-center justify-content-sm-start">
                     {userInfo?.videoList ? userInfo.videoList.length : 0} video
                   </div>
                 </div>
@@ -254,12 +245,11 @@ function HomeProfileScreen() {
                   </button>
                 )}
               </div>
-
             </div>
           </section>
 
-          <nav class="homeProfile-nav d-flex flex-nowrap text-nowrap h-10 p-0 ">
-            <div class="container">
+          <nav className="homeProfile-nav d-flex flex-nowrap text-nowrap h-10 p-0 ">
+            <div className="container">
               <ul>
                 {menus.map((menu, i) => (
                   <NavItem menu={menu} key={i} />
@@ -287,7 +277,11 @@ function HomeProfileScreen() {
             {subParam == "videos" ? <Video /> : <></>}
             {subParam == "shorts" ? <Shorts /> : <></>}
             {subParam == "playlists" ? <PlayList /> : <></>}
-            {subParam == "channels" ? <Channel subscriptions={userInfo?.subscriptions}/> : <></>}
+            {subParam == "channels" ? (
+              <Channel subscriptions={userInfo?.subscriptions} />
+            ) : (
+              <></>
+            )}
             {subParam == "about" ? (
               <About
                 description={userInfo?.description}

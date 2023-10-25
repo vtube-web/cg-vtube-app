@@ -45,7 +45,8 @@ export const getListUser = createAsyncThunk("list-user", async (data) => {
     const response = await getUserList(data);
     return response.data;
   } else {
-    throw new Error("No Data");
+    throw new Error('No Data');
+
   }
 }); 
 

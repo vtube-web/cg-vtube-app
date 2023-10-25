@@ -27,8 +27,10 @@ function VideoItem({ isChecked, onChangeItem, item }) {
       <div className="py-2 text-end col-2 ">{item?.totalComment}</div>
       <div className="py-2 text-end col-2 pr-3 ">
         {item?.likes && item?.dislikes
-          ? (item?.likes / (item?.likes + item?.dislikes)) * 100
-          : "" || "--"}
+          ? `${Math.floor(
+              (item?.likes / (item?.likes + item?.dislikes)) * 100
+            )}%`
+          : "--"}
       </div>
     </div>
   );

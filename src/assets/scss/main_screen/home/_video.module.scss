@@ -3,7 +3,7 @@
 a {
   color: $text-color-for-black;
   text-decoration: none;
-  padding-bottom: 10px;
+  padding: 0px;
 
   .video {
     width: 20rem;
@@ -88,10 +88,3 @@ a {
     }
   }
 }
-
-//@media(max-width: $breakpoint-small) {
-//
-//}
-//@media(max-width: $breakpoint-medium) {
-//
-//}

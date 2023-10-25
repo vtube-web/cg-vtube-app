@@ -6,13 +6,17 @@ const SearchComponent = ({
   searchKeyword,
   handleSearchChange,
   performSearch,
+  setSearchKeyword,
 }) => {
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       performSearch();
     }
   };
-
+  const clearSearchKeyword = () => {
+    setSearchKeyword("");
+    performSearch();
+  };
   return (
     <div className={`${style.input__wrapper} row`}>
       <div className="col-1">
@@ -27,7 +31,12 @@ const SearchComponent = ({
           value={searchKeyword}
           onChange={handleSearchChange}
           onKeyDown={handleKeyDown}
-        ></input>
+        />
+        {searchKeyword && (
+          <button className={style.exit__search} onClick={clearSearchKeyword}>
+            X
+          </button>
+        )}
       </div>
     </div>
   );

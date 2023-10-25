@@ -21,6 +21,11 @@
     height: 8rem;
 }
 
+.homeProfile-avartar img{
+    height: 7.5rem;
+    width: 7.5rem;
+}
+
 .homeProfile-username-text{
     color:rgb(96, 96, 96);
     font-weight: bold;
