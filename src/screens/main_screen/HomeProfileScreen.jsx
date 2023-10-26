@@ -226,11 +226,11 @@ function HomeProfileScreen() {
               <div className=" homeProfile-subscribe mt-3 h-10 ">
                 {userName.slice(1) == getStoredUserData()?.userName ? (
                   <div className="container d-flex flex-row flex-wrap">
-                    <Link className="subscribe-btn btn rounded-pill w-30 d-flex justify-content-center">
-                      <span className="homeProfile-text ">Tuỳ chỉnh kênh</span>
+                    <Link to={`/channel/${getStoredUserData()?.id}/customize`} className="subscribe-btn btn rounded-pill w-30 d-flex justify-content-center">
+                      <span className="homeProfile-text ">Custom your channel</span>
                     </Link>
-                    <Link className="subscribe-btn btn rounded-pill w-30 d-flex justify-content-center">
-                      <span className="homeProfile-text">Quản lý video</span>
+                    <Link to={`/channel/${getStoredUserData()?.id}/content/*}`} className="subscribe-btn btn rounded-pill w-30 d-flex justify-content-center">
+                      <span className="homeProfile-text">Manage Video</span>
                     </Link>
                   </div>
                 ) : (

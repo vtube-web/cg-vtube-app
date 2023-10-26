@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getStoredUserData } from "../../../../services/accountService";
 import axios from "axios";
 import { toast } from "react-toastify";
+import {useNavigate} from "react-router-dom";
 
 function ProfileChannel() {
   const [userName, setUserName] = useState("");
@@ -9,7 +10,7 @@ function ProfileChannel() {
   const [description, setDescription] = useState("");
   const [isSave, setIsSave] = useState(false);
     const user = getStoredUserData();
-
+const navigate = useNavigate();
   useEffect(() => {
     if (user != null) {
       setUserName(user?.userName);
@@ -34,9 +35,9 @@ function ProfileChannel() {
   useEffect(() => {
     if (getStoredUserData() != null) {
       if (
-        user.userName == userName &&
-        user.channelName == channelName &&
-        user.description == description
+        user.userName === userName &&
+        user.channelName === channelName &&
+        user.description === description
       ) {
         setIsSave(false);
       }
@@ -63,8 +64,8 @@ function ProfileChannel() {
             newUserLocal.refreshToken = userLocal.refreshToken;
             window.localStorage.removeItem("user");
             window.localStorage.setItem("user", JSON.stringify(newUserLocal));
+            navigate();
         }
-        console.log(res);
      }).catch((e)=>{
         console.log("error",e);
      });
@@ -93,7 +94,7 @@ function ProfileChannel() {
         />
       </div>
       <div className="mb-4">
-        <div className="mb-2 font-semibold">User name</div>
+        <div className="mb-2 font-semibold">Description</div>
         <textarea
           className="resize-none block w-full outline-none rounded-md border-0 py-1.5 pl-4 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-10"
           placeholder="Introduce viewers to your channel. The description appears in the channel introduction."

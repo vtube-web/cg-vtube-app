@@ -2,10 +2,11 @@ import axios from "axios";
 import {getAccessToken} from "../services/accountService";
 
 const VIDEO_UPLOAD_API = "http://localhost:8080/api/videos";
-const token = getAccessToken() || "";
 
 export const createVideo = async (video) => {
     let result = null;
+    const token = getAccessToken() || "";
+
     try {
         result = axios.post(
             `${VIDEO_UPLOAD_API}/add`,
@@ -19,7 +20,8 @@ export const createVideo = async (video) => {
 };
 
 export const updateVideo = async (video) => {
-  console.log(video);
+    const token = getAccessToken() || "";
+
   let result = null;
   try {
     result = axios.put(`${VIDEO_UPLOAD_API}/update`, video, {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import { BsBoxArrowUpRight } from "react-icons/bs";
 import { HiSquares2X2 } from "react-icons/hi2";
 import { AiOutlinePlaySquare } from "react-icons/ai";
@@ -26,7 +26,16 @@ function SideBar() {
   const [width, setWidth] = useState(window.innerWidth);
   const isModalMenu = useSelector(getIsModalMenu);
   const dispatch = useDispatch();
-  const user= getStoredUserData();
+  const [user, setUser] = useState(getStoredUserData());
+  useEffect(() => {
+    const updatedUser = getStoredUserData();
+    if (
+        updatedUser?.channelName != user?.channelName ||
+        updatedUser?.avatar != user?.avatar
+    ) {
+      setUser(updatedUser);
+    }
+  });
 
   useEffect(() => {
     const handleResize = () => {
@@ -93,6 +102,7 @@ function SideBar() {
             : `grow  ease-in ${width < 1200 ? "col-3" : "col-2"}`
         }`}
       >
+        <Link to={`/homeProfile/@${user?.userName}/featured`}>
         <div
           className={`flex justify-center ${
             isVisibilityMenu ? "" : "relative"
@@ -124,6 +134,8 @@ function SideBar() {
                   }`}
                 />
               </div>
+
+
               <div
                 className={`absolute z-10 top-[96px] whitespace-nowrap rounded-md bg-[#7D7C7C] text-white px-2 py-1 text-[10px] ${
                   isVisibilityMenu
@@ -133,9 +145,11 @@ function SideBar() {
               >
                 Watch your channel vtube
               </div>
+
             </>
           )}
         </div>
+        </Link>
         <div className="text-center mt-3 mb-4 shrink ">
           {isVisibilityMenu ? (
             <></>

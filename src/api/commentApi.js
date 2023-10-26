@@ -1,9 +1,10 @@
 import axios from "axios";
 
-const token =
-  JSON.parse(window.localStorage.getItem("user"))?.accessToken || "";
+
 export const submitComment = async (comment) => {
   let result = null;
+  const token =
+      JSON.parse(window.localStorage.getItem("user"))?.accessToken || "";
   try {
     result = await axios.post(
       `http://localhost:8080/api/${comment.videoId}/comment`,
