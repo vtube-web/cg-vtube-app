@@ -6,7 +6,6 @@
 
 .homeProfile-banner {
     flex-basis: 15vw;
-    background: url("https://images.unsplash.com/photo-1486597622250-f997d79907f8?w=1400&h=600&fit=crop");
     background-position: center 35%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -20,6 +19,11 @@
 .homeProfile-avartar {
     flex-basis: 8rem;
     height: 8rem;
+}
+
+.homeProfile-avartar img{
+    height: 7.5rem;
+    width: 7.5rem;
 }
 
 .homeProfile-username-text{
@@ -40,9 +44,15 @@
 }
 
 
-
 .homeProfile-text p {
-    color: #383434;
+    color: #888181;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 3rem;
+    max-width: 25rem;
+    display: -webkit-box;
 }
 
 .homeProfile-text {
@@ -50,8 +60,6 @@
     font-weight: bold;
     font-size: 1rem;
 }
-
-
 
 
 /* Channel navigation */

@@ -16,15 +16,12 @@ export default function WatchingScreen() {
     const dispatch = useDispatch();
     const video = useSelector(selectVideoDetail);
     const [displayVideo, setDisplayVideo] = useState({});
-    const currentUser = getStoredUserData();
-    const [currentPlaylist, setCurrentPlaylist] = useState([])
     useEffect(() => {
         setDisplayVideo(video);
     }, [video]);
 
     useEffect(() => {
         if (params) {
-            dispatch(collectPlaylists(currentUser.id));
             dispatch(getVideo(params.videoId));
         }
         window.scrollTo({ behavior: "smooth", top: 0, left: 0 });

@@ -83,7 +83,7 @@ const WatchedRender = ({ handleRemoveItem, index, ...videoData }) => {
               <div className={`${style.data__video} row`}>
                 <div className="col-6">
                   <Link
-                    to={`/homeProfile/${videoData.userName}/*`}
+                    to={`/homeProfile/@${videoData.userName}/*`}
                     className={style.hover__link}
                   >
                     {videoData.channelName

@@ -2,7 +2,9 @@
 
 function Shorts() {
   return (
-    <div>Shorts</div>
+    <div className="container">
+      Shorts
+    </div>
   )
 }
 
