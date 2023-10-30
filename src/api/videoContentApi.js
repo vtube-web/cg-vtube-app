@@ -2,10 +2,10 @@ import axios from "axios";
 import { getAccessToken } from "../services/accountService";
 
 const VIDEO_UPLOAD_API = "http://localhost:8080/api/videos/content";
-const token = getAccessToken() || "";
 
 export const getChannelVideo = async (page) => {
   let result = null;
+  const token = getAccessToken() || "";
   try {
     result = axios.get(
       `${VIDEO_UPLOAD_API}?page=${page?.currentPageNumber || 0}&title=${
@@ -25,6 +25,7 @@ export const getChannelVideo = async (page) => {
 
 export const editVideo = async (request) => {
   let result = null;
+  const token = getAccessToken() || "";
   try {
     result = axios.put(
       `${VIDEO_UPLOAD_API}/edit?param=${request?.param}`,
@@ -39,6 +40,7 @@ export const editVideo = async (request) => {
 
 export const deleteVideo = async (idList) => {
   let result =null;
+  const token = getAccessToken() || "";
    try{
     result = axios.put(
       `${VIDEO_UPLOAD_API}/delete`,

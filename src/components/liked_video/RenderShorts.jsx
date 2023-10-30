@@ -17,7 +17,7 @@ const RenderShorts = (handleRemoveItem, ...likedShortVideos) => {
           key={video.id}
           className={`${style.short__render} col-sm-6 col-md-3 col-lg-3`}
         >
-          <Link to={`/shorts/${video.videoId}`}>
+          <Link to={`/shorts`}>
             <div className={style.content__img}>
               <img src={video.thumbnail} alt="thumbnail" />
             </div>
