@@ -1,9 +1,9 @@
 import axios from "axios";
 import { getAccessToken } from "../services/accountService";
-const token = getAccessToken();
 
 export const getComment = async (page) => {
   let result = null;
+  const token = getAccessToken();
   try {
     result = await axios.get(
       `http://localhost:8080/api/comment?page=${
@@ -41,6 +41,7 @@ export const deleteComment = async (id) => {
 
 export const createFeedback = async (feedback) => {
   let result = null;
+  const token = getAccessToken();
   try {
     result = await axios.post(
       `http://localhost:8080/api/${feedback?.commentId}/reply`,
@@ -55,6 +56,7 @@ export const createFeedback = async (feedback) => {
 
 export const editFeedback = async (feedback) => {
   let result = null;
+  const token = getAccessToken();
   try {
     result = await axios.put(`http://localhost:8080/api/reply`, feedback, {
       headers: { Authorization: `Bearer ${token}` },
@@ -77,6 +79,7 @@ export const deleteFeedback = async (id) => {
 
 export const likeComment = async (id) => {
   let result = null;
+  const token = getAccessToken();
     try {
       result = await axios.post(`http://localhost:8080/api/vote/comment/up/${id}`,{}, {
         headers: { Authorization: `Bearer ${token}` },
@@ -89,6 +92,7 @@ export const likeComment = async (id) => {
 
 export const dislikeComment = async (id) => {
   let result = null;
+  const token = getAccessToken();
   try {
     result = await axios.post(`http://localhost:8080/api/vote/comment/down/${id}`,{} ,{
       headers: { Authorization: `Bearer ${token}` },
@@ -101,6 +105,7 @@ export const dislikeComment = async (id) => {
 
 export const likeFeedback = async (id) => {
   let result = null;
+  const token = getAccessToken();
   try {
     result = await axios.post(
       `http://localhost:8080/api/vote/reply/up/${id}`,
@@ -117,6 +122,7 @@ export const likeFeedback = async (id) => {
 
 export const dislikeFeedback = async (id) => {
   let result = null;
+  const token = getAccessToken();
   try {
     result = await axios.post(
       `http://localhost:8080/api/vote/reply/down/${id}`,

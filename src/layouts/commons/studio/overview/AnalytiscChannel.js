@@ -16,7 +16,6 @@ function AnalytiscChannel() {
           }`
         )
         .then((res) => {
-          console.log(res?.data);
           if (parseInt(res?.data?.status) == 200) {
             setData(res?.data?.data);
           }

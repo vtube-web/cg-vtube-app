@@ -36,18 +36,6 @@ $channel-text: #606060;
         object-fit: fill;
         border-radius: 30px;
       }
-
-      //.custom__controls {
-      //  position: absolute;
-      //  bottom: 0;
-      //  left: 0;
-      //  right: 0;
-      //  background-color: #606060;
-      //  padding: 10px;
-      //  display: flex;
-      //  justify-content: space-between;
-      //  align-items: center;
-      //}
     }
   }
 
@@ -110,12 +98,8 @@ $channel-text: #606060;
           background-color: #4c4c4c;
           cursor: pointer;
         }
-        // & .unsubscribed{
-        // background-color: red;
-        // }
       }
       .unsubscribed {
-        /* Màu khi đã subscribe-- chưa xong */
         color: #0f0f0f;
         background-color: $white-mode-background-component;
         &:hover {

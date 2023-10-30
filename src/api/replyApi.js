@@ -1,10 +1,11 @@
 import axios from "axios";
 
-const token =
-    JSON.parse(window.localStorage.getItem("user"))?.accessToken || "";
+
 
 export const submitReply = async(reply) => {
     let result = null;
+    const token =
+      JSON.parse(window.localStorage.getItem("user"))?.accessToken || "";
     try {
         result = await axios.post(
             `http://localhost:8080/api/${reply.commentId}/reply`,

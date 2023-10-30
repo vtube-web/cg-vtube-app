@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getStoredUserData } from "../../../../services/accountService";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 function ProfileChannel() {
   const [userName, setUserName] = useState("");
@@ -43,6 +44,7 @@ function ProfileChannel() {
     }
   }, [userName, channelName, description,isSave]);
 
+  const navigate = useNavigate();
   const handleClickSave = () => {
     if (isSave) {
       
@@ -63,8 +65,8 @@ function ProfileChannel() {
             newUserLocal.refreshToken = userLocal.refreshToken;
             window.localStorage.removeItem("user");
             window.localStorage.setItem("user", JSON.stringify(newUserLocal));
+            navigate();
         }
-        console.log(res);
      }).catch((e)=>{
         console.log("error",e);
      });

@@ -7,7 +7,7 @@ export const submitCommentShorts = async(commentShorts) => {
     console.log(commentShorts);
     try {
         result = await axios.post(
-            `http://localhost:8080/api/${commentShorts.shortsId}/commentShorts`,
+            `http://localhost:8080/api/${commentShorts.videoId}/commentShorts`,
             {content: commentShorts.content},
             {headers: {Authorization: `Bearer ${token}`}}
         );

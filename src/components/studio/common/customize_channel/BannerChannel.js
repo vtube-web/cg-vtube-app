@@ -5,10 +5,12 @@ import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { getStoredUserData } from "../../../../services/accountService";
+import { useNavigate } from "react-router";
 
 function BannerChannel() {
   const [imageBanner, setImageBanner] = useState(null);
   const [tempImage, setTempImage] = useState(false);
+    const navigate = useNavigate();
 
   const handleImage = (e) => {
     const img = e.target.files[0];
@@ -45,6 +47,7 @@ function BannerChannel() {
           window.localStorage.setItem("user", JSON.stringify(userLocal));
           setImageBanner(null);
           setTempImage(false);
+          navigate();
         } else {
           toast.error(res.data.message);
         }

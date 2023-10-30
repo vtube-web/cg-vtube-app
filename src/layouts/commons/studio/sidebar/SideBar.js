@@ -16,7 +16,7 @@ import {
 } from "../../../../features/studio/visibilitySlice";
 import { useDispatch, useSelector } from "react-redux";
 import { getIsModalMenu } from "../../../../features/studio/modalSlice";
-import {getStoredUserData} from "../../../../services/accountService";
+import { getStoredUserData } from "../../../../services/accountService";
 
 function SideBar() {
   const [mouseAvatar, setMouseAvatar] = useState(false);
@@ -26,7 +26,17 @@ function SideBar() {
   const [width, setWidth] = useState(window.innerWidth);
   const isModalMenu = useSelector(getIsModalMenu);
   const dispatch = useDispatch();
-  const user= getStoredUserData();
+  const [user, setUser] = useState(getStoredUserData());
+
+  useEffect(() => {
+    const updatedUser = getStoredUserData();
+    if (
+      updatedUser?.channelName != user?.channelName ||
+      updatedUser?.avatar != user?.avatar
+    ) {
+      setUser(updatedUser);
+    }
+  });
 
   useEffect(() => {
     const handleResize = () => {
@@ -149,7 +159,7 @@ function SideBar() {
           )}
         </div>
         {menus?.map((menu, i) => (
-          <MenuItem key={i} menu={menu} isVisibilityMenu={isVisibilityMenu}/>
+          <MenuItem key={i} menu={menu} isVisibilityMenu={isVisibilityMenu} />
         ))}
       </div>
     </div>

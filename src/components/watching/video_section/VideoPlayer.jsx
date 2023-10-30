@@ -1,23 +1,52 @@
-import style from "../../../assets/scss/watching/_videoPlayer.module.scss";
+import React, { useEffect } from 'react';
+import fluidPlayer from 'fluid-player';
 
-function VideoPlayer(){
-    return(
-        <div className={style.custom__controls}>
-            <div id="video-controls" className="controls" data-state="hidden">
-                <button id="playpause" type="button" data-state="play">Play/Pause</button>
-                <button id="stop" type="button" data-state="stop">Stop</button>
-                <div className="progress">
-                    <progress id="progress" value="0" min="0">
-                        <span id="progress-bar"></span>
-                    </progress>
-                </div>
-                <button id="mute" type="button" data-state="mute">Mute/Unmute</button>
-                <button id="volinc" type="button" data-state="volup">Vol+</button>
-                <button id="voldec" type="button" data-state="voldown">Vol-</button>
-                <button id="fs" type="button" data-state="go-fullscreen">Fullscreen</button>
-            </div>
+function VideoPlayer({video}) {
+    useEffect(() => {
+        var videoOptions = {
+            "layoutControls": {
+                "controlBar": {
+                    "autoHideTimeout": 3,
+                    "animated": true,
+                    "autoHide": true
+                },
+                "htmlOnPauseBlock": {
+                    "html": "huh?",
+                    "height": "23rem",
+                    "width": "20rem"
+                },
+                "autoPlay": true,
+                "mute": false,
+                "allowTheatre": true,
+                "playPauseAnimation": true,
+                "playbackRateEnabled": true,
+                "allowDownload": true,
+                "playButtonShowing": true,
+                "fillToContainer": false,
+                "posterImage": ""
+            },
+            "vastOptions": {
+                "adList": [],
+                "adCTAText": false,
+                "adCTATextPosition": ""
+            }
+        };
+
+        var videoElement = document.getElementById(video.id);
+        var myFP = fluidPlayer(videoElement, videoOptions);
+
+        return () => {
+            myFP.destroy();
+        };
+    }, []);
+
+    return (
+        <div>
+            <video id={video.id}>
+                <source src={video.videoUrl} type="video/mp4" />
+            </video>
         </div>
-    )
+    );
 }
 
 export default VideoPlayer;

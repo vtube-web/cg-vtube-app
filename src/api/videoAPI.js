@@ -15,30 +15,33 @@ export const findVideoList = async () => {
     return videoList;
 }
 
+
 export const findVideo = async (id) => {
-    let headers = {};
-    const user = getStoredUserData();
-     if (user && user.accessToken) {
-       headers = {
-         Authorization: `Bearer ${user.accessToken}`,
-       };
-     }
+  let headers = {};
+  const user = getStoredUserData();
+  if (user && user.accessToken) {
+    headers = {
+      Authorization: `Bearer ${user.accessToken}`,
+    };
+  }
 
-     try {
-       return await axios.get(`${VIDEO_API}/${id}`, {
-         headers,
-       });
-     } catch (error) {
-       console.log("getVideo API error: ", error);
-     }
-}
+  try {
+    return await axios.get(`${VIDEO_API}/${id}`, {
+      headers,
+    });
+  } catch (error) {
+    console.log("getVideo API error: ", error);
+  }
+};
 
-
-export const findVideoSubscribedList = async () => {
+export const findVideoSubscribedList = async (page) => {
   let result = null;
   let user = getStoredUserData();
   try {
     result = await axios.get(`${VIDEO_API}/subscribed`, {
+      params: {
+        page: page,
+      },
       headers: {
         Authorization: "Bearer " + user.accessToken,
       },
@@ -49,4 +52,4 @@ export const findVideoSubscribedList = async () => {
     );
   }
   return result;
-}
+};
