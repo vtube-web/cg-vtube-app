@@ -4,7 +4,7 @@ import { getAccessToken } from "../services/accountService";
 export const getComment = async (page) => {
   let result = null;
   const token = getAccessToken();
-
+console.log(page?.content)
   try {
     result = await axios.get(
       `http://localhost:8080/api/comment?page=${
