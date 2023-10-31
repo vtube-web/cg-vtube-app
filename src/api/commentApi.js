@@ -1,13 +1,13 @@
 import axios from "axios";
-
+import { VTUBE_API } from "../app/constants";
 
 export const submitComment = async (comment) => {
   let result = null;
   const token =
-      JSON.parse(window.localStorage.getItem("user"))?.accessToken || "";
+    JSON.parse(window.localStorage.getItem("user"))?.accessToken || "";
   try {
     result = await axios.post(
-      `http://localhost:8080/api/${comment.videoId}/comment`,
+      `${VTUBE_API}/${comment.videoId}/comment`,
       { content: comment.content },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -16,4 +16,3 @@ export const submitComment = async (comment) => {
   }
   return result;
 };
-

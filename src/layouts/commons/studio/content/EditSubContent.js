@@ -16,8 +16,9 @@ import {
   findChannelVideo,
   getDataReq,
 } from "../../../../features/studio/videoContentSlice";
-import {getAccessToken} from "../../../../services/accountService";
+import { getAccessToken } from "../../../../services/accountService";
 import VideoShort from "../overview/imformation_fill/VideoShort";
+import { VTUBE_API } from "../../../../app/constants";
 
 function EditSubContent() {
   const { videoId } = useParams();
@@ -29,7 +30,7 @@ function EditSubContent() {
   const [data, setData] = useState("");
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/videos/${videoId}`, {
+      .get(`${VTUBE_API}/videos/${videoId}`, {
         headers: { Authorization: `Bearer ${getAccessToken()}` },
       })
       .then((res) => {
@@ -62,7 +63,7 @@ function EditSubContent() {
   const [image, setImage] = useState("");
   const [mouseImg, setMouseImg] = useState(false);
   const [isValidateImage, setIsValidateImage] = useState(false);
-    const [isShorts, setIsShorts] = useState(false);
+  const [isShorts, setIsShorts] = useState(false);
 
   useEffect(() => {
     setTitle(data?.title);
@@ -191,18 +192,18 @@ function EditSubContent() {
       return true;
     }
   };
-    const handleClickVideoButton = () => {
-      setIsShorts(false);
-    };
-    const handleClickShortsButton = () => {
-      let duraction = parseInt(data?.duration.split(".")[0]);
+  const handleClickVideoButton = () => {
+    setIsShorts(false);
+  };
+  const handleClickShortsButton = () => {
+    let duraction = parseInt(data?.duration.split(".")[0]);
 
-      if (duraction > 180) {
-        toast.warning("The length of the video exceeds 3 minutes");
-      } else {
-        setIsShorts(true);
-      }
-    };
+    if (duraction > 180) {
+      toast.warning("The length of the video exceeds 3 minutes");
+    } else {
+      setIsShorts(true);
+    }
+  };
   const dataReq = useSelector(getDataReq);
   const handleSubmit = () => {
     if (

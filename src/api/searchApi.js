@@ -1,6 +1,7 @@
 import axios from "axios";
+import { VTUBE_API } from "../app/constants";
 
-export const SEARCH_API = "http://localhost:8080/api/search";
+export const SEARCH_API = `${VTUBE_API}/search`;
 
 
 export const getSearchResult = async(inputSearch) => {

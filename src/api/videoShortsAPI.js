@@ -1,6 +1,7 @@
 import axios from "axios";
+import { VTUBE_API } from "../app/constants";
 
-export const VIDEO_SHORTS_API = "http://localhost:8080/api/shorts";
+export const VIDEO_SHORTS_API = `${VTUBE_API}/shorts`;
 
 export const findVideoShorts = async (page) => {
     let videoShortsList = null;

@@ -23,6 +23,7 @@ import {
   addSubscriber,
   removeSubscribed,
 } from "../../features/video/subscriberSlice";
+import { VTUBE_API } from "../../app/constants";
 
 function HomeProfileScreen() {
   const { userName, subParam } = useParams();
@@ -76,7 +77,7 @@ function HomeProfileScreen() {
     const fetchDataUserInfo = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/users/${userName.slice(1)}`
+          `${VTUBE_API}/users/${userName.slice(1)}`
         );
         setUserInfo(response.data.data);
       } catch (error) {
@@ -141,7 +142,7 @@ function HomeProfileScreen() {
             theme: "dark",
           }
         );
-      }else {
+      } else {
         toast.info("Sign in to subscribe to this channel.", {
           position: "bottom-left",
           autoClose: 1500,
@@ -226,10 +227,18 @@ function HomeProfileScreen() {
               <div className=" homeProfile-subscribe mt-3 h-10 ">
                 {userName.slice(1) == getStoredUserData()?.userName ? (
                   <div className="container d-flex flex-row flex-wrap">
-                    <Link to={`/channel/${getStoredUserData()?.id}/customize`} className="subscribe-btn btn rounded-pill w-30 d-flex justify-content-center">
-                      <span className="homeProfile-text ">Custom your channel</span>
+                    <Link
+                      to={`/channel/${getStoredUserData()?.id}/customize`}
+                      className="subscribe-btn btn rounded-pill w-30 d-flex justify-content-center"
+                    >
+                      <span className="homeProfile-text ">
+                        Custom your channel
+                      </span>
                     </Link>
-                    <Link to={`/channel/${getStoredUserData()?.id}/content/*}`} className="subscribe-btn btn rounded-pill w-30 d-flex justify-content-center">
+                    <Link
+                      to={`/channel/${getStoredUserData()?.id}/content/*}`}
+                      className="subscribe-btn btn rounded-pill w-30 d-flex justify-content-center"
+                    >
                       <span className="homeProfile-text">Manage Video</span>
                     </Link>
                   </div>

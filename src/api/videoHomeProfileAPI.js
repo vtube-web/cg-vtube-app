@@ -1,7 +1,8 @@
 import axios from "axios";
 import { getStoredUserData } from "../services/accountService";
+import { VTUBE_API } from "../app/constants";
 
-export const VIDEO_HOMEPROFILE_API = "http://localhost:8080/api/homeProfile/videos";
+export const VIDEO_HOMEPROFILE_API = `${VTUBE_API}/homeProfile/videos`;
 
 
 export const videoHomeProfileList = async (data) => {

@@ -1,7 +1,8 @@
 import axios from "axios";
 import { getStoredUserData } from "../services/accountService";
+import { VTUBE_API } from "../app/constants";
 
-export const VIDEO_WATCHED_API = "http://localhost:8080/api/watched-videos";
+export const VIDEO_WATCHED_API = `${VTUBE_API}/watched-videos`;
 
 export const videoWatchedList = async (page) => {
   let videoList = null;
@@ -26,16 +27,13 @@ export const deleteVideoWatched = async (videoId) => {
   let result = null;
   let user = getStoredUserData();
   try {
-    result = await axios.delete(
-      `${VIDEO_WATCHED_API}/${videoId}`,
-      {
-        headers: {
-          Authorization: "Bearer " + user.accessToken,
-          "Accept": "application/json",
-          "Content-Type" : "application/json"
-        },
-      }
-    );
+    result = await axios.delete(`${VIDEO_WATCHED_API}/${videoId}`, {
+      headers: {
+        Authorization: "Bearer " + user.accessToken,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
   } catch (e) {
     console.log("Delete book API error: " + e);
   }
@@ -43,7 +41,7 @@ export const deleteVideoWatched = async (videoId) => {
 };
 
 export const deleteAllVideoWatched = async () => {
-  let result=null;
+  let result = null;
   let user = getStoredUserData();
   try {
     result = await axios.delete(`${VIDEO_WATCHED_API}`, {
@@ -56,4 +54,4 @@ export const deleteAllVideoWatched = async () => {
   }
 
   return result;
-}
+};

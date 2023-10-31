@@ -1,12 +1,12 @@
 import axios from "axios";
 import {getAccessToken} from "../services/accountService";
+import { VTUBE_API } from "../app/constants";
 
-const VIDEO_UPLOAD_API = "http://localhost:8080/api/videos";
+const VIDEO_UPLOAD_API = `${VTUBE_API}/videos`;
 
 export const createVideo = async (video) => {
     let result = null;
     const token = getAccessToken() || "";
-
     try {
         result = axios.post(
             `${VIDEO_UPLOAD_API}/add`,
@@ -20,8 +20,7 @@ export const createVideo = async (video) => {
 };
 
 export const updateVideo = async (video) => {
-    const token = getAccessToken() || "";
-
+  const token = getAccessToken() || "";
   let result = null;
   try {
     result = axios.put(`${VIDEO_UPLOAD_API}/update`, video, {

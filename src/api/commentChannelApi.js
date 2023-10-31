@@ -1,13 +1,13 @@
 import axios from "axios";
 import { getAccessToken } from "../services/accountService";
+import { VTUBE_API } from "../app/constants";
 
 export const getComment = async (page) => {
   let result = null;
   const token = getAccessToken();
-console.log(page?.content)
   try {
     result = await axios.get(
-      `http://localhost:8080/api/comment?page=${
+      `${VTUBE_API}/comment?page=${
         page?.currentPageNumber == null ? 0 : page?.currentPageNumber
       }&content=${page?.content == null ? "" : page?.content}`,
       {
@@ -23,7 +23,7 @@ console.log(page?.content)
 export const editComment = async (comment) => {
   let result = null;
   try {
-    result = await axios.put(`http://localhost:8080/api/comment`, comment);
+    result = await axios.put(`${VTUBE_API}/comment`, comment);
   } catch (e) {
     console.log("edit comment channel error", e);
   }
@@ -33,7 +33,7 @@ export const editComment = async (comment) => {
 export const deleteComment = async (id) => {
   let result = null;
   try {
-    result = axios.delete(`http://localhost:8080/api/comment/${id}`);
+    result = axios.delete(`${VTUBE_API}/comment/${id}`);
   } catch (e) {
     console.log("delete error", e);
   }
@@ -43,10 +43,9 @@ export const deleteComment = async (id) => {
 export const createFeedback = async (feedback) => {
   let result = null;
   const token = getAccessToken();
-
   try {
     result = await axios.post(
-      `http://localhost:8080/api/${feedback?.commentId}/reply`,
+      `${VTUBE_API}/${feedback?.commentId}/reply`,
       feedback,
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -59,9 +58,8 @@ export const createFeedback = async (feedback) => {
 export const editFeedback = async (feedback) => {
   let result = null;
   const token = getAccessToken();
-
   try {
-    result = await axios.put(`http://localhost:8080/api/reply`, feedback, {
+    result = await axios.put(`${VTUBE_API}/reply`, feedback, {
       headers: { Authorization: `Bearer ${token}` },
     });
   } catch (e) {
@@ -73,7 +71,7 @@ export const editFeedback = async (feedback) => {
 export const deleteFeedback = async (id) => {
   let result = null;
   try {
-    result = await axios.delete(`http://localhost:8080/api/reply/${id}`);
+    result = await axios.delete(`${VTUBE_API}/reply/${id}`);
   } catch (e) {
     console.log("delete feedback error", e);
   }
@@ -83,9 +81,8 @@ export const deleteFeedback = async (id) => {
 export const likeComment = async (id) => {
   let result = null;
   const token = getAccessToken();
-
     try {
-      result = await axios.post(`http://localhost:8080/api/vote/comment/up/${id}`,{}, {
+      result = await axios.post(`${VTUBE_API}/vote/comment/up/${id}`,{}, {
         headers: { Authorization: `Bearer ${token}` },
       });
     } catch (e) {
@@ -97,9 +94,8 @@ export const likeComment = async (id) => {
 export const dislikeComment = async (id) => {
   let result = null;
   const token = getAccessToken();
-
   try {
-    result = await axios.post(`http://localhost:8080/api/vote/comment/down/${id}`,{} ,{
+    result = await axios.post(`${VTUBE_API}/vote/comment/down/${id}`,{} ,{
       headers: { Authorization: `Bearer ${token}` },
     });
   } catch (e) {
@@ -111,10 +107,9 @@ export const dislikeComment = async (id) => {
 export const likeFeedback = async (id) => {
   let result = null;
   const token = getAccessToken();
-
   try {
     result = await axios.post(
-      `http://localhost:8080/api/vote/reply/up/${id}`,
+      `${VTUBE_API}/vote/reply/up/${id}`,
       {},
       {
         headers: { Authorization: `Bearer ${token}` },
@@ -129,10 +124,9 @@ export const likeFeedback = async (id) => {
 export const dislikeFeedback = async (id) => {
   let result = null;
   const token = getAccessToken();
-
   try {
     result = await axios.post(
-      `http://localhost:8080/api/vote/reply/down/${id}`,
+      `${VTUBE_API}/vote/reply/down/${id}`,
       {},
       {
         headers: { Authorization: `Bearer ${token}` },

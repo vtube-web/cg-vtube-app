@@ -2,15 +2,16 @@ import React, { useEffect, useState } from "react";
 import { getStoredUserData } from "../../../../services/accountService";
 import axios from "axios";
 import { toast } from "react-toastify";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { VTUBE_API } from "../../../../app/constants";
 
 function ProfileChannel() {
   const [userName, setUserName] = useState("");
   const [channelName, setChannelName] = useState("");
   const [description, setDescription] = useState("");
   const [isSave, setIsSave] = useState(false);
-    const user = getStoredUserData();
-const navigate = useNavigate();
+  const user = getStoredUserData();
+  const navigate = useNavigate();
   useEffect(() => {
     if (user != null) {
       setUserName(user?.userName);
@@ -42,33 +43,35 @@ const navigate = useNavigate();
         setIsSave(false);
       }
     }
-  }, [userName, channelName, description,isSave]);
+  }, [userName, channelName, description, isSave]);
 
   const handleClickSave = () => {
     if (isSave) {
-      
-     axios.put(
-       `http://localhost:8080/api/users`,
-       { id: user?.id, userName,channelName,description},
-       {
-         headers: {
-           Authorization: `Bearer ${user?.accessToken}`,
-         },
-       }
-     ).then((res)=>{
-        if (parseInt(res.data.status) == 200) {
+      axios
+        .put(
+          `${VTUBE_API}/users`,
+          { id: user?.id, userName, channelName, description },
+          {
+            headers: {
+              Authorization: `Bearer ${user?.accessToken}`,
+            },
+          }
+        )
+        .then((res) => {
+          if (parseInt(res.data.status) == 200) {
             toast.success(res.data.message);
             const userLocal = JSON.parse(window.localStorage.getItem("user"));
             const newUserLocal = res.data.data;
-            newUserLocal.accessToken= userLocal.accessToken;
+            newUserLocal.accessToken = userLocal.accessToken;
             newUserLocal.refreshToken = userLocal.refreshToken;
             window.localStorage.removeItem("user");
             window.localStorage.setItem("user", JSON.stringify(newUserLocal));
             navigate();
-        }
-     }).catch((e)=>{
-        console.log("error",e);
-     });
+          }
+        })
+        .catch((e) => {
+          console.log("error", e);
+        });
     }
   };
   return (
