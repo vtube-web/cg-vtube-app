@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { getStoredUserData } from "../../../../services/accountService";
 import { useNavigate, useParams } from "react-router";
+import { VTUBE_API } from "../../../../app/constants";
 
 function AnalytiscChannel() {
   const [data, setData] = useState(null);
@@ -10,11 +11,7 @@ function AnalytiscChannel() {
   useEffect(() => {
     if (data == null) {
       axios
-        .get(
-          `http://localhost:8080/api/videos/statistical/${
-            getStoredUserData()?.id
-          }`
-        )
+        .get(`${VTUBE_API}/videos/statistical/${getStoredUserData()?.id}`)
         .then((res) => {
           if (parseInt(res?.data?.status) == 200) {
             setData(res?.data?.data);

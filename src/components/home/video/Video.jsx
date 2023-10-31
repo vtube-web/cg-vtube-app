@@ -25,7 +25,7 @@ function Video({video}) {
                 </div>
                 <div className={style.video__channel}>
                     <img src={video.userDto.avatar} alt={'channel_name'}/>
-                    <span>{video.userDto.userName}</span>
+                    <span>{video.userDto.channelName}</span>
                 </div>
             </div>
         </NavLink>

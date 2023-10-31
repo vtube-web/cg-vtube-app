@@ -1,7 +1,8 @@
 import axios from "axios";
 import { getAccessToken } from "../services/accountService";
+import { VTUBE_API } from "../app/constants";
 
-const VIDEO_UPLOAD_API = "http://localhost:8080/api/videos/content";
+const VIDEO_UPLOAD_API = `${VTUBE_API}/videos/content`;
 
 export const getChannelVideo = async (page) => {
   let result = null;

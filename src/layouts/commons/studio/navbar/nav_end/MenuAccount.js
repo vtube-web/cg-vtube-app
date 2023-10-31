@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { useNavigate} from "react-router-dom";
 import {CiYoutube, CiLogin} from "react-icons/ci";
 import {PiUserSquareLight} from "react-icons/pi";
@@ -9,7 +9,7 @@ import {getStoredUserData} from "../../../../../services/accountService";
 function MenuAccount() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const user = getStoredUserData();
+    const user= getStoredUserData();
 
 
     function handleLogout() {

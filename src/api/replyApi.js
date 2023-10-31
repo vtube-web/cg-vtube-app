@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { VTUBE_API } from "../app/constants";
 
 
 export const submitReply = async(reply) => {
@@ -8,9 +8,9 @@ export const submitReply = async(reply) => {
       JSON.parse(window.localStorage.getItem("user"))?.accessToken || "";
     try {
         result = await axios.post(
-            `http://localhost:8080/api/${reply.commentId}/reply`,
-            {content: reply.content},
-            {headers: {Authorization: `Bearer ${token}`}}
+          `${VTUBE_API}/${reply.commentId}/reply`,
+          { content: reply.content },
+          { headers: { Authorization: `Bearer ${token}` } }
         );
     } catch (e) {
         console.log("Submit reply error", e);

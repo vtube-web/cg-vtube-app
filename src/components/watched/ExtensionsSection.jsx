@@ -38,8 +38,8 @@ const ExtensionsSection = ({
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(removeAllVideoWatched());
-        setVideosGroupedByDay({});
-        setShowNoWatchHistoryMessage(true);
+        // setVideosGroupedByDay({});
+        // setShowNoWatchHistoryMessage(true);
         handleRemoveItem();
         Swal.fire("Cleared!", "All videos have been cleared.", "success");
       }

@@ -5,7 +5,8 @@ import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { getStoredUserData } from "../../../../services/accountService";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
+import { VTUBE_API } from "../../../../app/constants";
 
 function AvatarUser() {
   const [image, setImage] = useState(null);
@@ -29,7 +30,7 @@ function AvatarUser() {
     if (user != null) {
       axios
         .put(
-          `http://localhost:8080/api/users/edit-avatar`,
+          `${VTUBE_API}/users/edit-avatar`,
           { id: user?.id, avatar: image },
           {
             headers: {

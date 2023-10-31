@@ -5,13 +5,13 @@ import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { getStoredUserData } from "../../../../services/accountService";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
+import { VTUBE_API } from "../../.././../app/constants";
 
 function BannerChannel() {
   const [imageBanner, setImageBanner] = useState(null);
   const [tempImage, setTempImage] = useState(false);
-    const navigate = useNavigate();
-
+  const navigate = useNavigate();
   const handleImage = (e) => {
     const img = e.target.files[0];
     const imageRef = ref(
@@ -30,7 +30,7 @@ function BannerChannel() {
 
     axios
       .put(
-        `http://localhost:8080/api/users/edit-banner`,
+        `${VTUBE_API}/users/edit-banner`,
         { id: user?.id, banner: imageBanner },
         {
           headers: {
