@@ -21,9 +21,9 @@ function Channel({ subscriptions }) {
     axios({
       url: `http://localhost:8080/api/users/list-user`,
       method: "post",
-      headers: {
-        Authorization: "Bearer " + getStoredUserData()?.accessToken,
-      },
+      // headers: {
+      //   Authorization: "Bearer " + getStoredUserData()?.accessToken,
+      // },
       data: {
         userIdList: subscriptions,
       },

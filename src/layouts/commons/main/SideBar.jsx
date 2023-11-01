@@ -144,20 +144,24 @@ const SideBar = ({ sidebar = true }) => {
           <span>Watched Videos</span>
         </li>
       </NavLink>
-      <NavLink
-        to={`/homeProfile/@${loggerUser?.userName}/*`}
-        activeClassName={"active"}
-        onClick={handleNavLinkClick}
-      >
-        <li>
-          {path === "yourVideos" ? (
-            <AiFillPlaySquare size={23} />
-          ) : (
-            <AiOutlinePlaySquare size={23} />
-          )}
-          <span>Your Videos</span>
-        </li>
-      </NavLink>
+      {/* Ở đây nè Tâm ơi cop cái đoạn này vô */}
+      {loggerUser ? (
+        <NavLink
+          to={`/homeProfile/@${loggerUser?.userName}/*`}
+          activeClassName={"active"}
+          onClick={handleNavLinkClick}
+        >
+          <li>
+            {path === "yourVideos" ? (
+              <AiFillPlaySquare size={23} />
+            ) : (
+              <AiOutlinePlaySquare size={23} />
+            )}
+            <span>Your Videos</span>
+          </li>
+        </NavLink>
+      ) : null}
+
       <NavLink
         to={"/watchLater"}
         activeClassName={"active"}
