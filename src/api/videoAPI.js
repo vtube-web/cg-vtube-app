@@ -1,7 +1,8 @@
 import axios from "axios";
 import { getStoredUserData } from "../services/accountService";
+import { VTUBE_API } from "../app/constants";
 
-export const VIDEO_API = "http://localhost:8080/api/videos";
+export const VIDEO_API = `${VTUBE_API}/videos`;
 
 export const findVideoList = async () => {
     let videoList = null;

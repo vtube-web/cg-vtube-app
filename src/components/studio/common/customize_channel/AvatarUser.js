@@ -5,10 +5,13 @@ import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { getStoredUserData } from "../../../../services/accountService";
+import { useNavigate } from "react-router-dom";
+import { VTUBE_API } from "../../../../app/constants";
 
 function AvatarUser() {
   const [image, setImage] = useState(null);
   const [tempImage, setTempImage] = useState(false);
+  const navigate = useNavigate();
   const handleImage = (e) => {
     const img = e.target.files[0];
     const imageRef = ref(
@@ -27,7 +30,7 @@ function AvatarUser() {
     if (user != null) {
       axios
         .put(
-          `http://localhost:8080/api/users/edit-avatar`,
+          `${VTUBE_API}/users/edit-avatar`,
           { id: user?.id, avatar: image },
           {
             headers: {
@@ -44,6 +47,7 @@ function AvatarUser() {
             window.localStorage.setItem("user", JSON.stringify(userLocal));
             setImage(null);
             setTempImage(false);
+            navigate();
           } else {
             toast.error(res.data.message);
           }

@@ -6,8 +6,9 @@ import {
   selectUserList,
 } from "../../../features/auth/userSlice";
 import { Link, useParams } from "react-router-dom";
-import {getStoredUserData} from "../../../services/accountService";
+import { getStoredUserData } from "../../../services/accountService";
 import axios from "axios";
+import { VTUBE_API } from "../../../app/constants";
 
 function Channel({ subscriptions }) {
   const user = useSelector(selectUserInfoByUserName);
@@ -19,7 +20,7 @@ function Channel({ subscriptions }) {
 
   useEffect(() => {
     axios({
-      url: `http://localhost:8080/api/users/list-user`,
+      url: `${VTUBE_API}/users/list-user`,
       method: "post",
       headers: {
         Authorization: "Bearer " + getStoredUserData()?.accessToken,
