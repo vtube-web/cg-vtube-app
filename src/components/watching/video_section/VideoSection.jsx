@@ -8,7 +8,7 @@ import {
 } from "react-icons/bi";
 import { PiShareFatLight } from "react-icons/pi";
 import ShowMore from "react-show-more-text";
-import "react-show-more-text/lib/ShowMoreText.css";
+// import "react-show-more-text/lib/ShowMoreText.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import formatNumberView from "../../../format/FormatNumberView";
