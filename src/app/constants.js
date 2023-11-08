@@ -1,3 +1,3 @@
-const URL_DEFAULT = "vtube.azurewebsites.net";
+const URL_DEFAULTS = "vtube.azurewebsites.net";
 
-export const VTUBE_API = `https://${URL_DEFAULT}/api`;
+export const VTUBE_API = `https://${URL_DEFAULTS}/api`;
