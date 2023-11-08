@@ -1,3 +1,3 @@
-const hostnameLocal = "vutbe-server.azurewebsites.net";
+const URL_DEFAULT = "vtube.azurewebsites.net";
 
-export const VTUBE_API = `https://${hostnameLocal}/api`;
+export const VTUBE_API = `https://${URL_DEFAULT}/api`;
