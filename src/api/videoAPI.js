@@ -7,9 +7,7 @@ export const VIDEO_API = `${VTUBE_API}/videos`;
 export const findVideoList = async () => {
     let videoList = null;
     try {
-        videoList = await axios.get(`${VIDEO_API}`, {
-          headers: { Authorization: `Bearer ${getStoredUserData()?.accessToken}` },
-        });
+        videoList = await axios.get(`${VIDEO_API}`);
     } catch (e) {
         console.log('getVideoList API error: ' + e);
     }
